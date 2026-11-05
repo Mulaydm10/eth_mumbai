@@ -37,3 +37,7 @@ Format: `## YYYY-MM-DD HH:MM IST · who · title`
 ## 2026-11-06 02:31 IST · Claude Code (for Dhruv Mulay) · Prototype 1 deployed (web app, up to 5 phones)
 - Phones write each detected event to Arkiv Rabdi with their own in-browser key. The dashboard (`/dashboard.html`) reads Arkiv and recomputes the quorum (default k=3, window 2 s, first 5 phones per site count). `npm run pull -- <site> <minutes>` dumps data to `logs/`.
 - `/api/drip` tops up new phone wallets from a team funder wallet (key only in the gitignored `.env` and as a Vercel secret). Blocker: the funder has 0 tGLM. The faucet signed in automatically, but it has a human-verification step, which Dhruv must complete.
+
+## 2026-11-06 02:34 IST · Claude Code (for Dhruv Mulay) · Prototype 1 verified end to end
+- Dhruv completed the faucet human check in the shared Playwright browser: 10 tGLM went to the funder wallet.
+- `scripts/simulate.ts` ran with 3 fresh wallets: live /api/drip funded each, sensors and triggers were written to Arkiv, read back, quorum confirmed 3/3, and the handling trigger was rejected. The live dashboard in a browser showed the same. Gas is about 0.00019 tGLM per write, so 10 tGLM covers roughly 200 phone top-ups of 0.05.

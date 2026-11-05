@@ -27,3 +27,4 @@
 | Fri 01:45 | Claude Code | Both research agents returned; findings committed. Build plan v1 written. | ../../design/build-plan.md |
 | Fri 01:51 | Claude Code | Dhruv: "test on a single phone first, basic prototype, then grow". Built Prototype 0 (sensor page: rate, PPV, trigger, structural/handling label, CSV export). Deployed https://tremor-witness.vercel.app | apps/web, packages/core |
 | Fri 02:31 | Claude Code | Prototype 1 deployed (phones write to Arkiv, dashboard quorum, max 5 phones/site, /api/drip). Funder wallet 0x32DE…500F has 0 tGLM: faucet needs a human check, so Dhruv must claim it. | apps/web, packages/chain |
+| Fri 02:34 | Dhruv + Claude Code | Faucet claimed (10 tGLM → funder). E2E self-test: 3 simulated phones dripped via live /api/drip, wrote to Arkiv, dashboard (browser) showed 1 confirmed 3/3 event + 1 handling rejection. Gas ≈ 0.00019 tGLM/write. | scripts/simulate.ts |
