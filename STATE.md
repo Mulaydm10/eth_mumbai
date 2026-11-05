@@ -36,7 +36,10 @@ Verdict's suggested checks before committing: ask ENS whether a sensor registry 
 Track conflicts resolved from the live prizes page: see `sources/sponsor-tracks-verbatim.md` (`COMPETITION.md` not yet updated; LOCKED).
 
 ## In flight
-- **Thesis direction (Dhruv, Fri 01:26 IST): build Tremor Witness** with Arkiv Build (+Swarm bonus), ENSv2, EF CROPS, World IDKit (backup). Sponsor deep dive DONE (`research/tremor-witness/sponsors/`). **Build plan v1 written: `design/build-plan.md`, awaiting Dhruv's approval** (it resolves ADR-0002 when approved). World IDKit dropped. Progress log: `research/tremor-witness/LOG.md`.
+- **Building Tremor Witness** (Dhruv's direction, Fri 01:26 IST). Plan: `design/build-plan.md`. Live: https://tremor-witness.vercel.app (+ `/dashboard.html`, `/tremor-witness-viewer.html`).
+- Prototype 0 (one phone) ✓ · Prototype 1 (≤5 phones → Arkiv, dashboard quorum, gas drip) ✓ verified with real phones (51/49.5 Hz) + simulated E2E · clock + handling fixes deployed.
+- Prototype 2: **Arkiv ✓** (triggers/sensors/events + all `/arkiv/*.md`), **Swarm ✓** (evidence packs, verified hash), **CROPS ✓ partial** (offline single-file viewer, README CROPS section; Swarm-hosted site blocked pending gateway approval). **ENSv2 in progress**: recipe agent → `research/tremor-witness/ensv2-recipe.md`; needs Sepolia ETH in funder 0x32DE…500F.
+- Secrets: funder key only in gitignored `.env` + Vercel secret `FUNDER_PRIVATE_KEY`.
 
 ## Blocked
 - Thesis not chosen (`Q-0001`) · stack undecided (`ADR-0002` / `Q-0002`) · track undecided (`Q-0003`) · submission option and partner prizes (`Q-0004`).
@@ -56,4 +59,4 @@ Claim before starting; release the moment you stop. A stale claim blocks others 
 | `research/tremor-witness/sponsors/` (sponsor deep dive) | 2 Sonnet agents via Claude Code | Fri 01:30 | Fri 01:43 (done) |
 | `design/build-plan.md` | Claude Code | Fri 01:30 | Fri 01:50 (v1 done) |
 
-Last updated: 2026-11-06 01:50 IST · Claude Code (build plan v1)
+Last updated: 2026-11-06 03:00 IST · Claude Code (Prototype 2: Arkiv+Swarm+CROPS; ENS pending Sepolia ETH)
