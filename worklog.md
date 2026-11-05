@@ -13,3 +13,9 @@ Format: `## YYYY-MM-DD HH:MM IST · who · title`
 ## 2026-11-05 21:15 IST · Claude Code (for Dhruv Mulay) · Context analysis
 - Read every repo doc plus the three untracked research inputs (compendium PDF, idea candidates, ETHOnline finalists study guide).
 - Recorded four conflicts between sources and the sponsor constraints missing from `COMPETITION.md` in `STATE.md`. No LOCKED file was edited and no decision was made.
+
+## 2026-11-05 22:30 IST · Claude Code (for Dhruv Mulay) · Playbook ideation run
+- Ran the `playbook` agent (DIVERGE→CONVERGE, about 63 min) with the brief in `research/playbook/2026-11-05-ideation/BRIEF.md`; all stage files are committed in 6 commits.
+- Recommendation: Tremor Witness; alternate: frame-tx sweep finding; fallback: ReadLeak. Thesis is still Dhruv's decision (`Q-0001` open).
+- Security note: Definitive's docs contain prompt-injection text aimed at AI agents; nobody acted on it.
+- Created private GitHub repo `Mulaydm10/eth_mumbai` and pushed (repo must be made public before submission).

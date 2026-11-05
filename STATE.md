@@ -26,8 +26,17 @@
 - ENS: ENSv2 on mainnet or Sepolia, central rather than cosmetic, live demo, open source, no hard-coded values.
 - Arc: every prize must start in Arc Studio. 0G Physical AI: requires a safe stop and rejects "0G used only for logs"; whether a phone counts as real hardware is unclear. Chainlink CCIP: requires a CCIP state change.
 
+## Playbook verdict (2026-11-05 ~22:25 IST; a recommendation, NOT a decision)
+Full report: `research/playbook/2026-11-05-ideation/VERDICT.md`. 49 generated ideas + 4 existing candidates were cut to 3.
+1. **Tremor Witness** (recommended): a phone-vibration quorum gives residents beside Mumbai metro construction a tamper-evident vibration record of their own. Arkiv Build + ENSv2 (sensor subnames) + EF CROPS; expected sponsor value about $1.9k (argued).
+2. **Frame-tx sweep finding** (EF-heavy alternate): EIP-8141 frame transactions vs key-leak sweeper bots, on the alt-mempool devnet.
+3. **ReadLeak** (fallback; EF lists it as a suggested idea, so collisions are likely).
+Dropped: Fallback Checkout, MachineLease, Hedged LP, Hum Clock, Pocket Sonar (reasons in VERDICT.md).
+Verdict's suggested checks before committing: ask ENS whether a sensor registry counts as central; ask one housing society whether it would run this.
+Track conflicts resolved from the live prizes page: see `sources/sponsor-tracks-verbatim.md` (`COMPETITION.md` not yet updated; LOCKED).
+
 ## In flight
-- Playbook ideation run (option c) in the background; it records everything to `research/playbook/2026-11-05-ideation/` (start with `RESUME.md` if it is cut off).
+- Nothing.
 
 ## Blocked
 - Thesis not chosen (`Q-0001`) · stack undecided (`ADR-0002` / `Q-0002`) · track undecided (`Q-0003`) · submission option and partner prizes (`Q-0004`).
@@ -43,6 +52,6 @@ Claim before starting; release the moment you stop. A stale claim blocks others 
 
 | Surface / task | Owner (human or agent) | Claimed at (IST) | Released |
 | --- | --- | --- | --- |
-| `research/playbook/2026-11-05-ideation/` (ideation run, DIVERGE→CONVERGE) | playbook agent via Claude Code | 21:25 | |
+| `research/playbook/2026-11-05-ideation/` (ideation run, DIVERGE→CONVERGE) | playbook agent via Claude Code | 21:25 | 22:27 (done) |
 
-Last updated: 2026-11-05 21:15 IST · Claude Code (context analysis)
+Last updated: 2026-11-05 22:30 IST · Claude Code (playbook run committed)

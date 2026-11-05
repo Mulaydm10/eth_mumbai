@@ -21,3 +21,4 @@ coverage/
 # working dirs (whitelist pattern)
 scratch/*
 !scratch/.gitignore
+.playwright-mcp/
