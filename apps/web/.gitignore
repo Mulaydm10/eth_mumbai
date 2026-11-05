@@ -1,2 +1,5 @@
 .vercel
 .env*
+public/tremor-witness-viewer.html
+dist-swarm/
+dist-single/

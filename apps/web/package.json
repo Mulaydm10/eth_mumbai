@@ -5,19 +5,20 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "build": "vite build",
+    "build": "vite build -c vite.single.config.ts && cp dist-single/dashboard.html public/tremor-witness-viewer.html && vite build",
     "preview": "vite preview --host",
     "typecheck": "tsc --noEmit -p ."
   },
   "dependencies": {
-    "@tw/core": "*",
-    "@tw/chain": "*",
     "@arkiv-network/sdk": "1.0.1",
+    "@tw/chain": "*",
+    "@tw/core": "*",
     "viem": "2.57.16"
   },
   "devDependencies": {
     "typescript": "^5.9.3",
-    "vite": "^7.1.12"
+    "vite": "^7.1.12",
+    "vite-plugin-singlefile": "^2.3.0"
   },
   "engines": {
     "node": "24.x"
