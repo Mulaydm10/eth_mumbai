@@ -1,0 +1,4 @@
+# raw run logs stay local; summaries go in experiments/experiment_log.md
+*
+!.gitignore
+!README.md

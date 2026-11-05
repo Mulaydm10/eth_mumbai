@@ -1,0 +1,23 @@
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+# secrets: never commit keys, wallets or seed phrases
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+# generic dependency / build / cache hygiene (stack undecided, see ADR-0002)
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.pyc
+dist/
+build/
+.cache/
+coverage/
+# working dirs (whitelist pattern)
+scratch/*
+!scratch/.gitignore
