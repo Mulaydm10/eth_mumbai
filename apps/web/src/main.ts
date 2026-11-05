@@ -50,7 +50,7 @@ const MIN_PPV_MMS = 0.3; // ignore events weaker than this (noise floor)
 const EVENT_MS = 1200; // window collected after a trigger
 const REFRACTORY_MS = 1500; // no new event this soon after the last
 const HANDLING_LOWF = 0.5; // >50% energy below 3 Hz = phone handled / swayed, not floor vibration
-const HANDLING_TILT_DEG = 10; // orientation changed by >10° = phone picked up / flipped (a floor does not tilt a lying phone)
+const HANDLING_TILT_DEG = 15; // orientation changed by >15° (real test: stomps rattle up to ~10°, handling was 13°+) = phone picked up / flipped (a floor does not tilt a lying phone)
 const HANDLING_ACC = 30; // >30 m/s² (~3 g) band-passed: dropped or shaken, not floor vibration
 
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
