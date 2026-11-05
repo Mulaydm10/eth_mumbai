@@ -1,6 +1,37 @@
-// Prototype 0: one phone. Read the accelerometer, measure the delivered rate, compute PPV,
-// detect impacts with STA/LTA and label each one "structural" or "handling". Nothing leaves the phone.
+// Prototype 1 (web app, many phones): each phone detects impacts locally (PPV, STA/LTA, structural vs handling)
+// and writes every detected event to Arkiv, signed by its own in-browser key. The dashboard reads Arkiv and
+// computes the multi-phone quorum.
 import { StaLta, VelocityTracker, defaultBand, dominantHz, lowFreqRatio, measuredRateHz, type Sample } from "@tw/core";
+import { walletClientFor, writeSensor, writeTrigger, type ArkivWallet } from "@tw/chain";
+import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
+import type { Hex } from "viem";
+
+// ---- Identity, site and wallet (the key never leaves this phone) ----
+const params = new URLSearchParams(location.search);
+const ACCESS_KEY = (import.meta.env.VITE_ARKIV_ACCESS_KEY as string | undefined) ?? "";
+const EXPLORER = "https://rabdi.explorer.arkiv.network";
+function lsGet(k: string) {
+  try {
+    return localStorage.getItem(k);
+  } catch {
+    return null;
+  }
+}
+function lsSet(k: string, v: string) {
+  try {
+    localStorage.setItem(k, v);
+  } catch {
+    /* private mode: key lives for this tab only */
+  }
+}
+let pk = lsGet("tw.key") as Hex | null;
+if (!pk) {
+  pk = generatePrivateKey();
+  lsSet("tw.key", pk);
+}
+const account = privateKeyToAccount(pk);
+const wallet: ArkivWallet = walletClientFor(pk, ACCESS_KEY);
+const defaultName = `phone-${account.address.slice(2, 6).toLowerCase()}`;
 
 // ---- Generic Sensor API typing (not in TS's DOM lib) ----
 interface GenericSensor extends EventTarget {
@@ -35,14 +66,53 @@ const ui = {
   events: $("events"),
   clear: $<HTMLButtonElement>("clear"),
   exportBtn: $<HTMLButtonElement>("export"),
+  site: $<HTMLInputElement>("site"),
+  name: $<HTMLInputElement>("name"),
+  chain: $("chain"),
+  dashLink: $<HTMLAnchorElement>("dashLink"),
 };
 
+ui.site.value = params.get("site") ?? lsGet("tw.site") ?? "demo";
+ui.name.value = params.get("name") ?? lsGet("tw.name") ?? defaultName;
+const syncLinks = () => {
+  lsSet("tw.site", ui.site.value.trim());
+  lsSet("tw.name", ui.name.value.trim());
+  ui.dashLink.href = `/dashboard.html?site=${encodeURIComponent(ui.site.value.trim())}`;
+};
+ui.site.addEventListener("change", syncLinks);
+ui.name.addEventListener("change", syncLinks);
+syncLinks();
+ui.chain.innerHTML = `Wallet: <a href="${EXPLORER}/address/${account.address}" target="_blank" rel="noopener">${account.address}</a>`;
+
 interface DetectedEvent {
-  t: number;
+  t: number; // performance-clock ms
+  wallMs: number;
   ppv: number;
   fDom: number;
   lowF: number;
   label: "structural" | "handling";
+  write: "queued" | "sending" | "ok" | "error";
+  note?: string;
+}
+
+// ---- Arkiv writes: one at a time, in order (avoids nonce races) ----
+let writeChain: Promise<unknown> = Promise.resolve();
+function enqueue(fn: () => Promise<unknown>) {
+  writeChain = writeChain.then(fn, fn);
+}
+
+async function ensureGas() {
+  try {
+    const r = await fetch("/api/drip", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ address: account.address }) });
+    const j = (await r.json()) as { ok: boolean; funded?: boolean; error?: string };
+    if (!j.ok) setChainNote(`Gas top-up failed: ${j.error ?? r.status}`, true);
+    else if (j.funded) setChainNote("Gas topped up from the team faucet.");
+  } catch (e) {
+    setChainNote(`Gas top-up unreachable: ${String(e)}`, true);
+  }
+}
+function setChainNote(msg: string, err = false) {
+  ui.chain.innerHTML = `Wallet: <a href="${EXPLORER}/address/${account.address}" target="_blank" rel="noopener">${account.address}</a><br>${err ? '<span class="bad">' : ""}${msg}${err ? "</span>" : ""}`;
 }
 
 let running = false;
@@ -98,6 +168,15 @@ function onSample(s: Sample) {
     tracker = new VelocityTracker(defaultBand(fs));
     trig = new StaLta(0.15, 5, fs);
     setStatus("Running. Warming up for ~3 s, then tap or stomp near the phone.");
+    const rate = fs;
+    enqueue(async () => {
+      try {
+        await writeSensor(wallet, { site: ui.site.value.trim(), sensor: ui.name.value.trim(), startedMs: Date.now(), rateHz: rate, api: ui.api.textContent ?? "", ua: navigator.userAgent });
+        setChainNote(`Registered on Arkiv as "${ui.name.value.trim()}" at site "${ui.site.value.trim()}".`);
+      } catch (e) {
+        setChainNote(`Arkiv sensor write failed: ${shortErr(e)}`, true);
+      }
+    });
   }
 
   const { accBand, velMmS } = tracker.push(s);
@@ -131,20 +210,61 @@ function closeEvent() {
   const fDom = dominantHz(best, fs);
   const lowF = lowFreqRatio(best, fs);
   const label: DetectedEvent["label"] = lowF > HANDLING_LOWF || o.peak > HANDLING_PPV ? "handling" : "structural";
-  const ev = { t: o.t0, ppv: o.peak, fDom, lowF, label };
+  const wallMs = performance.timeOrigin + o.t0;
+  const ev: DetectedEvent = { t: o.t0, wallMs, ppv: o.peak, fDom, lowF, label, write: "queued" };
   events.unshift(ev);
   lastEventT = o.t0;
   renderEvents();
   if (navigator.vibrate && label === "structural") navigator.vibrate(60);
+
+  // Waveform excerpt: 300 ms before the trigger to the end of the window.
+  const win = raw.filter((s) => s.t >= o.t0 - 300 && s.t <= o.t0 + EVENT_MS);
+  const site = ui.site.value.trim();
+  const sensor = ui.name.value.trim();
+  const rate = fs;
+  enqueue(async () => {
+    ev.write = "sending";
+    renderEvents();
+    try {
+      const r = await writeTrigger(wallet, {
+        site,
+        sensor,
+        tMs: wallMs,
+        ppvMmS: ev.ppv,
+        fDomHz: fDom,
+        lowF,
+        rateHz: rate,
+        label,
+        wave: { fs: rate, x: win.map((s) => s.x), y: win.map((s) => s.y), z: win.map((s) => s.z) },
+      });
+      ev.write = "ok";
+      ev.note = String((r as { entityKey?: string }).entityKey ?? "");
+    } catch (e) {
+      ev.write = "error";
+      ev.note = shortErr(e);
+    }
+    renderEvents();
+  });
+}
+
+function shortErr(e: unknown) {
+  const m = String((e as { shortMessage?: string; message?: string })?.shortMessage ?? (e as Error)?.message ?? e);
+  return m.length > 140 ? `${m.slice(0, 140)}…` : m;
 }
 
 function renderEvents() {
   ui.events.innerHTML = events
     .slice(0, 50)
     .map((e) => {
-      const time = new Date(performance.timeOrigin + e.t).toLocaleTimeString();
+      const time = new Date(e.wallMs).toLocaleTimeString();
       const cls = e.label === "structural" ? "struct" : "handling";
-      return `<li>${time} · <b>${e.ppv.toFixed(2)} mm/s</b> · ${e.fDom.toFixed(1)} Hz · low-f ${(e.lowF * 100).toFixed(0)}%<span class="tag ${cls}">${e.label}</span></li>`;
+      const w =
+        e.write === "ok"
+          ? `<span class="w ok">✓ on Arkiv</span>`
+          : e.write === "error"
+            ? `<span class="w bad" title="${(e.note ?? "").replace(/"/g, "'")}">✗ ${e.note ?? "write failed"}</span>`
+            : `<span class="w">${e.write}…</span>`;
+      return `<li>${time} · <b>${e.ppv.toFixed(2)} mm/s</b> · ${e.fDom.toFixed(1)} Hz · low-f ${(e.lowF * 100).toFixed(0)}%<span class="tag ${cls}">${e.label}</span>${w}</li>`;
     })
     .join("");
 }
@@ -269,6 +389,7 @@ ui.start.addEventListener("click", async () => {
   ui.start.textContent = "Stop";
   ui.start.classList.add("running");
   await acquireWakeLock();
+  void ensureGas();
 });
 
 ui.clear.addEventListener("click", () => {

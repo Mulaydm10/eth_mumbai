@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0f1115" />
+    <title>Tremor Witness · Dashboard</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <main class="wide">
+      <header>
+        <h1>Tremor Witness · Dashboard</h1>
+        <p class="sub">Read directly from Arkiv (Rabdi testnet). The quorum is recomputed in your browser; no server of ours decides anything. <a href="/">sensor page →</a></p>
+      </header>
+
+      <section class="card controls">
+        <label class="label" for="site">Site</label><input id="site" class="input" />
+        <label class="label" for="k">Quorum k</label><input id="k" class="input" type="number" min="1" max="5" value="3" />
+        <label class="label" for="win">Window ms</label><input id="win" class="input" type="number" min="200" max="10000" step="100" value="2000" />
+        <label class="label" for="mins">Last min</label><input id="mins" class="input" type="number" min="1" max="1440" value="30" />
+        <span id="sync" class="muted small">–</span>
+      </section>
+
+      <section class="grid">
+        <div class="stat"><span class="label">Phones (max 5)</span><span id="nSensors" class="value big">–</span></div>
+        <div class="stat"><span class="label">Confirmed events</span><span id="nEvents" class="value big ok">–</span></div>
+        <div class="stat"><span class="label">Triggers seen</span><span id="nTriggers" class="value">–</span></div>
+        <div class="stat"><span class="label">Rejected</span><span id="nRejected" class="value bad">–</span></div>
+      </section>
+
+      <section class="card">
+        <div class="row"><span class="label">Join link (open on each phone)</span></div>
+        <code id="joinLink" class="small"></code>
+      </section>
+
+      <section class="card">
+        <div class="row"><span class="label">Phones at this site</span></div>
+        <table><thead><tr><th>Phone</th><th>Rate</th><th>Sensor API</th><th>Joined</th><th>Wallet</th></tr></thead><tbody id="sensors"></tbody></table>
+      </section>
+
+      <section class="card">
+        <div class="row"><span class="label">Confirmed events (quorum reached)</span></div>
+        <table><thead><tr><th>Time</th><th>Phones</th><th>PPV band</th></tr></thead><tbody id="events"></tbody></table>
+      </section>
+
+      <section class="card">
+        <div class="row"><span class="label">All triggers</span></div>
+        <table><thead><tr><th>Time</th><th>Phone</th><th>PPV</th><th>Freq</th><th>Label</th><th>Result</th></tr></thead><tbody id="triggers"></tbody></table>
+      </section>
+    </main>
+    <script type="module" src="/src/dashboard.ts"></script>
+  </body>
+</html>

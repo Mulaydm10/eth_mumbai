@@ -11,12 +11,21 @@
     <main>
       <header>
         <h1>Tremor Witness</h1>
-        <p class="sub">Prototype 0 · one phone · no chain yet</p>
+        <p class="sub">Prototype 1 · each phone writes its own events to Arkiv · <a id="dashLink" href="/dashboard.html">dashboard →</a></p>
       </header>
 
       <section class="card">
+        <div class="row">
+          <label class="label" for="site">Site</label>
+          <input id="site" class="input" maxlength="40" />
+        </div>
+        <div class="row">
+          <label class="label" for="name">This phone (max 5 per site)</label>
+          <input id="name" class="input" maxlength="40" />
+        </div>
         <button id="start" class="primary">Start sensor</button>
         <p id="status" class="status">Lay the phone flat on the floor, screen up, then press Start.</p>
+        <p id="chain" class="status small">Wallet: –</p>
       </section>
 
       <section class="grid">
@@ -44,7 +53,7 @@
         <ol id="events" class="events"></ol>
       </section>
 
-      <footer>Readings stay on this phone. Nothing is uploaded in Prototype 0.</footer>
+      <footer>Only detected events are written to Arkiv (Rabdi testnet), signed by this phone's own key. No continuous stream leaves the phone.</footer>
     </main>
     <script type="module" src="/src/main.ts"></script>
   </body>

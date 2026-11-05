@@ -1,0 +1,10 @@
+{
+  "name": "@tw/chain",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": { "typecheck": "tsc --noEmit -p ." },
+  "dependencies": { "@arkiv-network/sdk": "1.0.1", "viem": "2.57.16" }
+}

@@ -22,3 +22,4 @@ coverage/
 scratch/*
 !scratch/.gitignore
 .playwright-mcp/
+.vercel/

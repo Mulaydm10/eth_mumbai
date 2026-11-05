@@ -10,10 +10,16 @@
     "typecheck": "tsc --noEmit -p ."
   },
   "dependencies": {
-    "@tw/core": "*"
+    "@tw/core": "*",
+    "@tw/chain": "*",
+    "@arkiv-network/sdk": "1.0.1",
+    "viem": "2.57.16"
   },
   "devDependencies": {
     "typescript": "^5.9.3",
     "vite": "^7.1.12"
+  },
+  "engines": {
+    "node": "24.x"
   }
 }

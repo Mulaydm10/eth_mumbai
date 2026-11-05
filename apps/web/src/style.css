@@ -37,3 +37,15 @@ canvas { width: 100%; display: block; background: #0b0d11; border-radius: 8px; }
 .tag.struct { background: rgba(76, 195, 138, 0.15); color: var(--ok); }
 .tag.handling { background: rgba(229, 83, 75, 0.15); color: var(--warn); }
 footer { color: var(--muted); font-size: 12px; text-align: center; margin-top: 16px; }
+.input { flex: 1; max-width: 60%; background: #0b0d11; color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font: inherit; }
+.small { font-size: 12px; word-break: break-all; }
+a { color: var(--accent); }
+.events .w { font-size: 11px; color: var(--muted); margin-left: 6px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 6px 4px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { color: var(--muted); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
+.big { font-size: 28px; font-weight: 600; }
+.ok { color: var(--ok); } .bad { color: var(--warn); } .muted { color: var(--muted); }
+main.wide { max-width: 960px; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.controls .input { max-width: 140px; }
