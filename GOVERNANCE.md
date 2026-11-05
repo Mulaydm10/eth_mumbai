@@ -36,3 +36,4 @@ summarise it. Event facts taken from it live in `COMPETITION.md`, which links ba
 | 2026-11-05 | notes/ai_onboarding_prompt.md | hackathon-setup | Initial authorship | Scaffold |
 | 2026-11-05 | logs/README.md | hackathon-setup | Initial authorship | Scaffold |
 | 2026-11-05 | tests/README.md | hackathon-setup | Initial authorship | Scaffold |
+| 2026-11-06 | tests/README.md | Claude Code (for Dhruv Mulay) | Replaced "no baseline" with the real test commands | ADR-0002 resolved (TypeScript monorepo); `npm test` green (17 tests) |

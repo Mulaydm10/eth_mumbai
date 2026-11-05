@@ -1,7 +1,7 @@
 # CLAUDE.md: cold-start entry point
 
 **What this is:** the working repo for our ETHGlobal Mumbai hackathon entry. Humans and agents work on it at the same time.
-**Thesis:** not chosen yet (`Q-0001`). **Stack:** undecided (`ADR-0002`). **Track:** undecided (`Q-0003`).
+**Thesis:** Tremor Witness (Dhruv's direction, 2026-11-06; `Q-0001`, plan `design/build-plan.md`). **Stack:** TypeScript monorepo (`ADR-0002`, Accepted). **Track:** From Scratch (`Q-0003`).
 **Event facts** (deadline, rules, rubric) live **only** in `COMPETITION.md`. Never restate them elsewhere; link instead.
 
 ## Read order
@@ -26,8 +26,19 @@ the `GOVERNANCE.md` audit table. `CLAUDE.md`, `STATE.md`, `AGENTS.md`, `DEMO.md`
 (`experiments/experiment_log.md`, raw logs in `logs/`) · `DEMO-####` demo scenarios (`DEMO.md`). `grep -rn '<ID>' .` recovers the full trace.
 
 ## Canonical commands
-TODO(Dhruv): blocked on `ADR-0002`. **Binding:** whoever resolves the ADR fills this section **and** lands a green smoke test in the same change.
-There is no test baseline until then; do not fake one (`tests/README.md`).
+Node ≥ 22.10, npm workspaces (`packages/core`, `packages/chain`, `apps/web`). Everything installs locally (`node_modules/`), nothing global.
+```bash
+npm install                 # once
+npm test                    # smoke test + unit tests (core: DSP, quorum, sound sync) — must stay green
+npm run typecheck           # all workspaces
+npm run dev                 # local web app (phone sensors need HTTPS → use the Vercel URL on phones)
+npx tsx scripts/simulate.ts <site> 3       # E2E self-test: 3 simulated phones → drip → ENS → Arkiv → quorum
+npx tsx scripts/pull.ts <site> <minutes>   # dump a site's Arkiv data into logs/
+npx tsx scripts/verify-event.ts <site>     # verify sealed events (Swarm pack hash ↔ Arkiv)
+npx tsx --env-file=.env scripts/ens-setup.ts phones|site|params|phone|revoke ...   # ENSv2 committee CLI (dry run unless --send)
+cd apps/web && vercel build --prod --yes && vercel deploy --prebuilt --prod --yes  # deploy https://tremor-witness.vercel.app
+```
+Secrets live only in the gitignored `.env` (FUNDER_PRIVATE_KEY, COMMITTEE_PASS) and as Vercel secrets. Never print or commit them.
 
 ## Hard rules
 1. Never invent a thesis, deadline, rule or rubric weight. Unknown stays `TODO(<owner>)`.

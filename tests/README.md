@@ -2,8 +2,10 @@
 
 # Tests
 
-**There is no test baseline yet, because the stack is undecided (`ADR-0002`, `Q-0002`). Do not fake one.**
-A scaffold whose test command fails on first run trains everyone to bypass the tooling.
+Stack resolved by `ADR-0002` (TypeScript monorepo). **Run `npm test` from the repo root**: it runs every workspace's tests.
 
-Binding rule: the change that resolves `ADR-0002` must land the toolchain, the canonical commands in `CLAUDE.md` and a green smoke test together.
-Until then, verification is a `DEMO.md` run-through once a demo path exists.
+- Smoke test: `packages/core/test/quorum.test.ts`: a 3-phone impact is confirmed, a lone shake is rejected.
+- Unit tests: `packages/core/test/dsp.test.ts` (PPV, rate, features, STA/LTA), `packages/core/test/sync.test.ts` (sound-sync detector + clock alignment).
+- End to end (live networks, costs testnet gas): `npx tsx scripts/simulate.ts <site> 3`, then `npx tsx scripts/verify-event.ts <site>`.
+
+Real-phone results are logged in `research/tremor-witness/LOG.md` with raw data pulled to `logs/`. Do not fake a number: anything not measured on real phones is labelled simulated.

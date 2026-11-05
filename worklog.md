@@ -47,3 +47,8 @@ Format: `## YYYY-MM-DD HH:MM IST · who · title`
 - Phones register as <name>.<site>.tremorwitness.eth (owner = phone wallet, roleBitmap 0 = non-transferable, 30-day expiry) via /api/ens-register (committee auto-approves, max 5/site). /api/ens-revoke is passcode-protected (COMMITTEE_PASS, Vercel secret + .env).
 - Dashboard trust rule: a reading counts only if the phone's ENS name resolves now to its Arkiv $creator; k/window come from ENS text records. Verified: live phones confirmed, revoked phones rejected, pack carries the ENS snapshot.
 - Fixes on the way: ESM .js import extensions for Vercel functions; "latest" for the last log chunk (load-balanced RPC lag). Total Sepolia spend so far is negligible (gas price ~19 wei).
+
+## 2026-11-06 04:38 IST · Claude Code (for Dhruv Mulay) · Offline mode, round-3 test, docs sync
+- Built offline mode: store-and-forward outbox and sound-sync clock alignment (core detector + 6 tests, Arkiv `sync` anchors, dashboard correction); also internet reference sync (/api/time, re-sync every 2 min).
+- Real 2-phone round at 04:05 IST: only phone-b0a8's 7 stomps + 1 shake reached Arkiv; no sync anchors. The likely cause is that phone-cad2 was not reloaded. Retest pending (teammate asleep).
+- Resolved ADR-0002 (TypeScript monorepo), filled the CLAUDE.md canonical commands, updated tests/README.md (LOCKED, logged in GOVERNANCE) and rewrote STATE.md.

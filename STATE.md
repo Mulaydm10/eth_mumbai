@@ -2,61 +2,38 @@
 
 **Tie-break:** if this file and `worklog.md` disagree about what is true *now*, **this file wins**. The worklog explains how we got here.
 **Deadline:** see `COMPETITION.md` (do not copy it here). Compute time remaining from the current time before planning.
-**Clock warning:** this Mac's clock runs **CET**. IST = CET + 4:30. Always convert before planning.
+**Clock warning:** this Mac's clock runs **CET**. IST = CET + 4:30.
+
+## What we are building
+**Tremor Witness**: residents' Android phones record construction vibration. An event counts only when several ENS-registered phones feel it together. Readings are signed by each phone on **Arkiv**, sealed evidence packs go to **Swarm**, and the record survives our servers going off (**EF CROPS**). Plan: `design/build-plan.md` · stack: `ADR-0002` (Accepted) · commands: `CLAUDE.md`.
+
+## Live
+- Sensor page: https://tremor-witness.vercel.app/?site=<site> · Dashboard: `/dashboard.html?site=<site>` (big join QR) · Offline viewer: `/tremor-witness-viewer.html`
+- ENS (Sepolia, ENSv2 contracts-v2 07e55a05 set): **tremorwitness.eth**; sites `test2` (k=2, 2000 ms) and `p3test` (k=3). Committee = funder wallet 0x32DE…500F.
+- Arkiv Rabdi (chain 7794095): schemas `tremor-witness.v1.{trigger,sensor,event,sync}`.
+- Repo: https://github.com/Mulaydm10/eth_mumbai (**private: must go public before submission**).
 
 ## Done
-- Repo scaffolded (governance, event facts, demo/agent docs). No product work yet.
-- 2026-11-05 21:15 IST: full context read (all repo docs plus the three new, still untracked research inputs below). No decisions made.
-
-## Research inputs (all in `docs/research/`, read-only)
-- `ETHGlobal_Mumbai_Research_Handover.md`: committed, frozen.
-- `ETHGlobal-Mumbai-2026-Compendium.pdf`: **untracked**. Newest and widest source (Nov 5): schedule, per-sponsor rules, what wins, the Fiducia post-mortem, ideas A-D/LeakMeter/Hedged LP with verdicts.
-- `Idea_Candidates_Verbatim.md`: **untracked**. Three refined candidates: MachineLease, ReadLeak (refined LeakMeter), Fallback Checkout.
-- `ethonline-2026-finalists-study-guide.pdf`: **untracked**. Prepared for the WHU Solana hackathon (Oct 2); only the parts about the ETHOnline finalists apply here.
-- Committing these is Dhruv's call: the compendium holds personal notes and will be public once the repo is published.
-
-## Conflicts between sources (do not resolve silently; Dhruv decides)
-1. **Team size:** `COMPETITION.md` says 3 people; the compendium works out prize ceilings and person-hours for **4**.
-2. **World Agent Pass $5,000 split:** handover says $2.5k / $1.5k / $1k; compendium says the split is not stated and that "proofs are mocked at this event".
-3. **Demo video:** the compendium repeats the website's "optional"; the finalist email says it is required. `COMPETITION.md` already follows the email.
-4. **Track:** the compendium lists "from scratch (not continuity)" and says "You decided not to use Fiducia", but `Q-0003` is still open in the repo.
-
-## Sponsor constraints not yet in `COMPETITION.md` (from the compendium; verify on /prizes)
-- EF: at most one EF prize per project. Arkiv: all tracks count as one pick; judged partly from schema.md, friction.md, reach.md, why-arkiv.md and data-quality.md; Mirror needs a redistribution licence.
-- ENS: ENSv2 on mainnet or Sepolia, central rather than cosmetic, live demo, open source, no hard-coded values.
-- Arc: every prize must start in Arc Studio. 0G Physical AI: requires a safe stop and rejects "0G used only for logs"; whether a phone counts as real hardware is unclear. Chainlink CCIP: requires a CCIP state change.
-
-## Playbook verdict (2026-11-05 ~22:25 IST; a recommendation, NOT a decision)
-Full report: `research/playbook/2026-11-05-ideation/VERDICT.md`. 49 generated ideas + 4 existing candidates were cut to 3.
-1. **Tremor Witness** (recommended): a phone-vibration quorum gives residents beside Mumbai metro construction a tamper-evident vibration record of their own. Arkiv Build + ENSv2 (sensor subnames) + EF CROPS; expected sponsor value about $1.9k (argued).
-2. **Frame-tx sweep finding** (EF-heavy alternate): EIP-8141 frame transactions vs key-leak sweeper bots, on the alt-mempool devnet.
-3. **ReadLeak** (fallback; EF lists it as a suggested idea, so collisions are likely).
-Dropped: Fallback Checkout, MachineLease, Hedged LP, Hum Clock, Pocket Sonar (reasons in VERDICT.md).
-Verdict's suggested checks before committing: ask ENS whether a sensor registry counts as central; ask one housing society whether it would run this.
-Track conflicts resolved from the live prizes page: see `sources/sponsor-tracks-verbatim.md` (`COMPETITION.md` not yet updated; LOCKED).
+- Prototype 0–3 + offline mode, all deployed and committed. 17 tests green.
+- Sponsors: **Arkiv ✓** (code + all `arkiv/*.md`), **Swarm bonus ✓** (evidence packs, hash-verified), **ENSv2 ✓** (registry gates the quorum, revoke, params from text records; verified on p3test), **EF CROPS ✓** (README CROPS section, offline single-file viewer).
+- Real-phone findings (2 phones, ~50–68 Hz): detection and handling rejection work. Phone clocks were ~2.8–3.3 s apart, so we added internet reference sync (/api/time) and sound sync (3-tone chirp, offline). Tilt threshold is now 15°. First real ENS-gated confirmed event on test2 at 03:49 IST.
 
 ## In flight
-- **Building Tremor Witness** (Dhruv's direction, Fri 01:26 IST). Plan: `design/build-plan.md`. Live: https://tremor-witness.vercel.app (+ `/dashboard.html`, `/tremor-witness-viewer.html`).
-- Prototype 0 (one phone) ✓ · Prototype 1 (≤5 phones → Arkiv, dashboard quorum, gas drip) ✓ verified with real phones (51/49.5 Hz) + simulated E2E · clock + handling fixes deployed.
-- Prototype 2: **Arkiv ✓** (triggers/sensors/events + all `/arkiv/*.md`), **Swarm ✓** (evidence packs, verified hash), **CROPS ✓ partial** (offline single-file viewer, README CROPS section; Swarm-hosted site blocked pending gateway approval). **ENSv2 ✓** (Prototype 3): tremorwitness.eth on Sepolia, phone subnames, ENS-gated quorum, params from text records, committee revoke; verified on site p3test.
-- Secrets: funder key only in gitignored `.env` + Vercel secret `FUNDER_PRIVATE_KEY`.
+- Nothing running. The **last real-phone round (04:05 IST) was inconclusive**: only phone-b0a8's readings reached Arkiv, and no sound-sync anchors arrived. The likely cause is that phone-cad2 wasn't reloaded (old code). Retest when the teammate is back: reload both phones, allow the microphone, play the sync sound, stomp ~4 s apart, then `npx tsx scripts/pull.ts test2 30`.
+
+## Next intended steps (priority order)
+1. Real-phone retest of sound sync + outbox, then **measured headline numbers** (true-confirm rate, lone-shake false-accept rate, inter-phone PPV spread) logged as `EXP-0001…`.
+2. `ens/` write-up for ENS judges; fill `notes/judging_alignment.md`; `DEMO.md` DEMO-0001 + reset/rollback.
+3. Fill `VISION.md` (LOCKED; log in GOVERNANCE) from the build plan, with Dhruv's sign-off.
+4. Video script (≤3 min for EF), AI-use disclosure, make the repo public, submission form, partner picks: Arkiv (+Swarm), ENS, EF.
+5. Optional: Swarm gateway approval (form open in the Playwright browser), 2-of-3 Safe as committee, Sepolia event anchor.
 
 ## Blocked
-- Thesis not chosen (`Q-0001`) · stack undecided (`ADR-0002` / `Q-0002`) · track undecided (`Q-0003`) · submission option and partner prizes (`Q-0004`).
-
-## Next intended step
-Dhruv picks the thesis (`Q-0001`; the compendium's self-imposed target was about 22:00 IST Thu), the track (`Q-0003`) and the stack (`ADR-0002`). Then fill in `VISION.md`, the `CLAUDE.md` commands and `DEMO.md`, and land the smoke test.
-
-## Latest experiment
-None (`experiments/experiment_log.md` is empty).
+- Real-phone tests wait for the teammate (asleep since ~04:10 IST).
 
 ## Work claims
-Claim before starting; release the moment you stop. A stale claim blocks others worse than none.
-
-| Surface / task | Owner (human or agent) | Claimed at (IST) | Released |
+| Surface / task | Owner | Claimed at (IST) | Released |
 | --- | --- | --- | --- |
-| `research/playbook/2026-11-05-ideation/` (ideation run, DIVERGE→CONVERGE) | playbook agent via Claude Code | 21:25 | 22:27 (done) |
-| `research/tremor-witness/sponsors/` (sponsor deep dive) | 2 Sonnet agents via Claude Code | Fri 01:30 | Fri 01:43 (done) |
-| `design/build-plan.md` | Claude Code | Fri 01:30 | Fri 01:50 (v1 done) |
+| _none_ | | | |
 
-Last updated: 2026-11-06 03:45 IST · Claude Code (Prototype 3: ENSv2 verified)
+Last updated: 2026-11-06 04:38 IST · Claude Code (sync after Prototype 3 + offline mode)
