@@ -25,3 +25,4 @@
 | 01:42 | docs agent | Arkiv SDK 1.0.1 live read probe OK on Rabdi; design notes (phone gas, $creator trust, 128KiB, ~182d max expiry); footers added | sponsors/docs-arkiv.md |
 | 01:42 | docs agent | Phone sensors: LinearAccelerationSensor needs HTTPS + visible page (readings stop when screen locked/hidden), Chrome caps 60 Hz, Wake Lock baseline since Mar 2025 | sponsors/docs-phone-sensors.md |
 | Fri 01:45 | Claude Code | Both research agents returned; findings committed. Build plan v1 written. | ../../design/build-plan.md |
+| Fri 01:51 | Claude Code | Dhruv: "test on a single phone first, basic prototype, then grow". Built Prototype 0 (sensor page: rate, PPV, trigger, structural/handling label, CSV export). Deployed https://tremor-witness.vercel.app | apps/web, packages/core |

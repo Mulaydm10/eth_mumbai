@@ -1,0 +1,13 @@
+{
+  "name": "@tw/web",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview --host",
+    "typecheck": "tsc --noEmit -p ."
+  },
+  "dependencies": { "@tw/core": "*" }
+}

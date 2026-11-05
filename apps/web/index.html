@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0f1115" />
+    <title>Tremor Witness · Sensor</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Tremor Witness</h1>
+        <p class="sub">Prototype 0 · one phone · no chain yet</p>
+      </header>
+
+      <section class="card">
+        <button id="start" class="primary">Start sensor</button>
+        <p id="status" class="status">Lay the phone flat on the floor, screen up, then press Start.</p>
+      </section>
+
+      <section class="grid">
+        <div class="stat"><span class="label">Sensor</span><span id="api" class="value">–</span></div>
+        <div class="stat"><span class="label">Delivered rate</span><span id="rate" class="value">–</span></div>
+        <div class="stat"><span class="label">Velocity now</span><span id="vel" class="value">–</span></div>
+        <div class="stat"><span class="label">Peak (last 2 s)</span><span id="ppv" class="value">–</span></div>
+        <div class="stat"><span class="label">Dominant freq</span><span id="fdom" class="value">–</span></div>
+        <div class="stat"><span class="label">Trigger ratio</span><span id="ratio" class="value">–</span></div>
+      </section>
+
+      <section class="card">
+        <div class="row"><span class="label">Band-passed acceleration · last 10 s</span></div>
+        <canvas id="plot" height="160"></canvas>
+      </section>
+
+      <section class="card">
+        <div class="row">
+          <span class="label">Detected events</span>
+          <span>
+            <button id="clear" class="ghost">Clear</button>
+            <button id="export" class="ghost">Export CSV</button>
+          </span>
+        </div>
+        <ol id="events" class="events"></ol>
+      </section>
+
+      <footer>Readings stay on this phone. Nothing is uploaded in Prototype 0.</footer>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

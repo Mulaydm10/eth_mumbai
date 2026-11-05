@@ -28,3 +28,8 @@ Format: `## YYYY-MM-DD HH:MM IST · who · title`
 - The track-study agent (Playwright) found: EF CROPS judging is now final (5 criteria), "switch off your backend" is in EF's video brief, the video limit is 3 min, the Swarm bonus doesn't use a pick, and Arkiv judging is 4 × 25% from the /arkiv/*.md files.
 - The docs agent found: Arkiv Rabdi 7794095 + SDK 1.0.1, Swarm public gateway with the null stamp (probed), ENSv2 Sepolia addresses (commit 07e55a05), Safe protocol-kit 8.0.11, IDKit 4.6.0 (needs a backend), Chrome's 60 Hz sensor cap.
 - Wrote `design/build-plan.md` (architecture, stack proposal for ADR-0002, owners, timeline, demo, risks). World IDKit dropped (it would be a 4th pick and needs a backend). Awaiting Dhruv's approval.
+
+## 2026-11-06 01:51 IST · Claude Code (for Dhruv Mulay) · Prototype 0: single-phone sensor page
+- Dhruv asked to prove one phone first. Built `packages/core` (band-pass, PPV, STA/LTA, features; 6 tests green) and `apps/web` (Vite, vanilla TS).
+- Deployed a static build to https://tremor-witness.vercel.app (Vercel project `tremor-witness`). Everything installs locally in this folder (npm workspaces, `node_modules/`); nothing is global.
+- Next: Dhruv tests it on a real phone (delivered Hz, stomp vs shake), then Prototype 1 adds Arkiv writes.
