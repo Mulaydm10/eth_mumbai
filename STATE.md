@@ -36,7 +36,7 @@ Verdict's suggested checks before committing: ask ENS whether a sensor registry 
 Track conflicts resolved from the live prizes page: see `sources/sponsor-tracks-verbatim.md` (`COMPETITION.md` not yet updated; LOCKED).
 
 ## In flight
-- Nothing.
+- **Thesis direction (Dhruv, Fri 01:26 IST): build Tremor Witness** with Arkiv Build (+Swarm bonus), ENSv2, EF CROPS, World IDKit (backup). Sponsor deep dive running (2 agents) → `research/tremor-witness/sponsors/`; build plan next → `design/build-plan.md`. Progress log: `research/tremor-witness/LOG.md`.
 
 ## Blocked
 - Thesis not chosen (`Q-0001`) · stack undecided (`ADR-0002` / `Q-0002`) · track undecided (`Q-0003`) · submission option and partner prizes (`Q-0004`).
@@ -53,5 +53,7 @@ Claim before starting; release the moment you stop. A stale claim blocks others 
 | Surface / task | Owner (human or agent) | Claimed at (IST) | Released |
 | --- | --- | --- | --- |
 | `research/playbook/2026-11-05-ideation/` (ideation run, DIVERGE→CONVERGE) | playbook agent via Claude Code | 21:25 | 22:27 (done) |
+| `research/tremor-witness/sponsors/` (sponsor deep dive) | 2 Sonnet agents via Claude Code | Fri 01:30 | |
+| `design/build-plan.md` | Claude Code | Fri 01:30 | |
 
-Last updated: 2026-11-05 22:30 IST · Claude Code (playbook run committed)
+Last updated: 2026-11-06 01:30 IST · Claude Code (thesis direction; sponsor deep dive started)
