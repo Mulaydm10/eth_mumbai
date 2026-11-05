@@ -1,7 +1,7 @@
 // Dashboard: reads phones and triggers straight from Arkiv and recomputes the quorum in the browser.
 // Prototype 1 trust rule: the first MAX_PHONES distinct phones (by join time) at a site count; a trigger counts only
 // if its Arkiv $creator is the wallet that registered that phone name. Prototype 2 replaces this with ENS names.
-import { alignBySound, computeQuorum, correctTime, type SyncSession, type Trigger } from "@tw/core";
+import { alignBySound, coherence, computeQuorum, correctTime, type CoherenceResult, type SyncSession, type Trigger } from "@tw/core";
 import { ensPublic, listSitePhones, resolvePhones, siteExists, siteName, siteParams, type EnsPhone, fetchEvents, fetchSensors, fetchSyncs, fetchTriggers, publicClientFor, swarmUploadJson, swarmUrl, walletClientFor, writeEvent, type SensorRow, type TriggerRow } from "@tw/chain";
 import { keccak256, toHex, type Hex } from "viem";
 import QRCode from "qrcode";
@@ -99,6 +99,10 @@ function seal(site: string, id: string, e: QEvent, k: number, windowMs: number, 
         registry: registry.map((r) => ({ sensor: r.sensor, wallet: r.creator, joinedMs: r.startedMs, arkivKey: r.key })),
         ens: lastEns.ok ? { site: lastEns.siteName, phones: lastEns.phones.map((p) => ({ ...p, resolvesTo: lastEns.ok ? lastEns.resolved.get(p.label) : null })), k: lastEns.k, windowMs: lastEns.windowMs, snapshotAt: new Date().toISOString() } : null,
         source: { arkiv: { chain: "rabdi", chainId: 7794095 }, triggerSchema: "tremor-witness.v1.trigger" },
+        coherence: (() => {
+          const c = eventCoherence(id, e);
+          return c ? { experimental: true, note: "indicator only; thresholds not yet measured (EXP-0001)", score: c.score, pairs: c.pairs } : null;
+        })(),
         clockAlignment: lastSync ? { method: "sound", refMs: lastSync.refMs, correctionsMs: Object.fromEntries(lastSync.corrections) } : { method: "phone clocks (+ internet reference sync when online)" },
         sealedBy: sealAddr,
         sealedAt: new Date().toISOString(),
@@ -156,6 +160,28 @@ document.addEventListener("click", async (ev) => {
     btn.disabled = false;
   }
 });
+
+// ---- Waveform coherence (EXPERIMENTAL indicator, see EXP-0001): do member waveforms look like one source? ----
+const waveCache = new Map<string, NonNullable<TriggerRow["wave"]>>();
+const cohCache = new Map<string, CoherenceResult>();
+async function ensureWaves(site: string, sinceMs: number, keys: string[]) {
+  if (keys.every((k) => waveCache.has(k))) return;
+  for (const r of await fetchTriggers(client, site, sinceMs, true)) if (r.wave) waveCache.set(r.key, r.wave);
+}
+function eventCoherence(id: string, e: QEvent): CoherenceResult | null {
+  if (cohCache.has(id)) return cohCache.get(id)!;
+  const waves = e.members.map((m) => ({ m, w: waveCache.get(m.id) }));
+  if (waves.some((x) => !x.w)) return null;
+  // m.tMs is already clock-corrected (sound sync); the excerpt starts 300 ms before the trigger.
+  const r = coherence(waves.map(({ m, w }) => ({ sensor: m.sensor, fs: w!.fs, x: w!.x, y: w!.y, z: w!.z, t0Ms: m.tMs - 300 })));
+  cohCache.set(id, r);
+  return r;
+}
+const cohCell = (r: CoherenceResult | null) => {
+  if (!r) return `<span class="muted">…</span>`;
+  const lag = Math.max(...r.pairs.map((p) => Math.abs(p.lagMs)), 0);
+  return `<span title="experimental indicator; thresholds not yet measured (EXP-0001)">${r.score.toFixed(2)} · lag ${Math.round(lag)} ms</span>`;
+};
 
 let busy = false;
 async function refresh() {
@@ -226,6 +252,7 @@ async function refresh() {
       if (!sealed.has(ev.eventId)) sealed.set(ev.eventId, { swarmRef: ev.swarmRef, key: ev.key });
     }
     const withIds = res.events.map((e) => ({ e, id: eventIdOf(e.members.map((m) => m.id)) }));
+    if (withIds.length) await ensureWaves(site, since, withIds.flatMap(({ e }) => e.members.map((m) => m.id))).catch(() => undefined);
     ui.events.innerHTML =
       withIds
         .slice()
@@ -239,9 +266,9 @@ async function refresh() {
               : sealing.get(id) === "error"
                 ? `<span class="bad">seal failed</span>`
                 : `<span class="muted">not sealed</span>`;
-          return `<tr><td>${time(e.tMs)}</td><td class="ok">${e.sensors.length}/${k}+ · ${e.sensors.map(esc).join(", ")}</td><td>${e.ppvMinMmS.toFixed(2)}–${e.ppvMaxMmS.toFixed(2)} mm/s</td><td>${st}</td></tr>`;
+          return `<tr><td>${time(e.tMs)}</td><td class="ok">${e.sensors.length}/${k}+ · ${e.sensors.map(esc).join(", ")}</td><td>${e.ppvMinMmS.toFixed(2)}–${e.ppvMaxMmS.toFixed(2)} mm/s</td><td>${cohCell(eventCoherence(id, e))}</td><td>${st}${s ? ` · <a href="./report.html?site=${encodeURIComponent(site)}&event=${id}" target="_blank" rel="noopener">report</a>` : ""}</td></tr>`;
         })
-        .join("") || `<tr><td colspan="4" class="muted">None yet. Stomp near ${k} phones at once.</td></tr>`;
+        .join("") || `<tr><td colspan="5" class="muted">None yet. Stomp near ${k} phones at once.</td></tr>`;
     if (ui.autoseal.checked) {
       for (const { e, id } of withIds) {
         if (!sealed.has(id) && !sealing.has(id)) void seal(site, id, e, k, windowMs, sensors);

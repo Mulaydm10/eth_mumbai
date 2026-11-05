@@ -4,6 +4,6 @@ export default defineConfig({
   server: { host: true },
   build: {
     target: "es2022",
-    rollupOptions: { input: { main: resolve(__dirname, "index.html"), dashboard: resolve(__dirname, "dashboard.html") } },
+    rollupOptions: { input: { main: resolve(__dirname, "index.html"), dashboard: resolve(__dirname, "dashboard.html"), report: resolve(__dirname, "report.html") } },
   },
 });
