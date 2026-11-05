@@ -4,6 +4,7 @@
 import { computeQuorum, type Trigger } from "@tw/core";
 import { ensPublic, listSitePhones, resolvePhones, siteExists, siteName, siteParams, type EnsPhone, fetchEvents, fetchSensors, fetchTriggers, publicClientFor, swarmUploadJson, swarmUrl, walletClientFor, writeEvent, type SensorRow, type TriggerRow } from "@tw/chain";
 import { keccak256, toHex, type Hex } from "viem";
+import QRCode from "qrcode";
 import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
 
 const MAX_PHONES = 5;
@@ -159,7 +160,11 @@ async function refresh() {
   if (busy) return;
   busy = true;
   const site = ui.site.value.trim();
-  ui.joinLink.textContent = `${location.origin}/?site=${encodeURIComponent(site)}`;
+  const join = `${location.origin.startsWith("http") && !location.origin.includes("localhost") ? location.origin : "https://tremor-witness.vercel.app"}/?site=${encodeURIComponent(site)}`;
+  if (ui.joinLink.textContent !== join) {
+    ui.joinLink.textContent = join;
+    void QRCode.toCanvas($<HTMLCanvasElement>("joinQr"), join, { width: 220, margin: 1 });
+  }
   try {
     const since = Date.now() - Number(ui.mins.value || 30) * 60_000;
     const [sensors, allRows, ens] = await Promise.all([fetchSensors(client, site, since - 6 * 3600_000), fetchTriggers(client, site, since), readEns(site)]);

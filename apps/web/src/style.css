@@ -49,3 +49,5 @@ th { color: var(--muted); font-weight: 500; font-size: 11px; text-transform: upp
 main.wide { max-width: 960px; }
 .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .controls .input { max-width: 140px; }
+.join { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.join canvas { background: #fff; border-radius: 8px; padding: 8px; width: 220px; height: 220px; }
