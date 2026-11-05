@@ -20,6 +20,7 @@
     "pull": "tsx scripts/pull.ts"
   },
   "devDependencies": {
+    "qrcode": "^1.5.4",
     "tsx": "^4.20.6"
   }
 }
