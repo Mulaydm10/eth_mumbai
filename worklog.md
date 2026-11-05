@@ -52,3 +52,9 @@ Format: `## YYYY-MM-DD HH:MM IST · who · title`
 - Built offline mode: store-and-forward outbox and sound-sync clock alignment (core detector + 6 tests, Arkiv `sync` anchors, dashboard correction); also internet reference sync (/api/time, re-sync every 2 min).
 - Real 2-phone round at 04:05 IST: only phone-b0a8's 7 stomps + 1 shake reached Arkiv; no sync anchors. The likely cause is that phone-cad2 was not reloaded. Retest pending (teammate asleep).
 - Resolved ADR-0002 (TypeScript monorepo), filled the CLAUDE.md canonical commands, updated tests/README.md (LOCKED, logged in GOVERNANCE) and rewrote STATE.md.
+
+## 2026-11-06 05:13 IST · Claude Code (for Dhruv Mulay) · Depth items A, B, E, F
+- A: `packages/core/src/coherence.ts` (envelope xcorr + spectral cosine + peak-freq agreement) with 4 tests and `scripts/coherence-eval.ts`. **EXP-0001**: on real 2-phone data it separates same-stomp from different-stomp pairs only weakly, so it's shown as an *experimental indicator* (score + lag), with no collusion claim. Removed the "_none yet_" placeholder row from the append-only experiment log when adding EXP-0001.
+- E: `/report.html`: printable evidence report built only from Arkiv + Swarm + ENS, with live hash re-check. Tolerates older packs.
+- B: "Be the vibration source" on the phone page (a spare phone's motor). F: Arkiv friction log rewritten with reproductions.
+- Waiting: C (Safe 2-of-3 needs 3 owner addresses from Dhruv), D (Swarm gateway approval: ask at booth), EXP-0002 collusion test and the real-phone sound-sync retest.

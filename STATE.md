@@ -21,6 +21,10 @@
 ## In flight
 - Nothing running. The **last real-phone round (04:05 IST) was inconclusive**: only phone-b0a8's readings reached Arkiv, and no sound-sync anchors arrived. The likely cause is that phone-cad2 wasn't reloaded (old code). Retest when the teammate is back: reload both phones, allow the microphone, play the sync sound, stomp ~4 s apart, then `npx tsx scripts/pull.ts test2 30`.
 
+## Depth items (Dhruv's A–F list)
+- Done: **A** coherence (experimental; EXP-0001 weak separation), **E** `/report.html` evidence report, **B** demo vibration source, **F** friction log.
+- Waiting: **C** Safe 2-of-3 committee (needs 3 owner addresses), **D** Swarm-hosted site (gateway approval: ask at booth), **EXP-0002** collusion test (phones).
+
 ## Next intended steps (priority order)
 1. Real-phone retest of sound sync + outbox, then **measured headline numbers** (true-confirm rate, lone-shake false-accept rate, inter-phone PPV spread) logged as `EXP-0001…`.
 2. `ens/` write-up for ENS judges; fill `notes/judging_alignment.md`; `DEMO.md` DEMO-0001 + reset/rollback.
@@ -36,4 +40,4 @@
 | --- | --- | --- | --- |
 | _none_ | | | |
 
-Last updated: 2026-11-06 04:38 IST · Claude Code (sync after Prototype 3 + offline mode)
+Last updated: 2026-11-06 05:25 IST · Claude Code (depth items A, B, E, F)
