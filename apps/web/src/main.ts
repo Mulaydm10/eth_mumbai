@@ -2,7 +2,8 @@
 // and writes every detected event to Arkiv, signed by its own in-browser key. The dashboard reads Arkiv and
 // computes the multi-phone quorum.
 import { StaLta, VelocityTracker, defaultBand, dominantHz, lowFreqRatio, measuredRateHz, type Sample } from "@tw/core";
-import { walletClientFor, writeSensor, writeTrigger, type ArkivWallet } from "@tw/chain";
+import { walletClientFor, writeSensor, writeSync, writeTrigger, type ArkivWallet, type TriggerInput } from "@tw/chain";
+import { listenForSync, playSyncSignal } from "./sound";
 import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
 import type { Hex } from "viem";
 
@@ -71,6 +72,9 @@ const ui = {
   name: $<HTMLInputElement>("name"),
   chain: $("chain"),
   clock: $("clock"),
+  outbox: $("outbox"),
+  syncBtn: $<HTMLButtonElement>("syncBtn"),
+  syncStatus: $("syncStatus"),
   dashLink: $<HTMLAnchorElement>("dashLink"),
 };
 
@@ -104,10 +108,70 @@ interface DetectedEvent {
 }
 
 // ---- Arkiv writes: one at a time, in order (avoids nonce races) ----
-let writeChain: Promise<unknown> = Promise.resolve();
-function enqueue(fn: () => Promise<unknown>) {
-  writeChain = writeChain.then(fn, fn);
+// ---- Outbox (store-and-forward): every Arkiv write is saved on the phone first and uploaded in order.
+// With no signal (basement, outage) events keep accumulating offline and upload when the phone is back online.
+type OutItem =
+  | { id: string; kind: "sensor"; payload: Parameters<typeof writeSensor>[1]; tries: number }
+  | { id: string; kind: "trigger"; payload: TriggerInput; tries: number }
+  | { id: string; kind: "sync"; payload: Parameters<typeof writeSync>[1]; tries: number };
+const outbox: OutItem[] = (() => {
+  try {
+    return JSON.parse(lsGet("tw.outbox") ?? "[]") as OutItem[];
+  } catch {
+    return [];
+  }
+})();
+const saveOutbox = () => lsSet("tw.outbox", JSON.stringify(outbox));
+const evById = new Map<string, DetectedEvent>();
+let outSeq = 0;
+function post(item: Omit<OutItem, "id" | "tries">, ev?: DetectedEvent) {
+  const id = `${Date.now()}-${outSeq++}`;
+  outbox.push({ ...item, id, tries: 0 } as OutItem);
+  saveOutbox();
+  if (ev) evById.set(id, ev);
+  void flush();
 }
+let flushing = false;
+async function flush() {
+  if (flushing) return;
+  flushing = true;
+  try {
+    while (outbox.length) {
+      const it = outbox[0]!;
+      const ev = evById.get(it.id);
+      if (ev) (ev.write = "sending"), renderEvents();
+      try {
+        let key = "";
+        if (it.kind === "sensor") await writeSensor(wallet, it.payload);
+        else if (it.kind === "sync") await writeSync(wallet, it.payload);
+        else key = String(((await writeTrigger(wallet, it.payload)) as { entityKey?: string }).entityKey ?? "");
+        outbox.shift();
+        saveOutbox();
+        if (ev) (ev.write = "ok"), (ev.note = key);
+      } catch (e) {
+        it.tries++;
+        // Offline or flaky network: keep it and retry later. A write that fails 6 times while online is dropped.
+        if (navigator.onLine && it.tries >= 6) {
+          outbox.shift();
+          if (ev) (ev.write = "error"), (ev.note = shortErr(e));
+        } else if (ev) (ev.write = "queued"), (ev.note = navigator.onLine ? shortErr(e) : "offline: will upload later");
+        saveOutbox();
+        break;
+      } finally {
+        renderEvents();
+      }
+    }
+  } finally {
+    flushing = false;
+    ui.outbox.textContent = outbox.length ? `${outbox.length} waiting to upload${navigator.onLine ? "" : " (offline: kept on this phone)"}` : "All events uploaded to Arkiv.";
+  }
+}
+setInterval(() => void flush(), 10_000);
+window.addEventListener("online", () => {
+  void flush();
+  if (running && !ensName) void ensureEnsName();
+});
+window.addEventListener("offline", () => void flush());
 
 async function ensureGas() {
   try {
@@ -141,6 +205,7 @@ function setChainNote(msg: string, err = false) {
 }
 
 let running = false;
+let stopListen: (() => void) | null = null;
 let stopFn: (() => void) | null = null;
 let wakeLock: { release(): Promise<void> } | null = null;
 
@@ -249,14 +314,7 @@ function onSample(s: Sample) {
     trig = new StaLta(0.15, 5, fs);
     setStatus("Running. Warming up for ~3 s, then tap or stomp near the phone.");
     const rate = fs;
-    enqueue(async () => {
-      try {
-        await writeSensor(wallet, { site: ui.site.value.trim(), sensor: ui.name.value.trim(), startedMs: Date.now(), rateHz: rate, api: ui.api.textContent ?? "", ua: navigator.userAgent });
-        if (!ensName) setChainNote(`Joined site "${ui.site.value.trim()}" on Arkiv; waiting for ENS name…`);
-      } catch (e) {
-        setChainNote(`Arkiv sensor write failed: ${shortErr(e)}`, true);
-      }
-    });
+    post({ kind: "sensor", payload: { site: ui.site.value.trim(), sensor: ui.name.value.trim(), startedMs: Date.now(), rateHz: rate, api: ui.api.textContent ?? "", ua: navigator.userAgent } });
   }
 
   const { accBand, velMmS } = tracker.push(s);
@@ -312,11 +370,10 @@ function closeEvent() {
   const site = ui.site.value.trim();
   const sensor = ui.name.value.trim();
   const rate = fs;
-  enqueue(async () => {
-    ev.write = "sending";
-    renderEvents();
-    try {
-      const r = await writeTrigger(wallet, {
+  post(
+    {
+      kind: "trigger",
+      payload: {
         site,
         sensor,
         tMs: wallMs,
@@ -326,15 +383,10 @@ function closeEvent() {
         rateHz: rate,
         label,
         wave: { fs: rate, x: win.map((s) => s.x), y: win.map((s) => s.y), z: win.map((s) => s.z), tiltDeg: tilt, peakAcc: o.peakAcc, api: ui.api.textContent ?? "", refOffsetMs: refOffset, refRttMs: refRtt },
-      });
-      ev.write = "ok";
-      ev.note = String((r as { entityKey?: string }).entityKey ?? "");
-    } catch (e) {
-      ev.write = "error";
-      ev.note = shortErr(e);
-    }
-    renderEvents();
-  });
+      },
+    },
+    ev,
+  );
 }
 
 function shortErr(e: unknown) {
@@ -455,6 +507,8 @@ ui.start.addEventListener("click", async () => {
   if (running) {
     stopFn?.();
     stopFn = null;
+    stopListen?.();
+    stopListen = null;
     running = false;
     await wakeLock?.release().catch(() => {});
     ui.start.textContent = "Start sensor";
@@ -486,6 +540,21 @@ ui.start.addEventListener("click", async () => {
   await acquireWakeLock();
   ui.site.disabled = true;
   ui.name.disabled = true;
+  // Offline clock sync by sound: listen on the mic for the sync signal any phone can play.
+  try {
+    stopListen?.();
+    stopListen = await listenForSync(
+      (perfMs) => Date.now() - (performance.now() - perfMs) + refOffset,
+      (wallMs) => {
+        ui.syncStatus.textContent = `Heard sync sound at ${new Date(wallMs).toLocaleTimeString()} — anchor saved (aligns phones even offline).`;
+        post({ kind: "sync", payload: { site: ui.site.value.trim(), sensor: ui.name.value.trim(), tMs: wallMs, method: "sound" } });
+        if (navigator.vibrate) navigator.vibrate([40, 40, 40]);
+      },
+    );
+    ui.syncStatus.textContent = "Listening for the sync sound…";
+  } catch {
+    ui.syncStatus.textContent = "Microphone not allowed: sound sync off (internet sync still works).";
+  }
   await syncClock();
   // Phone clocks drift and network time can step: re-sync every 2 minutes while sensing.
   const resync = setInterval(() => (running ? void syncClock() : clearInterval(resync)), 120_000);
@@ -511,3 +580,9 @@ ui.exportBtn.addEventListener("click", () => {
 });
 
 requestAnimationFrame(draw);
+
+ui.syncBtn.addEventListener("click", () => {
+  void playSyncSignal();
+  ui.syncStatus.textContent = "Playing sync sound… every running phone nearby should hear it.";
+});
+void flush();

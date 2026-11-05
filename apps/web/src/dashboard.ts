@@ -1,8 +1,8 @@
 // Dashboard: reads phones and triggers straight from Arkiv and recomputes the quorum in the browser.
 // Prototype 1 trust rule: the first MAX_PHONES distinct phones (by join time) at a site count; a trigger counts only
 // if its Arkiv $creator is the wallet that registered that phone name. Prototype 2 replaces this with ENS names.
-import { computeQuorum, type Trigger } from "@tw/core";
-import { ensPublic, listSitePhones, resolvePhones, siteExists, siteName, siteParams, type EnsPhone, fetchEvents, fetchSensors, fetchTriggers, publicClientFor, swarmUploadJson, swarmUrl, walletClientFor, writeEvent, type SensorRow, type TriggerRow } from "@tw/chain";
+import { alignBySound, computeQuorum, correctTime, type SyncSession, type Trigger } from "@tw/core";
+import { ensPublic, listSitePhones, resolvePhones, siteExists, siteName, siteParams, type EnsPhone, fetchEvents, fetchSensors, fetchSyncs, fetchTriggers, publicClientFor, swarmUploadJson, swarmUrl, walletClientFor, writeEvent, type SensorRow, type TriggerRow } from "@tw/chain";
 import { keccak256, toHex, type Hex } from "viem";
 import QRCode from "qrcode";
 import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
@@ -99,6 +99,7 @@ function seal(site: string, id: string, e: QEvent, k: number, windowMs: number, 
         registry: registry.map((r) => ({ sensor: r.sensor, wallet: r.creator, joinedMs: r.startedMs, arkivKey: r.key })),
         ens: lastEns.ok ? { site: lastEns.siteName, phones: lastEns.phones.map((p) => ({ ...p, resolvesTo: lastEns.ok ? lastEns.resolved.get(p.label) : null })), k: lastEns.k, windowMs: lastEns.windowMs, snapshotAt: new Date().toISOString() } : null,
         source: { arkiv: { chain: "rabdi", chainId: 7794095 }, triggerSchema: "tremor-witness.v1.trigger" },
+        clockAlignment: lastSync ? { method: "sound", refMs: lastSync.refMs, correctionsMs: Object.fromEntries(lastSync.corrections) } : { method: "phone clocks (+ internet reference sync when online)" },
         sealedBy: sealAddr,
         sealedAt: new Date().toISOString(),
       };
@@ -117,6 +118,7 @@ function seal(site: string, id: string, e: QEvent, k: number, windowMs: number, 
 // ---- ENSv2 registry reads (browser, public Sepolia RPC; no server of ours) ----
 const ensClient = ensPublic();
 let lastEns: EnsState = { ok: false, error: "not read yet" };
+let lastSync: SyncSession | null = null;
 type EnsState =
   | { ok: true; siteName: string; phones: EnsPhone[]; resolved: Map<string, string | null>; k: number | null; windowMs: number | null }
   | { ok: false; error: string };
@@ -171,7 +173,13 @@ async function refresh() {
     lastEns = ens;
     // Ignore triggers stamped more than 1 min in the future (pre-fix phones used a boot-time clock).
     const rows = allRows.filter((r) => r.tMs < Date.now() + 60_000);
-    const triggers: Trigger[] = rows.map((r) => ({ id: r.key, sensor: r.sensor, creator: r.creator, tMs: r.tMs, ppvMmS: r.ppvMmS, fDomHz: r.fDomHz, label: r.label }));
+    // Offline clock alignment: if phones heard a sound-sync signal, correct each phone's timestamps to the shared instant.
+    // Only anchors written by a phone's own wallet count (same $creator rule as triggers).
+    const syncs = await fetchSyncs(client, site, since - 6 * 3600_000).catch(() => []);
+    const creatorOf = new Map(rows.map((r) => [r.sensor, r.creator.toLowerCase()]));
+    const session: SyncSession | null = alignBySound(syncs.filter((a) => !creatorOf.has(a.sensor) || creatorOf.get(a.sensor) === a.creator.toLowerCase()));
+    lastSync = session;
+    const triggers: Trigger[] = rows.map((r) => ({ id: r.key, sensor: r.sensor, creator: r.creator, tMs: correctTime(r.sensor, r.tMs, session), ppvMmS: r.ppvMmS, fDomHz: r.fDomHz, label: r.label }));
 
     // TRUST RULE (Prototype 3): a trigger counts only if <sensor>.<site>.tremorwitness.eth resolves RIGHT NOW to the
     // trigger's Arkiv $creator. Revoked or expired names resolve to nothing, so their readings stop counting.
@@ -181,7 +189,7 @@ async function refresh() {
     if (ens.ok) {
       isLive = (sensor, creator) => (ens.resolved.get(sensor) ?? "").toLowerCase() === creator.toLowerCase();
       phoneCount = ens.phones.length;
-      ui.trust.innerHTML = `<span class="ok">Registry: ENSv2</span> · <a href="https://sepolia.app.ens.domains/${esc(ens.siteName)}" target="_blank" rel="noopener">${esc(ens.siteName)}</a> · params from ENS text records: k=${ens.k ?? "–"}, window=${ens.windowMs ?? "–"} ms`;
+      ui.trust.innerHTML = `${lastSync ? `<span class="ok">Clocks aligned by sound sync</span> (${[...lastSync.corrections].map(([k, v]) => `${esc(k)} ${v >= 0 ? "−" : "+"}${Math.abs(Math.round(v))} ms`).join(", ")}) · ` : ""}<span class="ok">Registry: ENSv2</span> · <a href="https://sepolia.app.ens.domains/${esc(ens.siteName)}" target="_blank" rel="noopener">${esc(ens.siteName)}</a> · params from ENS text records: k=${ens.k ?? "–"}, window=${ens.windowMs ?? "–"} ms`;
     } else {
       const { inside } = admitted(sensors);
       const owner = new Map(inside.map((s) => [s.sensor, s.creator.toLowerCase()]));

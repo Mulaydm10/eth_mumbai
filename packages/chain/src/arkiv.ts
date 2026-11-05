@@ -252,3 +252,27 @@ export async function fetchEvents(p: ArkivPublic, site: string, sinceMs: number)
     packHash: String(e.packHash.value),
   }));
 }
+
+/** A phone heard the sound-sync chirp at tMs (its own clock). Anchors from several phones align their clocks offline. */
+export const SyncSchema = defineSchema(`${APP_TAG}.sync`, {
+  site: str().indexed(),
+  sensor: str().indexed(),
+  tMs: u64().indexed(),
+  method: str(), // "sound"
+});
+
+export async function writeSync(w: ArkivWallet, a: { site: string; sensor: string; tMs: number; method: string }) {
+  return w.createEntity(SyncSchema, { site: a.site.slice(0, 64), sensor: a.sensor.slice(0, 64), tMs: u64(Math.round(a.tMs)), method: a.method.slice(0, 16) }, { expiration: ExpirationTime.fromDays(30) });
+}
+
+export async function fetchSyncs(p: ArkivPublic, site: string, sinceMs: number) {
+  const res = await p
+    .select({ $key: true, $creator: true, sensor: true, tMs: true, method: true })
+    .from(SyncSchema)
+    .where(and(eq("site", site), gt("tMs", u64(Math.max(0, Math.floor(sinceMs))))))
+    .orderBy(desc("tMs"))
+    .limit(100)
+    .fetch();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return res.entities.map((e: any) => ({ key: String(e.$key), creator: String(e.$creator), sensor: String(e.sensor.value), tMs: num(e.tMs), method: String(e.method.value) }));
+}
