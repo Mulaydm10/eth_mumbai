@@ -70,6 +70,7 @@ const ui = {
   site: $<HTMLInputElement>("site"),
   name: $<HTMLInputElement>("name"),
   chain: $("chain"),
+  clock: $("clock"),
   dashLink: $<HTMLAnchorElement>("dashLink"),
 };
 
@@ -159,7 +160,34 @@ let lastEventT = -Infinity;
 // with the smallest observed (Date.now() - sensorT): the minimum removes callback latency. Needed so two phones'
 // events land in the same quorum window.
 let clockOffset = Infinity;
-const toWall = (t: number) => t + clockOffset;
+// Phone clocks (Date.now) can be seconds apart (network time). Real test: two phones were 3.3 s apart, which broke the
+// 2 s quorum window. So we also measure this phone's offset to one reference clock (/api/time) and stamp events in it.
+let refOffset = 0; // ms to add to this phone's Date.now() to get reference time
+let refRtt = Infinity;
+const toWall = (t: number) => t + clockOffset + refOffset;
+async function syncClock() {
+  let best: { off: number; rtt: number } | null = null;
+  for (let i = 0; i < 8; i++) {
+    try {
+      const t0 = Date.now();
+      const r = await fetch(`/api/time?n=${i}-${t0}`, { cache: "no-store" });
+      const t1 = Date.now();
+      const { t } = (await r.json()) as { t: number };
+      const rtt = t1 - t0;
+      const off = t + rtt / 2 - t1; // Cristian: server time at the midpoint of the round trip
+      if (!best || rtt < best.rtt) best = { off, rtt };
+    } catch {
+      /* keep trying */
+    }
+  }
+  if (best) {
+    refOffset = Math.round(best.off);
+    refRtt = best.rtt;
+    ui.clock.textContent = `Clock synced: this phone is ${refOffset >= 0 ? "behind" : "ahead"} by ${Math.abs(refOffset)} ms (±${Math.ceil(refRtt / 2)} ms)`;
+  } else {
+    ui.clock.textContent = "Clock sync unavailable: using this phone's own clock (quorum may miss events).";
+  }
+}
 
 // Gravity / orientation: low-pass of the raw accelerometer. A phone lying on a vibrating floor keeps its tilt;
 // a phone that is picked up, flipped or shaken does not.
@@ -297,7 +325,7 @@ function closeEvent() {
         lowF,
         rateHz: rate,
         label,
-        wave: { fs: rate, x: win.map((s) => s.x), y: win.map((s) => s.y), z: win.map((s) => s.z), tiltDeg: tilt, peakAcc: o.peakAcc, api: ui.api.textContent ?? "" },
+        wave: { fs: rate, x: win.map((s) => s.x), y: win.map((s) => s.y), z: win.map((s) => s.z), tiltDeg: tilt, peakAcc: o.peakAcc, api: ui.api.textContent ?? "", refOffsetMs: refOffset, refRttMs: refRtt },
       });
       ev.write = "ok";
       ev.note = String((r as { entityKey?: string }).entityKey ?? "");
@@ -458,6 +486,7 @@ ui.start.addEventListener("click", async () => {
   await acquireWakeLock();
   ui.site.disabled = true;
   ui.name.disabled = true;
+  await syncClock();
   void ensureGas();
   void ensureEnsName();
 });
