@@ -16,15 +16,17 @@
 
       <section class="card controls">
         <label class="label" for="site">Site</label><input id="site" class="input" />
-        <label class="label" for="k">Quorum k</label><input id="k" class="input" type="number" min="1" max="5" placeholder="auto" />
-        <label class="label" for="win">Window ms</label><input id="win" class="input" type="number" min="200" max="10000" step="100" value="2000" />
+        <label class="label" for="k">Quorum k</label><input id="k" class="input" type="number" min="1" max="5" placeholder="from ENS" />
+        <label class="label" for="win">Window ms</label><input id="win" class="input" type="number" min="200" max="10000" step="100" placeholder="from ENS" />
         <label class="label" for="mins">Last min</label><input id="mins" class="input" type="number" min="1" max="1440" value="30" />
         <label class="label"><input id="autoseal" type="checkbox" checked /> Auto-seal to Swarm</label>
         <span id="sync" class="muted small">–</span>
       </section>
 
+      <section class="card"><span id="trust" class="small">Reading the ENS registry…</span></section>
+
       <section class="grid">
-        <div class="stat"><span class="label">Phones (max 5)</span><span id="nSensors" class="value big">–</span></div>
+        <div class="stat"><span class="label">Phones (ENS, max 5)</span><span id="nSensors" class="value big">–</span></div>
         <div class="stat"><span class="label">Confirmed events</span><span id="nEvents" class="value big ok">–</span></div>
         <div class="stat"><span class="label">Triggers seen</span><span id="nTriggers" class="value">–</span></div>
         <div class="stat"><span class="label">Rejected</span><span id="nRejected" class="value bad">–</span></div>
@@ -37,7 +39,7 @@
 
       <section class="card">
         <div class="row"><span class="label">Phones at this site</span></div>
-        <table><thead><tr><th>Phone</th><th>Rate</th><th>Sensor API</th><th>Joined</th><th>Wallet</th></tr></thead><tbody id="sensors"></tbody></table>
+        <table><thead><tr><th>Phone (ENS)</th><th>Rate</th><th>Status</th><th>Wallet</th><th>Committee</th></tr></thead><tbody id="sensors"></tbody></table>
       </section>
 
       <section class="card">

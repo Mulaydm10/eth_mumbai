@@ -75,7 +75,11 @@ const ui = {
 
 ui.site.value = params.get("site") ?? lsGet("tw.site") ?? "demo";
 ui.name.value = params.get("name") ?? lsGet("tw.name") ?? defaultName;
+// ENS-safe labels: a-z 0-9 -, 3-32 chars (they become <phone>.<site>.tremorwitness.eth).
+const ensSafe = (v: string) => v.toLowerCase().replace(/[^a-z0-9-]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 32);
 const syncLinks = () => {
+  ui.site.value = ensSafe(ui.site.value) || "demo";
+  ui.name.value = ensSafe(ui.name.value) || defaultName;
   lsSet("tw.site", ui.site.value.trim());
   lsSet("tw.name", ui.name.value.trim());
   ui.dashLink.href = `/dashboard.html?site=${encodeURIComponent(ui.site.value.trim())}`;
@@ -112,6 +116,23 @@ async function ensureGas() {
     else if (j.funded) setChainNote("Gas topped up from the team faucet.");
   } catch (e) {
     setChainNote(`Gas top-up unreachable: ${String(e)}`, true);
+  }
+}
+let ensName = "";
+async function ensureEnsName() {
+  setChainNote("Registering this phone's ENS name…");
+  try {
+    const r = await fetch("/api/ens-register", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ site: ui.site.value.trim(), label: ui.name.value.trim(), address: account.address }),
+    });
+    const j = (await r.json()) as { ok: boolean; name?: string; error?: string };
+    if (!j.ok) return setChainNote(`ENS registration failed: ${j.error ?? r.status}. Readings will not count until this phone has a name.`, true);
+    ensName = j.name ?? "";
+    setChainNote(`ENS: <a href="https://sepolia.app.ens.domains/${ensName}" target="_blank" rel="noopener"><b>${ensName}</b></a> → this phone (non-transferable, expires in 30 days)`);
+  } catch (e) {
+    setChainNote(`ENS registration unreachable: ${String(e)}`, true);
   }
 }
 function setChainNote(msg: string, err = false) {
@@ -203,7 +224,7 @@ function onSample(s: Sample) {
     enqueue(async () => {
       try {
         await writeSensor(wallet, { site: ui.site.value.trim(), sensor: ui.name.value.trim(), startedMs: Date.now(), rateHz: rate, api: ui.api.textContent ?? "", ua: navigator.userAgent });
-        setChainNote(`Registered on Arkiv as "${ui.name.value.trim()}" at site "${ui.site.value.trim()}".`);
+        if (!ensName) setChainNote(`Joined site "${ui.site.value.trim()}" on Arkiv; waiting for ENS name…`);
       } catch (e) {
         setChainNote(`Arkiv sensor write failed: ${shortErr(e)}`, true);
       }
@@ -409,6 +430,8 @@ ui.start.addEventListener("click", async () => {
     running = false;
     await wakeLock?.release().catch(() => {});
     ui.start.textContent = "Start sensor";
+    ui.site.disabled = false;
+    ui.name.disabled = false;
     ui.start.classList.remove("running");
     setStatus(`Stopped. ${raw.length} samples, ${events.length} events recorded.`);
     return;
@@ -433,7 +456,10 @@ ui.start.addEventListener("click", async () => {
   ui.start.textContent = "Stop";
   ui.start.classList.add("running");
   await acquireWakeLock();
+  ui.site.disabled = true;
+  ui.name.disabled = true;
   void ensureGas();
+  void ensureEnsName();
 });
 
 ui.clear.addEventListener("click", () => {

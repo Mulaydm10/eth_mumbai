@@ -13,13 +13,18 @@ const ak = process.env.ARKIV_ACCESS_KEY ?? "";
 const pub = publicClientFor(ak);
 const phones = Array.from({ length: n }, (_, i) => {
   const k = generatePrivateKey();
-  return { name: `sim-${i + 1}`, key: k, addr: privateKeyToAccount(k).address, w: walletClientFor(k, ak) };
+  return { name: `sim-${i + 1}-${Date.now().toString(36).slice(-3)}`, key: k, addr: privateKeyToAccount(k).address, w: walletClientFor(k, ak) };
 });
 
 console.log("1) drip gas via", BASE);
 for (const p of phones) {
   const r = await fetch(`${BASE}/api/drip`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ address: p.addr }) });
   console.log("  ", p.name, p.addr.slice(0, 10), JSON.stringify(await r.json()).slice(0, 120));
+}
+console.log("1b) register ENS names via", `${BASE}/api/ens-register`);
+for (const p of phones) {
+  const r = await fetch(`${BASE}/api/ens-register`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ site, label: p.name, address: p.addr }) });
+  console.log("  ", p.name, JSON.stringify(await r.json()).slice(0, 140));
 }
 const bal0 = await pub.getBalance({ address: phones[0]!.addr });
 
