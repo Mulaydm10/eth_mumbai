@@ -38,7 +38,7 @@ Track conflicts resolved from the live prizes page: see `sources/sponsor-tracks-
 ## In flight
 - **Building Tremor Witness** (Dhruv's direction, Fri 01:26 IST). Plan: `design/build-plan.md`. Live: https://tremor-witness.vercel.app (+ `/dashboard.html`, `/tremor-witness-viewer.html`).
 - Prototype 0 (one phone) ✓ · Prototype 1 (≤5 phones → Arkiv, dashboard quorum, gas drip) ✓ verified with real phones (51/49.5 Hz) + simulated E2E · clock + handling fixes deployed.
-- Prototype 2: **Arkiv ✓** (triggers/sensors/events + all `/arkiv/*.md`), **Swarm ✓** (evidence packs, verified hash), **CROPS ✓ partial** (offline single-file viewer, README CROPS section; Swarm-hosted site blocked pending gateway approval). **ENSv2 in progress**: recipe agent → `research/tremor-witness/ensv2-recipe.md`; needs Sepolia ETH in funder 0x32DE…500F.
+- Prototype 2: **Arkiv ✓** (triggers/sensors/events + all `/arkiv/*.md`), **Swarm ✓** (evidence packs, verified hash), **CROPS ✓ partial** (offline single-file viewer, README CROPS section; Swarm-hosted site blocked pending gateway approval). **ENSv2 ✓** (Prototype 3): tremorwitness.eth on Sepolia, phone subnames, ENS-gated quorum, params from text records, committee revoke; verified on site p3test.
 - Secrets: funder key only in gitignored `.env` + Vercel secret `FUNDER_PRIVATE_KEY`.
 
 ## Blocked
@@ -59,4 +59,4 @@ Claim before starting; release the moment you stop. A stale claim blocks others 
 | `research/tremor-witness/sponsors/` (sponsor deep dive) | 2 Sonnet agents via Claude Code | Fri 01:30 | Fri 01:43 (done) |
 | `design/build-plan.md` | Claude Code | Fri 01:30 | Fri 01:50 (v1 done) |
 
-Last updated: 2026-11-06 03:00 IST · Claude Code (Prototype 2: Arkiv+Swarm+CROPS; ENS pending Sepolia ETH)
+Last updated: 2026-11-06 03:45 IST · Claude Code (Prototype 3: ENSv2 verified)

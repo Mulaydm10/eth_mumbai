@@ -41,3 +41,9 @@ Format: `## YYYY-MM-DD HH:MM IST · who · title`
 ## 2026-11-06 02:34 IST · Claude Code (for Dhruv Mulay) · Prototype 1 verified end to end
 - Dhruv completed the faucet human check in the shared Playwright browser: 10 tGLM went to the funder wallet.
 - `scripts/simulate.ts` ran with 3 fresh wallets: live /api/drip funded each, sensors and triggers were written to Arkiv, read back, quorum confirmed 3/3, and the handling trigger was rejected. The live dashboard in a browser showed the same. Gas is about 0.00019 tGLM per write, so 10 tGLM covers roughly 200 phone top-ups of 0.05.
+
+## 2026-11-06 03:43 IST · Claude Code (for Dhruv Mulay) · Prototype 3: ENSv2 integrated and verified
+- Dhruv funded the committee wallet with 0.05 Sepolia ETH. Registered **tremorwitness.eth** on Sepolia (ENSv2 contracts-v2 07e55a05 set) with its own UserRegistry + PermissionedResolver; sites test2 and p3test.
+- Phones register as <name>.<site>.tremorwitness.eth (owner = phone wallet, roleBitmap 0 = non-transferable, 30-day expiry) via /api/ens-register (committee auto-approves, max 5/site). /api/ens-revoke is passcode-protected (COMMITTEE_PASS, Vercel secret + .env).
+- Dashboard trust rule: a reading counts only if the phone's ENS name resolves now to its Arkiv $creator; k/window come from ENS text records. Verified: live phones confirmed, revoked phones rejected, pack carries the ENS snapshot.
+- Fixes on the way: ESM .js import extensions for Vercel functions; "latest" for the last log chunk (load-balanced RPC lag). Total Sepolia spend so far is negligible (gas price ~19 wei).
