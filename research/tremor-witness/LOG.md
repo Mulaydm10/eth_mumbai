@@ -26,3 +26,4 @@
 | 01:42 | docs agent | Phone sensors: LinearAccelerationSensor needs HTTPS + visible page (readings stop when screen locked/hidden), Chrome caps 60 Hz, Wake Lock baseline since Mar 2025 | sponsors/docs-phone-sensors.md |
 | Fri 01:45 | Claude Code | Both research agents returned; findings committed. Build plan v1 written. | ../../design/build-plan.md |
 | Fri 01:51 | Claude Code | Dhruv: "test on a single phone first, basic prototype, then grow". Built Prototype 0 (sensor page: rate, PPV, trigger, structural/handling label, CSV export). Deployed https://tremor-witness.vercel.app | apps/web, packages/core |
+| Fri 02:31 | Claude Code | Prototype 1 deployed (phones write to Arkiv, dashboard quorum, max 5 phones/site, /api/drip). Funder wallet 0x32DE…500F has 0 tGLM: faucet needs a human check, so Dhruv must claim it. | apps/web, packages/chain |

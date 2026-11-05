@@ -33,3 +33,7 @@ Format: `## YYYY-MM-DD HH:MM IST · who · title`
 - Dhruv asked to prove one phone first. Built `packages/core` (band-pass, PPV, STA/LTA, features; 6 tests green) and `apps/web` (Vite, vanilla TS).
 - Deployed a static build to https://tremor-witness.vercel.app (Vercel project `tremor-witness`). Everything installs locally in this folder (npm workspaces, `node_modules/`); nothing is global.
 - Next: Dhruv tests it on a real phone (delivered Hz, stomp vs shake), then Prototype 1 adds Arkiv writes.
+
+## 2026-11-06 02:31 IST · Claude Code (for Dhruv Mulay) · Prototype 1 deployed (web app, up to 5 phones)
+- Phones write each detected event to Arkiv Rabdi with their own in-browser key. The dashboard (`/dashboard.html`) reads Arkiv and recomputes the quorum (default k=3, window 2 s, first 5 phones per site count). `npm run pull -- <site> <minutes>` dumps data to `logs/`.
+- `/api/drip` tops up new phone wallets from a team funder wallet (key only in the gitignored `.env` and as a Vercel secret). Blocker: the funder has 0 tGLM. The faucet signed in automatically, but it has a human-verification step, which Dhruv must complete.
