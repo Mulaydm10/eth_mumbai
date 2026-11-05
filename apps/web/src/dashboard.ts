@@ -2,12 +2,42 @@
 // Prototype 1 trust rule: the first MAX_PHONES distinct phones (by join time) at a site count; a trigger counts only
 // if its Arkiv $creator is the wallet that registered that phone name. Prototype 2 replaces this with ENS names.
 import { computeQuorum, type Trigger } from "@tw/core";
-import { fetchSensors, fetchTriggers, publicClientFor, type SensorRow } from "@tw/chain";
+import { fetchEvents, fetchSensors, fetchTriggers, publicClientFor, swarmUploadJson, swarmUrl, walletClientFor, writeEvent, type SensorRow, type TriggerRow } from "@tw/chain";
+import { keccak256, toHex, type Hex } from "viem";
+import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
 
 const MAX_PHONES = 5;
 const EXPLORER = "https://rabdi.explorer.arkiv.network";
 const ACCESS_KEY = (import.meta.env.VITE_ARKIV_ACCESS_KEY as string | undefined) ?? "";
 const client = publicClientFor(ACCESS_KEY);
+
+// ---- Sealing: any viewer can seal a confirmed event (Swarm pack + Arkiv pointer). Same event => same eventId. ----
+function ls(k: string, v?: string) {
+  try {
+    if (v !== undefined) localStorage.setItem(k, v);
+    return localStorage.getItem(k);
+  } catch {
+    return null;
+  }
+}
+let sealKey = ls("tw.sealkey") as Hex | null;
+if (!sealKey) sealKey = ls("tw.sealkey", generatePrivateKey()) as Hex | null;
+const sealPk = (sealKey ?? generatePrivateKey()) as Hex;
+const sealAddr = privateKeyToAccount(sealPk).address;
+const sealWallet = walletClientFor(sealPk, ACCESS_KEY);
+let gasState: "unknown" | "ok" | "unavailable" = "unknown";
+async function ensureSealGas() {
+  if (gasState !== "unknown") return gasState === "ok";
+  try {
+    const r = await fetch("/api/drip", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ address: sealAddr }) });
+    gasState = r.ok && ((await r.json()) as { ok: boolean }).ok ? "ok" : "unavailable";
+  } catch {
+    gasState = "unavailable"; // e.g. the Swarm-hosted copy has no /api: it stays read-only, which is the point
+  }
+  return gasState === "ok";
+}
+const sealing = new Map<string, "sealing" | "error">();
+const eventIdOf = (memberKeys: string[]) => keccak256(toHex([...memberKeys].sort().join(","))).slice(0, 34);
 
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 const q = new URLSearchParams(location.search);
@@ -25,6 +55,7 @@ const ui = {
   sensors: $("sensors"),
   events: $("events"),
   triggers: $("triggers"),
+  autoseal: $<HTMLInputElement>("autoseal"),
 };
 ui.site.value = q.get("site") ?? "demo";
 if (q.get("k")) ui.k.value = q.get("k")!;
@@ -41,6 +72,43 @@ function admitted(sensors: SensorRow[]) {
   }
   const all = [...byName.values()];
   return { inside: all.slice(0, MAX_PHONES), over: all.slice(MAX_PHONES) };
+}
+
+type QEvent = ReturnType<typeof computeQuorum>["events"][number];
+
+/** Evidence pack → Swarm, then a pointer + hash entity on Arkiv. Sequential via `sealQueue`. */
+let sealQueue: Promise<unknown> = Promise.resolve();
+function seal(site: string, id: string, e: QEvent, k: number, windowMs: number, registry: SensorRow[]) {
+  sealing.set(id, "sealing");
+  sealQueue = sealQueue.then(async () => {
+    try {
+      if (!(await ensureSealGas())) throw new Error("no gas (read-only copy)");
+      const memberKeys = new Set(e.members.map((m) => m.id));
+      const full: TriggerRow[] = (await fetchTriggers(client, site, e.tMs - windowMs - 60_000, true)).filter((r) => memberKeys.has(r.key));
+      const pack = {
+        app: "tremor-witness",
+        packVersion: 1,
+        claim: "A corroborated vibration event in this band occurred at this time, co-signed by these registered phones. Not a claim that any legal limit was exceeded.",
+        site,
+        eventId: id,
+        quorum: { k, windowMs, rule: "k distinct registered phones, structural label, within windowMs (packages/core/src/quorum.ts)" },
+        event: { tMs: e.tMs, iso: new Date(e.tMs).toISOString(), sensors: e.sensors, ppvBandMmS: [e.ppvMinMmS, e.ppvMaxMmS] },
+        members: full,
+        registry: registry.map((r) => ({ sensor: r.sensor, wallet: r.creator, joinedMs: r.startedMs, arkivKey: r.key })),
+        source: { arkiv: { chain: "rabdi", chainId: 7794095 }, triggerSchema: "tremor-witness.v1.trigger" },
+        sealedBy: sealAddr,
+        sealedAt: new Date().toISOString(),
+      };
+      const json = JSON.stringify(pack);
+      const packHash = keccak256(toHex(json));
+      const swarmRef = await swarmUploadJson(`tremor-witness-${site}-${id}.json`, pack);
+      await writeEvent(sealWallet, { site, eventId: id, tMs: e.tMs, k, sensors: e.sensors, ppvMinMmS: e.ppvMinMmS, ppvMaxMmS: e.ppvMaxMmS, swarmRef, packHash });
+      sealing.delete(id);
+    } catch (err) {
+      console.warn("seal failed", err);
+      sealing.set(id, "error");
+    }
+  });
 }
 
 let busy = false;
@@ -78,12 +146,33 @@ async function refresh() {
         )
         .join("") || `<tr><td colspan="5" class="muted">No phones yet. Open the join link on a phone and press Start.</td></tr>`;
 
+    // Sealed events on Arkiv (first seal per eventId wins; duplicates from other viewers are harmless).
+    const sealed = new Map<string, { swarmRef: string; key: string }>();
+    for (const ev of (await fetchEvents(client, site, since)).sort((a, b) => a.tMs - b.tMs)) {
+      if (!sealed.has(ev.eventId)) sealed.set(ev.eventId, { swarmRef: ev.swarmRef, key: ev.key });
+    }
+    const withIds = res.events.map((e) => ({ e, id: eventIdOf(e.members.map((m) => m.id)) }));
     ui.events.innerHTML =
-      res.events
+      withIds
         .slice()
         .reverse()
-        .map((e) => `<tr><td>${time(e.tMs)}</td><td class="ok">${e.sensors.length}/${k}+ · ${e.sensors.map(esc).join(", ")}</td><td>${e.ppvMinMmS.toFixed(2)}–${e.ppvMaxMmS.toFixed(2)} mm/s</td></tr>`)
-        .join("") || `<tr><td colspan="3" class="muted">None yet. Stomp near ${k} phones at once.</td></tr>`;
+        .map(({ e, id }) => {
+          const s = sealed.get(id);
+          const st = s
+            ? `<a class="ok" href="${swarmUrl(s.swarmRef)}" target="_blank" rel="noopener">sealed ✓ Swarm</a>`
+            : sealing.get(id) === "sealing"
+              ? `<span class="muted">sealing…</span>`
+              : sealing.get(id) === "error"
+                ? `<span class="bad">seal failed</span>`
+                : `<span class="muted">not sealed</span>`;
+          return `<tr><td>${time(e.tMs)}</td><td class="ok">${e.sensors.length}/${k}+ · ${e.sensors.map(esc).join(", ")}</td><td>${e.ppvMinMmS.toFixed(2)}–${e.ppvMaxMmS.toFixed(2)} mm/s</td><td>${st}</td></tr>`;
+        })
+        .join("") || `<tr><td colspan="4" class="muted">None yet. Stomp near ${k} phones at once.</td></tr>`;
+    if (ui.autoseal.checked) {
+      for (const { e, id } of withIds) {
+        if (!sealed.has(id) && !sealing.has(id)) void seal(site, id, e, k, Number(ui.win.value || 2000), inside);
+      }
+    }
 
     const reason = new Map(res.rejected.map((r) => [r.trigger.id, r.reason]));
     const confirmed = new Set(res.events.flatMap((e) => e.members.map((m) => m.id)));

@@ -19,6 +19,7 @@
         <label class="label" for="k">Quorum k</label><input id="k" class="input" type="number" min="1" max="5" placeholder="auto" />
         <label class="label" for="win">Window ms</label><input id="win" class="input" type="number" min="200" max="10000" step="100" value="2000" />
         <label class="label" for="mins">Last min</label><input id="mins" class="input" type="number" min="1" max="1440" value="30" />
+        <label class="label"><input id="autoseal" type="checkbox" checked /> Auto-seal to Swarm</label>
         <span id="sync" class="muted small">–</span>
       </section>
 
@@ -41,7 +42,7 @@
 
       <section class="card">
         <div class="row"><span class="label">Confirmed events (quorum reached)</span></div>
-        <table><thead><tr><th>Time</th><th>Phones</th><th>PPV band</th></tr></thead><tbody id="events"></tbody></table>
+        <table><thead><tr><th>Time</th><th>Phones</th><th>PPV band</th><th>Evidence</th></tr></thead><tbody id="events"></tbody></table>
       </section>
 
       <section class="card">

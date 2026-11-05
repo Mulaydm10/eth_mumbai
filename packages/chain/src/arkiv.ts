@@ -31,6 +31,20 @@ export const SensorSchema = defineSchema(`${APP_TAG}.sensor`, {
   ua: str(),
 });
 
+/** A sealed, quorum-confirmed event. Convenience + permanence pointer: readers still recompute from triggers. */
+export const EventSchema = defineSchema(`${APP_TAG}.event`, {
+  site: str().indexed(),
+  eventId: str().indexed(), // keccak256 of the sorted member trigger keys (same event => same id, whoever seals it)
+  tMs: u64().indexed(),
+  k: u64(),
+  nSensors: u64(),
+  ppvMinUm: u64(),
+  ppvMaxUm: u64(),
+  sensors: str(), // comma list (<=128 bytes)
+  swarmRef: str().indexed(), // evidence pack on Swarm
+  packHash: str(), // keccak256 of the pack JSON, so a re-uploaded copy can be verified
+});
+
 export function makeChain(accessKey = "") {
   return rabdi({ accessKey });
 }
@@ -176,5 +190,65 @@ export async function fetchSensors(p: ArkivPublic, site: string, sinceMs: number
     rateHz: num(e.rateCHz) / 100,
     api: String(e.api.value),
     ua: String(e.ua.value),
+  }));
+}
+
+export interface EventInput {
+  site: string;
+  eventId: string;
+  tMs: number;
+  k: number;
+  sensors: string[];
+  ppvMinMmS: number;
+  ppvMaxMmS: number;
+  swarmRef: string;
+  packHash: string;
+}
+
+export async function writeEvent(w: ArkivWallet, e: EventInput, days = 180) {
+  return w.createEntity(
+    EventSchema,
+    {
+      site: e.site.slice(0, 64),
+      eventId: e.eventId,
+      tMs: u64(Math.round(e.tMs)),
+      k: u64(e.k),
+      nSensors: u64(e.sensors.length),
+      ppvMinUm: u64(Math.round(e.ppvMinMmS * 1000)),
+      ppvMaxUm: u64(Math.round(e.ppvMaxMmS * 1000)),
+      sensors: e.sensors.join(",").slice(0, 128),
+      swarmRef: e.swarmRef,
+      packHash: e.packHash,
+    },
+    { expiration: ExpirationTime.fromDays(days) },
+  );
+}
+
+export interface EventRow extends EventInput {
+  key: string;
+  creator: string;
+}
+
+export async function fetchEvents(p: ArkivPublic, site: string, sinceMs: number): Promise<EventRow[]> {
+  const res = await p
+    .select({ $key: true, $creator: true, site: true, eventId: true, tMs: true, k: true, sensors: true, ppvMinUm: true, ppvMaxUm: true, swarmRef: true, packHash: true })
+    .from(EventSchema)
+    .where(and(eq("site", site), gt("tMs", u64(Math.max(0, Math.floor(sinceMs))))))
+    .orderBy(desc("tMs"))
+    .limit(100)
+    .fetch();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return res.entities.map((e: any) => ({
+    key: String(e.$key),
+    creator: String(e.$creator),
+    site: String(e.site.value),
+    eventId: String(e.eventId.value),
+    tMs: num(e.tMs),
+    k: num(e.k),
+    sensors: String(e.sensors.value).split(",").filter(Boolean),
+    ppvMinMmS: num(e.ppvMinUm) / 1000,
+    ppvMaxMmS: num(e.ppvMaxUm) / 1000,
+    swarmRef: String(e.swarmRef.value),
+    packHash: String(e.packHash.value),
   }));
 }
