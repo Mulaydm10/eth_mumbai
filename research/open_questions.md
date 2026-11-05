@@ -22,3 +22,6 @@ Close a question by appending a `Closed:` line under it with the date and the AD
 ## Q-0005: Is the team's previous-event repo usable?
 - **Status:** Open · **Owner:** Dhruv
 - The handover says the repo linked from the earlier project page fails to load and may be the wrong repo, and that a repo in that state would block finalist judging. Relevant mainly if a Continuity track is chosen (`Q-0003`).
+
+### Q-0001 update (2026-11-06 01:26 IST)
+- Dhruv directed the team to build **Tremor Witness** (playbook verdict #1, `research/playbook/2026-11-05-ideation/VERDICT.md`) with Arkiv Build (+Swarm), ENSv2, EF CROPS, and World IDKit as backup. `VISION.md` (LOCKED) not yet filled in; formal close pending Dhruv's sign-off on the VISION text.

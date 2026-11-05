@@ -19,3 +19,7 @@ Format: `## YYYY-MM-DD HH:MM IST · who · title`
 - Recommendation: Tremor Witness; alternate: frame-tx sweep finding; fallback: ReadLeak. Thesis is still Dhruv's decision (`Q-0001` open).
 - Security note: Definitive's docs contain prompt-injection text aimed at AI agents; nobody acted on it.
 - Created private GitHub repo `Mulaydm10/eth_mumbai` and pushed (repo must be made public before submission).
+
+## 2026-11-06 01:26 IST · Claude Code (for Dhruv Mulay) · Thesis direction + sponsor deep dive started
+- Dhruv chose Tremor Witness with Arkiv Build (+Swarm bonus), ENSv2, EF CROPS, World IDKit (backup). Pasted analysis saved verbatim to `research/tremor-witness/00-sponsor-fit-analysis-pasted.md`.
+- Started a Playwright deep dive of the 4 tracks plus sponsor docs; output to `research/tremor-witness/sponsors/`, progress in `research/tremor-witness/LOG.md`. Build plan to follow.
