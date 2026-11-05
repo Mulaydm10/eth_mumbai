@@ -42,7 +42,7 @@ interface GenericSensor extends EventTarget {
   start(): void;
   stop(): void;
 }
-declare const LinearAccelerationSensor: { new (o?: { frequency?: number }): GenericSensor } | undefined;
+declare const Accelerometer: { new (o?: { frequency?: number }): GenericSensor } | undefined; // raw, includes gravity
 
 // ---- Tunables (Prototype 0; tuned on real phones next) ----
 const TRIGGER_RATIO = 4; // STA/LTA ratio to open an event
@@ -50,7 +50,8 @@ const MIN_PPV_MMS = 0.3; // ignore events weaker than this (noise floor)
 const EVENT_MS = 1200; // window collected after a trigger
 const REFRACTORY_MS = 1500; // no new event this soon after the last
 const HANDLING_LOWF = 0.5; // >50% energy below 3 Hz = phone handled / swayed, not floor vibration
-const HANDLING_PPV = 40; // > 40 mm/s on a floor is implausible for building vibration; likely the phone moved
+const HANDLING_TILT_DEG = 10; // orientation changed by >10° = phone picked up / flipped (a floor does not tilt a lying phone)
+const HANDLING_ACC = 30; // >30 m/s² (~3 g) band-passed: dropped or shaken, not floor vibration
 
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 const ui = {
@@ -90,6 +91,8 @@ interface DetectedEvent {
   ppv: number;
   fDom: number;
   lowF: number;
+  tilt: number;
+  peakAcc: number;
   label: "structural" | "handling";
   write: "queued" | "sending" | "ok" | "error";
   note?: string;
@@ -128,8 +131,27 @@ const events: DetectedEvent[] = [];
 let tracker: VelocityTracker | null = null;
 let trig: StaLta | null = null;
 let fs = 0;
-let open: { t0: number; peak: number; axis: number[][] } | null = null;
+let open: { t0: number; peak: number; peakAcc: number; gBefore: [number, number, number]; axis: number[][] } | null = null;
 let lastEventT = -Infinity;
+
+// Sensor timestamps use a per-phone clock (Chrome Android: time since boot), NOT wall time. Map them to wall time
+// with the smallest observed (Date.now() - sensorT): the minimum removes callback latency. Needed so two phones'
+// events land in the same quorum window.
+let clockOffset = Infinity;
+const toWall = (t: number) => t + clockOffset;
+
+// Gravity / orientation: low-pass of the raw accelerometer. A phone lying on a vibrating floor keeps its tilt;
+// a phone that is picked up, flipped or shaken does not.
+let grav: [number, number, number] = [0, 0, 0];
+let gravInit = false;
+const GRAV_ALPHA = 0.05; // ~0.5 Hz at 50 Hz
+function tiltDeg(a: [number, number, number], b: [number, number, number]) {
+  const na = Math.hypot(...a);
+  const nb = Math.hypot(...b);
+  if (na < 1 || nb < 1) return 0;
+  const c = (a[0] * b[0] + a[1] * b[1] + a[2] * b[2]) / (na * nb);
+  return (Math.acos(Math.max(-1, Math.min(1, c))) * 180) / Math.PI;
+}
 
 function setStatus(msg: string, err = false) {
   ui.status.textContent = msg;
@@ -151,8 +173,17 @@ document.addEventListener("visibilitychange", () => {
 
 function onSample(s: Sample) {
   raw.push(s);
+  if (raw.length > 60 * 60 * 20) raw.splice(0, raw.length - 60 * 60 * 15); // cap memory (~20 min at 60 Hz)
   stamps.push(s.t);
   if (stamps.length > 240) stamps.shift();
+  clockOffset = Math.min(clockOffset, Date.now() - s.t);
+  if (!gravInit) {
+    grav = [s.x, s.y, s.z];
+    gravInit = true;
+  } else if (!open) {
+    // Freeze the gravity estimate during an event so the vibration itself doesn't bend it.
+    grav = [grav[0] + GRAV_ALPHA * (s.x - grav[0]), grav[1] + GRAV_ALPHA * (s.y - grav[1]), grav[2] + GRAV_ALPHA * (s.z - grav[2])];
+  }
 
   // Initialise filters once the real delivered rate is known (it varies by phone).
   if (!tracker) {
@@ -188,10 +219,11 @@ function onSample(s: Sample) {
 
   // Event state machine
   if (!open && ratio > TRIGGER_RATIO && s.t - lastEventT > REFRACTORY_MS) {
-    open = { t0: s.t, peak: 0, axis: [[], [], []] };
+    open = { t0: s.t, peak: 0, peakAcc: 0, gBefore: [...grav] as [number, number, number], axis: [[], [], []] };
   }
   if (open) {
     open.peak = Math.max(open.peak, velMmS);
+    open.peakAcc = Math.max(open.peakAcc, accBand);
     open.axis[0]!.push(s.x);
     open.axis[1]!.push(s.y);
     open.axis[2]!.push(s.z);
@@ -204,14 +236,23 @@ function closeEvent() {
   const o = open!;
   open = null;
   if (o.peak < MIN_PPV_MMS) return;
-  // Use the axis with the most energy for the frequency features (phone orientation unknown).
-  const energy = o.axis.map((a) => a.reduce((acc, v) => acc + v * v, 0));
-  const best = o.axis[energy.indexOf(Math.max(...energy))]!;
+  // Remove each axis's mean (gravity) first, then use the axis with the most energy for frequency features.
+  const centred = o.axis.map((a) => {
+    const m = a.reduce((x, y) => x + y, 0) / Math.max(1, a.length);
+    return a.map((v) => v - m);
+  });
+  const energy = centred.map((a) => a.reduce((acc, v) => acc + v * v, 0));
+  const best = centred[energy.indexOf(Math.max(...energy))]!;
   const fDom = dominantHz(best, fs);
   const lowF = lowFreqRatio(best, fs);
-  const label: DetectedEvent["label"] = lowF > HANDLING_LOWF || o.peak > HANDLING_PPV ? "handling" : "structural";
-  const wallMs = performance.timeOrigin + o.t0;
-  const ev: DetectedEvent = { t: o.t0, wallMs, ppv: o.peak, fDom, lowF, label, write: "queued" };
+  // Orientation after the event: mean of the last 200 ms of raw samples.
+  const tail = raw.slice(-Math.max(3, Math.round(fs * 0.2)));
+  const gAfter: [number, number, number] = [0, 1, 2].map((i) => tail.reduce((acc, s) => acc + [s.x, s.y, s.z][i]!, 0) / tail.length) as [number, number, number];
+  const tilt = tiltDeg(o.gBefore, gAfter);
+  const handling = tilt > HANDLING_TILT_DEG || o.peakAcc > HANDLING_ACC || lowF > HANDLING_LOWF;
+  const label: DetectedEvent["label"] = handling ? "handling" : "structural";
+  const wallMs = toWall(o.t0);
+  const ev: DetectedEvent = { t: o.t0, wallMs, ppv: o.peak, fDom, lowF, tilt, peakAcc: o.peakAcc, label, write: "queued" };
   events.unshift(ev);
   lastEventT = o.t0;
   renderEvents();
@@ -235,7 +276,7 @@ function closeEvent() {
         lowF,
         rateHz: rate,
         label,
-        wave: { fs: rate, x: win.map((s) => s.x), y: win.map((s) => s.y), z: win.map((s) => s.z) },
+        wave: { fs: rate, x: win.map((s) => s.x), y: win.map((s) => s.y), z: win.map((s) => s.z), tiltDeg: tilt, peakAcc: o.peakAcc, api: ui.api.textContent ?? "" },
       });
       ev.write = "ok";
       ev.note = String((r as { entityKey?: string }).entityKey ?? "");
@@ -264,7 +305,7 @@ function renderEvents() {
           : e.write === "error"
             ? `<span class="w bad" title="${(e.note ?? "").replace(/"/g, "'")}">✗ ${e.note ?? "write failed"}</span>`
             : `<span class="w">${e.write}…</span>`;
-      return `<li>${time} · <b>${e.ppv.toFixed(2)} mm/s</b> · ${e.fDom.toFixed(1)} Hz · low-f ${(e.lowF * 100).toFixed(0)}%<span class="tag ${cls}">${e.label}</span>${w}</li>`;
+      return `<li>${time} · <b>${e.ppv.toFixed(2)} mm/s</b> · ${e.fDom.toFixed(1)} Hz · tilt ${e.tilt.toFixed(0)}° · ${e.peakAcc.toFixed(1)} m/s²<span class="tag ${cls}">${e.label}</span>${w}</li>`;
     })
     .join("");
 }
@@ -314,7 +355,7 @@ function plot() {
 
 // ---- Sensor start/stop ----
 async function startGeneric(): Promise<boolean> {
-  if (typeof LinearAccelerationSensor === "undefined") return false;
+  if (typeof Accelerometer === "undefined") return false;
   try {
     const perm = await navigator.permissions.query({ name: "accelerometer" as PermissionName });
     if (perm.state === "denied") return false;
@@ -323,7 +364,7 @@ async function startGeneric(): Promise<boolean> {
   }
   return new Promise((resolve) => {
     try {
-      const sensor = new LinearAccelerationSensor({ frequency: 60 });
+      const sensor = new Accelerometer({ frequency: 60 });
       let ok = false;
       sensor.addEventListener("reading", () => {
         if (!ok) {
@@ -335,7 +376,7 @@ async function startGeneric(): Promise<boolean> {
       sensor.addEventListener("error", () => resolve(false));
       sensor.start();
       stopFn = () => sensor.stop();
-      ui.api.textContent = "Generic Sensor";
+      ui.api.textContent = "Accelerometer";
       setTimeout(() => resolve(ok), 1500);
     } catch {
       resolve(false);
@@ -351,13 +392,13 @@ async function startDeviceMotion(): Promise<boolean> {
     if (r !== "granted") return false;
   }
   const h = (e: DeviceMotionEvent) => {
-    const a = e.acceleration;
+    const a = e.accelerationIncludingGravity;
     if (!a) return;
     onSample({ t: e.timeStamp, x: a.x ?? 0, y: a.y ?? 0, z: a.z ?? 0 });
   };
   window.addEventListener("devicemotion", h);
   stopFn = () => window.removeEventListener("devicemotion", h);
-  ui.api.textContent = "DeviceMotion";
+  ui.api.textContent = "DeviceMotion+g";
   return true;
 }
 
@@ -377,6 +418,9 @@ ui.start.addEventListener("click", async () => {
     return;
   }
   tracker = null;
+  clockOffset = Infinity;
+  gravInit = false;
+  raw.length = 0;
   trig = null;
   stamps.length = 0;
   setStatus("Starting sensor…");

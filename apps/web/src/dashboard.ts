@@ -51,11 +51,14 @@ async function refresh() {
   ui.joinLink.textContent = `${location.origin}/?site=${encodeURIComponent(site)}`;
   try {
     const since = Date.now() - Number(ui.mins.value || 30) * 60_000;
-    const [sensors, rows] = await Promise.all([fetchSensors(client, site, since - 6 * 3600_000), fetchTriggers(client, site, since)]);
+    const [sensors, allRows] = await Promise.all([fetchSensors(client, site, since - 6 * 3600_000), fetchTriggers(client, site, since)]);
+    // Ignore triggers stamped more than 1 min in the future (pre-fix phones used a boot-time clock).
+    const rows = allRows.filter((r) => r.tMs < Date.now() + 60_000);
     const { inside, over } = admitted(sensors);
     const owner = new Map(inside.map((s) => [s.sensor, s.creator.toLowerCase()]));
     const triggers: Trigger[] = rows.map((r) => ({ id: r.key, sensor: r.sensor, creator: r.creator, tMs: r.tMs, ppvMmS: r.ppvMmS, fDomHz: r.fDomHz, label: r.label }));
-    const k = Math.max(1, Math.min(MAX_PHONES, Number(ui.k.value || 3)));
+    // Auto k: 3 of up to 5 phones, but never more than the phones present (min 2 so one phone alone can never confirm).
+    const k = ui.k.value ? Math.max(1, Math.min(MAX_PHONES, Number(ui.k.value))) : Math.max(2, Math.min(3, inside.length));
     const res = computeQuorum(triggers, {
       k,
       windowMs: Number(ui.win.value || 2000),

@@ -55,7 +55,7 @@ export interface TriggerInput {
   lowF: number;
   rateHz: number;
   label: "structural" | "handling";
-  wave: { fs: number; x: number[]; y: number[]; z: number[] };
+  wave: { fs: number; x: number[]; y: number[]; z: number[]; [extra: string]: unknown };
 }
 
 const enc = new TextEncoder();
@@ -63,7 +63,7 @@ const dec = new TextDecoder();
 const r3 = (v: number) => Math.round(v * 1000) / 1000;
 
 export async function writeTrigger(w: ArkivWallet, t: TriggerInput, days = 30) {
-  const wave = enc.encode(JSON.stringify({ fs: r3(t.wave.fs), x: t.wave.x.map(r3), y: t.wave.y.map(r3), z: t.wave.z.map(r3) }));
+  const wave = enc.encode(JSON.stringify({ ...t.wave, fs: r3(t.wave.fs), x: t.wave.x.map(r3), y: t.wave.y.map(r3), z: t.wave.z.map(r3) }));
   return w.createEntity(
     TriggerSchema,
     {
