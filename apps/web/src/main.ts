@@ -487,6 +487,8 @@ ui.start.addEventListener("click", async () => {
   ui.site.disabled = true;
   ui.name.disabled = true;
   await syncClock();
+  // Phone clocks drift and network time can step: re-sync every 2 minutes while sensing.
+  const resync = setInterval(() => (running ? void syncClock() : clearInterval(resync)), 120_000);
   void ensureGas();
   void ensureEnsName();
 });
