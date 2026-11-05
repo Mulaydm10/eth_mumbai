@@ -586,3 +586,31 @@ ui.syncBtn.addEventListener("click", () => {
   ui.syncStatus.textContent = "Playing sync sound… every running phone nearby should hear it.";
 });
 void flush();
+
+// ---- Demo vibration source: a spare phone's vibration motor, pulsed on a fixed schedule (5 × 700 ms, every 4 s). ----
+const shakerBtn = document.getElementById("shakerBtn") as HTMLButtonElement;
+const shakerStatus = document.getElementById("shakerStatus")!;
+shakerBtn.addEventListener("click", () => {
+  if (running) {
+    shakerStatus.textContent = "This phone is sensing: stop it first (a source phone must not also count as a sensor).";
+    return;
+  }
+  if (!navigator.vibrate) {
+    shakerStatus.textContent = "This browser can't vibrate (iPhone?). Use an Android phone as the source.";
+    return;
+  }
+  const pattern: number[] = [];
+  for (let i = 0; i < 5; i++) pattern.push(700, 3300);
+  navigator.vibrate(pattern);
+  shakerBtn.disabled = true;
+  let n = 0;
+  shakerStatus.textContent = "Pulse 1 of 5…";
+  const t = setInterval(() => {
+    n++;
+    if (n >= 5) {
+      clearInterval(t);
+      shakerBtn.disabled = false;
+      shakerStatus.textContent = "Done: 5 pulses. Check the dashboard for confirmed events.";
+    } else shakerStatus.textContent = `Pulse ${n + 1} of 5…`;
+  }, 4000);
+});

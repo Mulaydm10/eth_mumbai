@@ -31,6 +31,12 @@
       </section>
 
       <section class="card">
+        <div class="row"><span class="label">Demo vibration source</span><button id="shakerBtn" class="ghost">Be the vibration source</button></div>
+        <p class="status small">Use a <b>spare</b> phone that is NOT sensing: lay it on the same table as the sensor phones and tap this button. It vibrates 5 times, 4 s apart, and each pulse should confirm on the dashboard. (Android only; iPhones don't allow web vibration.)</p>
+        <p id="shakerStatus" class="status small"></p>
+      </section>
+
+      <section class="card">
         <div class="row"><span class="label">Sound sync (works offline)</span><button id="syncBtn" class="ghost">Play sync sound</button></div>
         <p class="status small">With all phones running and close together, tap <b>Play sync sound</b> on any one phone. Every phone hears it at the same instant, which aligns their clocks without internet.</p>
         <p id="syncStatus" class="status small">Starts listening when you press Start.</p>
