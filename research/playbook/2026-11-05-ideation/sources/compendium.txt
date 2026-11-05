@@ -1,0 +1,643 @@
+ WORKING NOTES · ETHGLOBAL MUMBAI 2026
+
+ ETHGlobal Mumbai 2026: Everything
+ We Worked Out
+ Event facts, prize maths, what wins, our past project, every idea we tested and
+ why, and the plan for the next 36 hours
+
+    How to use this document
+    Parts 1–2 are the facts: logistics, judging and prize money. Parts 3–4 are the research: what won
+    in Tokyo, ETHOnline and Delhi, and how deep projects need to be. Part 5 is Fiducia. Part 6 is
+    every idea we considered, with the verdict on each. Parts 7–9 are the plan: who to talk to, how to
+    decide and how to scope the build.
+
+ Compiled 5 Nov 2026 from our conversation, the ETHGlobal Mumbai prize and info pages, the ETHGlobal showcase
+ (Tokyo 2026, ETHOnline 2026, New Delhi 2025), the Fiducia repo and Drive docs, and the news and data sources listed
+ at the end. Dollar figures are sponsor prizes in USD or USDC. Estimates and judgment calls are labelled as such.
+
+ Contents
+  1. The event: dates, venue, schedule, logistics, rules
+  2. Prize structure, and how Mumbai compares with Delhi, Tokyo and ETHOnline
+  3. What wins: patterns from Tokyo 2026, ETHOnline 2026 and Delhi 2025
+  4. How deep a project has to be, and how much can be built in 36 hours
+  5. Fiducia: our earlier project, analysed
+  6. Every idea we considered, and the verdict on each
+  7. Who to talk to at the event, and what to ask
+  8. First-hackathon advice and how to decide
+  9. Open decisions, next steps and sources
+
+
+
+
+ETHGlobal Mumbai 2026: Everything We Worked Out                                                              Page 1 of 16
+ 1. The event
+ Key facts
+   Item                                  Detail
+   Dates                                 Thursday 5 – Saturday 7 November 2026, all times IST
+   Venue                                 Jio World Convention Centre, Pavilion 2, Jio World Centre, G Block, Bandra Kurla
+                                         Complex, Bandra East, Mumbai 400098
+   Your status                           Fully confirmed (checked by logging in to the hacker dashboard with the magic
+                                         link from your inbox). Discord connected, hacker pack claimed. Build track (from
+                                         scratch or continuity) not yet selected.
+   Ticket                                PDF attached to the "Your ticket for ETHGlobal Mumbai!" email; can be added to
+                                         Apple or Google Wallet
+   ID                                    Valid photo ID matching the name on the ticket; you get a badge and wristband
+   What to bring                         Laptop, charger, Indian plug adapters, Ethernet dongle if no Ethernet port, a
+                                         hoodie or light blanket
+   Size                                  Event page states 800+ attendees, 11+ protocols, 29+ workshops, $175,000 in
+                                         prizes
+   Staying overnight                     Allowed, with limits. FAQ: "limited, first-come, first-serve spaces where
+                                         attendees can sleep, but… not the most comfortable… no showering facilities". A
+                                         nearby hotel (e.g. ibis Mumbai BKC, about 1.4 km) is a good backup.
+
+ Schedule
+   When                         What
+   Thu 1:00 PM                  Registration opens (Pavilion 2); closes 10:00 PM
+   Thu 2:30–6:00 PM             Sponsor workshops: Hedera × Claude Code (3:30, Room 2), 0G (3:30, Room 1), ENSv2
+                                (4:00, Room 1), Arkiv (4:00, Room 2), Uniswap (4:30, Room 1), Whitechain (4:30, Room
+                                2), Arc (5:00, Room 1), Ethereum Foundation (5:00, Room 2), World (5:30, Room 1),
+                                1inch Aqua (5:30, Room 2)
+   Thu 6:30 PM                  Dinner
+   Thu 8:00 PM                  Opening ceremony, with a fireside chat with Balaji Srinivasan
+   Thu 9:00 PM                  Hacking begins
+   Thu 9:30 PM                  Team formation session
+   Thu/Fri midnight             Late-night snacks
+   Fri                          Brunch 10 AM; optional Diwali activities from 1 PM (lanterns, diya painting, mehndi);
+                                dinner 6 PM
+   Sat 8:00 AM                  Breakfast
+   Sat 9:00 AM                  Project submissions due
+   Sat 9:30 AM–12:30 PM Partner prize judging and main finalist judging
+   Sat 12:30 PM                 Lunch
+   Sat 3:15 PM                  Finalists notified
+
+
+ETHGlobal Mumbai 2026: Everything We Worked Out                                                                     Page 2 of 16
+   Sat 3:30 PM                  Closing ceremony; event ends 6:00 PM
+
+ How judging works
+     Finalist judging: each team gets 7 minutes: a 4-minute demo, then 3 minutes of questions. Many
+     rooms run in parallel; each can see about 25 teams in 3 hours, so this is a first-round screen.
+     Criteria (five): technicality, originality, practicality (complete and usable today), usability
+     (UI/UX/DX) and "WOW factor".
+     Sponsor prizes are judged from your submission materials. Booth visits are optional. With about
+     100 entries per sponsor, three hours means under 2 minutes per project, so the write-up, the per-
+     sponsor explanation in the form and the video do most of the work.
+     Prepare for: "What inspired your project?", "What tools did you use, and why?", "What challenges
+     did you solve, and how?"
+
+ Rules that can disqualify you
+     From scratch: all project work must start after hacking begins; public libraries and starter kits are
+     fine. Pre-built projects only qualify through a continuity track.
+     Continuity tracks (extend open source you maintain, or ship a feature): document pre-existing
+     work clearly.
+     Version control: commit often. "Large single commits or missing histories may be disqualified."
+     AI tools allowed, with attribution: state where and how AI was used, by file. Projects built entirely
+     by AI may lose eligibility. If you use a spec-driven workflow, include all spec files and prompts.
+     Up to 3 partner prizes; several tracks from one partner count as one.
+     Demo video: optional but strongly recommended; 2–4 minutes, at least 720p, not sped up, no
+     phone recording, no AI voiceover, no music-with-text instead of talking.
+
+ How many people and projects
+   Event                                              Hackers            Projects
+   New Delhi 2025 (advertised 800+)                   1,539              616 (614 in the showcase)
+   Tokyo 2026 (advertised 800+)                       800+               254
+   ETHOnline 2026 (online)                            —                  812
+   Mumbai 2026 (estimate)                             about 800–1,500    about 250–600
+
+ Ten finalist spots means roughly 1 in 25 to 1 in 60 projects. Mumbai also falls in Devcon week, so the
+ upper end is more likely.
+
+
+
+
+ETHGlobal Mumbai 2026: Everything We Worked Out                                                      Page 3 of 16
+ 2. Prize structure
+ Mumbai: how the money is split
+ $175,000 advertised. Sponsor prizes add up to about $144,500 by our count (12 sponsors); the rest is
+ ETHGlobal's own finalist pool.
+ Finalist rewards (new this event):
+   Team size                       Cash                                       Travel credit
+   Solo                            $250 per person                            none
+   2 people                        $250 per person                            $250 per person
+   3–5 people                      $1,000 per person                          $500 per person
+
+ Travel credit is for one in-person ETHGlobal hackathon within 365 days. A 4-person finalist team gets
+ $4,000 cash plus $2,000 travel.
+
+ Sponsor tracks (Mumbai)
+   Sponsor            Total       Tracks and places
+   Uniswap            $15,000 Build with Uniswap: $4k / $3k / $2k / $1k. Continuity: 4 × $1,250
+   World              $12,500 Agent Pass Portal $5,000 (split not stated); Agent Pass continuity $2,500; IDKit 2 ×
+                              $1,250; IDKit continuity 2 × $1,250. Brief: "a meaningful action that needs a human
+                              identity or approval layer, not simply a login screen". Proofs are mocked at this event.
+   0G                 $15,000 Build with 0G PC (consumer app): $2.5k / $1.5k / $1k. Physical AI: $2.5k / $1.5k + $1k
+                              best real hardware (robot, drone, wearable or pocket device; simulated builds
+                              eligible; rejects "chatbot with a robot avatar, pre-recorded motion, 0G used only for
+                              logs"). Keep Building (existing 0G projects): 2 × $1,500. Agents That Pay for
+                              Themselves: 2 × $1,000. Paid at 0G's discretion.
+   Arc                $15,000 Five $3,000 tracks: DeFi app in Arc Studio; mobile consumer agent using the
+                              marketplace discovery API; advanced stablecoin contracts; Bridge Kit for non-USDC
+                              assets; continuity. Every Arc prize must start in Arc Studio.
+   Hedera             $15,000 AI agents that pay (x402): $3k / $2k / $1.5k. Tokenize anything (Hedera Studios):
+                              $2.5k / $1.5k / $1k. No Solidity: 2 × $1,000. Continuity: 2 × $750
+   Arkiv              $15,000 Mirror something Ethereum depends on: $3k / $1k. Build on Arkiv: $3k / $1k. Existing
+                              projects: $3k / $1k. Node tooling $2k. Swarm bonus $500 (from scratch) and $500
+                              (existing). All Arkiv tracks count as one pick. Judged partly from files: schema.md,
+                              friction.md, reach.md, why-arkiv.md, data-quality.md
+   Whitechain         $15,000 Stablecoin payments for business: $2.5k / $1.5k / $1k. Tokenize real-world finance:
+                              $2.5k / $1.5k. Payments nobody notices (no gas for payer): $2k / $1k. Continuity:
+                              $1.5k / $1.5k
+   Ethereum           $15,000 Anon-RPC: $2.5k / $1.5k / $1k. Frame-transaction alternative mempool: $2.5k / $1.5k
+   Foundation                 / $1k. CROPS app: $2k / $1k / $500. CROPS upgrade (continuity): $1.5k. At most one
+                              EF prize per project.
+   ENS                $10,000 Best use of ENSv2: $3k / $2k / $1k. ENSv2 in an existing project: $2k / $1k. Must be
+                              ENSv2 on mainnet or Sepolia, central not cosmetic, live demo, open source, no hard-
+                              coded values.
+
+
+
+ETHGlobal Mumbai 2026: Everything We Worked Out                                                                Page 4 of 16
+   1inch               $7,000     Aqua app: $2.5k / $1.5k / $1k (custom SwapVM opcodes allowed). Continuity: $1.5k /
+                                  $500
+   Definitive          $5,000     Flash advanced orders in a social app $2,500; most creative use of Flash (continuity)
+                                  $2,500
+   Chainlink           $5,000     Best CRE workflow $1,500; CCIP 2.0: 2 × $1,750 (CCIP state change required for core
+                                  prizes)
+
+ Continuity-only money: about $34,000 of the $144,500 (about 24%). From-scratch projects compete
+ for about $110,000.
+
+ Mumbai compared with earlier events
+                                Mumbai 2026                  New Delhi          Tokyo 2026            ETHOnline
+                                                             2025                                     2026
+   Advertised pool              $175,000                     $200,000           $75,000               not stated
+   Sponsor prizes (our          about $144,500               about $189,000 $52,500                   $80,000
+   sum)
+   Sponsors                     12                           21                 7                     11
+   Typical sponsor total        $15k (9 of 12)               $10k (15 of 21)    $5–15k                $3–15k
+   Biggest 1st place            $4,000 (Uniswap)             $6,000 (1inch)     $3,000                $2,500
+   Finalist cash                Yes, $250–1,000 per          No (perks only)    $17k shared by top    No
+                                person                                          10
+   Finalist travel              $250–500 per person          $500 per           No                    n/a
+                                                             person
+   Continuity-only share        about $34k (24%)             none               about $12k (23%)      about $15k
+                                                                                                      (19%)
+ Tokyo finalists also got a full Devcon Mumbai pass; all events gave $10,000 AWS credits, a hoodie and an ETHGlobal Plus
+ discount.
+
+
+
+
+ETHGlobal Mumbai 2026: Everything We Worked Out                                                                 Page 5 of 16
+ 3. What wins
+ We went through every prize winner on the ETHGlobal showcase: Tokyo 2026 (254 projects, 29
+ winners, 8 finalist badges), ETHOnline 2026 (812 projects, 63 winners, 8 finalist badges) and New
+ Delhi 2025 (614 projects, 88 winners, 10 finalists).
+
+ Finalists
+   Tokyo 2026 What it is                                                                        Also won
+   Omamoris        Agent gets a budget and an intent, not your keys; one World App approval     —
+   yohaku          Routes agent requests so only what needs a human reaches one                 —
+   Takarabako      Raspberry Pi kiosk turns leftover travel cash into dollar savings            1inch continuity 2nd
+   OddsFlow        One balance backs many prediction-market bets                                1inch Aqua 1st
+   Kura            Real Magic cards vaulted, shards sold to verified humans in a Uniswap        Uniswap 1st, ENS
+                   auction                                                                      3rd
+   Patio           Live radio broadcast through Ethereum's mempool                              —
+   Station
+   watermark       DAO treasury becomes a market maker via 1inch Aqua with custom               1inch Aqua 3rd
+                   opcodes
+   Enconomy        Two phones prove proximity with sound + on-device ZK proof                   —
+
+   ETHOnline            What it is                                                          Also won
+   2026
+   TARE                 Measures what Uniswap v4 hooks take: 125,072 replayable             Uniswap
+                        measurements
+   OpenBook             Data marketplace for agents: fresh data or your money back          The Graph 3rd, Arc
+   OnchainRouter        "OpenRouter for onchain tools", pay per call, no answer no charge   —
+   Cordon               Budgets for trees of agents; spend debited up the whole chain       —
+   Petri                Evolves agent harnesses; only verified improvements survive         —
+   Novi Corpus          A Wyoming LLC for an AI agent, with a human guardian                World AgentKit
+                                                                                            (continuity)
+   ETH Arcade           Raspberry Pi handheld where the ETH price is the game               —
+   LeekWallet           ESP32 hardware wallet that refuses what it can't display            —
+
+ Eight patterns in what won
+  1. Agents everywhere, but the winners make agents safe, not just powerful (at least 38 of 63
+     ETHOnline winners and 10 of 29 Tokyo winners involve agents): caps, pre-signing checks, human
+     approval, insurance or legal accountability.
+  2. Physical demos punch above their weight for finalist spots: 5 of 16 finalists had real hardware or
+     objects.
+  3. Finalist and sponsor judges reward different things: 9 of 16 finalists won no sponsor prize.
+     Finalists = one big, original idea plus depth; sponsors = deepest use of their product.
+
+
+ETHGlobal Mumbai 2026: Everything We Worked Out                                                              Page 6 of 16
+  4. Sponsor winners use the newest, most specific features: Uniswap v4 hooks; ENSv2 access-
+     control roles, permissioned and wildcard resolvers; 1inch Aqua/SwapVM with custom opcodes;
+     Hedera x402 agents and tokenization.
+  5. Combining sponsors works only when they genuinely depend on each other (Tokyo: 7 of 29
+     winners took two or more prizes, e.g. Kura, VexiHakari, Kagi Wallet, UnSui).
+  6. Write-ups full of evidence: test counts, replays of real events, mainnet transactions, measured
+     numbers.
+  7. Existing products can win: lpTOKEN.fun, Novi Corpus, Aqua0, Takarabako. 5 of 32 Tokyo and 13
+     of 62 ETHOnline sponsor prizes went to continuity projects; continuity prizes stack easily (Aqua0,
+     SoulVault and Lortnoc Tahc each won two).
+  8. Each winner explains its problem in one plain sentence ("Give your AI agent a budget, not your
+     keys").
+
+    The most crowded idea: agent spending limits (caps, allowlists, expiry, revoke). At least 15 of the
+    92 Tokyo/ETHOnline winners did a version of it (Omamoris, LedgerMind, Cordon, Harness, Kagi,
+    Capsule, Batas, Airlock, x402 Guard, Preflight MCP, payOrRefuse…). Fine as a feature, not as a
+    main pitch.
+
+ New Delhi 2025: what stood out
+   Finalist       What it did                                                          Depth then   Depth today
+   Nox            Private perps via ZK notes in a dark pool (Noir circuits, on-chain   Very hard    Still hard
+                  verifiers)
+   NoNet          Offline transactions hopping phone to phone over Bluetooth (Hedera   Hard         Still hard
+                  1st)
+   UniPerp        Perp exchange in Uniswap v4 hooks, vAMM, funding oracle              Hard         Medium-
+                  (Uniswap 2nd)                                                                     hard
+   Dike           Branching prediction markets, Pyth, Self-verified judges             Medium-      Medium
+                                                                                       high
+   Autonome       Websites paid per request by AI agents (Polygon x402 1st, The        Medium-      Medium
+                  Graph 2nd)                                                           high
+   Igris AI       Security agent with EIP-7702 delegation and dead-man's switch        Medium-      Medium
+                                                                                       high
+   ad-402         x402 ad marketplace                                                  Medium       Easy-
+                                                                                                    medium
+   calendefi      Google Calendar as a wallet (ENS 3rd)                                Medium       Easy
+   KagamiAI       AI copy trading with MCP, Uniswap v4, x402                           Medium       Easy-
+                                                                                                    medium
+   MemeWarp Cross-chain memecoins with deliberate price gaps                           Low          Easy
+
+ India-flavoured winners: ShieldRamp (World Mini App 2nd: crypto to rupees via UPI with TEE web
+ proofs), PyPI (Flow 2nd: stablecoins to INR via UPI), ZeroSurf (EF privacy 3rd: ZK age checks with
+ Aadhaar), CrossYield (1inch 2nd: "a modern Laxmi chit fund"), OffGrid Pay, Robin Hood DAO,
+ BondZero (Uniswap 1st: zero-coupon bonds with v4 hooks).
+ Themes in 2025: x402 agent payments, AI agents doing DeFi, India's own money rails, privacy/ZK,
+ working without internet, new DeFi from v4 hooks.
+
+
+
+ETHGlobal Mumbai 2026: Everything We Worked Out                                                            Page 7 of 16
+ Depth ratings are judgment calls from code repositories and write-ups. Commit counts (NoNet 100, Dike 101, Nox 56, ad-
+ 402 54, Autonome 42, MemeWarp 12) include post-event work; three repos (calendefi, KagamiAI, Igris) were deleted or
+ private.
+
+
+ 4. How deep a project has to be
+ Why the bar moved between 2025 and 2026
+     Sept 2025: AI coding agents were usable but limited. Claude Code launched in May 2025; GPT-5
+     and Claude Opus 4.1 came out in August; Claude Sonnet 4.5 was released 29 September, the day
+     after Delhi ended. Wiring five tools together in 36 hours was an achievement.
+     2026: agents write most of the code (payOrRefuse said Claude wrote most of it; Fiducia ran two
+     coordinating Claude Code sessions). Integration alone is no longer impressive.
+     What still holds value: real devices and real-world testing, new mechanisms or hard maths, and
+     your own data and proof.
+
+ Three levels
+   Level                        What it looks like                   Examples                  Typically wins now
+   1. Integration app           Several sponsor tools, clean UI,     MemeWarp, ad-402          A 3rd place or minor
+                                nothing new underneath                                         prize at best
+   2. Working product +         End-to-end, one genuinely original   calendefi, Dike,          Sponsor 1st/2nd;
+   one real mechanism           piece                                Autonome, Omamoris        borderline finalist in
+                                                                                               2026
+   3. Something hard,     New mechanism or hard area, fully          Nox, NoNet, UniPerp,      Finalist level in 2026
+   working, with evidence working, with tests and a measured         OniBlock, TARE, Kura
+                          number
+
+    Target: a Level 2 product with one Level 3 component: one part that is hard, real and proven.
+    Teams at this scale usually fail by building too much and demoing too little, not by aiming too low.
+
+ Time budget
+     Hacking Thu 9 PM → Sat 9 AM = 36 hours. After sleep (6–8 h each), food and workshops: about
+     22–26 working hours per person; a team of 4 has about 90–100 person-hours.
+     AI speeds up code 2–3×, but not the bottlenecks: sponsor SDK surprises, testnets, device testing,
+     recording.
+     Split: 60% core build, 15% integration fixes, 15% demo/video/write-up, 10% buffer.
+     Feature freeze around hour 26 (Friday ~11 PM); last 10 hours for testing, measuring and recording.
+
+ Finish-line checklist
+     Live demo, no hard-coded values
+     Each sponsor's feature essential and showable in under 30 seconds
+     Contracts deployed, explorer links in the write-up
+     A few dozen tests on the core logic
+     One number you measured yourselves
+     Write-up: problem, how it's built, honest limits; AI usage documented
+     3–4 minute video meeting the rules
+
+
+ETHGlobal Mumbai 2026: Everything We Worked Out                                                                 Page 8 of 16
+     First 30 seconds of the demo open with the problem as a number
+     Each sponsor's form section written like a 90-second pitch, with links to the code
+     Rehearse the 3 minutes of questions
+
+
+ 5. Fiducia: our earlier project
+ Where it came from
+     Built by Dhruv and Vedant for Superteam Germany's "Build an MVP with Solana at WHU" (WHU
+     hackathon 2026). Took 3rd of 17 ($500 USDG; 1st Shreyansh Tripathi, 2nd Guido Andreini). Judged
+     on a useful idea, a working prototype, a clear role for Solana and potential to grow.
+     Repo: github.com/Mulaydm10/solana-hackathon (411 commits). Live: fiducia-orpin.vercel.app.
+     Later extended for the peaq Machine Economy track (Crypto World's Fair 2026), with a 12-slide
+     deck, 3-page technical brief and 3-page go-to-market plan (12 Oct).
+     Conceptual ancestor: your Crusoe-track win at RAISE (a trust-and-safety control plane for a robot
+     fleet).
+
+ What it does
+ "Fiducia controls how AI agents spend money." One Anchor program (deal_escrow) enforces on-
+ chain mandates: per-payment and total caps, approved payees, stages bound to a plan hash, expiry,
+ one-click revoke. Pieces: data marketplace (assessed, encrypted, escrow), paid services (x402, "no
+ answer, no charge"), agent teams, an MCP server with 17 tools, a demand board, and the peaq
+ machine economy (a simulated delivery robot buying proven kWh from three charging pads, an MCR-
+ style credit score, parametric downtime insurance, Fiducia Insure over x402).
+
+ Strengths
+     Unusually deep engineering: 636 tests (program 97, agents 325, web 179, MCP 35), 2,000
+     randomized attack-search runs with 0 invariant violations, the deployed binary verified byte for
+     byte.
+     Proof shown, not claimed: a /proof page and explorer links; an over-cap payment refused with
+     OverPerTxCap.
+     An honest-limits section; a named first customer and pricing (1.5%, or $149/month + 1%); a
+     concrete reason for Solana (card fees vs about 0.09%).
+     The peaq version was focused (one job, one customer), mapped to every track area and reused
+     one escrow for insurance.
+
+ Weaknesses we found
+     The live demo was broken when checked (catalogue RPC failure, /hire server error, /machines
+     intermittent); the robot's mandate expired on 30 Oct; the 30-minute clock ran on an "always-on
+     Mac".
+     The robot's "small business" lost money: $9.00 earned vs $15.77 spent on energy.
+     Grades in the deck and on the live page disagreed (robot BB 57 vs AAA 100; pad A BBB 61 vs NR
+     24); a money-losing robot scored AAA.
+     Insurance moral hazard: an unrated pad pays 0.20 for 1.00 cover and could stop heartbeats
+     deliberately to collect.
+     The pad signs its own meter reading; peaq events are self-reported (trust level 0).
+
+
+ETHGlobal Mumbai 2026: Everything We Worked Out                                                  Page 9 of 16
+     No real AI model in the loop; machines simulated; no users or revenue; too many products in one
+     pitch.
+
+ Compared with the ETHGlobal winners
+    Its core (agent spending mandates) is the most crowded winning idea (Omamoris, LedgerMind,
+    Cordon, Harness, Kagi…).
+    Its marketplace pieces overlap with OpenBook, Turnstile, OnchainRouter (same "no answer, no
+    charge" phrase), Carpool, Covenant, Surety and Lifeline.
+    What it uniquely had: checks both before payment (mandate) and after delivery (hash must
+    match); approvals bound to a specific plan; machine-to-machine payments with insurance and
+    credit (no winner did this); one escrow reused for everything.
+    Biggest gap: no real AI being stopped, no finding of its own, self-signed proofs.
+ Continuity option for Mumbai (not chosen): World Agent Pass continuity $2,500, ENS existing-project
+ up to $2,000, Arkiv existing up to $3,000 + $500: about $8,000 with lighter competition. You decided
+ not to use Fiducia.
+
+
+
+
+ETHGlobal Mumbai 2026: Everything We Worked Out                                               Page 10 of 16
+ 6. Every idea we considered
+   Idea                                           Sponsors                  Ceiling (team   Status
+                                                                            of 4)
+   A. DawaBox: medicine kiosk with                World, 0G Physical AI,    about $15,500   Parked (hardware, legal
+   verified prescriptions                         ENS                                       sensitivity)
+   B. Energy-trading Uniswap hook with Uniswap, 0G, ENS/CRE                 about $14,500   Parked
+   a charging device
+   C. ScamMirror: private scam-                   Arkiv, EF, ENS            about $9,000    Folded into LeakMeter
+   address registry                                                         + finalist
+   D. Voice social trading in Hinglish            0G, Definitive, World     about $6,000    Parked (low ceiling)
+                                                  IDKit                     + finalist
+   HumanFlow: Uniswap hook, lower                 World, Uniswap, ENS       about $16,000   Out (Fables already does
+   fees for human-backed agents                                                             the core)
+   Bharosa: AI shopping agent for non-            World, Arc, ENS           about $15,000   Weak ("crowded"; fails the
+   crypto families                                                                          can't-they-just test)
+   LeakMeter: what your RPC provider              EF Anon-RPC, Arkiv, ENS about $13,000     Live candidate
+   learns about you
+   NetraPay: phone checks a shop's QR World, 0G, ENS                        about $15,500   Out (simple fix exists;
+   before paying                                                                            wrong victim)
+   Hedged LP: one-click hedge for                 Uniswap, Definitive, 0G   about $10,000   Live candidate (mentor's
+   ordinary LPs                                   or Arkiv                  + finalist      direction)
+   Warehouse-receipt inspection with a            0G, Hedera/Whitechain,    about $8,000    Only if a sponsor reacts
+   phone                                          ENS                       + finalist      strongly
+
+ The test every idea must pass
+    Ask "can't people just do X?" If a cheap, obvious X exists and mostly works, the idea is weak.
+    Strong problems are ones where the obvious fix requires trusting someone untrustworthy, doesn't
+    scale, can't be done by the people affected, or needs information that doesn't exist yet.
+
+ A. DawaBox (with the proofread fixes)
+ Problem: prescription-only medicines are routinely sold without valid prescriptions; fake prescriptions
+ and non-existent doctors are common.
+  1. The doctor signs a QR on the prescription; the kiosk checks it against the doctor's ENSv2 subname
+     (council can revoke; only the doctor can write).
+  2. A vision model on 0G reads the printed text, matches it to the QR and checks drug conflicts:
+     dispense, refuse or escalate.
+  3. For a restricted drug, the agent asks the on-call pharmacist for a fresh World ID approval (Agent
+     Pass); the patient's anonymous World ID enforces a monthly per-person limit.
+  4. The motor dispenses; a fingerprint of the signed QR content (not the photo) is recorded on-chain
+     so reuse is refused.
+
+
+
+
+ETHGlobal Mumbai 2026: Everything We Worked Out                                                                    Page 11 of 16
+ Flaws fixed in proofreading: World ID can't prove "this is the patient"; vision can't detect forgeries;
+ hashing a photo doesn't stop reuse; 0G may not count a kiosk as a device; a machine dispensing
+ prescription drugs needs a pharmacist in the loop. Crypto needed: no DeFi; basic web3 for the ENS
+ registry and the on-chain fingerprint.
+
+ B, C, D in one line each
+     B. Energy hook: a v4 pool trades energy credits; the hook's fee follows a 0G grid-load forecast
+     (your FlexGrid experience); a real smart plug or Pi rover buys credits.
+     C. ScamMirror: mirror scam/phishing lists into Arkiv, score how much sources disagree, look up
+     through Anon-RPC.
+     D. Voice trading circles: Hinglish voice on 0G, group orders through Definitive, World IDKit keeps
+     circles to real people.
+
+ The control test
+ You ran a generic prompt in a fresh session. It researched the prize page but not the winners. Its top
+ pick ("Leash", agent spending limits) was the most crowded winning idea; "Sentinel" (ML dynamic-fee
+ hook) duplicated OniBlock; "Brainbank" targeted 0G Storage, which no Mumbai 0G track rewards, and
+ missed the Arc Studio rule; "Lease.eth" used an off-chain resolver that may not satisfy ENSv2's
+ "central" rule; it missed World's $5,000 track. It did contribute: Lease.eth as a fresh idea, Arkiv's Sub0
+ data (32 submissions from about 150 hackers), and the logistics (start coding at the event, video
+ rules). Conclusion: the winner analysis, not special creativity, is what improved the ideas.
+
+ NetraPay, and why it was dropped
+ Idea: point your phone at a shop counter; 0G reads the bill and signboard; the QR's payee is checked
+ against the shop's ENSv2-registered payment ID; World ID approval for big or first-time payments;
+ safe stop if 0G is unreachable.
+ The problem is real:
+   Year (Lok Sabha reply, Dec 2024)                  QR-code fraud cases              Amount
+   FY 2021–22                                        14,625                           ₹19.35 crore
+   FY 2022–23                                        30,340                           ₹41.73 crore
+   FY 2023–24                                        39,638                           ₹56.34 crore
+   FY 2024–25 (Apr–Sep)                              18,167                           ₹22.22 crore
+
+ Sticker-swap cases: Mumbai Khar (July 2025, a guard pasted his QR over paan-shop and vegetable-
+ vendor codes for two months), Khajuraho (Jan 2025, a dozen-plus shops overnight), Hyderabad (July
+ 2024).
+ Why it's out: UPI already shows the payee name (an existing fix that just needs attention); the
+ shopkeeper loses money, not the customer holding the phone; the core tech is a simple string match;
+ and shops don't take USDC. A judge would raise "people should just check" within 30 seconds.
+
+ HumanFlow, and why it's out
+ Problem (real): LPs lose to arbitrage. The Topaz Blue/Bancor study (May–Sep 2021) found 49.5% of
+ Uniswap v3 LPs lost money vs holding; across 17 pools LPs earned $199M in fees but lost $260M (a
+ $60M net loss). Academic name: loss-versus-rebalancing.
+
+
+
+
+ETHGlobal Mumbai 2026: Everything We Worked Out                                                      Page 12 of 16
+ Idea: a v4 hook charges a dynamic premium to arbitrage-like flow and gives human-backed agents
+ (World Agent Pass, ENSv2 subnames, capped per person) a discount.
+ Why it's out: a Uniswap mentor pointed to Fables, a live v4 exchange on Robinhood Chain (Alphix
+ Association) whose fees move with trading hours, volatility, price divergence and trade direction, set
+ by a bounded keeper, "so LPs are paid more when a trade is more likely to be against them". About
+ $23M locked and $1.5B volume in 30 days (DefiLlama, 2 Nov). The only new part left was the identity
+ discount, which was already the weakest part (a verified human can still run arbitrage; ordinary trades
+ often arrive via bots).
+
+ LeakMeter (live candidate)
+ Problem: a wallet's RPC provider sees every address and token you look up, plus your IP and timing,
+ so it can link your wallets and infer holdings without any transaction. Most people can't run their own
+ node. (In 2022 ConsenSys said Infura collects IP and wallet addresses on transactions; from memory,
+ verify before citing.)
+  1. Measure: record your own test wallets' sessions; show step by step what the provider can infer
+     ("after 2 minutes it links these 3 wallets"); a leak score.
+  2. Fix: route lookups through EF's Anon-RPC.
+  3. Fix: mirror public data wallets need (token lists, prices, address labels) into Arkiv.
+  4. Prove: same session again, score drops (e.g. 3 linked wallets → 0).
+ Sponsors: EF Anon-RPC ($2.5k / $1.5k / $1k), Arkiv Mirror ($3k / $1k + $500), optional ENSv2
+ privacy-score records (up to $3k). Why it fits: own measurement at the centre (like TARE and x402
+ Guard), no similar winner found, no hardware, suits your ML/data background. Risk: less flashy, so the
+ live before-and-after panel must make the leak feel personal.
+
+ Hedged LP (the mentor's direction)
+ The mentor described two kinds of LPs: professionals (market makers, banks, trading firms) and
+ ordinary LPs, and suggested giving ordinary LPs a professional edge without complexity.
+   Obvious version                                     Already done by
+   Auto range moving and fee reinvesting               Arrakis, Gamma, lpTOKEN.fun and others
+   Copying top LPs                                     LP Agent (Copy LP, including Uniswap)
+   Following where professional liquidity sits         Remora Finance (HackMoney 2026)
+   Higher fees for harmful trades                      Fables
+   Delta-neutral LP via lending                        Delta Zero Hook (Delhi, Pyth 2nd)
+
+ The unpackaged edge: hedging through advanced orders, in one click. Deposit into a v4 position;
+ as the position drifts toward the falling token, an agent places counter-orders through Definitive's
+ Flash API (limit, stop-loss, TWAP); the user sees one number, "position vs holding, with and without
+ the hedge". Measured finding: replay a real pool and show losses prevented. Sponsors: Uniswap ($4k
+ / $3k / $2k / $1k), Definitive ($2.5k, "Flash paired with another protocol's tools"), plus 0G Agents That
+ Pay for Themselves or Arkiv. Learn from watermark (one signature, hard fences for the agent) and
+ Takarabako (three beginner tiers, one sentence each).
+ Ask the mentor: "Which pro edge did you mean: hedging, pulling liquidity before big moves, or
+ information?" and "Is anything already doing that for ordinary LPs?"
+
+
+
+
+ETHGlobal Mumbai 2026: Everything We Worked Out                                                   Page 13 of 16
+ Phone-to-phone and NFC
+     NFC is a transport, not a problem. Prior uses: AccessFi (NFC event payments, EF prize in Delhi),
+     NoNet (Bluetooth, Delhi finalist), Tap Pay (two Android phones as an NFC terminal, Tokyo, no
+     prize). Android can emulate NFC cards easily; iPhones are restricted.
+     0G's Physical AI brief explicitly includes a "pocket device", so a phone qualifies for the main
+     prizes; whether it counts for the $1,000 real-hardware prize is unclear (ask 0G). They want a safe
+     stop when 0G is unreachable, and no faked decisions.
+     Phone idea with a real problem: warehouse-receipt inspection. Inspector taps a tag, the camera
+     and a 0G vision model check and count goods, a signed record backs a tokenized receipt (Hedera
+     tokenize or Whitechain RWA), inspectors in a revocable ENS registry. India's NSEL scandal
+     involved warehouses that didn't hold the goods (from memory; verify).
+     Earlier phone ideas from the voice chat: phone as a robot's eyes with a 0G brain and safe stop;
+     shop-shelf auditor; elderly fall detector.
+
+
+ 7. Who to talk to, and what to ask
+ Catch speakers right after their workshop. Get a Discord handle for questions during hacking. Always
+ ask: "What would make you say wow?" and "Is anything already doing this?"
+   Who                    Questions
+   Ethereum               Quickest way to route an app's lookups through Anon-RPC (worker or harness), and the
+   Foundation             latency? What measurement method of RPC leakage would you trust (own or synthetic
+   (Anon-RPC)             sessions)? Must 100% of traffic go through Anon-RPC? Measurement study plus fix, or a
+                          better tool?
+   Arkiv                  Are the judging files schema.md, friction.md, reach.md, why-arkiv.md, data-quality.md?
+                          What makes a strong reach file? Which datasets do you most want mirrored? Licensing
+                          issues with public scam lists? Entity count, size and expiry limits?
+   ENS                    Is our ENSv2 use central enough? Can a contract on another chain read ENSv2 records?
+                          Mainnet or Sepolia for judging? What counts as "no hard-coded values"?
+   Uniswap (for           Which pro edge do ordinary LPs most lack? Anything already doing one-click hedging?
+   hedged LP)             Mechanism novelty vs evidence from replaying a real pool? Preferred testnet?
+   World                  How is the $5,000 Agent Pass Portal split? Can an Agent Pass proof be verified on-chain? Is
+                          our action "meaningful" by your brief?
+   0G                     Does a phone count as real hardware? What exactly must the Physical AI demo show?
+   ETHGlobal              Which of our candidates is more finalist-worthy, and why? What did finalist judges reward
+   mentors                most last time? What are you tired of seeing?
+
+
+ 8. First-hackathon advice and how to decide
+     Feeling unsure at your first big hackathon is normal. Reading the projects and briefs yourself is the
+     right instinct: you notice things an AI doesn't.
+     Give yourself a deadline: pick an idea by around 10 PM tonight. A decent idea built well beats a
+     perfect idea still in your head on Friday.
+     Choose the problem that genuinely bugs you; that excitement carries you through 36 hours.
+     Test it once on a sponsor or mentor. If they lean in and start asking questions, that's your answer.
+
+
+ETHGlobal Mumbai 2026: Everything We Worked Out                                                               Page 14 of 16
+     You don't need to learn a new field tonight. Tokyo's vertical ideas came from the founders' own
+     lives (Kura's team collects Magic cards; Takarabako came from leftover travel cash).
+     Use your rare expertise: you do RF and radar signal-processing research. Enconomy reached the
+     finals with exactly that kind of skill (distance from sound between two phones). Hardly anyone in
+     the hall has it.
+     Exercise (10 minutes): write down 3 things you know deeply and 3 annoying problems you've had
+     yourself in India or Germany; look for where one meets a sponsor.
+
+    Decision rule: choose the candidate where sponsors and mentors gave the most specific,
+    enthusiastic answers. If unclear, LeakMeter is the safest (no similar winner found, lighter tracks,
+    suits your data skills). Keep the team at 3–5 people for the $1,000-per-person finalist tier.
+
+
+
+
+ETHGlobal Mumbai 2026: Everything We Worked Out                                                    Page 15 of 16
+ 9. Open decisions, next steps and sources
+ Open decisions
+  1. LeakMeter or hedged LP (or an idea from your own expertise) by about 10 PM.
+  2. Team size and who owns which part.
+  3. Third sponsor pick, and whether ENS is central enough to include.
+  4. Build track: from scratch (not continuity).
+
+ Next steps
+  1. Talk to EF, Arkiv and the Uniswap mentor before the opening ceremony (8 PM).
+  2. Decide, then write: the one-sentence problem, the one rule that cannot fail, the headline number
+     and how to reproduce it.
+  3. Hacking starts 9 PM: core working by hour 20, feature freeze by hour 26, record and submit by Sat
+     9 AM.
+
+ Sources
+ ETHGlobal Mumbai: ethglobal.com/events/mumbai · /prizes · /info/details (judging and rules) · "What to Expect at
+ ETHGlobal Mumbai" email (2 Nov) · hacker dashboard
+ Showcases: ethglobal.com/showcase?events=tokyo2026 · ?events=ethonline2026 · ?events=newdelhi · prize pages for
+ tokyo2026, ethonline2026, newdelhi
+ Project pages cited: OniBlock, TARE, OpenBook, Cordon, Omamoris, yohaku, Kura, watermark, OddsFlow, Takarabako,
+ Enconomy, Patio Station, Novi Corpus, payOrRefuse, lpTOKEN.fun, Nox, NoNet, UniPerp, Dike, Autonome, Igris AI,
+ calendefi, KagamiAI, MemeWarp, ad-402, ShieldRamp, ZeroSurf, Delta Zero Hook, DepegSentinel, MEVengers, Remora
+ Finance, AccessFi, Tap Pay
+ Fiducia: superteam.fun/earn/listing/build-at-whu · fiducia-orpin.vercel.app · github.com/Mulaydm10/solana-hackathon ·
+ Drive folder (peaq pitch deck, technical brief, GTM plan)
+ QR fraud: MediaNama (Lok Sabha figures, Dec 2024; Khajuraho, Jan 2025) · Free Press Journal (Mumbai Khar arrest,
+ July 2025) · Deccan Chronicle (Hyderabad, July 2024)
+ LP losses: Cointelegraph on the Topaz Blue / Bancor Uniswap v3 study (Nov 2021) · Drossos et al., arXiv 2501.07828
+ (2025)
+ Fables: fables.fi/docs/dynamic-fees · DefiLlama (fables) · IQ.wiki · CandyDrops explainer
+ LP tools: Solana Compass (LP Agent)
+ Items marked "from memory" (Infura 2022 disclosure, NSEL scandal, loss-versus-rebalancing paper, 2025 model
+ release dates) were not re-checked in this session.
+
+
+
+
+ETHGlobal Mumbai 2026: Everything We Worked Out                                                               Page 16 of 16
+
