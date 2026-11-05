@@ -1,0 +1,15 @@
+{
+  "name": "tremor-witness",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Tremor Witness: a phone-vibration quorum gives residents a tamper-evident record nobody controls (ETHGlobal Mumbai 2026).",
+  "license": "MIT",
+  "workspaces": ["packages/*", "apps/*"],
+  "engines": { "node": ">=22.10" },
+  "scripts": {
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present",
+    "dev": "npm run dev -w apps/web"
+  }
+}
