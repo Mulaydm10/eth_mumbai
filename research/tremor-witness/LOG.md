@@ -24,3 +24,4 @@
 | 01:40 | docs agent | World IDKit 4.6.0 (@worldcoin/idkit, idkit-core): RP signature needs secret signing key (backend); verify POST developer.world.org/api/v4/verify/{rp_id} has no CORS => needs tiny function; staging+simulator.worldcoin.org usable w/o Orb; PoH=Orb, Selfie Check=no Orb (medium assurance) | sponsors/docs-world-idkit.md |
 | 01:42 | docs agent | Arkiv SDK 1.0.1 live read probe OK on Rabdi; design notes (phone gas, $creator trust, 128KiB, ~182d max expiry); footers added | sponsors/docs-arkiv.md |
 | 01:42 | docs agent | Phone sensors: LinearAccelerationSensor needs HTTPS + visible page (readings stop when screen locked/hidden), Chrome caps 60 Hz, Wake Lock baseline since Mar 2025 | sponsors/docs-phone-sensors.md |
+| Fri 01:45 | Claude Code | Both research agents returned; findings committed. Build plan v1 written. | ../../design/build-plan.md |

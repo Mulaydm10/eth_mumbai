@@ -23,3 +23,8 @@ Format: `## YYYY-MM-DD HH:MM IST · who · title`
 ## 2026-11-06 01:26 IST · Claude Code (for Dhruv Mulay) · Thesis direction + sponsor deep dive started
 - Dhruv chose Tremor Witness with Arkiv Build (+Swarm bonus), ENSv2, EF CROPS, World IDKit (backup). Pasted analysis saved verbatim to `research/tremor-witness/00-sponsor-fit-analysis-pasted.md`.
 - Started a Playwright deep dive of the 4 tracks plus sponsor docs; output to `research/tremor-witness/sponsors/`, progress in `research/tremor-witness/LOG.md`. Build plan to follow.
+
+## 2026-11-06 01:45 IST · Claude Code (for Dhruv Mulay) · Sponsor deep dive done; build plan v1
+- The track-study agent (Playwright) found: EF CROPS judging is now final (5 criteria), "switch off your backend" is in EF's video brief, the video limit is 3 min, the Swarm bonus doesn't use a pick, and Arkiv judging is 4 × 25% from the /arkiv/*.md files.
+- The docs agent found: Arkiv Rabdi 7794095 + SDK 1.0.1, Swarm public gateway with the null stamp (probed), ENSv2 Sepolia addresses (commit 07e55a05), Safe protocol-kit 8.0.11, IDKit 4.6.0 (needs a backend), Chrome's 60 Hz sensor cap.
+- Wrote `design/build-plan.md` (architecture, stack proposal for ADR-0002, owners, timeline, demo, risks). World IDKit dropped (it would be a 4th pick and needs a backend). Awaiting Dhruv's approval.
