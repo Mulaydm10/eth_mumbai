@@ -9,5 +9,11 @@
     "preview": "vite preview --host",
     "typecheck": "tsc --noEmit -p ."
   },
-  "dependencies": { "@tw/core": "*" }
+  "dependencies": {
+    "@tw/core": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vite": "^7.1.12"
+  }
 }
