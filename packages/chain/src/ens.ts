@@ -21,7 +21,7 @@ import {
 import { sepolia } from "viem/chains";
 import { normalize, packetToBytes } from "viem/ens";
 import type { RegistrationInterval } from "../../core/src/registry.js";
-import { COMMITTEE_REGISTRY_ROLES, ENSV2_SEPOLIA as C, permissionedResolverAbi, registryAbi, verifiableFactoryAbi } from "./ensv2-abi.js";
+import { COMMITTEE_REGISTRY_ROLES, ResolverRoles, ENSV2_SEPOLIA as C, permissionedResolverAbi, registryAbi, verifiableFactoryAbi } from "./ensv2-abi.js";
 
 export const ENS_PARENT = "tremorwitness";
 /** Deployer of the deterministic proxies (= committee for now). Public address, not a secret. */
@@ -270,4 +270,17 @@ export async function writePhoneHead(w: WalletClient, pub: Pub, site: string, la
     functionName: "setText",
     args: [dns(phoneName(site, label)), phoneHeadKey(site, label), JSON.stringify(head)],
   });
+}
+
+/**
+ * Make sure a phone may write its head key (phones registered before T3 never got the grant). Idempotent: reads the
+ * resolver's role bitmap for resource(key) first and only grants when ROLE_SET_TEXT is missing.
+ */
+export async function ensureHeadGrant(w: WalletClient, pub: Pub, site: string, label: string, addr: Address) {
+  const key = phoneHeadKey(site, label);
+  const resource = BigInt(keccak256(stringToHex(key)));
+  const roles = (await pub.readContract({ address: ENS_RESOLVER, abi: permissionedResolverAbi, functionName: "roles", args: [resource, getAddress(addr)] })) as bigint;
+  if ((roles & ResolverRoles.ROLE_SET_TEXT) !== 0n) return null;
+  const setter = encodeFunctionData({ abi: permissionedResolverAbi, functionName: "setText", args: [dns(phoneName(site, label)), key, ""] });
+  return send(w, pub, { address: ENS_RESOLVER, abi: permissionedResolverAbi, functionName: "grantSetterRoles", args: [setter, getAddress(addr)] });
 }

@@ -3,7 +3,7 @@
 // too. A phone already registered to the same wallet may re-join without an invite.
 import { getAddress, isAddress, type Address, type Hex } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { LABEL_RE, MAX_PHONES_PER_SITE, ensCreateSite, ensRegisterPhone, listSitePhones, siteExists } from "../../../packages/chain/src/ens.js";
+import { LABEL_RE, MAX_PHONES_PER_SITE, ensCreateSite, ensRegisterPhone, ensureHeadGrant, listSitePhones, siteExists } from "../../../packages/chain/src/ens.js";
 import { decodeInvite, fetchInviteRecords, inviteSigner, writeInviteRecord } from "../../../packages/chain/src/invite.js";
 import { publicClientFor, walletClientFor } from "../../../packages/chain/src/arkiv.js";
 import { committee, fail } from "./_committee.js";
@@ -20,7 +20,11 @@ export async function POST(req: Request): Promise<Response> {
     const live = exists ? await listSitePhones(pub, s) : [];
     const same = live.find((p) => p.label === l);
     if (same) {
-      if (same.owner.toLowerCase() === address.toLowerCase()) return Response.json({ ok: true, name: same.name, expiry: same.expiry, existing: true });
+      if (same.owner.toLowerCase() === address.toLowerCase()) {
+        // T3 backfill: phones registered before T3 lack the head-write grant; add it on rejoin (no-op if present).
+        const grant = await ensureHeadGrant(wallet, pub, s, l, address as Address).catch(() => null);
+        return Response.json({ ok: true, name: same.name, expiry: same.expiry, existing: true, headGrant: grant ? "granted" : "ok" });
+      }
       return fail(409, `${same.name} belongs to another phone; pick another name`);
     }
     if (live.length >= MAX_PHONES_PER_SITE) return fail(409, `site is full (${MAX_PHONES_PER_SITE} phones)`);

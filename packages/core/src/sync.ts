@@ -37,7 +37,28 @@ export const chirpIdOf = (order: readonly number[]) => SYNC_ORDERS.findIndex((o)
  * Group anchors into sessions. v2 anchors group by chirp ID within `spreadMs` (phones' clock disagreement bound).
  * v1 anchors (no chirp ID) fall back to time-only grouping. Newest session with >= minPhones distinct phones wins.
  */
+/** Default emit→hear self-delay (speaker + mic pipeline), measured on two Android phones, 6 Nov: median ~320 ms. */
+export const DEFAULT_EMIT_LAG_MS = 320;
+
+/**
+ * Per-phone emit→hear delay, from chirps the phone both played (emit) and heard itself (hear). An "emit" timestamp is
+ * when the audio clock says the tone LEFT; others record when it ARRIVED, so emit anchors must be shifted by this lag.
+ */
+export function emitLags(anchors: SyncAnchor[], maxGapMs = 2000): Map<string, number> {
+  const out = new Map<string, number[]>();
+  for (const e of anchors.filter((a) => a.role === "emit" && a.chirp !== undefined)) {
+    const h = anchors.find((a) => a.sensor === e.sensor && a.role === "hear" && a.chirp === e.chirp && a.tMs >= e.tMs && a.tMs - e.tMs <= maxGapMs);
+    if (h) out.set(e.sensor, [...(out.get(e.sensor) ?? []), h.tMs - e.tMs]);
+  }
+  const med = (v: number[]) => [...v].sort((a, b) => a - b)[Math.floor(v.length / 2)]!;
+  return new Map([...out].map(([k, v]) => [k, med(v)]));
+}
+
 export function alignBySound(anchors: SyncAnchor[], spreadMs = 15_000, minPhones = 2): SyncSession | null {
+  // Shift every emit anchor by its phone's measured emit→hear lag (default if never measured), so all anchors mean
+  // "when the sound arrived at a microphone".
+  const lags = emitLags(anchors);
+  anchors = anchors.map((a) => (a.role === "emit" ? { ...a, tMs: a.tMs + (lags.get(a.sensor) ?? DEFAULT_EMIT_LAG_MS) } : a));
   const sorted = [...anchors].sort((a, b) => a.tMs - b.tMs);
   const sessions: { chirp?: number; items: SyncAnchor[] }[] = [];
   for (const a of sorted) {

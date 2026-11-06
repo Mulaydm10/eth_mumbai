@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { SYNC_ORDERS, SYNC_TONES, SYNC_TONE_MS, ToneSyncDetector, alignBySound, chirpIdOf, correctTime, goertzel } from "../src/sync";
+import { DEFAULT_EMIT_LAG_MS, SYNC_ORDERS, SYNC_TONES, SYNC_TONE_MS, ToneSyncDetector, alignBySound, chirpIdOf, correctTime, emitLags, goertzel } from "../src/sync";
 
 describe("alignBySound v2", () => {
   it("removes a 3.3 s clock gap between two phones", () => {
@@ -10,12 +10,34 @@ describe("alignBySound v2", () => {
     expect(Math.abs(correctTime("a", 200_000, s) - correctTime("b", 203_300, s))).toBeLessThan(1);
   });
 
-  it("works when the emitter cannot hear itself (emit anchor + hear anchor)", () => {
+  it("works when the emitter cannot hear itself (emit anchor shifted by the default emit→hear lag)", () => {
     const s = alignBySound([
       { sensor: "player", tMs: 50_000, chirp: 4, role: "emit" },
       { sensor: "listener", tMs: 52_000, chirp: 4, role: "hear" },
     ])!;
-    expect(s.corrections.get("listener")! - s.corrections.get("player")!).toBe(2000);
+    // Emission at 50 000 arrives ~320 ms later; the listener's clock is therefore 2000 - 320 ms ahead.
+    expect(s.corrections.get("listener")! - s.corrections.get("player")!).toBe(2000 - DEFAULT_EMIT_LAG_MS);
+  });
+
+  it("learns a phone's own emit→hear lag from chirps it heard itself (real data: ~300–450 ms)", () => {
+    const lags = emitLags([
+      { sensor: "a", tMs: 1_000, chirp: 0, role: "emit" },
+      { sensor: "a", tMs: 1_300, chirp: 0, role: "hear" },
+      { sensor: "a", tMs: 9_000, chirp: 2, role: "emit" },
+      { sensor: "a", tMs: 9_320, chirp: 2, role: "hear" },
+    ]);
+    expect(lags.get("a")).toBe(320);
+    // Then a later chirp a played but did not hear, while b heard it at a's-clock + 5 000 + 320 → b is 5 s ahead.
+    const s = alignBySound([
+      { sensor: "a", tMs: 1_000, chirp: 0, role: "emit" },
+      { sensor: "a", tMs: 1_300, chirp: 0, role: "hear" },
+      { sensor: "a", tMs: 9_000, chirp: 2, role: "emit" },
+      { sensor: "a", tMs: 9_320, chirp: 2, role: "hear" },
+      { sensor: "a", tMs: 40_000, chirp: 5, role: "emit" },
+      { sensor: "b", tMs: 45_320, chirp: 5, role: "hear" },
+    ])!;
+    expect(s.chirp).toBe(5);
+    expect(s.corrections.get("b")! - s.corrections.get("a")!).toBe(5_000);
   });
 
   it("does NOT merge back-to-back chirps with different IDs (real test: chirps 4–10 s apart)", () => {
