@@ -2,7 +2,7 @@
 // Prototype 1 trust rule: the first MAX_PHONES distinct phones (by join time) at a site count; a trigger counts only
 // if its Arkiv $creator is the wallet that registered that phone name. Prototype 2 replaces this with ENS names.
 import { alignBySound, asOfCheck, coherence, gapCount, seqGaps, type AsOfReason, type RegistrationInterval, computeQuorum, correctTime, type CoherenceResult, type SyncSession, type Trigger } from "@tw/core";
-import { ENS_DEPLOYER, encodeInvite as _encInv, fetchInviteRecords, ensPublic, siteRegistrationHistory, listSitePhones, resolvePhones, siteExists, siteName, siteParams, type EnsPhone, extendEvent, fetchEvents, fetchSensors, fetchSyncs, fetchTriggers, publicClientFor, swarmUploadJson, swarmUrl, walletClientFor, writeEvent, type SensorRow, type TriggerRow } from "@tw/chain";
+import { ENS_DEPLOYER, encodeInvite as _encInv, fetchInviteRecords, readPhoneHead, type PhoneHead, ensPublic, siteRegistrationHistory, listSitePhones, resolvePhones, siteExists, siteName, siteParams, type EnsPhone, extendEvent, fetchEvents, fetchSensors, fetchSyncs, fetchTriggers, publicClientFor, swarmUploadJson, swarmUrl, walletClientFor, writeEvent, type SensorRow, type TriggerRow } from "@tw/chain";
 import { keccak256, toHex, type Hex } from "viem";
 import QRCode from "qrcode";
 import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
@@ -61,6 +61,7 @@ const ui = {
   inviteNote: $("inviteNote"),
   invites: $("invites"),
   sealedAll: $("sealedAll"),
+  attacks: $("attacks"),
 };
 ui.site.value = q.get("site") ?? "demo";
 if (q.get("k")) ui.k.value = q.get("k")!;
@@ -254,6 +255,10 @@ const due = (k: string) => {
   return true;
 };
 let syncCache: { sensor: string; tMs: number; creator: string }[] = [];
+const headCache = new Map<string, PhoneHead>();
+async function refreshHeads(site: string, labels: string[]) {
+  await Promise.all(labels.map(async (l) => { const h = await readPhoneHead(ensClient, site, l); if (h) headCache.set(l, h); }));
+}
 
 let busy = false;
 async function refresh() {
@@ -274,6 +279,7 @@ async function refresh() {
     const since = Date.now() - Number(ui.mins.value || 30) * 60_000;
     const [sensors, allRows, ens] = await Promise.all([fetchSensors(client, site, since - 6 * 3600_000), fetchTriggers(client, site, since), readEns(site)]);
     lastEns = ens;
+    if (ens.ok && due(`head:${site}`)) void refreshHeads(site, ens.phones.map((p) => p.label));
     // Ignore triggers stamped more than 1 min in the future (pre-fix phones used a boot-time clock).
     const rows = allRows.filter((r) => r.tMs < Date.now() + 60_000);
     // Offline clock alignment: if phones heard a sound-sync signal, correct each phone's timestamps to the shared instant.
@@ -327,7 +333,10 @@ async function refresh() {
             const mine = rows.filter((r) => r.sensor === p.label);
             const gaps = seqGaps(mine.map((r) => r.seq ?? NaN));
             const ro = mine.length ? mine.every((r) => r.readonly) : null;
-            const integ = !mine.length ? "" : `<br><span class="small ${gaps.length ? "bad" : "ok"}">${ro ? "edit-proof ✓" : "not edit-proof"} · ${gaps.length ? `${gapCount(gaps)} missing (#${gaps.map((g) => (g.from === g.to ? g.from : `${g.from}–${g.to}`)).join(", #")}): deleted or never uploaded` : "no gaps"}</span>`;
+            const head = headCache.get(p.label);
+            const maxSeq = Math.max(0, ...mine.map((r) => r.seq ?? 0));
+            const tail = head && maxSeq && head.seq > maxSeq ? `<br><span class="small bad">ENS head #${head.seq} but Arkiv only up to #${maxSeq} in this window: latest ${head.seq - maxSeq} missing</span>` : head ? `<br><span class="small muted">ENS head #${head.seq} (phone-declared)</span>` : "";
+            const integ = (!mine.length ? "" : `<br><span class="small ${gaps.length ? "bad" : "ok"}">${ro ? "edit-proof ✓" : "not edit-proof"} · ${gaps.length ? `${gapCount(gaps)} missing (#${gaps.map((g) => (g.from === g.to ? g.from : `${g.from}–${g.to}`)).join(", #")}): deleted or never uploaded` : "no gaps"}</span>`) + tail;
             return `<tr><td><b>${esc(p.label)}</b><br><span class="muted small">${esc(p.name)}</span>${integ}</td><td>${a ? `${a.rateHz.toFixed(1)} Hz` : "–"}</td><td>${live ? '<span class="ok">resolves ✓</span>' : '<span class="bad">not resolving</span>'}<br><span class="muted small">expires ${new Date(p.expiry * 1000).toLocaleDateString()}</span></td><td><a href="${EXPLORER}/address/${p.owner}" target="_blank" rel="noopener">${short(p.owner)}</a></td><td><button class="ghost" data-revoke="${esc(p.label)}">Revoke</button></td></tr>`;
           })
           .join("") || `<tr><td colspan="5" class="muted">No phones registered in ENS yet. Open the join link on a phone and press Start.</td></tr>`
@@ -378,6 +387,26 @@ async function refresh() {
       }
     }
 
+    // ---- T4-lite: attack checklist. "seen live" = the refusal is visible in the data on this screen right now. ----
+    {
+      const why = [...asOfWhy.values()];
+      const reasons = res.rejected.map((r) => r.reason);
+      const allRO = rows.length > 0 && rows.every((r) => r.readonly);
+      const anyGap = rows.length > 0 && [...new Set(rows.map((r) => r.sensor))].some((sn) => seqGaps(rows.filter((r) => r.sensor === sn).map((r) => r.seq ?? NaN)).length > 0);
+      const live = (b: boolean) => (b ? `<span class="ok">seen live ✓</span>` : `<span class="muted">armed</span>`);
+      const items: [string, string, string][] = [
+        ["One phone shaken or dropped", "Tilt / 3 g / slow-sway check → \"handling\"", live(reasons.includes("handling"))],
+        ["One phone alone claims an event", `Quorum: ${k} registered phones within ${windowMs} ms`, live(reasons.includes("no-quorum"))],
+        ["Unregistered or revoked phone writes", "ENSv2 as-of rule: registered when recorded", live(why.some((w) => w.startsWith("not-registered")))],
+        ["Revoked phone backdates a reading", "Arkiv record time ($createdAt) must also be inside registration", live(why.includes("not-registered-at-upload-time"))],
+        ["Join without permission", "Committee-signed single-use invite, logged on Arkiv", `<span class="muted">armed (verified: 403/409)</span>`],
+        ["Edit a reading afterwards", "Arkiv readonly flag", rows.length ? (allRO ? `<span class="ok">all readings edit-proof ✓</span>` : `<span class="bad">some readings pre-date readonly</span>`) : `<span class="muted">armed</span>`],
+        ["Delete a reading", "Per-phone seq numbers + ENS head → visible gap", anyGap ? `<span class="bad">gap detected ✓ (shown per phone)</span>` : `<span class="muted">armed (no gaps)</span>`],
+        ["Alter the evidence file", "keccak hash on Arkiv, re-checked by the report", `<span class="muted">armed (open a report)</span>`],
+        ["Take our servers down", "Offline viewer reads Arkiv + ENS + Swarm directly", `<span class="muted">armed (download viewer)</span>`],
+      ];
+      ui.attacks.innerHTML = items.map(([a, d, st]) => `<tr><td>${a}</td><td class="small">${d}</td><td>${st}</td></tr>`).join("");
+    }
     const reason = new Map(res.rejected.map((r) => [r.trigger.id, r.reason]));
     const confirmed = new Set(res.events.flatMap((e) => e.members.map((m) => m.id)));
     ui.triggers.innerHTML =

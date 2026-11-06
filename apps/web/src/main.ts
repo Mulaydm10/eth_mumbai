@@ -2,7 +2,9 @@
 // and writes every detected event to Arkiv, signed by its own in-browser key. The dashboard reads Arkiv and
 // computes the multi-phone quorum.
 import { StaLta, VelocityTracker, defaultBand, dominantHz, lowFreqRatio, measuredRateHz, type Sample } from "@tw/core";
-import { walletClientFor, writeSensor, writeSync, writeTrigger, type ArkivWallet, type TriggerInput } from "@tw/chain";
+import { ensPublic, walletClientFor, writePhoneHead, writeSensor, writeSync, writeTrigger, SEPOLIA_RPC, type ArkivWallet, type TriggerInput } from "@tw/chain";
+import { createWalletClient, http as viemHttp } from "viem";
+import { sepolia } from "viem/chains";
 import { listenForSync, playSyncSignal } from "./sound";
 import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
 import type { Hex } from "viem";
@@ -198,6 +200,8 @@ async function ensureEnsName() {
     const j = (await r.json()) as { ok: boolean; name?: string; error?: string };
     if (!j.ok) return setChainNote(`ENS registration failed: ${j.error ?? r.status}. Readings will not count until this phone has a name.`, true);
     ensName = j.name ?? "";
+    // T3: a little Sepolia gas so this phone can write its own ENS head record.
+    void fetch("/api/drip", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ address: account.address, chain: "sepolia" }) }).catch(() => undefined);
     setChainNote(`ENS: <a href="https://sepolia.app.ens.domains/${ensName}" target="_blank" rel="noopener"><b>${ensName}</b></a> → this phone (non-transferable, expires in 30 days)`);
   } catch (e) {
     setChainNote(`ENS registration unreachable: ${String(e)}`, true);
@@ -377,6 +381,7 @@ function closeEvent() {
   const seqKey = `tw.seq.${site}.${sensor}`;
   const seq = Number(lsGet(seqKey) ?? "0") + 1;
   lsSet(seqKey, String(seq));
+  if (seq % 5 === 0) void publishHead(site, sensor, seq);
   post(
     {
       kind: "trigger",
@@ -395,6 +400,23 @@ function closeEvent() {
     },
     ev,
   );
+}
+
+// ---- T3: publish this phone's reading head on its OWN ENS record (EAC lets it write only that key). ----
+const sepoliaWallet = createWalletClient({ account, chain: sepolia, transport: viemHttp(SEPOLIA_RPC) });
+let headBusy = false;
+async function publishHead(site: string, sensor: string, seq: number) {
+  if (!ensName || headBusy || !navigator.onLine) return;
+  headBusy = true;
+  try {
+    await writePhoneHead(sepoliaWallet, ensPublic(), site, sensor, { seq, tMs: Date.now() });
+    ui.clock.dataset.head = String(seq);
+    setChainNote(`ENS: <b>${ensName}</b> · head #${seq} published on this phone's own ENS record`);
+  } catch {
+    /* best-effort: readings still go to Arkiv; next publish retries */
+  } finally {
+    headBusy = false;
+  }
 }
 
 function shortErr(e: unknown) {
@@ -517,6 +539,12 @@ ui.start.addEventListener("click", async () => {
     stopFn = null;
     stopListen?.();
     stopListen = null;
+    {
+      const site = ui.site.value.trim();
+      const sensor = ui.name.value.trim();
+      const seq = Number(lsGet(`tw.seq.${site}.${sensor}`) ?? "0");
+      if (seq > 0) void publishHead(site, sensor, seq);
+    }
     running = false;
     await wakeLock?.release().catch(() => {});
     ui.start.textContent = "Start sensor";
