@@ -1,8 +1,8 @@
 // Dashboard: reads phones and triggers straight from Arkiv and recomputes the quorum in the browser.
 // Prototype 1 trust rule: the first MAX_PHONES distinct phones (by join time) at a site count; a trigger counts only
 // if its Arkiv $creator is the wallet that registered that phone name. Prototype 2 replaces this with ENS names.
-import { alignBySound, coherence, computeQuorum, correctTime, type CoherenceResult, type SyncSession, type Trigger } from "@tw/core";
-import { ensPublic, listSitePhones, resolvePhones, siteExists, siteName, siteParams, type EnsPhone, fetchEvents, fetchSensors, fetchSyncs, fetchTriggers, publicClientFor, swarmUploadJson, swarmUrl, walletClientFor, writeEvent, type SensorRow, type TriggerRow } from "@tw/chain";
+import { alignBySound, asOfCheck, coherence, type AsOfReason, type RegistrationInterval, computeQuorum, correctTime, type CoherenceResult, type SyncSession, type Trigger } from "@tw/core";
+import { ensPublic, siteRegistrationHistory, listSitePhones, resolvePhones, siteExists, siteName, siteParams, type EnsPhone, fetchEvents, fetchSensors, fetchSyncs, fetchTriggers, publicClientFor, swarmUploadJson, swarmUrl, walletClientFor, writeEvent, type SensorRow, type TriggerRow } from "@tw/chain";
 import { keccak256, toHex, type Hex } from "viem";
 import QRCode from "qrcode";
 import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
@@ -94,6 +94,7 @@ function seal(site: string, id: string, e: QEvent, k: number, windowMs: number, 
         site,
         eventId: id,
         quorum: { k, windowMs, rule: "k distinct registered phones, structural label, within windowMs (packages/core/src/quorum.ts)" },
+        membershipRule: "as-of (T13): each phone's ENSv2 name was registered to the writing wallet at the reading's claimed time AND at the Arkiv block that recorded it (packages/core/src/registry.ts). Revocation stops future readings only.",
         event: { tMs: e.tMs, iso: new Date(e.tMs).toISOString(), sensors: e.sensors, ppvBandMmS: [e.ppvMinMmS, e.ppvMaxMmS] },
         members: full,
         registry: registry.map((r) => ({ sensor: r.sensor, wallet: r.creator, joinedMs: r.startedMs, arkivKey: r.key })),
@@ -123,15 +124,16 @@ function seal(site: string, id: string, e: QEvent, k: number, windowMs: number, 
 const ensClient = ensPublic();
 let lastEns: EnsState = { ok: false, error: "not read yet" };
 let lastSync: SyncSession | null = null;
+const asOfWhy = new Map<string, AsOfReason>();
 type EnsState =
-  | { ok: true; siteName: string; phones: EnsPhone[]; resolved: Map<string, string | null>; k: number | null; windowMs: number | null }
+  | { ok: true; siteName: string; phones: EnsPhone[]; resolved: Map<string, string | null>; history: RegistrationInterval[]; k: number | null; windowMs: number | null }
   | { ok: false; error: string };
 async function readEns(site: string): Promise<EnsState> {
   try {
     if (!(await siteExists(ensClient, site))) return { ok: false, error: "no such site name" };
-    const [phones, params] = await Promise.all([listSitePhones(ensClient, site), siteParams(ensClient, site)]);
+    const [phones, params, history] = await Promise.all([listSitePhones(ensClient, site), siteParams(ensClient, site), siteRegistrationHistory(ensClient, site)]);
     const resolved = await resolvePhones(ensClient, site, phones.map((p) => p.label));
-    return { ok: true, siteName: siteName(site), phones, resolved, k: params.k, windowMs: params.windowMs };
+    return { ok: true, siteName: siteName(site), phones, resolved, history, k: params.k, windowMs: params.windowMs };
   } catch (e) {
     return { ok: false, error: String((e as Error).message ?? e).slice(0, 80) };
   }
@@ -205,17 +207,24 @@ async function refresh() {
     const creatorOf = new Map(rows.map((r) => [r.sensor, r.creator.toLowerCase()]));
     const session: SyncSession | null = alignBySound(syncs.filter((a) => !creatorOf.has(a.sensor) || creatorOf.get(a.sensor) === a.creator.toLowerCase()));
     lastSync = session;
-    const triggers: Trigger[] = rows.map((r) => ({ id: r.key, sensor: r.sensor, creator: r.creator, tMs: correctTime(r.sensor, r.tMs, session), ppvMmS: r.ppvMmS, fDomHz: r.fDomHz, label: r.label }));
+    const triggers: Trigger[] = rows.map((r) => ({ id: r.key, sensor: r.sensor, creator: r.creator, tMs: correctTime(r.sensor, r.tMs, session), ppvMmS: r.ppvMmS, fDomHz: r.fDomHz, label: r.label, createdAtMs: r.createdAtMs }));
 
     // TRUST RULE (Prototype 3): a trigger counts only if <sensor>.<site>.tremorwitness.eth resolves RIGHT NOW to the
     // trigger's Arkiv $creator. Revoked or expired names resolve to nothing, so their readings stop counting.
     // Fallback (site not in ENS): first-writer rule from Prototype 2, flagged on screen as weaker.
-    let isLive: (sensor: string, creator: string) => boolean;
+    let isLive: (sensor: string, creator: string, tMs: number, t: Trigger) => boolean;
     let phoneCount: number;
     if (ens.ok) {
-      isLive = (sensor, creator) => (ens.resolved.get(sensor) ?? "").toLowerCase() === creator.toLowerCase();
+      // T13 as-of rule: registered to this wallet at the reading's claimed time AND when Arkiv recorded it.
+      // Uses the RAW claimed time (what the phone signed), not the sound-sync-corrected one.
+      const rawT = new Map(rows.map((r) => [r.key, r.tMs]));
+      isLive = (_s, _c, _t, t) => {
+        const why = asOfCheck(ens.history, { sensor: t.sensor, creator: t.creator, tMs: rawT.get(t.id) ?? t.tMs, createdAtMs: t.createdAtMs });
+        asOfWhy.set(t.id, why);
+        return why === "ok";
+      };
       phoneCount = ens.phones.length;
-      ui.trust.innerHTML = `${lastSync ? `<span class="ok">Clocks aligned by sound sync</span> (${[...lastSync.corrections].map(([k, v]) => `${esc(k)} ${v >= 0 ? "−" : "+"}${Math.abs(Math.round(v))} ms`).join(", ")}) · ` : ""}<span class="ok">Registry: ENSv2</span> · <a href="https://sepolia.app.ens.domains/${esc(ens.siteName)}" target="_blank" rel="noopener">${esc(ens.siteName)}</a> · params from ENS text records: k=${ens.k ?? "–"}, window=${ens.windowMs ?? "–"} ms`;
+      ui.trust.innerHTML = `${lastSync ? `<span class="ok">Clocks aligned by sound sync</span> (${[...lastSync.corrections].map(([k, v]) => `${esc(k)} ${v >= 0 ? "−" : "+"}${Math.abs(Math.round(v))} ms`).join(", ")}) · ` : ""}<span class="ok">Registry: ENSv2 (as-of: registered when recorded)</span> · <a href="https://sepolia.app.ens.domains/${esc(ens.siteName)}" target="_blank" rel="noopener">${esc(ens.siteName)}</a> · params from ENS text records: k=${ens.k ?? "–"}, window=${ens.windowMs ?? "–"} ms`;
     } else {
       const { inside } = admitted(sensors);
       const owner = new Map(inside.map((s) => [s.sensor, s.creator.toLowerCase()]));
@@ -280,7 +289,7 @@ async function refresh() {
     ui.triggers.innerHTML =
       rows
         .map((r) => {
-          const why = confirmed.has(r.key) ? `<span class="ok">in event</span>` : reason.has(r.key) ? `<span class="bad">${reason.get(r.key)}</span>` : `<span class="muted">grouped</span>`;
+          const why = confirmed.has(r.key) ? `<span class="ok">in event</span>` : reason.has(r.key) ? `<span class="bad">${reason.get(r.key) === "not-registered" && asOfWhy.get(r.key) ? asOfWhy.get(r.key) : reason.get(r.key)}</span>` : `<span class="muted">grouped</span>`;
           return `<tr><td>${time(r.tMs)}</td><td>${esc(r.sensor)}</td><td>${r.ppvMmS.toFixed(2)} mm/s</td><td>${r.fDomHz.toFixed(1)} Hz</td><td>${r.label}</td><td>${why}</td></tr>`;
         })
         .join("") || `<tr><td colspan="6" class="muted">No triggers in this window.</td></tr>`;

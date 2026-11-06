@@ -122,6 +122,8 @@ export interface TriggerRow {
   rateHz: number;
   label: "structural" | "handling";
   wave?: { fs: number; x: number[]; y: number[]; z: number[] };
+  createdAtBlock?: number; // Arkiv block that recorded it (the phone cannot choose this)
+  createdAtMs?: number; // that block's wall time, from arkiv_getBlockTiming (± one block, 2 s)
 }
 
 const num = (v: { value: unknown } | undefined) => Number((v?.value as bigint | number | undefined) ?? 0);
@@ -129,12 +131,14 @@ const num = (v: { value: unknown } | undefined) => Number((v?.value as bigint | 
 /** Triggers for a site since `sinceMs`, newest first (up to 100 per page). */
 export async function fetchTriggers(p: ArkivPublic, site: string, sinceMs: number, withWave = false): Promise<TriggerRow[]> {
   const res = await p
-    .select({ $key: true, $creator: true, site: true, sensor: true, tMs: true, ppvUm: true, fDomCHz: true, lowFPct: true, rateCHz: true, label: true, ...(withWave ? { wave: true } : {}) })
+    .select({ $key: true, $creator: true, $createdAt: true, site: true, sensor: true, tMs: true, ppvUm: true, fDomCHz: true, lowFPct: true, rateCHz: true, label: true, ...(withWave ? { wave: true } : {}) })
     .from(TriggerSchema)
     .where(and(eq("site", site), gt("tMs", u64(Math.max(0, Math.floor(sinceMs))))))
     .orderBy(desc("tMs"))
     .limit(100)
     .fetch();
+  const timing = await p.getBlockTiming().catch(() => null);
+  const blockToMs = (b: number) => (timing ? (timing.currentBlockTime - (Number(timing.currentBlock) - b) * timing.blockDuration) * 1000 : undefined);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return res.entities.map((e: any) => {
     let wave: TriggerRow["wave"];
@@ -159,6 +163,8 @@ export async function fetchTriggers(p: ArkivPublic, site: string, sinceMs: numbe
       rateHz: num(e.rateCHz) / 100,
       label: String(e.label.value) === "handling" ? "handling" : "structural",
       wave,
+      createdAtBlock: e.$createdAt !== undefined ? Number(e.$createdAt) : undefined,
+      createdAtMs: e.$createdAt !== undefined ? blockToMs(Number(e.$createdAt)) : undefined,
     } satisfies TriggerRow;
   });
 }

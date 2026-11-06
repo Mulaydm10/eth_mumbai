@@ -20,6 +20,7 @@ import {
 } from "viem";
 import { sepolia } from "viem/chains";
 import { normalize, packetToBytes } from "viem/ens";
+import type { RegistrationInterval } from "../../core/src/registry.js";
 import { COMMITTEE_REGISTRY_ROLES, ENSV2_SEPOLIA as C, permissionedResolverAbi, registryAbi, verifiableFactoryAbi } from "./ensv2-abi.js";
 
 export const ENS_PARENT = "tremorwitness";
@@ -182,4 +183,55 @@ export async function ensCreateSite(w: WalletClient, pub: Pub, site: string, k =
     }),
   );
   return txs;
+}
+
+/**
+ * T13: full registration HISTORY of a site's phones as time intervals (registered → unregistered/expired), from the
+ * site registry's logs and Sepolia block timestamps. Used for "was this phone registered when it recorded?".
+ */
+export async function siteRegistrationHistory(pub: Pub, site: string): Promise<RegistrationInterval[]> {
+  const r2 = await siteRegistryAddress(pub, site);
+  const latest = await pub.getBlockNumber();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const logs: any[] = [];
+  for (let from = ENS_DEPLOY_BLOCK; from <= latest; from += 45_000n) {
+    const to = from + 44_999n >= latest ? ("latest" as const) : from + 44_999n;
+    const get = () => pub.getContractEvents({ address: r2, abi: registryAbi, fromBlock: from, toBlock: to });
+    logs.push(...(await get().catch(async () => (await new Promise((r) => setTimeout(r, 1500)), get()))));
+  }
+  const blockMs = new Map<bigint, number>();
+  await Promise.all(
+    [...new Set(logs.map((l) => l.blockNumber as bigint))].map(async (b) => {
+      const blk = await pub.getBlock({ blockNumber: b });
+      blockMs.set(b, Number(blk.timestamp) * 1000);
+    }),
+  );
+  const open = new Map<string, RegistrationInterval>();
+  const out: RegistrationInterval[] = [];
+  for (const l of logs.sort((a, b) => Number(a.blockNumber - b.blockNumber) || a.logIndex - b.logIndex)) {
+    if (!l.args) continue; // other registry events (role grants etc.) without decoded args
+    const at = blockMs.get(l.blockNumber)!;
+    const id = String(l.args.tokenId ?? l.args.oldTokenId ?? "");
+    if (l.eventName === "LabelRegistered") {
+      const iv = { label: String(l.args.label), owner: getAddress(l.args.owner), fromMs: at, toMs: Number(l.args.expiry) * 1000 };
+      open.set(id, iv);
+      out.push(iv);
+    } else if (l.eventName === "LabelUnregistered") {
+      const iv = open.get(id);
+      if (iv) {
+        iv.toMs = Math.min(iv.toMs, at);
+        open.delete(id);
+      }
+    } else if (l.eventName === "TokenRegenerated") {
+      const iv = open.get(String(l.args.oldTokenId));
+      if (iv) {
+        open.delete(String(l.args.oldTokenId));
+        open.set(String(l.args.newTokenId), iv);
+      }
+    } else if (l.eventName === "ExpiryUpdated") {
+      const iv = open.get(id);
+      if (iv) iv.toMs = Number(l.args.newExpiry) * 1000;
+    }
+  }
+  return out;
 }
