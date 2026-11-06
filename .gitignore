@@ -24,3 +24,6 @@ scratch/*
 .playwright-mcp/
 .vercel/
 media/videos/
+
+# rendered video (large)
+video/out/

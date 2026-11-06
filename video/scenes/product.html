@@ -1,0 +1,401 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<title>Tremor Mesh video scenes</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;700&family=Courier+Prime:wght@400;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>html,body{margin:0;background:#050505;overflow:hidden}canvas{display:block}</style>
+</head><body><canvas id="c" width="1920" height="1080"></canvas>
+<script>
+// Code-built scenes for the Tremor Mesh submission video. Every frame is a pure function of t (seconds).
+// Scene picked by URL hash: #news #idea #wave #refused #proof #mesh #claim. Rendered with the demo-video skill's frames.mjs.
+// Style follows the team's v5 design: black and white; red appears only for something witnessed by a quorum.
+// All numbers are real: recorded dataset logs/demo-ethmumbai-demo-2026-11-06 (EXP-0004).
+const W = 1920, H = 1080, g = document.getElementById("c").getContext("2d");
+const C = { bg: "#050505", ink: "#f5f5f3", dim: "#8a8a8a", mute: "#bdbdbd", faint: "#262626", line: "#3d3d3d", red: "#e63946", panel: "#0c0c0c" };
+const HEAD = '"Courier Prime", monospace', SANS = '"Atkinson Hyperlegible Next", system-ui, sans-serif', MONO = '"JetBrains Mono", monospace';
+const cl = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const ss = (a, b, t) => { const x = cl((t - a) / (b - a)); return x * x * (3 - 2 * x); };
+const eo = (x) => 1 - Math.pow(1 - cl(x), 3);
+const lerp = (a, b, k) => a + (b - a) * k;
+const hash = (n) => { const s = Math.sin(n * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
+const win = (t, a, b, f = 0.4) => ss(a, a + f, t) * (1 - ss(b - f, b, t)); // visible between a and b with fades
+
+function T(s, x, y, o = {}) {
+  g.save(); g.globalAlpha = o.a ?? 1; g.fillStyle = o.col ?? C.ink;
+  g.font = `${o.w ?? 700} ${o.size ?? 40}px ${o.f ?? HEAD}`; g.textAlign = o.align ?? "left"; g.textBaseline = o.base ?? "alphabetic";
+  if (o.ls) g.letterSpacing = o.ls + "px";
+  g.fillText(s, x, y + (o.dy ?? 0)); const w = g.measureText(s).width; g.restore(); return w;
+}
+// text that rises in at t0
+function R(s, x, y, t, t0, o = {}) { const k = eo((t - t0) / 0.6); if (k <= 0) return 0; return T(s, x, y, { ...o, a: (o.a ?? 1) * k * (o.out ?? 1), dy: (1 - k) * 18 }); }
+function typed(s, t, t0, cps = 38) { return s.slice(0, Math.max(0, Math.floor((t - t0) * cps))); }
+function rr(x, y, w, h, r) { g.beginPath(); g.roundRect(x, y, w, h, r); }
+function box(x, y, w, h, o = {}) { rr(x, y, w, h, o.r ?? 6); g.save(); g.globalAlpha = o.a ?? 1; if (o.fill) { g.fillStyle = o.fill; g.fill(); } if (o.stroke) { g.lineWidth = o.lw ?? 2; g.strokeStyle = o.stroke; if (o.dash) g.setLineDash(o.dash); g.stroke(); } g.restore(); }
+function line(x1, y1, x2, y2, col, lw = 2, a = 1, dash) { g.save(); g.globalAlpha = a; g.strokeStyle = col; g.lineWidth = lw; if (dash) g.setLineDash(dash); g.beginPath(); g.moveTo(x1, y1); g.lineTo(x2, y2); g.stroke(); g.restore(); }
+function circ(x, y, r, o = {}) { g.save(); g.globalAlpha = o.a ?? 1; g.beginPath(); g.arc(x, y, Math.max(0, r), 0, Math.PI * 2); if (o.fill) { g.fillStyle = o.fill; g.fill(); } if (o.stroke) { g.lineWidth = o.lw ?? 2; g.strokeStyle = o.stroke; if (o.dash) g.setLineDash(o.dash); g.stroke(); } g.restore(); }
+
+// A phone seen from above, lying flat. state: off | on | hit | red | grey
+function phone(x, y, s, state, t, o = {}) {
+  const w = 34 * s, h = 60 * s, tilt = o.tilt ?? 0;
+  g.save(); g.translate(x, y); g.rotate(tilt);
+  const body = state === "red" ? C.red : state === "grey" ? "#4a4a4a" : state === "off" ? "#1c1c1c" : C.ink;
+  rr(-w / 2, -h / 2, w, h, 7 * s); g.fillStyle = "#0a0a0a"; g.fill(); g.lineWidth = 2.5 * s; g.strokeStyle = body; g.globalAlpha = o.a ?? 1; g.stroke();
+  rr(-w / 2 + 4 * s, -h / 2 + 7 * s, w - 8 * s, h - 14 * s, 3 * s);
+  g.fillStyle = state === "red" ? "rgba(230,57,70,.35)" : state === "hit" || state === "on" ? "rgba(245,245,243,.16)" : "rgba(255,255,255,.04)"; g.fill();
+  if (state !== "off") { // tiny waveform on screen
+    g.beginPath(); for (let i = 0; i <= 12; i++) { const px = -w / 2 + 6 * s + i * (w - 12 * s) / 12; const py = Math.sin(i * 1.7 + t * 9 + x) * (state === "hit" || state === "red" ? 7 : 2) * s; i ? g.lineTo(px, py) : g.moveTo(px, py); }
+    g.lineWidth = 1.5 * s; g.strokeStyle = state === "red" ? C.red : state === "grey" ? "#6a6a6a" : C.ink; g.stroke();
+  }
+  g.restore();
+}
+function ripple(x, y, t0, t, speed, o = {}) {
+  const n = o.n ?? 4; for (let i = 0; i < n; i++) { const tt = t - t0 - i * 0.16; if (tt < 0) continue; const r = tt * speed; const a = (o.a ?? 0.7) * Math.max(0, 1 - tt / (o.life ?? 2.2)); if (a <= 0) continue; circ(x, y, r, { stroke: o.col ?? C.ink, lw: o.lw ?? 2, a }); }
+}
+// frame chrome: brand, kicker, seismograph strip
+function chrome(t, kicker, amp = 0) {
+  g.fillStyle = C.bg; g.fillRect(0, 0, W, H);
+  const v = g.createRadialGradient(W / 2, H * 0.45, H * 0.35, W / 2, H * 0.45, H * 1.05); v.addColorStop(0, "rgba(0,0,0,0)"); v.addColorStop(1, "rgba(0,0,0,.75)");
+  // brand
+  g.save(); g.strokeStyle = C.ink; g.lineWidth = 3; g.beginPath();
+  const bx = 72, by = 64; g.moveTo(bx, by); for (let i = 0; i <= 10; i++) g.lineTo(bx + 6 + i * 3.2, by + (i % 2 ? -10 : 10) * (i > 2 && i < 8 ? 1 : 0.3)); g.lineTo(bx + 44, by); g.stroke(); g.restore();
+  T("Tremor Mesh", 132, 74, { size: 30 });
+  if (kicker) T(kicker, W - 72, 74, { size: 20, f: MONO, w: 500, col: C.dim, align: "right", ls: 2 });
+  // seismograph across the bottom: always moving, spikes with scene events
+  const y0 = H - 64; g.save(); g.beginPath();
+  for (let x = 0; x <= W; x += 3) {
+    const u = x * 0.018 + t * 5.2, n = Math.sin(u) * 0.5 + Math.sin(u * 2.3 + 1.7) * 0.3 + Math.sin(u * 5.1 + 0.3) * 0.2;
+    const env = amp * Math.exp(-Math.pow((x - W * 0.62) / 260, 2)) * (0.6 + 0.4 * Math.sin(u * 3.7));
+    const y = y0 + n * (3 + env * 34); x ? g.lineTo(x, y) : g.moveTo(x, y);
+  }
+  g.strokeStyle = amp > 0.35 ? C.red : "#5a5a5a"; g.globalAlpha = 0.85; g.lineWidth = 2; g.stroke(); g.restore();
+  line(0, y0 + 30, W, y0 + 30, C.faint, 1);
+  g.fillStyle = v; g.fillRect(0, 0, W, H);
+}
+
+// ---------------------------------------------------------------- scenes
+const S = {};
+
+// NEWS: the reporting that inspired the problem statement (quote cards with source, no publisher branding)
+S.news = { dur: 14, draw(t) {
+  chrome(t, "WHY WE BUILT THIS · MUMBAI", 0.15 + 0.6 * ss(10, 11, t));
+  const cards = [
+    { at: 0.6, src: "THE ASIAN AGE · OCTOBER 2017", head: "Metro-3 vibrations “less than 1/4th” of the limit, says MMRC.", body: "A heritage institute near the works alleged 4× the limit in court. MMRC’s answer to residents’ phone readings: they “can’t be that accurate.”" },
+    { at: 4.2, src: "FREE PRESS JOURNAL · 23 MAY 2025", head: "Heritage wall near the Gateway of India cracks after Colaba jetty drilling.", body: "Residents demand “vibration monitoring instruments with real-time reporting shared with residents.”" },
+    { at: 7.8, src: "MUMBAI LIVE", head: "Supreme Court asks MMRC for a report after two Mahim buildings tilt.", body: "The court directed MMRCL to file details of any tremors. Residents had no record of their own." },
+  ];
+  cards.forEach((c, i) => {
+    const k = eo((t - c.at) / 0.8); if (k <= 0) return;
+    const x = 150 + i * 560, y = 250 + (1 - k) * 40, w = 520, h = 470;
+    box(x, y, w, h, { fill: C.panel, stroke: i === 0 ? C.mute : C.line, a: k, r: 4 });
+    T(c.src, x + 34, y + 58, { size: 17, f: MONO, w: 500, col: C.dim, a: k, ls: 1.5 });
+    line(x + 34, y + 82, x + w - 34, y + 82, C.line, 1, k);
+    wrap(c.head, x + 34, y + 140, w - 68, 46, { size: 36, a: k });
+    wrap(c.body, x + 34, y + 330, w - 68, 34, { size: 25, f: SANS, w: 400, col: C.mute, a: k });
+  });
+  const kk = ss(10.6, 11.4, t);
+  T("Every record today has one owner.", W / 2, 865, { size: 58, align: "center", a: kk, dy: (1 - kk) * 14 });
+  T("And the residents are told their own measurements don’t count.", W / 2, 920, { size: 28, f: SANS, w: 400, col: C.dim, align: "center", a: ss(11.6, 12.3, t) });
+}};
+function wrap(s, x, y, maxW, lh, o) {
+  g.save(); g.font = `${o.w ?? 700} ${o.size}px ${o.f ?? HEAD}`; const words = s.split(" "); let ln = "", yy = y;
+  for (const w of words) { const test = ln ? ln + " " + w : w; if (g.measureText(test).width > maxW && ln) { T(ln, x, yy, o); ln = w; yy += lh; } else ln = test; }
+  if (ln) T(ln, x, yy, o); g.restore(); return yy;
+}
+
+// IDEA: a building, one phone per flat; the ground shakes; every flat signs
+S.idea = { dur: 15, draw(t) {
+  const shake = ss(8.6, 9, t) * (1 - ss(11.5, 12.6, t));
+  chrome(t, "THE IDEA", shake);
+  const bx = 1060, by = 900, fw = 150, fh = 92, cols = 4, rows = 6;
+  const jx = Math.sin(t * 48) * 6 * shake, jy = Math.cos(t * 39) * 3 * shake;
+  g.save(); g.translate(jx, jy);
+  // ground
+  line(860, by, 1820, by, C.mute, 3, ss(1.2, 1.8, t));
+  for (let r = 0; r < rows; r++) {
+    const k = ss(1.6 + r * 0.35, 2.1 + r * 0.35, t); if (k <= 0) continue;
+    for (let c = 0; c < cols; c++) {
+      const x = bx + c * fw, y = by - (r + 1) * fh;
+      box(x, y + (1 - k) * 30, fw, fh, { stroke: C.line, fill: "#0a0a0a", a: k, r: 0, lw: 2 });
+      const id = r * cols + c, on = 5 + hash(id) * 2.6, sg = 9.1 + hash(id + 50) * 1.6;
+      const st = t > sg ? "red" : t > on ? "on" : "off";
+      if (k > 0.8) phone(x + fw / 2, y + fh / 2 + 4, 0.8, st, t, { a: ss(on - 0.2, on + 0.2, t) * 0.9 + 0.1 });
+      if (t > sg && t < sg + 1.4) { const kk = (t - sg) / 1.4; T("signed", x + fw / 2, y + 10 - kk * 26, { size: 15, f: MONO, w: 500, col: C.red, align: "center", a: 1 - kk }); }
+    }
+  }
+  // roof
+  line(bx, by - rows * fh, bx + cols * fw, by - rows * fh, C.mute, 3, ss(3.8, 4.2, t));
+  g.restore();
+  if (shake > 0) ripple(1360, by + 4, 8.7, t, 520, { n: 5, life: 2.4, a: 0.5, col: C.mute });
+  // words
+  R("Tremor Mesh", 150, 300, t, 0.3, { size: 104 });
+  R("Residents’ phones become", 150, 400, t, 1.4, { size: 40, f: SANS, w: 500, col: C.mute });
+  R("one shared vibration record.", 150, 452, t, 1.6, { size: 40, f: SANS, w: 500, col: C.mute });
+  R("1 flat · 1 phone · lying flat · its own key", 150, 560, t, 5.2, { size: 24, f: MONO, w: 500, col: C.dim });
+  R("The ground shakes.", 150, 720, t, 9.6, { size: 64 });
+  R("Every flat signs it.", 150, 800, t, 10.6, { size: 64, col: C.red });
+}};
+
+// WAVE: one stomp, phones feel it in turn, quorum k = 3 inside 2000 ms; then a lone shaken phone proves nothing
+S.wave = { dur: 18, draw(t) {
+  const stomp = 3.2, speed = 430, lone = 11.2;
+  chrome(t, "HOW IT WORKS · QUORUM", Math.max(ss(3.1, 3.4, t) * (1 - ss(6, 7.5, t)), 0.45 * ss(11.1, 11.4, t) * (1 - ss(12.5, 13.5, t))));
+  const px = 120, py = 230, pw = 1020, ph = 640;
+  // floor plan
+  box(px, py, pw, ph, { stroke: C.mute, lw: 3, r: 2, a: ss(0, 0.6, t) });
+  for (let c = 1; c < 3; c++) line(px + c * pw / 3, py, px + c * pw / 3, py + ph, C.line, 2, ss(0.3, 0.9, t));
+  line(px, py + ph / 2, px + pw, py + ph / 2, C.line, 2, ss(0.3, 0.9, t));
+  ["301", "302", "303", "304", "305", "306"].forEach((f, i) => T(f, px + 20 + (i % 3) * pw / 3, py + 40 + Math.floor(i / 3) * ph / 2, { size: 20, f: MONO, w: 500, col: C.dim, a: ss(0.5, 1, t) }));
+  const P = [
+    { n: "adityas-nothing", x: px + 190, y: py + 190 },
+    { n: "phone-dhruv", x: px + 520, y: py + 450 },
+    { n: "somnath", x: px + 860, y: py + 200 },
+    { n: "dhruv2", x: px + 850, y: py + 500 },
+    { n: "held in a hand", x: px + 300, y: py + 500, held: true },
+  ];
+  const sx = px + 560, sy = py + 260;
+  const tri = P.map((p) => stomp + Math.hypot(p.x - sx, p.y - sy) / speed);
+  const counted = P.map((p, i) => !p.held && i !== 3 ? tri[i] : Infinity); // dhruv2 is slower to react (real: it never started) — keep it as "waiting"
+  const order = counted.filter((x) => x < Infinity).sort((a, b) => a - b);
+  const conf = order[2];
+  const phase2 = ss(10.2, 10.8, t);
+  // stomp marker + wave
+  if (t > stomp - 0.4 && t < 9.6) { const k = win(t, stomp - 0.4, 9.6, 0.3); T("STOMP", sx, sy - 34, { size: 20, f: MONO, w: 700, col: C.ink, align: "center", a: k }); circ(sx, sy, 10, { fill: C.ink, a: k }); }
+  g.save(); rr(px, py, pw, ph, 2); g.clip(); ripple(sx, sy, stomp, t, speed, { n: 5, life: 2.8, a: 0.65 * (1 - phase2) }); g.restore();
+  // phones
+  P.forEach((p, i) => {
+    let st = "on", tilt = 0, jx = 0, jy = 0;
+    if (t > tri[i] && phase2 < 1) st = "hit";
+    if (!p.held && i !== 3 && t > conf) st = "red";
+    if (p.held) { tilt = 0.5 + Math.sin(t * 3) * 0.12; if (t > tri[i]) st = "grey"; }
+    if (i === 3 && t > tri[i]) st = "hit";
+    if (phase2 > 0.5) { st = "on"; tilt = p.held ? 0.5 : 0; }
+    if (i === 2 && t > lone) { const k = 1 - ss(lone + 1.4, lone + 1.8, t); jx = Math.sin(t * 70) * 9 * k; jy = Math.cos(t * 55) * 6 * k; tilt = Math.sin(t * 30) * 0.2 * k; st = t < lone + 4.5 ? "grey" : "on"; }
+    phone(p.x + jx, p.y + jy, 1.25, st, t, { tilt });
+    if (t > tri[i] && t < tri[i] + 1.2 && phase2 < 0.5) ripple(p.x, p.y, tri[i], t, 120, { n: 2, life: 0.9, a: 0.8, col: p.held ? C.dim : C.ink });
+    const lab = st === "red" ? C.red : C.mute;
+    T(p.n, p.x, p.y + 64, { size: 19, f: MONO, w: 500, col: p.held ? C.dim : lab, align: "center", a: ss(0.8, 1.4, t) });
+    if (p.held && t > tri[i] + 0.2 && phase2 < 0.5) T("handled · refused", p.x, p.y + 90, { size: 18, f: MONO, w: 700, col: C.dim, align: "center", a: ss(tri[i] + 0.2, tri[i] + 0.6, t) * (1 - phase2) });
+    if (i === 3 && t > tri[i] + 0.3 && phase2 < 0.5) T("waiting", p.x, p.y + 90, { size: 18, f: MONO, w: 500, col: C.dim, align: "center", a: ss(tri[i] + 0.3, tri[i] + 0.7, t) * (1 - phase2) });
+  });
+  // right panel: the quorum window
+  const qx = 1240, qy = 230, qw = 560;
+  T("QUORUM", qx, qy + 10, { size: 20, f: MONO, w: 500, col: C.dim, ls: 2, a: ss(0.6, 1.1, t) });
+  T("k = 3 phones", qx, qy + 70, { size: 46, a: ss(0.8, 1.3, t) });
+  T("inside 2000 ms", qx, qy + 124, { size: 46, a: ss(1.0, 1.5, t) });
+  const bx = qx, by = qy + 220, bw = qw;
+  box(bx, by, bw, 60, { stroke: C.line, fill: "#0a0a0a", r: 3, a: ss(1.2, 1.7, t) });
+  for (let i = 0; i <= 4; i++) { line(bx + i * bw / 4, by + 60, bx + i * bw / 4, by + 72, C.dim, 1.5, ss(1.2, 1.7, t)); T(`${i * 500}`, bx + i * bw / 4, by + 98, { size: 16, f: MONO, w: 400, col: C.dim, align: "center", a: ss(1.2, 1.7, t) }); }
+  T("ms", bx + bw + 14, by + 98, { size: 16, f: MONO, w: 400, col: C.dim, a: ss(1.2, 1.7, t) });
+  let n = 0;
+  if (phase2 < 0.5) {
+    const t0 = order[0];
+    P.forEach((p, i) => { if (t < tri[i]) return; const ms = (tri[i] - t0) * 1000; if (ms < 0 || ms > 2000) return; const xx = bx + (ms / 2000) * bw; const ok = counted[i] < Infinity;
+      if (ok) n++; const col = ok ? (t > conf ? C.red : C.ink) : C.dim; line(xx, by + 6, xx, by + 54, col, ok ? 5 : 3, ss(tri[i], tri[i] + 0.15, t) * (1 - phase2 * 2)); });
+    T(`${n} / 3`, qx, by + 210, { size: 96, col: t > conf ? C.red : C.ink, a: ss(1.4, 1.9, t) * (1 - phase2 * 2) });
+    if (t > conf) { const k = eo((t - conf) / 0.5) * (1 - phase2 * 2); box(qx, by + 250, qw, 120, { stroke: C.red, lw: 3, fill: "rgba(230,57,70,.10)", a: k, r: 4 }); T("✓ EVENT CONFIRMED", qx + 30, by + 305, { size: 38, col: C.red, a: k }); T("3 registered phones agreed", qx + 30, by + 348, { size: 24, f: SANS, w: 500, col: C.mute, a: k }); }
+  } else {
+    if (t > lone) { const xx = bx + 12; line(xx, by + 6, xx, by + 54, C.dim, 5, ss(lone, lone + 0.2, t)); }
+    const k = ss(lone + 0.3, lone + 0.8, t);
+    T(`${t > lone ? 1 : 0} / 3`, qx, by + 210, { size: 96, col: C.dim, a: ss(10.4, 10.9, t) });
+    box(qx, by + 250, qw, 120, { stroke: C.line, lw: 2, fill: "#0a0a0a", a: k, r: 4 }); T("no quorum", qx + 30, by + 305, { size: 38, col: C.mute, a: k }); T("one shaken phone proves nothing", qx + 30, by + 348, { size: 24, f: SANS, w: 500, col: C.dim, a: k });
+  }
+  // titles
+  const t1 = 1 - phase2;
+  T("One stomp. Every flat feels it.", 120, 175, { size: 52, a: ss(0.2, 0.7, t) * t1 });
+  T("Anyone can shake one phone.", 120, 175, { size: 52, a: phase2 });
+  const kf = ss(14.6, 15.2, t);
+  T("k and the window are public ENS records:  tw.k = 3  ·  tw.window_ms = 2000", W / 2, 960, { size: 26, f: MONO, w: 500, col: C.mute, align: "center", a: kf });
+}};
+
+// REFUSED: the real refusal counts from the 6 Nov live session
+S.refused = { dur: 14, draw(t) {
+  chrome(t, "LIVE SESSION · ETHMUMBAI-DEMO · 6 NOV 2026", 0.1);
+  const total = Math.round(137 * eo((t - 0.6) / 2.2));
+  T(String(total), 150, 400, { size: 220, a: ss(0.4, 0.8, t) });
+  R("readings refused", 150, 470, t, 1.2, { size: 46 });
+  R("in one live session, each with a reason you can check", 150, 525, t, 1.8, { size: 28, f: SANS, w: 400, col: C.dim });
+  const rows = [
+    { n: 79, k: "no-quorum", d: "a lone phone, nobody agreed", at: 3.0 },
+    { n: 44, k: "handling", d: "tilted or hand sway, not the building", at: 4.4 },
+    { n: 14, k: "not-registered", d: "no ENS name at that time", at: 5.8 },
+  ];
+  rows.forEach((r, i) => {
+    const y = 300 + i * 150, x = 980, w = 760, k = eo((t - r.at) / 1.0);
+    T(r.k, x, y, { size: 30, f: MONO, w: 700, a: ss(r.at - 0.3, r.at + 0.2, t) });
+    T(r.d, x, y + 36, { size: 22, f: SANS, w: 400, col: C.dim, a: ss(r.at - 0.1, r.at + 0.4, t) });
+    box(x, y + 56, w, 18, { fill: "#141414", r: 2, a: ss(r.at - 0.3, r.at, t) });
+    box(x, y + 56, w * (r.n / 79) * k, 18, { fill: C.mute, r: 2 });
+    T(String(Math.round(r.n * k)), x + w, y, { size: 30, f: MONO, w: 700, align: "right", a: ss(r.at - 0.3, r.at + 0.2, t) });
+  });
+  const kk = eo((t - 8.2) / 0.7);
+  box(150, 690, 860, 150, { stroke: C.red, lw: 3, fill: "rgba(230,57,70,.10)", a: kk, r: 4 });
+  T("1 confirmed event · 23:00:41 IST", 185, 752, { size: 38, col: C.red, a: kk });
+  T("3 of 4 phones agreed · sealed ✓ Swarm", 185, 800, { size: 26, f: SANS, w: 500, col: C.mute, a: kk });
+  T("141 readings · 4 registered phones + 1 unregistered · recorded dataset in the repo", W / 2, 950, { size: 22, f: MONO, w: 400, col: C.dim, align: "center", a: ss(10, 10.6, t) });
+}};
+
+// PROOF: phone -> Arkiv -> ENS as-of -> quorum -> Swarm -> report; revoke; servers off -> offline viewer
+S.proof = { dur: 24, draw(t) {
+  const off = ss(16.4, 17.4, t);
+  chrome(t, "WHY NOBODY CAN REWRITE IT", 0.15);
+  const N = [
+    { a: "PHONE", b: "signs with its", c: "own key" },
+    { a: "ARKIV", b: "signed reading,", c: "writer on record" },
+    { a: "ENSv2", b: "registered", c: "as of then?" },
+    { a: "QUORUM", b: "recomputed in", c: "your browser" },
+    { a: "SWARM", b: "evidence pack", c: "sealed" },
+    { a: "REPORT", b: "hash matches", c: "Arkiv ✓" },
+  ];
+  const y = 520, nw = 230, nh = 150, x0 = 110, gap = (W - 2 * x0 - nw) / 5;
+  const arrive = (i) => 1.2 + i * 1.5;
+  N.forEach((n, i) => {
+    const x = x0 + i * gap, lit = ss(arrive(i), arrive(i) + 0.3, t), k = ss(0.2 + i * 0.12, 0.7 + i * 0.12, t);
+    const col = i === 3 && t > arrive(3) ? C.red : lit > 0.5 ? C.ink : C.line;
+    box(x, y - nh / 2, nw, nh, { stroke: col, lw: lit > 0.5 ? 3 : 2, fill: "#0b0b0b", a: k, r: 6 });
+    T(n.a, x + nw / 2, y - 18, { size: 34, align: "center", a: k, col: i === 3 && t > arrive(3) ? C.red : C.ink });
+    T(n.b, x + nw / 2, y + 22, { size: 21, f: SANS, w: 500, col: C.mute, align: "center", a: k * (0.4 + 0.6 * lit) });
+    T(n.c, x + nw / 2, y + 50, { size: 21, f: SANS, w: 500, col: C.mute, align: "center", a: k * (0.4 + 0.6 * lit) });
+    if (i < 5) { const ax = x + nw + 6, bx2 = x + gap - 6; line(ax, y, bx2, y, C.line, 2, k); const pk = cl((t - arrive(i) - 0.3) / 1.2); if (pk > 0 && pk < 1) circ(lerp(ax, bx2, eo(pk)), y, 9, { fill: C.ink }); if (pk >= 1) line(ax, y, bx2, y, C.mute, 2.5, 1); }
+  });
+  T("From a floor tremor to proof nobody can edit.", 110, 200, { size: 50, a: ss(0.2, 0.7, t) * (1 - ss(10.4, 10.8, t)) });
+  // revoke
+  const rv = win(t, 10.6, 16.6, 0.4);
+  T("Revoke a phone: the past still stands.", 110, 200, { size: 50, a: rv });
+  const ex = x0 + 2 * gap;
+  if (rv > 0) {
+    box(ex - 40, 250, 470, 96, { stroke: C.dim, fill: "#0b0b0b", a: rv, r: 4 });
+    T("phone-x.ethmumbai-demo.tremorwitness.eth", ex - 20, 290, { size: 17, f: MONO, w: 500, col: C.mute, a: rv });
+    const sk = ss(11.6, 12.2, t); line(ex - 20, 284, ex - 20 + 410 * sk, 284, C.ink, 2, rv);
+    T("REVOKED", ex - 20, 326, { size: 20, f: MONO, w: 700, col: C.ink, a: rv * sk });
+    const pk = cl((t - 12.6) / 1.1); if (pk > 0) { const ax = x0 + gap + nw + 6; circ(lerp(ax, ex - 10, eo(pk)), y + 110, 8, { fill: C.dim, a: rv }); }
+    if (t > 13.7) T("✕ new reading refused", ex + nw / 2, y + 150, { size: 22, f: MONO, w: 700, col: C.ink, align: "center", a: rv * ss(13.7, 14.1, t) });
+    const ok = ss(14.4, 14.9, t) * rv; box(x0 + 4 * gap - 30, 250, 520, 96, { stroke: C.red, fill: "rgba(230,57,70,.08)", a: ok, r: 4 });
+    T("event 23:00:41 · still valid ✓", x0 + 4 * gap - 10, 292, { size: 24, f: MONO, w: 700, col: C.red, a: ok });
+    T("counted as of the time it was recorded", x0 + 4 * gap - 10, 326, { size: 19, f: SANS, w: 500, col: C.mute, a: ok });
+  }
+  // servers off
+  const so = ss(16.6, 17.2, t);
+  T("Switch our servers off. Still verifiable.", 110, 200, { size: 50, a: so });
+  if (so > 0) {
+    const sx = W / 2 - 230, sy = 250;
+    box(sx, sy, 460, 90, { stroke: off > 0.5 ? "#333" : C.ink, fill: "#0b0b0b", a: so, r: 4 });
+    T("our server · tremor-witness.vercel.app", sx + 230, sy + 54, { size: 21, f: MONO, w: 500, col: off > 0.5 ? "#444" : C.ink, align: "center", a: so });
+    if (off > 0.5) { line(sx - 10, sy - 10, sx + 470, sy + 100, C.ink, 3, so * off); T("✕ switched off", sx + 230, sy + 130, { size: 22, f: MONO, w: 700, col: C.ink, align: "center", a: off }); }
+    const vk = ss(18.4, 19, t), vx = W / 2 - 400, vy = 760;
+    [1, 2, 4].forEach((i) => { const nx = x0 + i * gap + nw / 2; line(nx, y + nh / 2, W / 2, vy, C.mute, 2, vk, [8, 8]); });
+    box(vx, vy, 800, 150, { stroke: C.ink, lw: 3, fill: "#0b0b0b", a: vk, r: 6 });
+    T("offline viewer · one HTML file · any laptop", W / 2, vy + 46, { size: 22, f: MONO, w: 500, col: C.mute, align: "center", a: vk });
+    T("✓ Swarm file matches the hash on Arkiv", W / 2, vy + 92, { size: 28, col: C.ink, align: "center", a: ss(19.6, 20.1, t) });
+    T("swarm 609a0261…2933f5", W / 2, vy + 128, { size: 19, f: MONO, w: 400, col: C.dim, align: "center", a: ss(20, 20.5, t) });
+  }
+}};
+
+// MESH: disaster quorum -> phones mesh without internet -> check-ins -> roster -> (next) last neighbours -> sync to Arkiv
+S.mesh = { dur: 25, draw(t) {
+  const quake = ss(0.6, 1.0, t) * (1 - ss(3.2, 4.2, t));
+  chrome(t, "TREMOR MESH APP · ANDROID · DISASTER MODE", quake * 1.2);
+  const jx = Math.sin(t * 52) * 9 * quake, jy = Math.cos(t * 41) * 5 * quake;
+  const px = 110, py = 230, pw = 1160, ph = 660, cols = 4, rows = 3, fw = pw / cols, fh = ph / rows;
+  g.save(); g.translate(jx, jy);
+  box(px, py, pw, ph, { stroke: C.mute, lw: 3, r: 2 });
+  for (let c = 1; c < cols; c++) line(px + c * fw, py, px + c * fw, py + ph, C.line, 2);
+  for (let r = 1; r < rows; r++) line(px, py + r * fh, px + pw, py + r * fh, C.line, 2);
+  const P = [];
+  for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) { const i = r * cols + c; P.push({ i, flat: `3${String(i + 1).padStart(2, "0")}`, x: px + c * fw + fw * (0.3 + 0.4 * hash(i + 3)), y: py + r * fh + fh * (0.35 + 0.35 * hash(i + 9)) }); }
+  P.forEach((p) => T(p.flat, px + (p.i % cols) * fw + 14, py + Math.floor(p.i / cols) * fh + 30, { size: 17, f: MONO, w: 500, col: C.dim }));
+  // edges between neighbours, revealed hop by hop from phone 5
+  const E = []; P.forEach((a) => P.forEach((b) => { if (a.i < b.i) { const d = Math.hypot(a.x - b.x, a.y - b.y); if (d < 330) E.push({ a, b, d }); } }));
+  const hop = Array(P.length).fill(99); hop[5] = 0; const q = [5]; const parent = {};
+  while (q.length) { const u = q.shift(); E.forEach((e) => { const v = e.a.i === u ? e.b.i : e.b.i === u ? e.a.i : -1; if (v >= 0 && hop[v] > hop[u] + 1) { hop[v] = hop[u] + 1; parent[v] = u; q.push(v); } }); }
+  const meshT = (i) => 4.6 + hop[i] * 0.75;
+  const silent = 6, help = 6, notHeard = [3, 8];
+  const prox = ss(15, 16, t);
+  E.forEach((e) => {
+    const ta = Math.max(meshT(e.a.i), meshT(e.b.i)), k = ss(ta, ta + 0.6, t); if (k <= 0) return;
+    if (notHeard.includes(e.a.i) || notHeard.includes(e.b.i)) return;
+    const isSilent = (e.a.i === silent || e.b.i === silent) && t > 16.2;
+    const from = hop[e.a.i] <= hop[e.b.i] ? e.a : e.b, to = from === e.a ? e.b : e.a;
+    const lw = lerp(1.6, 1 + 6 * (1 - e.d / 330), prox);
+    line(from.x, from.y, lerp(from.x, to.x, eo(k)), lerp(from.y, to.y, eo(k)), isSilent ? "#333" : C.mute, lw, isSilent ? 0.6 : 0.75);
+    if (k >= 1 && !isSilent) { const u = ((t * 0.7 + hash(e.a.i * 13 + e.b.i)) % 1); circ(lerp(from.x, to.x, u), lerp(from.y, to.y, u), 3.5, { fill: C.ink, a: 0.9 }); }
+  });
+  P.forEach((p) => {
+    let st = t > 0.9 ? "red" : "on"; if (t > 4.2) st = "on";
+    if (notHeard.includes(p.i)) st = t > 4.2 ? "off" : st;
+    if (p.i === silent && t > 16.2) st = "grey";
+    phone(p.x, p.y, 0.95, st, t);
+    if (t > 0.9 && t < 3.8) ripple(p.x, p.y, 0.9 + hash(p.i) * 0.3, t, 90, { n: 2, life: 1, a: 0.6, col: C.red });
+    // check-in badges
+    const ct = 9.4 + hash(p.i + 21) * 3.2;
+    if (t > ct && !notHeard.includes(p.i)) {
+      const k = eo((t - ct) / 0.4), isHelp = p.i === help;
+      const col = isHelp ? C.red : C.ink, bx = p.x + 30, by = p.y - 34;
+      circ(bx, by, 15 * k, { fill: isHelp ? C.red : "#0b0b0b", stroke: col, lw: 2 });
+      T(isHelp ? "!" : "✓", bx, by + 7, { size: 20, w: 700, col: isHelp ? C.bg : C.ink, align: "center", a: k });
+      if (isHelp && t > ct + 0.4 && t < 16.2) circ(bx, by, 15 + ((t * 30) % 22), { stroke: C.red, lw: 2, a: 0.6 * (1 - ((t * 30) % 22) / 22) });
+    }
+    if (notHeard.includes(p.i) && t > 12.8) T("?", p.x + 30, p.y - 26, { size: 26, f: MONO, w: 700, col: C.dim, align: "center", a: ss(12.8, 13.2, t) });
+  });
+  // last neighbours of the silent phone (roadmap)
+  const ln = ss(16.8, 17.6, t) * (1 - ss(23.6, 24.4, t));
+  if (ln > 0) {
+    const s = P[silent], nb = E.filter((e) => e.a.i === silent || e.b.i === silent).map((e) => (e.a.i === silent ? e.b : e.a)).filter((p) => !notHeard.includes(p.i)).sort((a, b) => Math.hypot(a.x - s.x, a.y - s.y) - Math.hypot(b.x - s.x, b.y - s.y)).slice(0, 2);
+    nb.forEach((p) => { circ(p.x, p.y, 46, { stroke: C.red, lw: 2, a: ln, dash: [6, 6] }); line(p.x, p.y, s.x, s.y, C.red, 2, ln * 0.8, [5, 7]); });
+    circ(s.x, s.y, 70 + Math.sin(t * 3) * 5, { stroke: C.red, lw: 3, a: ln });
+    const lx = s.x - 210, ly = s.y + 96;
+    box(lx, ly, 420, 82, { fill: "rgba(5,5,5,.92)", stroke: C.red, a: ln, r: 4 });
+    T(`last heard 02:14 · near ${nb.map((p) => p.flat).join(" & ")}`, lx + 210, ly + 34, { size: 20, f: MONO, w: 700, col: C.red, align: "center", a: ln });
+    T("strongest signal: closest neighbours", lx + 210, ly + 64, { size: 17, f: SANS, w: 500, col: C.mute, align: "center", a: ln });
+  }
+  // reconnect -> Arkiv
+  const rc = ss(21.2, 21.8, t);
+  if (rc > 0) {
+    const c = P[0]; line(c.x, c.y, c.x, py - 70, C.ink, 3, rc); T("ARKIV", c.x + 16, py - 78, { size: 26, w: 700, a: rc });
+    for (let k2 = 0; k2 < 6; k2++) { const u = ((t - 21.5) * 1.3 + k2 / 6) % 1; if (t > 21.5) circ(c.x, lerp(c.y, py - 70, u), 4, { fill: C.ink, a: rc }); }
+    T("one phone gets signal back → check-ins sync to Arkiv", c.x + 120, py - 78, { size: 21, f: SANS, w: 500, col: C.mute, a: rc });
+  }
+  g.restore();
+  // right panel
+  const rx = 1350, ry = 250;
+  const ttl = [["Earthquake?", "The phones mesh.", 0.3, 9], ["Who’s safe.", "Who needs help.", 9.2, 15], ["Who was last", "near whom.", 15.2, 21], ["Back online:", "it all syncs.", 21.2, 25.5]];
+  ttl.forEach(([a, b, s0, s1]) => { const k = win(t, s0, s1, 0.35); T(a, rx, ry, { size: 46, a: k }); T(b, rx, ry + 56, { size: 46, a: k, col: s0 === 15.2 ? C.red : C.ink }); });
+  const dq = win(t, 0.9, 9, 0.3);
+  T("DISASTER QUORUM · tw.dk from ENS", rx, ry + 140, { size: 18, f: MONO, w: 500, col: C.red, a: dq * ss(0.9, 1.3, t) });
+  if (t > 4.2 && t < 9) { const k = win(t, 4.2, 9, 0.3); T("no internet · Bluetooth + Wi-Fi, phone to phone", rx, ry + 180, { size: 20, f: SANS, w: 500, col: C.mute, a: k }); T("up to 7 hops", rx, ry + 212, { size: 20, f: SANS, w: 500, col: C.mute, a: k }); }
+  const rk = win(t, 9.4, 21, 0.4);
+  if (rk > 0) {
+    const safe = P.filter((p) => !notHeard.includes(p.i) && p.i !== help && t > 9.4 + hash(p.i + 21) * 3.2).length;
+    const hp = t > 9.4 + hash(help + 21) * 3.2 ? 1 : 0;
+    const rows2 = [["registered (ENS)", 12, C.ink], ["safe", safe, C.ink], ["need help", hp, C.red], ["not heard from", t > 12.8 ? 2 : 0, C.dim]];
+    box(rx, ry + 160, 440, 250, { stroke: C.line, fill: "#0b0b0b", a: rk, r: 4 });
+    T("ROSTER · SIGNED CHECK-INS", rx + 24, ry + 200, { size: 17, f: MONO, w: 500, col: C.dim, a: rk, ls: 1 });
+    rows2.forEach(([l, n, col], i) => { T(l, rx + 24, ry + 250 + i * 42, { size: 24, f: SANS, w: 500, col: C.mute, a: rk }); T(String(n), rx + 410, ry + 250 + i * 42, { size: 28, f: MONO, w: 700, col, align: "right", a: rk }); });
+  }
+  const nk = win(t, 16.8, 24, 0.4);
+  if (nk > 0) { box(rx, ry + 440, 120, 40, { stroke: C.ink, a: nk, r: 3 }); T("NEXT", rx + 60, ry + 468, { size: 20, f: MONO, w: 700, align: "center", a: nk }); T("signal strength between phones", rx + 140, ry + 468, { size: 19, f: SANS, w: 500, col: C.mute, a: nk }); }
+}};
+
+// CLAIM + END CARD
+S.claim = { dur: 13, draw(t) {
+  chrome(t, "", 0.05);
+  const a1 = 1 - ss(6.4, 7, t);
+  R("We don’t claim a legal limit was crossed.", W / 2, 380, t, 0.3, { size: 56, align: "center", col: C.mute, out: a1 });
+  R("We claim something harder to dispute:", W / 2, 470, t, 1.8, { size: 40, f: SANS, w: 500, col: C.dim, align: "center", out: a1 });
+  R("an event, at a time, witnessed by many flats,", W / 2, 590, t, 2.8, { size: 52, align: "center", out: a1 });
+  R("that nobody can rewrite.", W / 2, 660, t, 3.8, { size: 52, align: "center", col: C.red, out: a1 });
+  const e = ss(7, 7.8, t);
+  T("Tremor Mesh", W / 2, 470, { size: 120, align: "center", a: e, dy: (1 - e) * 20 });
+  T("tremor-witness.vercel.app", W / 2, 580, { size: 34, f: MONO, w: 500, align: "center", a: ss(7.8, 8.4, t) });
+  T("github.com/Mulaydm10/eth_mumbai", W / 2, 630, { size: 30, f: MONO, w: 400, col: C.mute, align: "center", a: ss(8.2, 8.8, t) });
+  T("Arkiv · ENSv2 · Swarm · ETHGlobal Mumbai 2026", W / 2, 740, { size: 24, f: MONO, w: 500, col: C.dim, align: "center", a: ss(8.8, 9.4, t), ls: 2 });
+}};
+
+const name = (location.hash || "#idea").slice(1);
+const scene = S[name];
+window.SCENES = Object.fromEntries(Object.entries(S).map(([k, v]) => [k, v.dur]));
+window.sceneReady = false;
+Promise.all([HEAD, SANS, MONO].flatMap((f) => ["400", "500", "700"].map((w) => document.fonts.load(`${w} 40px ${f}`)))).then(() => { window.sceneReady = true; });
+window.renderFrame = async (t) => { scene.draw(t); };
+scene.draw(0);
+// live preview when opened normally: ?play
+if (location.search.includes("play")) { const t0 = performance.now(); const loop = () => { scene.draw(((performance.now() - t0) / 1000) % scene.dur); requestAnimationFrame(loop); }; loop(); }
+</script></body></html>
