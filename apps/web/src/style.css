@@ -122,3 +122,4 @@ tbody tr:hover td { background: rgba(255, 255, 255, 0.025); }
 .tag { font-size: 11px; padding: 1px 7px; border-radius: 6px; background: rgba(107, 138, 253, 0.16); color: #9fb2ff; }
 button.ghost:hover, .chip:hover, .tab:hover { border-color: #3a404c; }
 .hero-sub { font-size: 13px; line-height: 1.5; }
+.passrow { display: flex; gap: 8px; max-width: 420px; } .passrow .input { max-width: none; }

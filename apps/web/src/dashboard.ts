@@ -468,9 +468,25 @@ $("tabSetup").addEventListener("click", () => showTab("setup"));
 const sv = (id: string) => $<HTMLInputElement>(id);
 const num = (id: string) => Number(sv(id).value);
 function committeePass(action: string) {
-  let pass = sessionStorage.getItem("tw.pass") ?? "";
-  if (!pass) pass = (prompt(`Committee passcode to ${action}:`) ?? "").trim();
-  return pass;
+  const box = sv("sPass").value.trim();
+  if (box) return box;
+  $("sPassNote").innerHTML = `<span class="bad">Type the committee passcode in the box above to ${esc(action)}.</span>`;
+  sv("sPass").focus();
+  return "";
+}
+sv("sPass").value = sessionStorage.getItem("tw.pass") ?? "";
+$("sPassShow").addEventListener("click", () => {
+  const show = sv("sPass").type === "password";
+  sv("sPass").type = show ? "text" : "password";
+  $("sPassShow").textContent = show ? "Hide" : "Show";
+});
+function passRejected() {
+  sessionStorage.removeItem("tw.pass");
+  $("sPassNote").innerHTML = '<span class="bad">Wrong passcode: the server rejected it. Check spelling and capital letters (press Show).</span>';
+}
+function passAccepted(pass: string) {
+  sessionStorage.setItem("tw.pass", pass);
+  $("sPassNote").innerHTML = '<span class="ok">Passcode accepted ✓</span>';
 }
 async function loadSetup() {
   if (!sv("sSite").value) sv("sSite").value = ui.site.value.trim();
@@ -505,14 +521,14 @@ $("sSave").addEventListener("click", async () => {
     const r = await fetch("/api/site-setup", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
     const j = (await r.json()) as { ok: boolean; error?: string; txs?: string[] };
     if (!j.ok) throw new Error(j.error ?? String(r.status));
-    sessionStorage.setItem("tw.pass", pass);
+    passAccepted(pass);
     $("sSaveNote").innerHTML = `<span class="ok">Saved.</span> ${(j.txs ?? []).map((h) => `<a href="https://sepolia.etherscan.io/tx/${h}" target="_blank" rel="noopener">tx ${h.slice(0, 10)}…</a>`).join(" · ")}`;
     sv("sUses").value = String(body.maxPhones + body.maxMesh > 50 ? 50 : Math.max(1, Number(sv("sUses").value)));
     ui.site.value = site;
     slowAt.clear();
     void loadSetup();
   } catch (e) {
-    if (String(e).includes("passcode")) sessionStorage.removeItem("tw.pass");
+    if (String(e).includes("passcode")) passRejected();
     $("sSaveNote").innerHTML = `<span class="bad">Not saved: ${esc(String((e as Error).message ?? e).slice(0, 160))}</span>`;
   } finally {
     (sv("sSave") as unknown as HTMLButtonElement).disabled = false;
@@ -529,7 +545,7 @@ $("sInvite").addEventListener("click", async () => {
     const r = await fetch("/api/ens-invite", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(uses > 1 ? { site, pass, uses, ttlMin } : { site, pass }) });
     const j = (await r.json()) as { ok: boolean; invite?: string; exp?: number; inviteId?: string; error?: string };
     if (!j.ok || !j.invite) throw new Error(j.error ?? String(r.status));
-    sessionStorage.setItem("tw.pass", pass);
+    passAccepted(pass);
     const base = location.origin.startsWith("http") && !location.origin.includes("localhost") ? location.origin : "https://tremor-witness.vercel.app";
     const url = `${base}/?site=${encodeURIComponent(site)}&inv=${j.invite}`;
     sv("sQr").hidden = false;
@@ -537,7 +553,7 @@ $("sInvite").addEventListener("click", async () => {
     $("sLink").textContent = url;
     $("sInviteNote").innerHTML = `<b>${uses} phone${uses > 1 ? "s" : ""}</b> can join <b>${esc(site)}</b> until <b>${new Date(j.exp!).toLocaleTimeString()}</b> (invite ${esc(j.inviteId!.slice(0, 8))}…). Web app: scan with Chrome. Mesh app: scan in the APK (names start with "mesh-"). Each phone wallet joins once; site limits still apply.`;
   } catch (e) {
-    if (String(e).includes("passcode")) sessionStorage.removeItem("tw.pass");
+    if (String(e).includes("passcode")) passRejected();
     $("sInviteNote").innerHTML = `<span class="bad">Invite failed: ${esc(String((e as Error).message ?? e).slice(0, 160))}</span>`;
   }
 });

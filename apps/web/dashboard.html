@@ -21,6 +21,11 @@
 
       <div id="setupTab" hidden>
         <section class="card">
+          <div class="row"><span class="label">Committee passcode (needed to save rules and create invites)</span></div>
+          <div class="passrow"><input id="sPass" class="input" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type the committee passcode" /><button id="sPassShow" class="ghost" type="button">Show</button></div>
+          <p id="sPassNote" class="small muted">Kept only in this browser tab. Not saved anywhere.</p>
+        </section>
+        <section class="card">
           <div class="row"><span class="label">Site rules (stored publicly as ENS text records on the site name)</span></div>
           <p class="small muted">Choose how many phones each app may register and how many must agree. Saving writes the rules to ENS (Sepolia) with the committee key; new sites are created on save. Then create one invite QR that both the web app and the Disaster Mesh app accept.</p>
           <div class="setup-grid">
