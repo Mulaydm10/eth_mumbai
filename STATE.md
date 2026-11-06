@@ -11,6 +11,7 @@
 | M5 check-ins | ✓ 2 emulators ("not heard from" works) |
 | M6 sync to Arkiv | ✓ byte-identical to mesh.ts (vectors) + live: 2 emulators uploaded own messages, read back by TW code |
 | §5.2 clock | ✓ server time kept across restarts + signed one-hop NTP-style exchange; 3 emulators offline: a phone 7 s fast came back to server time (7 ms from its own earlier sync); real-phone BLE timing TODO(measure) |
+| Site limits | ✓ tw.max_phones / tw.max_mesh / tw.k / tw.window_ms / tw.dk / tw.dwindow_ms read like ens.ts (vectors); meshtest live: dk=2 within 2 s |
 | M7 demo video | ✓ 85 s, 16:9 + 9:16 (3 emulators, real ENS + Arkiv, labelled test shaking); voice = macOS say until the ElevenLabs key is renewed |
 
 ## Demo plan constraints (Dhruv, 2026-11-06)

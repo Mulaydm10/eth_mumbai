@@ -27,6 +27,8 @@ data class MeshView(
     val rosterLabels: List<String> = emptyList(),
     val rosterAgeMs: Long? = null,
     val rosterBlock: Long? = null,
+    val meshCount: Int = 0,
+    val maxMesh: Int? = null,
     val alert: Alert? = null,
     val help: List<CheckIn> = emptyList(),
     val safe: List<CheckIn> = emptyList(),
@@ -193,6 +195,7 @@ object MeshState {
         val labels = r?.phones?.map { it.label }?.sorted() ?: emptyList()
         _view.value = MeshView(
             joined = true, site = site, me = me.label, rosterLabels = labels, rosterAgeMs = r?.ageMs(), rosterBlock = r?.block,
+            meshCount = r?.meshCount ?: 0, maxMesh = r?.maxMesh,
             alert = alert, help = latest.filter { it.status == "help" }.sortedBy { it.sender },
             safe = latest.filter { it.status == "safe" }.sortedBy { it.sender },
             notHeard = labels.filter { l -> latest.none { it.sender == l } },

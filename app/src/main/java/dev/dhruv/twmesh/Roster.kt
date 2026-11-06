@@ -25,7 +25,10 @@ data class RosterSnapshot(
     val windowMs: Long?,       // tw.window_ms
     val dk: Int?,              // tw.dk (disaster tier, R2: may be missing)
     val dWindowMs: Long?,      // tw.dwindow_ms
+    val maxPhones: Int? = null, // tw.max_phones (siteLimits; null in snapshots saved before 0.9)
+    val maxMesh: Int? = null,   // tw.max_mesh
 ) {
+    val meshCount get() = phones.count { dev.dhruv.twmesh.chain.Tw.isMeshLabel(it.label) }
     /** Mesh as-of rule: [heardAtMs] = when this phone first heard the message. */
     fun isRegistered(label: String, addr: String, tMs: Long, heardAtMs: Long) =
         Registry.asOfCheck(intervals, dev.dhruv.twmesh.core.Trigger("", label, addr, tMs, 0.0, 0.0, "structural", heardAtMs)) ==
@@ -57,8 +60,10 @@ class RosterStore private constructor(private val dir: File) {
     /** Blocking network fetch; keeps the old snapshot if anything fails. */
     fun refresh(site: String, ens: Ens = Ens()): Result<RosterSnapshot> = runCatching {
         val h = ens.registrationHistory(site)
-        fun num(key: String) = ens.siteText(site, key)?.trim()?.toLongOrNull()
+        val t = listOf("tw.k", "tw.window_ms", "tw.dk", "tw.dwindow_ms", "tw.max_phones", "tw.max_mesh").associateWith { ens.siteText(site, it) }
+        fun num(key: String) = dev.dhruv.twmesh.chain.SiteRecords.positiveInt(t[key])
+        val lim = dev.dhruv.twmesh.chain.SiteRecords.limits(t["tw.max_phones"], t["tw.max_mesh"])
         RosterSnapshot(site, System.currentTimeMillis(), h.block, h.phones, h.intervals,
-            num("tw.k")?.toInt(), num("tw.window_ms"), num("tw.dk")?.toInt(), num("tw.dwindow_ms")).also { save(it) }
+            num("tw.k")?.toInt(), num("tw.window_ms"), num("tw.dk")?.toInt(), num("tw.dwindow_ms"), lim.maxPhones, lim.maxMesh).also { save(it) }
     }
 }

@@ -206,3 +206,16 @@ Test phones are named A/B/C here; raw device logs stay local (SafeMesh AGENTS.md
   are generated on the phone (SecureRandom).
 - Downloaded assets re-verified against SHA256SUMS; public download link returns 200.
 - On hold until tomorrow (per Dhruv): no disaster settings, no new site; demo site name, settings and invite to come.
+
+## 2026-11-06 20:45 IST — per-site limits + quorum from the dashboard Setup tab
+- Backend 2f21357 (BRIEF §4 updated): the committee sets `tw.max_phones`, `tw.max_mesh`, `tw.k`, `tw.window_ms`,
+  `tw.dk`, `tw.dwindow_ms` per site in the Setup tab; invite QRs allow up to 50 uses.
+- App: `SiteRecords` ports `siteLimits` (JS `Number()` semantics incl. " " → 0, "1e1" → 10, "0x10" → 16, clamp
+  0..hard max, else default 5 / 15). Vectors from the TS readers with a mock ENS lookup
+  (`tools/golden/limits-vectors.mts` → `limits-v1.json`, 21 inputs): identical. k / window: same number as ens.ts when
+  it is a positive whole number; otherwise treated as missing and the fallback is shown (deliberate: the quorum can't
+  use 0, 2.5 or NaN). Invite `uses` must be 1..50 (as `isInvite`). Roster snapshot stores maxPhones / maxMesh; home
+  screen shows "N of M mesh phones allowed".
+- Tests: 727, 0 failed.
+- Live (emulator A, meshtest, block 12077662): k=2, window 2000, **dk=2, dwindow 2000** → "Confirmed needs 2 phones
+  within 2.0 s (site's disaster settings)"; max_phones 5, max_mesh 15; 7 registered phones (6 mesh).

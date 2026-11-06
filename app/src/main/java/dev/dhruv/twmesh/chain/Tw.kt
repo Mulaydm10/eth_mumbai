@@ -21,7 +21,12 @@ object Tw {
     const val VERIFIABLE_FACTORY = "0xda70306c98e97ece36f997a21368e53298572991"
     /** viem's Sepolia ensUniversalResolver (what the web app's getEnsAddress uses). */
     const val UNIVERSAL_RESOLVER = "0xeeeeeeee14d718c2b47d9923deab1335e144eeee"
-    const val MAX_PHONES_PER_SITE = 5
+    const val MAX_PHONES_PER_SITE = 5          // web (sensing) phones, default when tw.max_phones is unset
+    const val MAX_MESH_PHONES_PER_SITE = 15    // mesh phones, default when tw.max_mesh is unset
+    const val HARD_MAX_PHONES = 20
+    const val HARD_MAX_MESH = 50
+    const val MAX_INVITE_USES = 50
+    fun isMeshLabel(label: String) = label.startsWith("mesh-")
     val LABEL_RE = Regex("^[a-z0-9][a-z0-9-]{1,30}[a-z0-9]$")
 
     fun phoneName(site: String, label: String) = "${label.lowercase()}.${site.lowercase()}.$ENS_PARENT.eth"
@@ -56,8 +61,52 @@ data class Invite(val site: String, val inviteId: String, val exp: Long, val sig
             val b64 = s.replace('-', '+').replace('_', '/').let { it + "=".repeat((4 - it.length % 4) % 4) }
             val o = gson.fromJson(String(Base64.getDecoder().decode(b64), Charsets.UTF_8), JsonObject::class.java)
             val i = Invite(o["site"].asString, o["inviteId"].asString, o["exp"].asLong, o["sig"].asString, s, o["uses"]?.asInt)
-            if (Regex("^[0-9a-f]{32}$").matches(i.inviteId) && Regex("^0x[0-9a-fA-F]+$").matches(i.sig)) i else null
+            if (Regex("^[0-9a-f]{32}$").matches(i.inviteId) && Regex("^0x[0-9a-fA-F]+$").matches(i.sig) &&
+                (i.uses == null || i.uses in 1..Tw.MAX_INVITE_USES)) i else null
         } catch (_: Exception) { null }
 
+    }
+}
+
+/**
+ * Per-site limits and quorum numbers from the site's ENS text records, read exactly like packages/chain/src/ens.ts
+ * (siteLimits / siteParams / siteDisasterParams), checked by test/resources/golden/limits-v1.json.
+ */
+object SiteRecords {
+    data class Limits(val maxPhones: Int, val maxMesh: Int, val fromEns: Boolean)
+
+    /** JavaScript's Number(string) for the inputs a text record can hold (NaN when JS gives NaN). */
+    fun jsNumber(s: String): Double {
+        val t = s.trim()
+        return when {
+            t.isEmpty() -> 0.0
+            Regex("^0[xX][0-9a-fA-F]+$").matches(t) -> java.math.BigInteger(t.substring(2), 16).toDouble()
+            Regex("^0[oO][0-7]+$").matches(t) -> java.math.BigInteger(t.substring(2), 8).toDouble()
+            Regex("^0[bB][01]+$").matches(t) -> java.math.BigInteger(t.substring(2), 2).toDouble()
+            Regex("^[+-]?(\\d+\\.?\\d*|\\.\\d+)([eE][+-]?\\d+)?$").matches(t) -> t.toDouble()
+            Regex("^[+-]?Infinity$").matches(t) -> if (t.startsWith("-")) Double.NEGATIVE_INFINITY else Double.POSITIVE_INFINITY
+            else -> Double.NaN
+        }
+    }
+    private fun isInteger(d: Double) = d.isFinite() && d == Math.floor(d)
+
+    /** `clamp` in siteLimits: an integer record is clamped to 0..hi, anything else (or missing/empty) gives the default. */
+    fun clamp(v: String?, default: Int, hi: Int): Int {
+        if (v.isNullOrEmpty()) return default
+        val n = jsNumber(v)
+        return if (isInteger(n)) n.coerceIn(0.0, hi.toDouble()).toInt() else default
+    }
+
+    fun limits(maxPhones: String?, maxMesh: String?) =
+        Limits(clamp(maxPhones, Tw.MAX_PHONES_PER_SITE, Tw.HARD_MAX_PHONES), clamp(maxMesh, Tw.MAX_MESH_PHONES_PER_SITE, Tw.HARD_MAX_MESH), !maxMesh.isNullOrEmpty())
+
+    /**
+     * k / window: ens.ts gives Number(text) (could be 0, 2.5 or NaN). The quorum needs a positive whole number, so the
+     * app takes the same number only when it is one, and otherwise treats the record as missing (falls back, and says so).
+     */
+    fun positiveInt(v: String?): Long? {
+        if (v.isNullOrEmpty()) return null
+        val n = jsNumber(v)
+        return if (isInteger(n) && n >= 1 && n <= Int.MAX_VALUE) n.toLong() else null
     }
 }
