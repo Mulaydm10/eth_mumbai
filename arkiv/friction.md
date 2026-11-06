@@ -26,7 +26,7 @@ Context: Tremor Witness has **many lightweight writers**. Every resident's phone
 ### 3b. A browser access key is public by construction (06:55)
 - **What happened:** to stop the throttling we added an access key. Arkiv's docs say to read it from the bundler's public env and "lock it to your site". Vercel then flagged `VITE_ARKIV_ACCESS_KEY` as "looks like a credential … exposes its value to anyone visiting your site" and refused to add it until we chose `--type config`.
 - **The tension:** keeping the key server-side would force a proxy into the read path, which defeats our censorship-resistance design (readers must not depend on our server).
-- **What we did:** exposed it as Arkiv recommends, and locked it to our origin in the Hub.
+- **What we did:** exposed it as Arkiv recommends; locking it to our origin (tremor-witness.vercel.app) in the Hub is the next step.
 - **Suggestion:** a documented read-only, origin-scoped key type (or keyless reads with higher limits for reads), so browser dApps don't have to publish a key that also carries write or quota power.
 
 ## 4. Typed values: `u64(...)` wrappers on write, `{ value }` on read, and `bytes` in two shapes
