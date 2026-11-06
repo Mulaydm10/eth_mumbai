@@ -58,3 +58,6 @@ Format: `## YYYY-MM-DD HH:MM IST · who · title`
 - E: `/report.html`: printable evidence report built only from Arkiv + Swarm + ENS, with live hash re-check. Tolerates older packs.
 - B: "Be the vibration source" on the phone page (a spare phone's motor). F: Arkiv friction log rewritten with reproductions.
 - Waiting: C (Safe 2-of-3 needs 3 owner addresses from Dhruv), D (Swarm gateway approval: ask at booth), EXP-0002 collusion test and the real-phone sound-sync retest.
+
+## 2026-11-06 06:28 IST · Claude Code (for Dhruv Mulay) · Scoped feature playbook: verdict
+- Run: research/playbook/2026-11-06-features/ (stopped once at the usage limit, then resumed with append-only workers). VERDICT: fix the trust model before adding features. /api/ens-register is unauthenticated; the dashboard checks current (not as-of) registration, so revoke/expiry un-counts unsealed events; README overclaims ("nobody can withhold", "one server"). Plus the Tier 0 compliance gaps and Tier 1–3 roadmap. Fixed the fresh-clone build (apps/web/public tracked).
