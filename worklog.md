@@ -61,3 +61,8 @@ Format: `## YYYY-MM-DD HH:MM IST · who · title`
 
 ## 2026-11-06 06:28 IST · Claude Code (for Dhruv Mulay) · Scoped feature playbook: verdict
 - Run: research/playbook/2026-11-06-features/ (stopped once at the usage limit, then resumed with append-only workers). VERDICT: fix the trust model before adding features. /api/ens-register is unauthenticated; the dashboard checks current (not as-of) registration, so revoke/expiry un-counts unsealed events; README overclaims ("nobody can withhold", "one server"). Plus the Tier 0 compliance gaps and Tier 1–3 roadmap. Fixed the fresh-clone build (apps/web/public tracked).
+
+## 2026-11-06 06:53 IST · Claude Code (for Dhruv Mulay) · Trust model (T13, T14) + Tier 0
+- T13 as-of membership: `packages/core/src/registry.ts` (8 tests) + ENS registration history from logs + Arkiv `$createdAt` → time. Dashboard + packs use it.
+- T14 invites: `/api/ens-invite` (passcode) signs a single-use 30-min invite and logs it on Arkiv; `/api/ens-register` requires a valid unused logged invite (existing phones may rejoin). Fixed: signature stored as bytes (Arkiv str ≤128 bytes).
+- Tier 0: latest sealed evidence on the dashboard; `arkiv/swarm.md` all 8 items; `ens/README.md`; `docs/AI_USE.md`; `DEMO.md` DEMO-0001 draft + video cut list; README rewritten (accurate CROPS limits, 5 server functions, writer addresses, runnable query); fresh-clone build fixed; simulate.ts uses invites. 29 tests green. Corrected one false claim in ens/README before release.

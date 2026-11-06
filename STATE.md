@@ -21,6 +21,10 @@
 ## In flight
 - Nothing running. The **last real-phone round (04:05 IST) was inconclusive**: only phone-b0a8's readings reached Arkiv, and no sound-sync anchors arrived. The likely cause is that phone-cad2 wasn't reloaded (old code). Retest when the teammate is back: reload both phones, allow the microphone, play the sync sound, stomp ~4 s apart, then `npx tsx scripts/pull.ts test2 30`.
 
+## Trust model + Tier 0 (feature-playbook verdict)
+- Done: **T13** as-of membership, **T14** signed invites (issue/use on Arkiv), Tier 0 docs (README accurate, `ens/README.md`, `arkiv/swarm.md` 8/8, `docs/AI_USE.md`, `DEMO.md` draft), latest sealed evidence on the dashboard, fresh-clone build fix. Verdict: `research/playbook/2026-11-06-features/VERDICT.md`.
+- Next (Tier 1): T1 readonly + per-phone hash chain, T2a keep-alive, T3 per-phone ENS record, T4-lite attack checklist. Needs: Safe owner addresses (C), real-phone rehearsal of DEMO-0001, EXP-0002.
+
 ## Depth items (Dhruv's A–F list)
 - Done: **A** coherence (experimental; EXP-0001 weak separation), **E** `/report.html` evidence report, **B** demo vibration source, **F** friction log.
 - Waiting: **C** Safe 2-of-3 committee (needs 3 owner addresses), **D** Swarm-hosted site (gateway approval: ask at booth), **EXP-0002** collusion test (phones).
@@ -40,4 +44,4 @@
 | --- | --- | --- | --- |
 | _none_ | | | |
 
-Last updated: 2026-11-06 05:25 IST · Claude Code (depth items A, B, E, F)
+Last updated: 2026-11-06 06:53 (local CET) · Claude Code (T13/T14 + Tier 0)

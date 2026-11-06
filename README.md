@@ -38,7 +38,7 @@ A phone's reading counts if the phone's ENSv2 name (`<phone>.<site>.tremorwitnes
     | Function | What it does | What it cannot do |
     | --- | --- | --- |
     | `/api/drip` | Gives a new phone a little testnet gas | Write or alter readings |
-    | `/api/time` | Reference clock for aligning phones | Required for phones to work: they fall back to their own clock and sound sync |
+    | `/api/time` | Reference clock for aligning phones | Nothing depends on it: phones fall back to their own clock and sound sync |
     | `/api/ens-invite` | Committee signs a one-time invite (passcode) | — |
     | `/api/ens-register` | Registers an invited phone's ENS name | Register without a valid, unused, Arkiv-logged invite |
     | `/api/ens-revoke` | Committee revokes a phone (passcode) | — |
