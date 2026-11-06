@@ -219,3 +219,7 @@ Test phones are named A/B/C here; raw device logs stay local (SafeMesh AGENTS.md
 - Tests: 727, 0 failed.
 - Live (emulator A, meshtest, block 12077662): k=2, window 2000, **dk=2, dwindow 2000** → "Confirmed needs 2 phones
   within 2.0 s (site's disaster settings)"; max_phones 5, max_mesh 15; 7 registered phones (6 mesh).
+
+## 2026-11-06 21:00 IST — moved into the eth_mumbai monorepo
+- Dhruv merged the app (full history, up to 4aec694) into `eth_mumbai/extensions/disaster-mesh/app/`. Fresh clone builds;
+  727 tests, 0 failed. From now on all work and commits happen here; tremor-witness-mesh is used only to publish APK releases.

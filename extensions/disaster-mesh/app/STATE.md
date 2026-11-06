@@ -25,8 +25,14 @@ Demo phones: APK by public link, not on the tailnet, join + ENS-register on thei
 3. EXP-0001 validation: replay published accelerograms through the DSP; false-positive soak.
 4. 0.8.0 published as pre-release. Waiting for the demo site name, settings and fresh invite (Dhruv, 7 Nov morning). Re-voice M7 with ElevenLabs once the key works (cut/prep.py without DEMO_TTS=say).
 
+## Where the code lives (from 2026-11-06 21:00 IST)
+- Work and commit ONLY here: `eth_mumbai` monorepo, `extensions/disaster-mesh/app/` (merged with full history up to 4aec694).
+  Edit rights: `extensions/disaster-mesh/` only; `apps/`, `packages/`, the web app and backend stay locked. Pull before push (Dhruv commits to the same main).
+- `github.com/Mulaydm10/tremor-witness-mesh` is now only for APK releases (`gh release create … -R Mulaydm10/tremor-witness-mesh`); no more pushes there.
+- Don't read the monorepo's root `.env`.
+
 ## How to run
-- Tests: `./gradlew :app:testDebugUnitTest` (live: `TWM_LIVE=1`). Vectors: `TW_REPO=… node tools/golden/{chain,core}-vectors.mjs`.
+- Tests: `./gradlew :app:testDebugUnitTest` (live: `TWM_LIVE=1`). Vectors: `TW_REPO=../../.. node tools/golden/{chain,core}-vectors.mjs` (the monorepo root; `dsp`/`limits` scripts run with its `tsx`).
 - Release: `TWM_KEY_PROPS=… tools/build-release.sh`.
 - Emulator protocol test (debug build only): `am broadcast -n dev.dhruv.twmesh/dev.dhruv.twmesh.DebugRosterReceiver -a WHOAMI|SET|CLOCK|CLOCK_RESET|CLOCK_ASK …`
   (see `app/src/debug`). Both emulators `-read-only`, different app data.
