@@ -12,7 +12,12 @@
 1. **The Tremor Witness web app is LOCKED. Do not modify, move, reformat or "improve" anything in this repo outside `extensions/disaster-mesh/`.** That means none of `apps/web/**` (pages, `src/`, the `api/` server functions, `vite.config.ts`, `vercel.json`), `packages/core/**`, `packages/chain/**`, `scripts/**`, the root `package.json` or lockfile, `README.md`, `DEMO.md` or `STATE.md`. Don't run its deploy command. Don't touch its Vercel project or env vars.
 2. **Backend changes are made by the main Tremor Witness session, not by you.** If you need a backend change (new endpoint, new Arkiv schema, a change to joining), write a request in `extensions/disaster-mesh/BACKEND_REQUESTS.md` (format in §8) and tell Dhruv. Build against a stub until it ships.
 3. **Build the app in its own repo/folder, not inside this monorepo's workspaces.** Recommended: a new repo `Mulaydm10/tremor-witness-mesh`. Ask Dhruv for the location before creating it. You may *read* this repo's code (`packages/core`, `packages/chain`) as the reference implementation and copy the protocol constants.
-4. **No SafeMesh code.** `github.com/Mulaydm10/safemesh` is GPL-3.0 and pre-dates the hackathon. Reading it for ideas is fine. Copying code would make the app GPL and would count as pre-existing work. Clean-room only.
+4. **Build on SafeMesh, under its licence.** The app reuses the mesh layer of `github.com/Mulaydm10/safemesh` (a GPL-3.0 fork of bitchat-android, pre-hackathon). Therefore:
+   - the app repo is licensed **GPL-3.0**, keeping the bitchat and SafeMesh copyright notices and LICENSE;
+   - its README states plainly which parts come from SafeMesh/bitchat and which are new (our protocol: §5–§6);
+   - the app stays a **separate program** in its own repo. It talks to Tremor Witness only over HTTP and the chains, so the MIT web app is unaffected. Never copy GPL code into this repo.
+   - **Take:** the BLE multi-hop mesh (TTL/7 hops, dedupe, store-and-forward), Wi-Fi Aware/hotspot transports, `MeshGraph` (it becomes the proximity view), and bitchat's link encryption.
+   - **Don't take:** the unauthenticated public SOS message, or broadcasting GPS. They are replaced by our signed check-ins (§5.3) and opt-in encrypted location (§5.4).
 5. **Never commit secrets.** No private keys, `.env`, the committee passcode or Arkiv keys. The phone's own key lives in Android Keystore / EncryptedSharedPreferences.
 6. **Privacy by default.** No passive GPS tracking, ever. Location is opt-in, encrypted to the committee/rescuer key, and short-lived (§5.4). This is a judging requirement (EF CROPS: privacy can't be traded away), not a nice-to-have.
 7. **Log as you go**, because sessions hit usage limits. Keep `LOG.md` (append-only, timestamped IST) and `STATE.md` (overwritten each session: what works, what's next, blockers) in the app repo. Commit small and often with real messages.
@@ -50,7 +55,7 @@ Tremor Witness phones at a construction site already detect vibration, sign read
 ## 3. Recommended stack (verify each choice in a spike before committing)
 
 - **Android, Kotlin**, minSdk 29+. A foreground service while "armed".
-- **Transport:** Google **Nearby Connections** (`com.google.android.gms:play-services-nearby`, strategy `P2P_CLUSTER`). It handles BLE, Bluetooth and Wi-Fi discovery and upgrades, and is not GPL. The fallback is raw BLE GATT plus Wi-Fi Direct (much more work).
+- **Transport: SafeMesh's existing mesh layer** (BLE multi-hop + Wi-Fi Aware/hotspot), from the fork. Start by cloning SafeMesh into the new repo (with its history, so the provenance is visible), stripping the parts that aren't needed (chat UI, Nostr/geohash channels, the public SOS), and carrying our signed protocol messages (§5) as a new message type over its transport. The fallback, if its transport proves unreliable in the M0 spike, is Google Nearby Connections (`P2P_CLUSTER`).
 - **Protocol logic must match the web app exactly.** Two options:
   - (a) **Recommended:** bundle `packages/core` (quorum, registry as-of check) and the Arkiv write path from `packages/chain` into one JS file with esbuild, **in the app repo**, reading this repo as a dependency or a copied snapshot. Run it in `androidx.javascriptengine` (or a headless WebView). Then online and offline quorum results are identical by construction, and the official Arkiv TS SDK (`@arkiv-network/sdk` 1.0.1) does the writes.
   - (b) Port to Kotlin and keep the **golden test vectors** (§9) passing.
@@ -126,7 +131,7 @@ All mesh messages are JSON, signed by the phone key with EIP-191 over the canoni
 ## 7. Milestones and definition of done
 | # | Milestone | Done when |
 |---|---|---|
-| M0 | Repo + LOG/STATE + spike | Two phones exchange a "hello" over Nearby Connections; measured range/latency logged |
+| M0 | Repo from the SafeMesh fork (GPL-3.0, provenance in README) + LOG/STATE + spike | Two phones exchange a "hello" over SafeMesh's mesh layer; a 3-phone relay works; measured range/latency logged |
 | M1 | Join | Scan a dashboard invite QR → key in Keystore → drip → `/api/ens-register` → name resolves on Sepolia |
 | M2 | Roster snapshot | Offline (airplane mode + Bluetooth on), the app shows the site's live phones from cache |
 | M3 | Signed gossip | 3 phones, A→C via B (relay); bad signature / unregistered sender rejected; dedupe and rate limit verified |
