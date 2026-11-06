@@ -129,3 +129,13 @@ Test phones are named A/B/C here; raw device logs stay local (SafeMesh AGENTS.md
 - Join now requires `mesh-` names (backend R1: other names take a sensing slot); texts updated for multi-use invites.
 - The emulators ran a debug build from before the `usesLeft` display; the server does return `usesLeft`.
 - Tests: 708 pass (8 skipped: 3 upstream + 5 live-only).
+
+## 2026-11-06 18:20 IST — public repo + release 0.6.0
+- Dhruv OK'd a public repo: https://github.com/Mulaydm10/tremor-witness-mesh (GPL-3.0, SafeMesh history kept).
+- Before pushing, our 5 unpublished commits were rewritten to the GitHub no-reply identity (they carried personal
+  emails); this repo's git config now uses the no-reply address. Branch `nearby-spike` is NOT pushed.
+- Version 0.6.0 (versionCode 41, so it installs over the earlier test APKs; SafeMesh's was 2.1.0/40).
+- Release v0.6.0: `twmesh-0.6.0-arm64.apk` (20 MB), `twmesh-0.6.0-universal.apk` (52 MB), `SHA256SUMS.txt`.
+  Public download checked anonymously: HTTP 200, checksum matches.
+  Demo link: https://github.com/Mulaydm10/tremor-witness-mesh/releases/latest/download/twmesh-0.6.0-arm64.apk
+- The temporary tailnet APK server is stopped.

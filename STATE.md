@@ -15,7 +15,7 @@
 ## Demo plan constraints (Dhruv, 2026-11-06)
 Demo phones: APK by public link, not on the tailnet, join + ENS-register on their own.
 - R5 (multi-use v2 invite) + R1 (mesh- labels, 15/site) are LIVE (backend 50b5400). One v2 QR → every demo phone joins.
-- Needs a **public APK link** (tailnet link won't work for them) — ask Dhruv (e.g. GitHub release).
+- Public APK: GitHub release v0.6.0 (latest/download link in README and LOG). New builds: bump versionCode, new release.
 
 ## Next
 1. Dhruv's phone joins meshtest with the same v2 invite (2 uses left, valid until 00:00 IST 7 Nov).
