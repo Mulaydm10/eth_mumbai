@@ -60,13 +60,14 @@ object MeshState {
         app = ctx.applicationContext
         loadFromDisk()
         recompute()
+        if (id().site != null) ShakeSensor.start(app)
         scope.launch { while (isActive) { delay(60_000); regossip(); Uploader.uploadPending(app) } }
     }
 
     fun now() = System.currentTimeMillis() + clockOffsetMs
 
     /** After joining (or switching site): reload that site's log and recompute. */
-    @Synchronized fun reset() { accepted.clear(); heardAt.clear(); rejected.clear(); loadFromDisk(); recompute() }
+    @Synchronized fun reset() { accepted.clear(); heardAt.clear(); rejected.clear(); loadFromDisk(); recompute(); if (id().site != null) ShakeSensor.start(app) }
 
     /** Cristian's algorithm like the web app: best of 8 /api/time samples by lowest RTT. Blocking; needs internet. */
     fun syncClock(api: dev.dhruv.twmesh.chain.TwApi = dev.dhruv.twmesh.chain.TwApi()): Long? = runCatching {

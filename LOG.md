@@ -139,3 +139,23 @@ Test phones are named A/B/C here; raw device logs stay local (SafeMesh AGENTS.md
   Public download checked anonymously: HTTP 200, checksum matches.
   Demo link: https://github.com/Mulaydm10/tremor-witness-mesh/releases/latest/download/twmesh-0.6.0-arm64.apk
 - The temporary tailnet APK server is stopped.
+
+## 2026-11-06 18:20–18:35 IST — M4: real strong-shaking detection (0.7.0)
+- **DSP port** (`core/Dsp.kt`): Biquad, VelocityTracker (PPV), STA/LTA, dominant frequency, low-frequency share,
+  delivered rate, all ported from `packages/core/src/dsp.ts`. Golden vectors (`tools/golden/dsp-vectors.mjs`, run with
+  the TW repo's own `tsx`; Node 26 strip-only mode can't load `dsp.ts`): 5 synthetic signals at 50–400 Hz, per-sample
+  acceleration / velocity / ratio; worst relative difference **3·10⁻¹⁴**.
+- **Threshold (EXP-0001):** 96.4 mm/s = PGV at MMI VI from the USGS ShakeMap GMICE (Worden et al. 2012; coefficients
+  read from ShakeMap's `wgrw12.py`). Starting value; phone validation TODO(measure). Plan: replay published
+  accelerograms + false-positive soak at construction sites.
+- **Finding:** the web pipeline's "> 50 % energy below 3 Hz = handling" rule would discard earthquakes (synthetic 2–6 Hz
+  burst: low-frequency share 0.47–0.70). The disaster tier keeps tilt > 15° and acc > 30 m/s² and drops that rule;
+  the quorum handles sway.
+- **Detector** (`core/Detector.kt`): web event state machine + disaster tier. Unit tests: strong burst → 234 mm/s,
+  structural, disaster; weak burst → event, not disaster; tilting phone → handling; still phone → nothing.
+- **ShakeSensor**: Android linear acceleration (requested 100 Hz, delivered rate measured) + gravity for tilt, starts
+  once the phone has joined. Events ≥ 96.4 mm/s become signed `dtrigger`s (label structural/handling) that the
+  quorum and the Arkiv uploader use (uploaded as kind "auto"). Home screen: sensor rate, live mm/s, last event.
+  Emulator: runs at 20 Hz; a ±25 m/s² square wave from the sensor console → 1275 mm/s, tilt 27° → handling (correct
+  for an artificial signal).
+- Version 0.7.0 (code 42). Tests: 714 pass (8 skipped: 3 upstream + 5 live-only).

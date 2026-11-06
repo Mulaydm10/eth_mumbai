@@ -65,6 +65,7 @@ fun TwmHomeScreen(peerCount: Int, onOpenChat: () -> Unit) {
     var refreshNote by remember { mutableStateOf<String?>(null) }
     val v by MeshState.view.collectAsState()
     val up by Uploader.status.collectAsState()
+    val shake by ShakeSensor.status.collectAsState()
 
     fun refreshRoster() {
         val site = PhoneIdentity.get(ctx).site ?: return
@@ -79,7 +80,7 @@ fun TwmHomeScreen(peerCount: Int, onOpenChat: () -> Unit) {
     DisposableEffect(owner) {
         val obs = LifecycleEventObserver { _, e ->
             if (e == Lifecycle.Event.ON_RESUME) {
-                tick++; MeshState.recompute()
+                tick++; MeshState.recompute(); scope.launch { Uploader.uploadPending(ctx) }
                 val age = MeshState.view.value.rosterAgeMs
                 if (MeshState.view.value.joined && (age == null || age > 10 * 60_000)) refreshRoster()
             }
@@ -152,6 +153,15 @@ fun TwmHomeScreen(peerCount: Int, onOpenChat: () -> Unit) {
             Text("Alert", fontSize = 22.sp, fontWeight = FontWeight.Bold, color = c.onBackground)
             Button(onClick = { confirmEmergency = true }, colors = ButtonDefaults.buttonColors(containerColor = Red),
                 modifier = Modifier.fillMaxWidth().heightIn(min = 64.dp)) { Text("Emergency: alert everyone", fontSize = 20.sp, color = Color.White) }
+            Text(
+                when {
+                    shake.unavailable -> "This phone has no motion sensor for shaking detection."
+                    !shake.running -> "Shaking sensor: off"
+                    else -> "Shaking sensor: on (%.0f Hz). Now %.1f mm/s. Alerts at %.0f mm/s or more (strong shaking, intensity VI).".format(shake.rateHz, shake.nowMmS, dev.dhruv.twmesh.core.Detector.DISASTER_PPV_MMS)
+                }, fontSize = 15.sp, color = c.onBackground)
+            shake.lastEvent?.let { e -> Text("Last shake felt: %.1f mm/s at %s (%s)".format(e.ppvMmS, time(shake.lastEventWallMs),
+                if (e.label == "handling") "phone moved, ignored" else if (e.disaster) "STRONG, sent to the mesh" else "too weak for an alert"),
+                fontSize = 15.sp, color = c.onBackground) }
             OutlinedButton(onClick = { confirmTest = true }, modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)) {
                 Text("Test: send a shaking signal", fontSize = 18.sp) }
             Text("Confirmed needs ${v.quorumK} phones within ${v.quorumWindowMs / 1000.0} s (${v.paramsSource}).", fontSize = 15.sp, color = c.onBackground)

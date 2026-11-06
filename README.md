@@ -4,11 +4,11 @@ Android companion app for **Tremor Witness** (ETHGlobal Mumbai 2026). In disaste
 directly over Bluetooth / Wi-Fi with no internet, agree offline that a disaster happened (the same quorum rule as the
 Tremor Witness dashboard), and residents check in, so rescuers see who has **not** been heard from. No GPS tracking.
 
-> **Status: early / experimental (demo build 0.6.0).** Not a safety tool yet.
+> **Status: early / experimental (demo build 0.7.0).** Not a safety tool yet.
 
 ## Install (demo)
 
-Download `twmesh-0.6.0-arm64.apk` (most phones) or `twmesh-0.6.0-universal.apk` from the
+Download `twmesh-0.7.0-arm64.apk` (most phones) or `twmesh-0.7.0-universal.apk` from the
 [latest release](https://github.com/Mulaydm10/tremor-witness-mesh/releases/latest), allow installing from your browser,
 and open **TW Mesh**. Android 8+ with Bluetooth LE; Android 12+ asks for no location at all.
 
