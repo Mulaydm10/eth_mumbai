@@ -1,0 +1,569 @@
+0:09 Good morning, good afternoon, good evening everybody. Just going to give this another minute or two. Just need a
+0:17 few final setup steps and remove a bunch of the note takingaking eyes that will
+0:23 be uh spamming our channel. Otherwise, this is going to get super annoying.
+0:29 Just bear with me for a second. Just make sure that nobody sneaks in here.
+0:36 Perfect. Almost ready to go.
+0:45 There we go. Let's try this again. Good morning, good afternoon, good evening everybody. My name is Pascal. I'm Hector
+0:51 Success with Eve Global and I would like to welcome you to this workshop. What to expect at Eve Global Mumbai. This is our
+0:59 final in-person hackathon of the year and it's going to be one of the larger
+1:04 ones. So, we are very very excited about this and this workshop is primarily to
+1:10 get you up and ready for the event. We're going to go over a bunch of things like the overall hacker dashboard, the
+1:16 venue about what Pragma is, when this is happening, the schedule, the prizes, how
+1:22 you can set up, join a team, how the whole team work in uh general works, and
+1:28 uh how you can actually submit your project. I'm going to walk you through this entire process. Just as a note,
+1:33 this workshop is getting recorded and live streamed to YouTube, so you can always rewatch it if you have any
+1:39 questions. In addition to that, if there's anything that's unclear, if you have any questions, please um just post them into
+1:47 the chat and I will go over them like one by one throughout the workshop or at the end. And at the end of the workshop,
+1:54 so this is roughly going to be like 50 to 60 minutes going to have like 5 to 10 minutes just to go over a bunch of
+2:00 questions um that you might be having. Fantastic.
+2:05 Okay, sweet. So uh everybody here in this call is fully confirmed otherwise
+2:11 you would not be joining. So even if this is your first time, your second time, your 10th time at an E global hackathon, welcome. We're happy to have
+2:18 you. We're really excited. This is the uh main page that you have all seen. It lists a bit of information about Eve
+2:24 Global, about what we've done in the past, what we're doing, about the specific tracks, about the amazing
+2:30 prizes and partners that we're having, about the rest of the event week. As you all know, this is happening uh at the
+2:36 end of and partially during Defcon. A note, we're not the Ethereum Foundation
+2:41 and we do not run DevCon. So, this is completely separate. We just run the hackathon and the Pragma. So, on the
+2:48 schedule, you can um pretty much see everything that's happening before and
+2:53 during the event. So, we already had a team formation session uh two days ago. We have another one tomorrow and we're
+3:01 going to have one in person as well on the Thursday of the hackathon.
+3:07 So the overall schedule if you hacked with us before we usually run our events Friday to Sunday due to uh the festivals
+3:15 on the weekend. We moved this for one day. So we have the Thursday, Friday and Saturday instead. So everything that's
+3:21 usually Friday is Thursday and everything that we usually do on the Sunday is on the Saturday. Please keep
+3:27 this in mind especially when it comes to the submissions. So we open up the event
+3:33 registration at 100 p.m. on the Thursday. Really, really important. You
+3:40 cannot enter the space before 100 p.m. So even if you're traveling from
+3:46 somewhere else and arrive earlier, we cannot let you in before 1:00 p.m. So the registration/check-in
+3:52 happens starting 1:00 p.m. and we open it up until 1000 p.m. So you have to
+3:58 check in between 1:00 p.m. and 1000 p.m. on the Thursday. Starting 3:30, we have
+4:04 a bunch of workshops happening with our amazing partners in several workshop rooms. You can check all that stuff out
+4:10 here. Then we have dinner as like the first m meal that we have at the weekend. Just as a note, if you never
+4:16 attended our events before, uh we have 247 snacks and beverages. And we have several major meals um like brunch,
+4:23 dinner, lunch, and breakfast depending on the day. You can check all that out on the schedule so you always see when
+4:30 what is happening. Then the opening ceremony starts at 8:00 p.m. and at 900
+4:37 p.m. is where hacking starts. Really important hackathon or the actual hacking time is 36 hours. So from 900
+4:43 p.m. on the Thursday to 900 a.m. on the Saturday. So you have 36 hours to build
+4:50 your project. You should not start earlier. like all the work for the hackathon, regardless if it's um
+4:56 starting from scratch or continuity, I'll explain something about that later as well, has to be done during those
+5:02 times. So, between 9:00 p.m. and 900 a.m., then we have another one of those
+5:07 lovely team formation sessions in person. So, if you're hacking and you want to get more people into your team,
+5:13 or you're currently solo and you want to join with other people, you can meet me at workshop room number one at 9:30 p.m.
+5:20 and we can help you form teams and brainstorm some ideas to get you going because personally, I think hacking is
+5:26 more fun together with people. You're in a room with thousands of some of the smartest people in the space and it's
+5:32 really great to hack with new people to get to know them to build something fantastic, much more fun than just
+5:38 hacking solo. you'll learn much much more. Trust me on this. Then registration, as I mentioned, closes at
+5:44 1000 p.m. Important registration can be misleading. So, everybody that's going
+5:49 to come to the event has to be confirmed before. We cannot register any new
+5:54 people like on that day. So, you would have to come in with your QR code on your ticket and a piece of ID that you
+6:02 can bring to the event that we can verify this is you. You get your badge and wristband that you wear with you the entirety of the duration of the
+6:08 hackathon to get uh access to the event. Sweet. And then we have a midnight snack
+6:14 or late night snack at uh 11:59 or pretty much at midnight. On Friday,
+6:20 there's going to be brunch, dinner, and a late night snack. And again, we have overall snacks and beverages 24/7, so
+6:27 you always have something to snack on. Really, really important. You can stay at the venue the entire time, but you
+6:34 can also leave and re-enter as long as you have your wristband and your badge with you. And then on Saturday, we have
+6:40 breakfast at 8:00 a.m. And the project submissions are due at 9:00 a.m. Really, really important. The only requirement
+6:47 for you to receive your stake back is to submit a project. It doesn't matter which state that project is in. It has
+6:54 to be submitted by 9:00 a.m. There's no exception. So, make sure you at least submit your project once by 9:00 a.m.
+7:01 I'm going to show you how all that works. And then judging starts around 9:30, lasts around 3 hours for partner
+7:08 prizes as well for the main finalist judging. Going to talk about that in a bit as well. We have lunch at 12:30. We
+7:14 try to find uh to notify all the potential finalists around 3:15 closing ceremonies and then the
+7:21 uh closing like after the closing ceremony ends the hackathon officially ends and everybody gets escorted out in
+7:27 like a lovely and nice way. Um a list of all of our partners. We have 12 and this
+7:34 is the location. We're also going to be having a venue map on this page in the next couple of days as well. So, this is
+7:41 going to be at the Geo World Convention Center, which is the same location as Defcon. So, if you're attending Defcon,
+7:47 you're already already know where to go. We're just in a separate uh hall, but it's the same venue. It's the same
+7:53 building. We have a list of FAQs that I would highly recommend everybody to check out. Sweet. Now, I would go to the
+8:03 Well, not the one I wanted to show, but either way, going to show this one later. So um the main thing or like your main
+8:12 place of navigation, your main hub, your main home for the uh duration of the hackathon is going to be your hacker
+8:18 dashboard. The hacker dashboard has everything that you need to know and everything that you need for your
+8:23 project submission. So it you can select which mode you're hacking on. One would
+8:29 be from scratch, meaning you come in with absolutely nothing at the hackathon. You start at 900 p.m. on the
+8:36 Thursday and you submit your project by 9:00 a.m. and the stuff that's being built at the event completely fresh gets
+8:42 submitted as new project. Then we also have the continuity which we started doing this year. This means if you
+8:48 already built a project at a previous hackathon or it's your startup that you're launching and you want to add a
+8:54 new feature to the event uh to this project, you can do this. like the only requirement is the feature has to be
+9:01 completely open- source and only built during the hackathon and you have uh to completely show what was built at the
+9:08 hackathon and what was built before. So for example, let's say you build a project at Eve online or even you build
+9:14 a project in Tokyo a couple of weeks ago. you want to continue, you want to add a new feature because you want to integrate let's say world, you want to
+9:20 integrate unis swap, you can do that at the event and we have separate price listed for from scratch or continuity
+9:27 which I'm going to show you in a bit as well. Really important about this, you can only qualify for the prizes within
+9:33 your track specifically. And as for finalists, there's going to be finalists in the categories of continuity as well
+9:39 as building from scratch. Okay, so the dashboard has also a bunch of packs which I'm going to explain
+9:45 later. Um, we can create our project which we're going to be doing in a couple of minutes. You can connect your
+9:50 Discord account directly here which I would highly recommend. You will automatically get added to our Discord
+9:56 server and uh if you are fully confirmed and you sync your account on Discord and if global, you automatically get access
+10:03 to all of the event channels which look like this. So you have a Mumbai chat,
+10:09 you have all the partner channels which is great because you have an overview of all the prizes and you can chat with the dev rails there directly as well. I
+10:16 always recommend just to reach out to them and talk to them in person but sometimes people are there. Sometimes
+10:22 stuff can be handled async. So you can just drop your questions in here. One thing I always recommend is do not ask
+10:28 to ask questions. Just ask the question. Don't try to hide certain things unless
+10:34 it has to be like 100% confidential. Okay, sure. But most cases, it's just a question that you have. Maybe other
+10:40 people have that question as well. Just ask it openly so other people can jump in and help you out. Um, we're going to
+10:47 have a new networking app at the event. So, you can scan everybody's badges and
+10:52 get connected with them. It's double optin. So, you can't just like randomly scan people. They also have to accept.
+10:58 Then you can uh share your socials, share connections. You can connect with dev rails, you connect with mentors
+11:03 directly and you can have like a list of all the people that you interacted with at the event. If you require a visa
+11:09 letter, you can request this here. This is just a form that will open up which I can show you. Um you enter your full
+11:15 name, your date of birth and your passport and this would generate a visa invitation letter if you need one
+11:20 entering um India. Sweet. Um overall you
+11:26 have an overview of what to do. So what to do next? The thing that we're going to be doing now is creating a project.
+11:31 This is something that you can do already before the hackathon. As long as you don't actually start building the project, this is completely fine. So,
+11:38 this is what I'm going to be doing now and what everybody has to do in general. Really important. If you're working at a
+11:44 team, only one person has to do this, but everybody can uh update that form as
+11:50 well. So, few things to put in here. For the sake of time, I'm going to copy paste a
+11:56 bunch of stuff. Please do not do this. Actually take time and think about something useful here um for the project
+12:02 as well. I'm going to select which um category this belongs to. I'm say this is data and analytics and for um emojis
+12:09 that I want to select. Let's assume yeah tooth works fantastic for my project. So
+12:16 here's an acknowledgement and overall. So, please read through those things because been doing this for like over
+12:23 two years now and I get the exact same questions and complaints every single time because people do not properly
+12:29 read. So, make sure to read all the requirements. So, you have to start your submission early. Do not wait until the
+12:34 last second because you think you can push this entire thing through in like five minutes. This is not going to be
+12:41 the case. Um, if you want to opt in for the live judging for the finalist, you're going to have to have a video.
+12:47 This is not optional. So for the final track, you have to have a video. So make sure it's recorded properly and it
+12:53 fulfills all those requirements. So videos have to be between 2 and 4 minutes long, not shorter than 2
+12:59 minutes, not longer than 4 minutes. Has to be 720p at least. This also means the
+13:05 resolution, not just the quality. And it has to include audio of you speaking and
+13:10 not music. Really, really important. And as well, commit frequently to a public repository. meaning do not just commit
+13:17 uh submit the project with one giant commit. We want to see how this project is being being built out throughout the
+13:23 hackathon. After we accept all this, we create our project. We have a few extra pieces of
+13:30 information here. Since we started from from scratch, the project should start from scratch. Use version control, open
+13:37 source, and a video. Again, if we only opt in for top 10, we need it. We
+13:42 generally recommend for you to record a video because it's nice as a fallback and for people to watch it to understand
+13:48 your project a little bit better. But yeah, just make sure to read all those things properly. It's not that much
+13:54 text, so everybody should be able to understand that or just feed it to your agent. Okay, cool. Um, as we said, start
+14:01 submitting early as soon as we open it up usually on the second day in the morning. We cannot submit this yet because project submissions aren't open.
+14:08 So for demonstration link really really important the demonstration link should be a link to your actual project. So
+14:16 your project being deployed somewhere. This should not be a YouTube video. This should not be the GitHub repository.
+14:22 This should be the live demo. So if you put something doesn't have to be on a domain can be on burcell railway render
+14:28 whatever but the domain should be here or like the URL should be here so people can look at it and check it out. And
+14:34 really important, if you want to qualify for the finalist teams, it has to have a live deployment.
+14:40 Then we enter a short description. Again, I'm just copy pasting a bunch of
+14:46 stuff, but this is all going to be showing on the showcase. So, make sure it actually describes on what your project does. A longer description, and
+14:53 also worth noting, this is what your project is going to be judged by by the partners. So, this is what they're going to be seeing on their end. So, make sure
+14:59 to fill this out like how it's made. the description be as detailed as possible. I would recommend not to just hand this
+15:06 over to AI because you're going to get a super long text with not a lot of information in there and people are not
+15:12 going to be reading it. So take your time, write this out properly. This is something you can do way ahead. You it
+15:18 doesn't have to be like in the last couple of minutes of the hackathon. Um if you attended our events before um
+15:25 and have complained about this not autosaving, this now autosaves. So which is kind of nice. So even if you
+15:31 accidentally leave the site, something crashes, you have all your information here. Then we will have to connect a uh
+15:37 GitHub account to um to Eve Global or like a uh to connect our repositories.
+15:45 Just going to do this in the background real quick here. Just give me a sec.
+15:51 This is important so we can verify that you actually own the repository. So this has to be uh done or can be done by only
+15:57 one person in the team. um the person has to have permission of that repository or has to be in the
+16:04 organization that owns that repository. So I have my test account here. Now I
+16:10 can select up to five repositories to add. Why up to five? So you can put
+16:15 everything in a monor repo. But if you have it like split up, let's say you have different front end contracts and
+16:21 back end or whatever you want to use, you can select all that stuff here. So you can technically add multiple
+16:28 repositories. It doesn't necessarily have to be just one. Just going to add a bunch to show you how this looks like.
+16:33 And then you can select which one is which, but one has to be the primary one. You can always remove those or
+16:41 switch in between others as well. So again, doesn't have to be just one, it can be one. Perfect. Then the uh other
+16:49 thing that we need is um images. We need a logo and everything needs a cover
+16:56 image. Those are the requirements or let's say like the ideal ratio so it looks nice. Um the reason why we're
+17:03 doing this I'm going to show you here is because every single project that is getting submitted at an E global
+17:08 hackathon is going to be showing in the showcase page. This is the cover image.
+17:14 This is the name. This is the show description and the um hackathon where everything is built. And if you would
+17:21 just go into one of those projects, you see the video, you see the screenshots, and you see the logo. So, this is why
+17:27 you fill all of this stuff out. Let's see.
+17:40 So, I'm just going to be uploading a bunch of images here,
+17:46 bunch of screenshots. Again, these are just placeholder images. You
+17:52 can keep them as placeholders, but just make sure that when you're actually submitting, you're submitting them
+17:57 properly. Fantastic. Hit continue. It's going to see if all that stuff works. It's really important. We're going to
+18:03 have to have at least three screenshots. It can be up to six, have to be at least four. Uh then we have to fill out the
+18:10 text tag. So, what we used to build out the project. So, um which developer tools did we use? Let's just see. uh say
+18:17 we used 1 in we used alchemy um which blockchain we used um let's say arbitrum
+18:22 arc zerog and base programming languages obviously using assembly because the
+18:28 best let's say we're using fast API as a web framework um database
+18:35 we use uh couch and uh design let's say we built everything on Figma if it's not
+18:42 there it doesn't have to be in here this is just for overall to see what people are using what people are building, but
+18:48 just make sure to fill this out. If anything is missing, you can let us know. We can add it afterwards. Um, and
+18:53 if there's anything that's not on the list and you want to keep added, add this here. Cool. Something um the if applicable I
+19:01 think at this point is kind of useless because everybody uses AI tools, which is completely fine. You can use AI kind
+19:09 of say it's encouraged to build the tools. I would highly recommend not to use AI for ideiation because the um
+19:15 results are going to be really really bad. Um you're not going to have a good time. You're not going to get any bounties from the judges and you're
+19:21 probably not going to get finalists because all the AI generated ideas that we've seen in the past were really
+19:27 really really bad and it's the same over and over again for coding assistance for development. Sure, you can use it, but
+19:33 just make sure to um actually disclose on what you built this for. This is not going to be um you're not going to get
+19:40 penalized for being honest. So if you say I built this entire thing out using AI, sure, but just describe on how you
+19:46 actually used it. That's all we're asking. Then comes the fun part. So as you as
+19:53 you saw earlier, we have uh over $150,000 in prizes available and we have
+19:59 two modes. I'm going to spend a little bit more time on this to explain those two. Again, if you have any questions,
+20:05 feel free to just put them in the chat. So you can select here which ones you're going for. So building a completely
+20:11 fresh project that will be building from scratch. If it's continuity, you have something existing, something that was
+20:17 built before and you're adding a new feature, not something that you started like a day before the hackathon, but an
+20:22 actual existing project that you're building closed or open source and you build a new feature on top of that open
+20:28 source. You select continuity important. All the team members have to be on the same track.
+20:34 So for these submission types, we have two as well. One would be top 10 finalists as well as the partner prizes
+20:40 and one would be partner prizes only. If you opt in for the top 10, meaning you would go to a separate round of judging
+20:47 to be eligible for the finalist prizes to be eligible to present your project live on stage at the closing ceremony
+20:53 and be crowned amongst the top eight to 10 teams depending on the quality of the projects. A video and a live deployment
+21:00 are required. That means the video has to be between two and four minutes. It
+21:05 has to be 720p at least and audio but without music. This has to be done.
+21:11 Otherwise, your submission will fail. You'll not be able to qualify for finalist judging. So, make sure that you
+21:18 have a live deployment, not just a video. A live deployment plus the video. And the video has to be uploaded to our
+21:25 site. I'm going to show you how this looks like as well. It cannot be like a YouTube link or something similar. It
+21:31 has to be uploaded to our site. And this can take a little bit. So, please do not
+21:36 wait until the end. And also, recording a 4-minute video takes longer than four minutes. And also, you're more than
+21:42 welcome to edit and cut your video. It does not have to be a one shot. So, if you have like waiting times, like
+21:48 something that has to be cut out, um, you can just do that. That's not a problem. Okay. Um, which partner prizes
+21:55 are you applying for? As you can see here, you apply to a maximum of three partners. Not three bounties, but three
+22:01 partners. Meaning that depending on what you build, it is possible that you can qualify for multiple bounties within one
+22:08 partner, but you can only apply for a maximum of three. So let's say you're building a project and you build
+22:15 something that's like on a bounty for the Ethereum Foundation, for ENS, and for chain link. Those are the three that
+22:21 you can use. Anything else will cause an error. So those are three are the maximum that you could use. You can
+22:28 technically implement every single thing, but you can only qualify for bounties for up to three. We implemented
+22:34 this rule because most of the times when people were just adding a bunch of integrations, the uh the projects got
+22:41 way way worse, they got way way less money and nobody was happy. So, make sure to properly think about what you
+22:48 implement and use fewer integrations, but make those integrations count and make them really really well and execute
+22:54 them super well within the project. So there's a maximum of three that you can select. You can go with one completely
+23:00 fine. Important here, write a few sentences, minimum of 20 uh like 20
+23:06 characters on like how you integrated them or like um why you should be eligible for that prize. So um let's say
+23:13 for Ethereum Foundation and their bounty, you just read what they want and you filled all that stuff out. Then here
+23:19 you would for example link to the uh line of code or to the block of code where this would be sent in. Here you
+23:27 can actually rate how the integration was for you. So if it was like really hard or really easy or if you have any
+23:33 feedback, please provide that feedback with them because this is going to help bring the ecosystem further because
+23:39 every single thing that you can be reporting to the teams saying like hey for example let's say on arc we found a
+23:45 bug we found an issue this was really terrible to integrate doc the documentation was bad just help them
+23:51 improve it. It makes it better and the chances of you getting rewarded for fixing their stuff or helping them
+23:56 improve it is much much higher. Fantastic. And then here, yeah, provide feedback as much as possible. Be
+24:03 transparent. Be honest about it, but also uh with every feedback, uh yes, uh
+24:10 be fair. So, don't tell anybody like don't say, "Oh, your stuff sucks. You're
+24:16 You're This would not be great." Be constructive, be honest, and uh you're going to be rewarded for that.
+24:22 And again, if you have multiple um technologies that you integrated, but you're just not going to be qualifying
+24:28 for, you can still mention them directly here as well. But really, really important, the only ones that you can
+24:34 qualify for are the ones you select here and you can select a maximum of three. So, really important, you have to check
+24:40 those boxes and you fill out that information. Otherwise, you won't be able to qualify for those prizes.
+24:48 Fantastic. Just a quick thing. You write some on workshop. Okay, perfect. Cool.
+24:56 Then we have the video I was talking about so much. Again, I'm going to keep repeating this because people will still
+25:02 completely ignore this. Between 2 and 4 minutes, 720p audio without music. So, um, let's see. I should have a video
+25:11 here that would meet those requirements. I do. Perfect.
+25:17 So, uh, you have to upload the video again directly to our project. If you're getting annoyed by this, um, sorry, not
+25:23 sorry, but I'm just going to have to repeat it because again, people will ignore this. Um, video upload can take a
+25:29 while, specifically um, if hundreds of people try to upload their video at the same time. So, make sure to plan enough
+25:36 time for this. Um, there's going to be a few checks running to see if the video matches all the requirements. So, if
+25:42 it's between 2 and 4 minutes, if the minimum resolution is met, and if the video has audio but no music, and once
+25:49 the check passes, you'll see a check mark here, um, we can switch to, uh,
+25:54 there you go. We're done. We see the video displays. Perfect. We can continue and save.
+26:01 Then we can, uh, jump to the next one. This is just a quick uh, button asking us if we're interested in like any
+26:07 grants or accelerators or incubator program uh, programs for the future. And then we would go ahead and submit. This
+26:14 again will not work because submission is not open. The really important thing here is and I really really encourage
+26:19 that please read the information and read the notifications. So for example for this one it says not
+26:27 eligible for any prizes because I'm not checked in which makes sense because the
+26:32 event has not started. I have not checked in. Also, the system is running some checks on the repositories to see
+26:39 if it matches the requirements. In 90% of the times, you will be able to submit the project. This is just a warning. It
+26:47 just provides you some information. So, make sure to actually proper read this out. And it's also going to be showing
+26:52 everybody in your team. This is the submission process. It is pretty straightforward, but it can take a
+26:59 little bit of time, especially if it's the first time you're filling this out. But a lot of the stuff you can do relatively early. You don't have to do
+27:06 everything all at once. But for example, um like filling out the project details
+27:11 you can do relatively early. Selecting the prizes you can do early as well. And none of this should actually uh be
+27:17 blocking. If something is blocking, you're going to see the information popped up in the top there. Cool. That
+27:23 was pretty much everything about the uh overall submission process. And again, hacking starts at 9:00 p.m., ends at
+27:30 9:00 a.m. You have to submit at least once. What I mean by submitting at least once is you can edit your project after
+27:37 the submission until the submission deadline. But in order to receive a stake back, you have to submit your
+27:42 project at least once. Cool. Just going to quickly head over to
+27:49 team. So, um, everybody by default starts out hacking solo, but, um, you can hack up
+27:56 with a total of five people in your team. As I said before, I highly encourage you to hack with other people.
+28:02 It's way more fun. You learn a lot, and at the event, usually everybody is super, super friendly, and you can
+28:07 assume that half the people are smarter than you, which is great. So, you can learn a bunch and build some really,
+28:13 really cool stuff. So, um, you can invite people to your team just by name and email. really important that for the
+28:20 team invites they have to be accepted at the event. You cannot just invite random people and they can join you. Every
+28:25 single person in your team has to be fully confirmed and everybody has to be checked in at the event. This is not a
+28:31 remote hackathon means everybody that's confirmed has to show up at the event. If you're not showing up, you will also
+28:37 lose your stake. Um you have a team invite link that you can also send over. And if you are
+28:43 uncertain about your team or you want to hack with somebody else, you can always leave a team. And this is a invi a team
+28:49 invite code that you can paste in here. So if somebody like your friend or let's say um somebody from my team says like
+28:55 hey I would love for you to join send me the code over. I would input the code over here and I could join the team
+29:02 directly. And as you can see on the side because I already filled out or like started creating my project. It checks
+29:08 this position uh this thing off. Next would be to submit and then present to judges. So again pretty straightforward.
+29:16 Really really cool thing about all of this pretty much about the entire workshop. This entire workshop is also
+29:22 available in text form in the info pages. So the info pages has a lovely
+29:28 guide on how to overall get started. This has a bunch of information even before the hackathon but also during the
+29:34 hackathon. But a thing that I would highly encourage everybody to do is go for the judging rules and submission
+29:41 because it provides you with everything that you need. This one is the project submission deadline. So, as I said
+29:48 before, 900 a.m. on the Saturday, November 7th. Submission happening on
+29:53 the dashboard. Demo video between 2 and 4 minutes long. Um, size-wise, I would
+29:59 say usually a video between 50 and 150 megabytes is fine. If you upload a 1
+30:04 GBTE video, it's going to take a long time to actually upload that video and then to check. So, just keep that in
+30:10 mind. Um, but like a screen recording, even if it's four minutes with a bunch
+30:16 of audio on top of it, is usually not that large. Um, yeah, partner prizes
+30:21 says this as well. Three partner prizes, all the important rules on the start from scratch versus continuity, usage of
+30:27 AI tooling, uh, how you submit your projects, the difference between finalist and partner. So again, everything is directly here. One thing
+30:35 that I will note because I haven't talked about this yet. So I talked about the two forms of uh judging. One would
+30:42 being the partner judging only. The other one would being finalist plus partner judging. So for the partner
+30:48 judging technically you do not have to demo in front of everybody. You can submit your project and you would be
+30:54 done. But we highly encourage you to walk up to the partners. You can usually line up there because a lot of people
+31:00 want to present their project um just to demo your project and get feedback if you opt in for the top 10. So getting
+31:07 like the extra prizes potentially and being an E global finalist or being in that judging role. You will uh be lined
+31:14 up separately. This happens on Sunday as well. You will be or like your group will be put into one of the judging
+31:20 rooms that we're going to be having and you have seven minutes in total. Four minutes of that will be the demo and 3
+31:25 minutes will be a Q&A with the judges. Really important. Those are not Eve Global judges. Nobody from the Eve
+31:31 Global team and it's not going to be anybody from the uh partner companies. Those are independent people, usually
+31:37 like se-le or like really high experienced people in the Ethereum ecosystem that are going to be judging.
+31:43 They're going to be scoring you based on the technicality of the project, the originality, the practicality, the usability, and the wow factor. So that's
+31:50 like the rubric for the judging. And once that is all done, you get AI demo sticker. So this would be like the two
+31:57 ways of judging. But again, if you opt in for finalist, the partner judging is automatically included. And some
+32:04 questions you can prepare for is like what inspired your project like why did you actually build this? What tools did
+32:09 you use? What challenges did you involved? And what problem is it actually solving? One important thing about the judging or about overall your
+32:16 project. Um don't spend too much time on slides. Um don't make it overly flashy
+32:23 like we really want to focus on the actual project, the actual product that you build. So, if your demo is three
+32:29 minutes of slide and one minute of demo, there's really low chance that you're going to get further because we want to
+32:35 actually see what you built at the event and not why this is the greatest project ever. So, you can introduce your team
+32:42 completely fine, but like showcase what you actually built, show the demo. If it's live, if people can interact with
+32:47 it, that is great. If you build like a tool and it's online, you can say like, "Hey, you can just check out this link. You can interact with it directly."
+32:54 Perfect. Cool. again, information about the partner judging and overall tips for a
+32:59 good demo video. I'm not going to go over this again because it's yeah, I I
+33:05 talked about the demo video already way way too much, but I can highly recommend just check out the judging rules and over all the info pages. Gives you some
+33:11 helpful resources as well and a way to get started at the event, too.
+33:17 So, then we have a list of all of our mentors. Those are ecosystem mentors that have been in the space for quite a
+33:24 while. Some have mentored us before, some for the first time, but have experience in like building product.
+33:29 They're super super technical. There's a mix of everything. You have their skills listed here. Um, they're going to be
+33:35 walking around the venue with vests that say mentor on the back. We're always
+33:41 going to have a few mentors available 24/7, so you can always talk with them. You can get feedback on your project.
+33:47 They're going to help you get unstuck. And there's also ways that you can connect with them directly on Discord or
+33:52 on Twitter. But again, they're going to be at the venue. Some uh familiar names are going to be there as well. Really,
+33:58 really cool people, really smart people, and they're going to help you uh build the best version of your project. One
+34:04 thing worth noting, they're not your extra team member. They're there to support you and help you out. And on top
+34:10 of that, um these are the ecosystem mentors. We also have devs from all the teams available at their booths. They're
+34:17 not going to be there 24/7, but throughout the main hacking hours throughout the day. So you can always
+34:22 directly walk up to them. Be respectful obviously of the time and of others as well. Don't like um try to cut in line.
+34:29 Um just respect everybody and you're going to get helped and you're going to get feedback and you can build a fantastic project as well. Sweet. Then
+34:38 uh we also have the FAQ section. I um I told you about earlier the schedule we
+34:45 talked about. Um let's see. Oh yeah, really important thing I didn't talk about yet. But the people super excited
+34:51 about are the prizes for the event. So we have 12 amazing partners. We have
+34:56 World 1 in ZeroG, Uniswap Foundation, Arcadera Archive, White Chain, the Ethereum Foundation, ENS, Definitive,
+35:03 and Chain Link. They're offering uh about like 150K in prizes. Eve Global is
+35:08 putting some prize money on top of that as well for finalists. I'm going to say something about that in a second as
+35:13 well. You can see all the quite like all the prizes that they're putting out. So, for example,
+35:20 for the continuity track, meaning existing projects that built a new feature at the hackathon if they're
+35:26 building on world, they can qualify for this one for a total of uh $2,500.
+35:31 It lists the requirements. So, make sure to read through all those properly. All those sites, which is fantastic, also
+35:38 have links to resources and documentation to get you started. And if you're stuck with something uncertain,
+35:44 you can either reach out to them on Discord, but I would highly encourage you just walk up to them directly. They
+35:49 can help you on block and answer any questions that you might be having. So for all the teams that we have there,
+35:56 you have their price overview. So make sure to check all those out. And again, if there's no banner that says
+36:02 continuity, it's from scratch. So if it says this one is for continuity, this is for existing projects. for anything new
+36:09 doesn't have the banner. It's listed right here. So you can see for one inch they have two bounties in total. One
+36:16 being for the continuity and one being for the regular one. Again depending on what you select, this is the only one
+36:22 that you can qualify for. You cannot mix and match in between. This will not work. So if a partner for example does
+36:28 not offer a bounty for continuity, you cannot get that bounty if you're building on continuity.
+36:35 Pretty easy. Okay. Sweet. So recommend everybody to check this out and uh build your projects accordingly. Again, I'm
+36:43 just going to highlight this once more. Don't try to bounty farm. Um the good
+36:48 projects are the projects that make sense that integrate a protocol. Well,
+36:53 um if there's no real use case for, let's say, an integration with um ARC
+37:00 and you're still integrated, great, more usage for ARC, but you're probably not going to win a bounty. If
+37:05 there's a functionality that you build for world that doesn't really help your project, then I would recommend don't
+37:12 use world. If you have something, you have an idea and you say like, "Oh, world makes so much sense because it
+37:17 solves a problem, fantastic. Implement it." Then your chances of winning a bounty or actually winning more prizes
+37:22 is much much higher versus just trying to Frankenstein a project together just for the sake of maximizing everything
+37:29 that you can get out of it. Um because I would say building something at the hackathon is great. Building a project
+37:36 just for the hackathon is fine. Learning something is fantastic. Um but it's also a great opportunity to potentially start
+37:42 a new company to potentially build a project that goes beyond the hackathon. So try to focus on making that project
+37:50 making those integrations as great as possible versus building like a shitty
+37:55 version of a project with as much money that you could potentially extract. because usually you end up with less
+38:02 money, shittier projects and nobody's happy about that. So yeah, I would say
+38:07 only integrate what actually makes sense. Think about the parts that you want to implement. Do that well and
+38:13 you're going to have much higher chances of succeeding and also the chances of becoming a finalist project is much
+38:18 higher as well. Speaking of the um finalist projects,
+38:24 let's see, let's just do this quickly.
+38:29 So, um, all the teams that end up making Eve global finalist for events, it's
+38:35 usually eight to 10 teams will receive a finalist pack. The finalist pack is an
+38:41 onchain NFT that you can show to people literally saying like qualified proof on
+38:47 chain that you were amongst the top teams at the Eve Global Hackathon. All those teams came in this as an example
+38:52 for the finalist pack for Lisbon this year. And every single team member gets these as extra perks on top of the
+38:59 title. So you get one free year of EF Global Plus. If you don't know this, Eve Global Plus is our all-in-one EF Global
+39:05 subscription. It gives you access to every single conference, every single single summit that we're doing. This
+39:11 also includes the EPCON ticket, Pro Pass, which at full price is over $1,000. So you can, if you make fun at
+39:17 this event, um it's on us for you next year to come to Eve. Each team member gets uh up to $1,000 in USDC. Uh $500
+39:26 travel reimbursement, meaning if you attend any in-person event in 2027
+39:32 because we don't have any more in 2026, you get $500 from us directly just for
+39:37 showing up and hacking. Every team member gets a finalist hoodie, which is a hoodie like with a nice little ETH
+39:42 global imported logo that only pass finalists have. and you get uh $10,000
+39:48 in AWS startup credits that you can use. So this is what you would get if you
+39:53 would end up being amongst the uh top eight to 10 teams um at the hackathon if
+39:59 you go through the finalist judging and yeah make it amongst those top teams. Um
+40:04 you can check all this stuff out at eglobal.com/packs and the plus page would be just eglobal.com/plus.
+40:12 Um, speaking of packs, we also have something that everybody here already has. We have community packs, and the
+40:20 lowest tier one that we have is the hacker pack. The hacker pack you automatically uh can mint or you have to
+40:27 mint to access our Discord. So, this is currently claimed by over 14,000 people. Um, it gives you a bunch of really,
+40:33 really cool perks. One perk being a discount at Eve ticket for next year.
+40:39 The more fun thing for a bunch of people is we can give you reduced uh tickets for Defcon and even free passes for
+40:45 Defcon day three and four. So you can claim this pass um if you have a uh if
+40:51 you have the hacker pack which everybody here has. And also really important for this event we're going to have a pragma
+40:57 which is our one-day conference. It's happening on the Friday of the hackathon
+41:03 and every single hackathon participant in Mumbai can claim their free network pass. This doesn't include food but you
+41:10 can attend, you can talk to all the partners, all the sponsors that are there. You can network with people and you can watch all the talks live. So you
+41:17 just go to um the hacker pack page, you can click on redeem, you can redeem your coupon, you get uh you go to the pragma
+41:23 page which I'm going to be showing you in a bit and then you can just claim your ticket. Really important. This is
+41:28 for the network pass, not the hacker pass, network pass. We also have a bunch
+41:33 of stuff like free pi, which literally gives you free AI credits, free inference. We get uh extra test net
+41:40 tokens for our faucet, which is accessible at eglobal.com/faucet. So, you get free testnet tokens on um
+41:47 Ethereum test net on base testnet on a bunch of other chains. You get a free ENS domain after the project submission
+41:55 or after the event is done. This is on us. Either you get like one free renewal or one ENS domain for a year and a bunch
+42:03 of other stuff. And these packs are constantly being updated as well. And we have this uh different tiers of those
+42:10 packs. So the next one would be the builder pack for example, which you can get if you attended one IRL and one
+42:16 async hackathon, won at least $100 in prizes or were a finalist. Um it has a
+42:22 bunch more things like additional uh faucet token limits uh get auto accepted to event
+42:29 exception for example was this time in Mumbai because of the amount of applications. So a bunch of more stuff
+42:34 six months of notion pro developer credits for circle and the largest community pack that we have is the
+42:40 pioneer pack you get additional discounts um on a bunch of stuff you get $50 in render credits which is cool. So
+42:47 if you're already qualified for this, you can use this for the hackathon. You can literally get one month of free uh
+42:53 for boat. It's like sandboxes for your AI agents uh compute for Olive on demand
+42:59 compute. So a bunch of stuff that you can unlock depending on how well you did in past hackathons. And again, those are
+43:05 getting updated. Fresh perks are coming out shortly. I quickly touch Pragma. So, Pragma again
+43:12 is our one-day conference happening on the Friday of the hackathon. And again,
+43:18 for everybody here, I'm going to have more speakers in the schedule. Um, for everybody here, like if you claimed the
+43:24 perk and you got your coupon code, you would head over to purchase your network pass, you would enter the discount code
+43:30 and you would get a 100% discount on the ticket. You get this for free access to
+43:35 the Pragma conference, which is also happening in the same venue. It's a
+43:41 separated area, but you can just pretty much walk in there if you have your ticket. So, you would enter a discount
+43:46 code, 100% off, you get your ticket, boom, hackathon and pragma attendee. So,
+43:51 as long as you're hacking at E Global Mobile, and as long as you uh claim the ticket, you can directly get in there.
+43:58 Uh, speaking of tickets, speaking of hacking, I briefly touched this at the beginning, every attendee gets a
+44:03 wristband and a badge. Please keep those with you at all times. Do not take them off when you're at the venue. It's
+44:10 really important for two reasons. Security, so we don't have any random people walking in. And also, the badge
+44:16 has a QR code and your name. Those QR codes will be scanned for uh the meals.
+44:22 So, if you want to get, for example, dinner and you don't have your badge, you're not going to get any food. So,
+44:28 make sure to keep that. Do not toss it. Do not give this to somebody else. If you're imperson like if somebody's
+44:34 impersonating you or uses your stuff, you can lose your stake and you'll probably going to get banned from the
+44:39 event. So everything is issued once. You get one one wristband. You can take a shower with that. No problem at all. It
+44:45 will not get damaged. You can get uh you get one badge. So make sure to keep all of that and don't take it off.
+44:51 Um why am I saying don't take this off? Because for example, you do not have to
+44:57 be at the venue 24/7. You can be at the venue 24/7. What that means is if you
+45:02 have like a B&B, if you have a hotel, if you have a hostel, you can just go there to sleep, you can come back. If you want
+45:09 to grab some outside food, you can grab outside food and come back. But you're always going to have to have your wristband and your badge because
+45:15 otherwise you're going to get the night entry and inside you're not going to get any food. Pretty simple. Just keep that
+45:22 with you for the duration of the hackathon. And again, you're more than welcome to stay at the hackathon from
+45:28 100 p.m. on the Thursday till around 5 to 6 pm uh 6 p.m. on the Saturday when
+45:34 we close the event. Um these times are all default to uh like IST, but for
+45:41 example, if you're currently joining from somewhere else, this should default to where you are right now. So for
+45:46 example, all those times in Eastern time would be here. not really relevant. Since we are going to be um in this time
+45:54 zone, make sure to really key times. We open up at 1 p.m. Hacking starts at 9:00
+45:59 p.m. and the clo uh the project submission, sorry about that, is at 9:00 a.m. on the Saturday.
+46:06 Okay, fantastic. Um yeah, I think we talked about a lot of stuff. One thing I
+46:12 briefly touched was the team. Um, we also have a nice feature which is called
+46:17 the find team feature. I'm going to paste this link in the chat.
+46:25 Uh, there we go. Going to uh paste this link
+46:31 in the chat. So um if you are opting in to be uh discoverable by this one like
+46:38 if you want to share your discord um you can actually look for all the people that want to join a team or they're
+46:44 looking for team members. You can filter by different interests by different tools and contact those people directly
+46:50 on our discord. We have a channel that is called find a team channel. So I highly recommend to just drop an
+46:57 introduction here saying like hey this is me. this is my um this is my
+47:03 background. This is what I'm doing or this is my idea on building. I'm looking for extra builders. So, you can just
+47:09 literally do this here and uh yeah find people on discord already to chat before
+47:15 but also there's plenty of time at the hackathon. So, um before the actual hacking starts, we init we intentionally
+47:22 do this first of all because you can uh check out all the workshops. So all the technical workshops by the partners you
+47:27 can attend, watch and see what we can actually build on top of that. You have plenty of time to talk and interact with
+47:33 people and network because again finding people in person is super super fun.
+47:39 Um and whoops didn't want to switch over there. Yeah. So you can form teams
+47:45 before you can form teams during the event and even after hacking starts you can still uh form teams and get new
+47:50 people into your team as well. Again, I run one of those sessions tomorrow online and it's going to be an in-person
+47:56 one on the Thursday as well on the schedule. Let me just show this again.
+48:02 Wh on the Thursday 9:30 p.m. after the uh opening ceremonies,
+48:08 this is when everything starts. Okay. Uh curious why hacking starts at night? We
+48:15 want to have the hackathon for 36 hours. This is just really convenient. So you can do from 900 p p.m. to 9:00 am. And
+48:23 it also gives people time to actually brainstorm and think about ideas up front. And we have plenty of time for
+48:29 the actual workshops. So you can really dive deep into the tech, brainstorm with people, talk with people, come up with
+48:36 ideas, meet new friends, meet new teammates, and you don't have to jump in right away. And also sometimes people
+48:43 just don't make it directly at 1 uh 1:00 p.m. They might show up a little bit
+48:48 later because of other um uh because of other things that they have plans. This is starting throughout the week. So
+48:54 yeah, we just default to starting at 9:00 p.m. going to 9:00 a.m. to have the 36 hours.
+49:00 Fantastic. Okay, we covered the dashboard, we covered projects, we covered the team,
+49:06 the mentors, the schedule, the infos, um partners, the venue again. Venue map is
+49:14 pending. Let's see. Should have everything. Are there any questions? In
+49:21 the meantime, I'm just going to quickly go to Discord again to show a few more channels. So, we have the event schedule
+49:27 which literally pings everybody that's on the discord if something is happening like food, like workshop, everything is
+49:33 there. You have an overall information channel. I would highly recommend to uh keep an eye out for this one because
+49:40 again, it has all the information, links to your dashboard, the resources, the rules for judging, rules for continuity
+49:46 versus from scratch, how you can form a team, and we're also going to be putting information out there throughout the
+49:51 weekend. I'm also going to be super annoying and I'm going to be sending a lot of emails and a lot of Discord pings
+49:57 about project submission, about deadlines, and if people say they didn't receive anything, I know that they're
+50:03 lying because I sent this out to thousands of people every single time. So, please make sure to at least sometimes look into this so you see when
+50:10 the deadlines and everything is happening. Um, we do have an overall mentorship help channel. The uh all the
+50:15 mentors at the event and past mentors have this mentor tags will be available. This links to all of the partner
+50:21 channels as well and every single partner has a channel which shows all the prizes information about them and
+50:28 the devrils from the teams should have an eye on this so they can uh answer async questions there as well. If you
+50:34 cannot really locate them and again what I said before try to not ask to ask a
+50:41 question ask the question directly or say I have this specific problem provide
+50:47 information about that problem you're going to get unblocked much much faster versus saying oh I have a question for
+50:52 the zerog team and then maybe after a couple of hours the zero g team yeah what's your question then maybe you're
+50:58 asleep and it it just takes a lot of time this is just much much quicker
+51:05 Uh, can you rank what the judging is based on an order of uniqueness functionality? As a as a loaded
+51:10 question, um, I would say everything can be counted equally. Um, what I would say
+51:16 is try to build something that is incredibly useful or maybe something
+51:23 that you have not seen before. So, one thing that we now see with AI is people literally doing the exact same thing
+51:31 over and over again because they just try to copy a project that was successful in the past. So, as I showed
+51:38 you earlier, we have our project showcase which has all like I think at this point 18,000 projects that were
+51:44 ever built at each global event. You can filter by prize, you can filter by prizes, you can filter if they were
+51:49 finalist or not, which um which hackathon that they were built at. Um,
+51:55 and just rebuilding successful projects is not going to be successful for you. Um, if you looked at the finalists of
+52:02 the last couple of events, what stood out amongst them was that it was something unique, something that was
+52:07 really useful, something that was maybe like new technology that wasn't seen before. Um, I would just generally
+52:12 recommend just build the best possible project that you can build. Um, if it's built technically excellent, fantastic.
+52:19 If it was never built before, it's even greater. If it has a huge potential to make millions, that's fantastic. Um, but
+52:26 I would say if it solves a problem, that is really, really great. But if it's just the 17,000th prediction market,
+52:33 probably not going to win you a lot, unless there's a really cool twist to it, maybe. But yeah,
+52:40 and yeah, pretty much all the information is literally on that page. Um, but I would say don't focus too much
+52:45 on, oh, how can I maximize profits? Just build something that's useful. build something that's fun for you. It's a
+52:52 hackathon. It's 36 hours. Nobody expects you to build the next unicorn. Uh but if you leave the hackathon with some new
+52:59 friends, maybe some money, but like something new that you learned over the weekend, for example. If you never built
+53:04 with ZK, but you want to try ZK, do ZK. Super easy.
+53:11 Uh let's see.
+53:16 There we go. Um okay, cool. Yeah, I touched this earlier, but we have the faucet. So, uh, if you need some
+53:23 testnet, Eve on like Eve, Sapoleia, USDC on Seapoleia, OP, Sapolia, Arbitum,
+53:29 Zora, base, um, Falcoin, Nosis, like all the ones that we have here, everybody by
+53:34 default can claim 0.05 E a day. If you have the hacker pack, you automatically get bumped to 0.1 E. If you have the
+53:42 builder pack, it's 0.5 E a day. And if you have the pioneer pack or were a finalist in the past, you already get
+53:48 one Eve a day on testn net. Yeah. Um Oh, cool. Thanks RP for
+53:54 sharing. Yes, this workshop is streamed and recorded. So you can always go back and uh really important about the uh
+54:01 demos like all the information is in the uh is in the info pages in the judging
+54:07 rules. This explains how the video is supposed to look like, what the judging criteria is, and how everything is built
+54:13 out as well. Okay, let's see. Have a few questions uh in the DM. Uh is there any
+54:20 kind of sleeping arrangement, resting area, or maybe somewhere to shower? Great question. So, we do have dedicated
+54:27 like chill spaces/nap areas. We have a unisex one and one for females only. You
+54:34 can uh rest there. There's going to be a few air mattresses and uh blankets. Really important. We don't have that
+54:42 many, so it's not going to accommodate all over a thousand people that are going to be at the event. So, it's
+54:48 limited space, but you can definitely uh like take rest there, but it's first come, first serve, and it's not going to
+54:54 be a guaranteed spot for the entirety of the time. And the mattresses stay in there, so you cannot take them out and
+54:59 just like bought them for yourself. It's supposed to be for as many people as possible. Um, and there are no showers
+55:06 at the venue. Okay, let's see if there's another question, another direct message. Um, I
+55:13 answered that one before. Cool. Uh, we have luggage keeping area
+55:19 somewhere at the venue. Yes, there is going to be a dedicated luggage storage. Important about that, it's not
+55:25 monitored. So if you put something there that's at your own risk. If something
+55:31 gets stolen, if something gets broken, if something gets lost, this is 100% on you. But there's a dedicated like
+55:38 separated storage area that you can access. But again, it's not monitored. Uh when should we exit the venue? So
+55:46 overall exit of the venue, you can enter and exit at every time, like at any time as long as you have your badge and
+55:52 wristband. Um, overall you have to leave the venue by around like 6 PM on the
+55:57 Saturday when the event closes. So, you cannot stay longer. After the event ends, the event ends.
+56:04 Um, wanted to ask about Pragma. When will the speakers be released? They should be released end of day today or
+56:11 tomorrow. So, just keep an eye out on the Pragma page. The speakers will show up there shortly as we're still
+56:17 finalizing some things. Okay. Fantastic.
+56:23 Cool. Um, overall, if you have any questions, if anything wasn't clear or
+56:30 you just want to know something, um, the easiest way to do so is just send an email to hello@eglobal.com
+56:37 or go into the discord, either ask in the Mumbai chat or if it's something that is supposed to be private, um,
+56:43 please open up a support ticket. For this one, you would just go to uh SOS support, create a new ticket, and
+56:49 somebody from the team will reach out to you. Please avoid DMing the team because
+56:55 if somebody from the team is not available, your request will get lost. I receive literally hundreds of DMs each
+57:01 day about certain things. I try to answer all of them, but sometimes I'm not even the right person to contact.
+57:07 So, if you open up a support ticket or email helixglobal.com, we can redirect this to the proper people in the team.
+57:13 So specifically for the hackathon, please avoid DMing the team. And also there's no need to reping the team for
+57:20 all the stuff. I read every single message. It just sometimes takes a while and I'm only human. I try to sleep
+57:26 sometimes as well. So I usually get back to everybody within a reasonable uh amount of time.
+57:33 Um it's my first Defcon. Any specific points to keep in mind? I know it's not
+57:39 related to Eve Global still. I would say just have a good time. Be respectful to
+57:44 others. There's going to be people from a lot of different cultures and places. So, um, some people might interact or
+57:50 act differently, but yeah, as Aubrey said, just meet people, be open, be nice, be a good person, treat others
+57:56 well, and just enjoy enjoy the environment. Talk to as many people as possible, have great conversations, have
+58:03 stupid conversations, just have a good time, and don't take things too seriously. Even at the hackathon they
+58:09 say like oh a hackathon is a competition. It kind of is but it also is not. For me personally hackathons are
+58:16 to meet people and to grow personally and for that you don't have to fight with 1500 people. You can actually build
+58:23 something great with more people together because that's the whole ethos of Ethereum. Everything is open. Most of
+58:28 the stuff is open. Most people are super smart and really open. So yeah, just enjoy and have a good time and take in
+58:34 as much as possible. Get some rest in between. Don't overwork yourself. Yeah,
+58:40 just Yeah, just just have a good one. It's going to be a lot of fun. Okay,
+58:45 fantastic. Um, with that being said, we're pretty much almost at time. Again, if you need anything, just um support
+58:51 ticket hello edifyglobal.com. Um, in person, the easiest way is just approach
+58:57 anybody from the team, especially me. I'm usually really easy to spot. the only guy on the team that doesn't have
+59:02 any hair and has big ass earlobes. So, just reach out, have a chat with me. I'm usually pretty open unless I'm like
+59:09 super super tired. Then I might look a little bit grumpy, but I'm usually pretty friendly. So, yeah, I think most
+59:14 of the people that have talked to me before can attest to that. That being said, um I want to thank everybody very
+59:20 much for uh spending their time here. Again, this workshop can be rewatched on YouTube. Looking forward to chatting
+59:26 with each and every single one of you in Mumbai. really looking forward to our last in-person event of the year. I hope everybody has a blast and yeah, see you
+59:34 next week in Mumbai. Cheers. Goodbye everybody. Thank you.

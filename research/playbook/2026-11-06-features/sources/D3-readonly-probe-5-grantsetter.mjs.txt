@@ -1,0 +1,17 @@
+import { createPublicClient, http, parseAbi, encodeFunctionData, toHex } from "/Users/mulaydm10/Dhruv/ETH mumbai/node_modules/viem/_esm/index.js";
+import { sepolia } from "/Users/mulaydm10/Dhruv/ETH mumbai/node_modules/viem/_esm/chains/index.js";
+const c = createPublicClient({ chain: sepolia, transport: http("https://ethereum-sepolia-rpc.publicnode.com") });
+const R="0xFA87654E65542Ad82428f3326c322d6a12C55957";
+const COMMITTEE="0x32DE3a68b15D2b2A1527cA6cd717Fb21A639500F"; // public address only, no key
+const abi=parseAbi(["function setText(bytes name,string key,string value)","function setContenthash(bytes name,bytes hash)","function setData(bytes name,string key,bytes value)","function grantSetterRoles(bytes setter,address account) returns (uint256)"]);
+const setter=encodeFunctionData({abi,functionName:"setText",args:["0x","tw.calib.test",""]});
+const grantee="0x000000000000000000000000000000000000dEaD";
+// simulation only (eth_call), no tx sent
+for (const [lbl,from] of [["committee",COMMITTEE],["stranger","0x1111111111111111111111111111111111111111"]]) {
+  try { const r=await c.simulateContract({address:R,abi,functionName:"grantSetterRoles",args:[setter,grantee],account:from}); console.log(lbl,"grantSetterRoles simulate OK",r.result); }
+  catch(e){ console.log(lbl,"grantSetterRoles ERR",(e.shortMessage||e.message).slice(0,200), e.cause?.data?.errorName||e.cause?.cause?.data?.errorName||""); }
+}
+for (const fn of [["setContenthash",["0x","0xe40101fa011b20"+"00".repeat(32)]],["setData",["0x","tw.x","0x01"]]]) {
+  try { await c.simulateContract({address:R,abi,functionName:fn[0],args:fn[1],account:COMMITTEE}); console.log(fn[0],"committee simulate OK"); }
+  catch(e){ console.log(fn[0],"ERR",(e.shortMessage||e.message).slice(0,160), e.cause?.data?.errorName||e.cause?.cause?.data?.errorName||""); }
+}

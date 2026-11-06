@@ -8,3 +8,9 @@ Results (verbatim console):
 - registry.roles(phone token, phone owner) = 0 : phone owns token but holds NO roles (cannot change resolver/renew/transfer). Phone resolver pointer = shared 0xFA87...5957.
 - Reverse: viem getEnsName(0xB0A8F94e...EDE1) = null (phones have no primary name set).
 - site test2: tw.k = "2" text readable via getEnsText.
+
+## Probe 4 (2026-11-06, anon-rpc nox specifier on Sepolia, script D3-readonly-probe-4-anonrpc.mjs.txt)
+Specifier 0x35133267A8F7EC35046a83DCA0f4Ca8A6e1b7A9A on Sepolia: workerHash() = 0xd9fa04b080a33062680a27cad828196bfb04615a0ebc76bcbffedb6dcbe838d4; owner() = 0xb18ddF10a9F6a0b9143d05B294815a83d3fa69C5; workerResolvers = raw.githubusercontent hisoka-io/anon-rpc, jsdelivr+unpkg @hisoka-io/anon-rpc-worker@0.4.1, and 3 kps: peers. Worker bundle via jsdelivr = 1,831,246 bytes (1.8 MB) (curl).
+
+## Probe 5 (2026-11-06, eth_call simulation only, no tx, committee PUBLIC address as `from`, no key; script D3-readonly-probe-5-grantsetter.mjs.txt)
+Resolver 0xFA87...5957: simulate grantSetterRoles(setText("tw.calib.test"), 0x...dEaD) from committee 0x32DE...500F => OK (returns 1n); from a stranger => reverts 0xd1a3b355 (access control). So argument-scoped delegation is DEPLOYED and callable by the committee on our existing resolver. Simulate setContenthash / setData from committee => reverts 0x4b27a133 (likely missing role: COMMITTEE_RESOLVER_ROLES covers only SET_ADDRESS, SET_TEXT, UPGRADE; or the dummy empty name arg 0x; cause not decoded = UNVERIFIED). Hence contenthash/data features need the committee to grantRootRoles(ROLE_SET_CONTENTHASH|ROLE_SET_DATA) first (needs admin role; assumed available).

@@ -1,21 +1,13 @@
 # RESUME (overwritten after every stage)
 
 **Run:** Tremor Witness scoped feature generation. Orchestrator = playbook agent (Opus). Brief: BRIEF.md.
-**Stage now:** 4 (DIVERGE fan-out) — 6 workers spawned in parallel at the time in RUN_LOG.md.
+**Stage now:** COMPLETE. VERDICT.md is FINAL and was returned to the parent.
 
-## Done
-- 00-intake-and-profile.md (intake OK, profile, triage = YES subtle, mode DIVERGE→CONVERGE)
-- 01-commitments.md (verbatim rubrics, constraints TESTED/ASSUMED, config note, DIVERGE composition)
-- diverge-context.md (shared product context given to every worker)
+## Files
+00-intake-and-profile.md, 01-commitments.md, diverge-context.md, 02-diverge-{free,arkiv-swarm,ens-ef,analogy,narrow-legal,judges}.md, 03-cross-pollination.md, 04-transform.md, 05-prior-art.md, 06-impact.md, 07-converge-{sponsor-fit,feasibility,physics,demo-redteam,crops}.md, 08-reconcile.md, 09-board-{correctness,consistency,redteam,goalfit,reproducibility}.md, 10-gate.md, VERDICT.md, sources/.
 
-## Outstanding workers (check each output file exists and ends with "Searches run / sources fetched / tools used")
-- D1 free → 02-diverge-free.md
-- D2 Arkiv+Swarm stack → 02-diverge-arkiv-swarm.md
-- D3 ENSv2+EF+other sponsors → 02-diverge-ens-ef.md
-- D4 distant analogy → 02-diverge-analogy.md
-- D5 narrow user + India legal + accessibility → 02-diverge-narrow-legal.md
-- D6 judges/demo/video/Q&A (only Playwright user) → 02-diverge-judges.md
+## Outstanding workers
+- none
 
 ## Exact next step
-When all six return: append RUN_LOG rows; write 03-cross-pollination.md (combine, don't reconcile), then 04-transform.md (3–5 reframings per survivor). Then spawn prior-art-adversary (05-prior-art.md) and impact-validator (06-impact.md) on the top ~8 features, then CONVERGE angles (07-converge-*.md).
-If a worker died: re-spawn it with the same prompt (prompts follow the template in 01-commitments.md §E + BRIEF persistence text); its file may already hold partial findings — tell the new worker to append, not overwrite.
+None for the orchestrator. For Dhruv: the "For the human" section and Tier 0 of VERDICT.md. Nothing was committed.

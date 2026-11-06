@@ -1,0 +1,1462 @@
+0:01 [music]
+0:13 Welcome to Isa in Tokyo. This is not a conference. This weekend
+0:20 is the hackathon.
+0:26 We're excited to be back in Tokyo. It's game hall. Everyone is locked in. People are willing to not sleep. The
+0:32 stakes are high. Tokyo feels like a combination of traditions and technology. Moving in and
+0:39 never sleeping again. It is day two. I'm feeling great. The vibes are good. I am extremely caffeinated. Being in a
+0:45 capsule hotel that is $20 a night and my coffee budget was 50,000.
+0:52 It's exciting. It's vibrant. Yeah, we're tired. We're finishing the last parts. Kind of sad. The clock is ticking down.
+0:58 I'm trying to procrastinate as much as possible. It's is so tired.
+1:07 This is my 35th ETH global hackathon. This was my first one attending as a mentor. I have lost count. I reckon approaching
+1:14 50. I'm stressed. Hope these ESPs don't fail me.
+1:20 3 seconds before, but yeah, we we made it. Yeah. In the nick of time. Few seconds to go. People seem very calm
+1:27 coming in this morning, which maybe reflects a little bit about the vibe in Tokyo and in Japan in general. There's a
+1:33 good number of DeFi projects. There's a good number of projects involving digital assets and stable coins,
+1:38 especially identity. It's really exciting to see people able to come up with an idea on a Friday and take it
+1:44 right through to conclusion over 36 hours. Build, eat, sleep, repeat. We're
+1:50 at the end of ETH Global Tokyo 2026.
+2:00 Good afternoon everybody. [applause] How's everybody doing? Excited.
+2:08 Yes. I know it's been a long day, but this is the fun part. I'm Cartik. I'm
+2:13 one of the co-founders of ETH Global, and I want to welcome all of you to the closing ceremony for ETH Global Tokyo
+2:18 2026. For those of you who are joining us for the first time, especially on the live
+2:23 stream, we're an organization with a very simple mission. We want to onboard thousands of developers into the web3
+2:29 ecosystem. And this weekend was a perfect collection of everything that we do, which is hackathons and summits. And
+2:37 we're here talking about the ETH Global Tokyo hackathon. We're going to summarize how the last 36 hours have
+2:44 been for everybody. There's over 621 people from all across the world. 504 of
+2:49 them are hackers. 29% of them are brand new to web 3, coming in from web 2. They're here from 46 different
+2:55 countries, six continents, literally all across the world. And of course, a massive number of amazing developers
+3:02 from all over Japan and rest of Asia.
+3:07 Not only that, we have 25 incredible partner reps here, 17 technical mentors who were there the entire time helping
+3:15 make sure that you get all the questions answered and 33 amazing volunteers that
+3:20 helped make this weekend really memorable and they pulled everything they could to make sure that you have a
+3:25 great experience. Please give them a big round of applause. [applause]
+3:31 Our partners did six workshops. There were zero talks from the hackathon, but we did host a whole conference
+3:36 yesterday. And we're going to be giving away $75,000 in prizes today. So, you get to see what you won and who won,
+3:43 what prizes, and what teams stood out in the next 60 minutes. I want to give a
+3:50 massive round of applause to our seven incredible partners. So, please join me in congratulating 1 in World ENS,
+3:56 Uniswap Foundation, Sooie, Curve Grid, and Interceptor. They're all here and
+4:01 they're excited to tell you what prizes you're going to be winning from them. Now, the next hour is all about telling
+4:08 you how incredible this weekend has been. Now, this weekend is a hackathon, which means the focus is here on
+4:14 builders, and we care about showing instead of telling. So, we're going to be doing some live demos of some really
+4:21 cool projects we've seen from this weekend, and then we'll go to some of the prizes. Now, some records were
+4:28 broken this weekend for us. The first one was I didn't realize that 504
+4:33 hackers can do [snorts] so many things in a short amount of time.
+4:39 We want to tell you about where everybody came from. We had 504 hackers from so many different countries. Obviously, the most amount of developers
+4:46 came from Tokyo. The second number of people were from Seoul. And the third
+4:51 most attended city was Chennai from India. And then we have three
+4:57 really really longtime attendees. We had Fabian and Julio who've been to 38 ETH
+5:02 global events over the last seven years from at least since I've known them. Uh
+5:09 this includes all the in-person ETH global events and also our async online ones. And Karan is on his number 36th.
+5:16 So there's a lot of loyalty reward points that they're going to earn. And
+5:22 not only that, we kind of wanted to see what people are excited about on the tech stack. So, interestingly, for the
+5:27 first time, we have seen Typescript be number three instead of number one. So, I don't think I'm going to trust your
+5:33 code if it's not strongly typed. You should really not use JavaScript for money. But, Python remains number two
+5:40 consistently. So, that's awesome to see. And these 504 hackers submitted 254
+5:47 projects. This is scary. Uh we were not
+5:52 expecting 254 projects and we got a hundred more than we were hoping for and
+5:59 that meant everybody had to put in a lot more hours. And by everybody I mean our
+6:05 judges to make the day work and keep things relatively on time. And before we
+6:11 kind of show you what the outcomes were, some amazing stats from the projects too. 55 of them were continuity. 199
+6:18 went and did things from scratch. So, we're still seeing a pretty strong correlation towards a third of them
+6:23 getting to continuity and really making it more and more towards the 50% goal, which we have. And DeFi was the most
+6:32 hacked on category for these 254 projects and wallet payments and AI kind
+6:38 of came in second and third. So, we're seeing real defi come back to the lead
+6:44 and I'm excited to see more creative DIY hacks. World ENS and unis swap were the
+6:49 most integrated SDKs and people deploy directly on Ethereum mainet which is
+6:54 awesome because either means that you trust your code a lot which is good sometimes scary or things are actually
+7:01 really scalable and you feel comfortable deploying on mainet. Base and flow were the second and third most deployed
+7:06 chains. So, we're still seeing pretty strong affinity to deploying contracts
+7:12 directly on mainet. That's awesome. So, congratulations everybody. 254 projects.
+7:17 Give yourselves a massive round of applause. [applause]
+7:22 And I want to give a special thank you to our judges. They had to stay three
+7:27 more hours than they were supposed to to make sure that they get to talk to all the teams. So, please join me in giving
+7:33 a massive round of applause to our judges, Albert, Alem, Augie, Liz, Jeff,
+7:38 Josh, Lego, Martin, Mos, Matt, Nuno, Terry, Tommo, and Yin.
+7:44 Now, before we kind of get into all the outcomes from this whole weekend, I want
+7:49 to take a quick second to have you scan this QR code and fill out the feedback
+7:55 form. That should take you less than a minute. There's six or seven questions that are rate things out of 10 which
+8:01 asks anywhere from how the food was, did you get the help you need, did you like the event, do you think we can do
+8:07 something better, do you think we should not do something, do you think we should continue doing something? ETH Global
+8:12 runs a hackathon or a conference somewhere every few weeks in the world, which
+8:18 means that every few weeks we get to reach a thousand more people and help
+8:24 make their experience much better. So if we can learn something from this, if you like us to continue doing something or
+8:29 not do something, we can im immediately implement those feedbacks and give the next thousand people a really really
+8:36 good experience and anything you say gets read by everybody. I read every single message and we get to fix things
+8:42 for the next people. So tell us what is working, what isn't working, and we'll
+8:47 also be giving away these hoodies. So anytime you fill this out, we're gonna send this to a few people. We'll ship
+8:53 this to you and you get a hoodie from this hackathon for telling us how your experience was. Now, enough of
+9:01 the ads. Let's get back to these projects. 254 projects, a very, very
+9:07 busy judging session in the morning and most of the afternoon. And from there, we have eight finalist teams. It was
+9:16 very hard to get to this eight, but we have eight teams here who are going to come on and demo what they built. We're
+9:22 going to do backto-back demos for these eight projects. Then we'll go and tell you all the prizes. So,
+9:29 for the first time ever, please join me in giving a massive round of applause to
+9:34 our eight finalist teams for ETH Global Tokyo 2026. Estara, Karako, Patio Station, Yohaku, Watermark, Aspokura,
+9:42 Omamorei, and an economy. These are our eight teams that are going to come on, demo what they built, and then we get to
+9:48 all the prizes. And before we bring on the very first team, I want to take a second to thank every single submission
+9:54 from this weekend. There are 254 projects here. So many incredible
+10:00 builders, so many incredible ideas come to life. So many things deployed directly to production. We're really
+10:06 happy with the fact that 199 of you chose to do the finalist judging, which meant that you have to
+10:11 deploy your project live. And that's an amazing milestone because that tells us things are being built for people and
+10:19 you're building things that somebody wants and you want them to be a user and not just for fun. Fun is okay, but
+10:24 building it for somebody is even better. So congratulations to all of you here. We hope that you continue building and
+10:30 now with the continuity track for all future events, you can hack on more features to any of these projects and
+10:36 still qualify to be a valid submission. Now everything here is going to be
+10:43 public which means that for people who are watching this on YouTube you can go to eglobal.com/showcase
+10:49 see all 254 projects learn from the code everything is open source you can see
+10:55 some tricks that people have pulled you can see how they've thought about doing something hard really well we want to
+11:00 make sure that everybody here has a chance to get better and improve what they can do as builders so everything is
+11:06 live and soon you'll be able to also see your prices so enough talking for me. Let's get ready for our very first
+11:12 finalist demo of the day. Please give a massive round of applause to Kura.
+11:18 [applause]
+11:36 Okay. Hi everyone. I'm Arbulo and I've been working in web3 for the last nine years
+11:43 and um actually I've decided to uh create my own side business. I've always
+11:48 been a TCG car player whether it's Pokemon, whether it's Magic and so on.
+11:53 And so I'm actually opening a store of TCG cards in Rome, Italy. And I I was uh
+11:59 searching for a way to bridge the web three experience that I have with my passion for cards. And I've decided to
+12:06 build Kura. Kura is the storehouse in front of all Japanese houses where they used to store like rice, grains and
+12:13 stuff but also valuables. In this case, Kura is actually a physical vault which is going to be my shop. There are two
+12:20 types of users on Kura. The first users are is of course going to be me the
+12:27 vendor. Via the vendor station I can scan cards whether they come from users or whether
+12:33 they are from my shop. So, this is running a a browser model that is going
+12:39 to scan this card and it's going to match it against the 45,000 different cards of Magic the Gathering. As you can
+12:47 see, it matched correctly, the Cryrats, my favorite card. I can select the language, Japanese. I can select the
+12:54 condition and so on. I can set it as foil or not. And then I can select the owner. I can either scan its QR code if
+13:00 it comes to the shop or I can use its ENS subdomain. In this case, I'm going to use mine, which is uh orb.cura.
+13:09 So, I'm going to use handle. And what happens? I'm going to mint a digital twin of this card to the owner. In this
+13:16 case, me. Um, if I go here and I open the app and I go
+13:23 on portfolio, I should be seeing um my cards. This, of course, comes from uh
+13:29 the the past demos. And with a card, I can do two different things. I can either collect it back at the counter by
+13:36 showing the passport verification from word ID or I can shard it. What does
+13:42 shard means? I can divide this card into small pieces and then create a uh
+13:47 continuous clearing auction on unis swap to basically sell up to 50% of the card.
+13:54 50% of the shards get locked and when the auction finishes uh a unis swap pool
+14:00 gets created and everybody can start basically buying this card. So basically you can purchase shards of a card and
+14:09 invest it. This is not financial advice and um and still try to to earn some
+14:15 profit from it. So I can share the card, set a floor price, whatever.
+14:21 Uh let's say one week and this is going to create an auction. While this is
+14:27 creating, I can show you different stuff around the app. So these are already existing auctions with or uh without
+14:34 bids and so on. This is an example of another car that I was testing. uh you can see uh the auction data here.
+14:42 But the best thing is to check an ex uh finished auction. If you go on ended as
+14:49 you can see from here I can actually trade charts right now. So this is on unis swap uh sorry one thing on the
+14:56 auctions only uh humans can bid on the continuous clearing auctions. This means
+15:02 that you need to be a human and you need the proof of human from word ID and um
+15:08 and you can only use one wallet. So one human, one wallet. So if you try to connect a different wallet with the same
+15:14 human ID, you won't be able to participate to the auction because we want humans playing with actual cards.
+15:20 Uh let me go back. See this is auction live. This is the the ended auction
+15:29 here. Sorry. So here I was saying I can actually buy shards. I can sell my
+15:34 shards. I can see all different kind of stats. I can see this is the auction
+15:39 cleared. I can see all the different orders of this card. I can see the activity record being set and so on. And
+15:46 some cool analytics on the card. I can see the price per shard, how we change to the manure holders over time,
+15:52 ownership split and fees to the vault. Finally, some of you may may ask
+15:58 yourself, but what happens with the physical card? Well, actually, if someone holds more than 80% of the
+16:05 shards of a given card, he can actually redeem the physical card himself by
+16:10 buying out the remaining 20%. Or x amount percent. So, uh let's say, for
+16:17 example, he owns 90% of the shards. uh he's going to buy out the 10% of the shards at market price and then he can
+16:24 go to my shop and redeem the physical cart and um I think this is it and this
+16:31 is live on Ethereum Sapoleia and uh thank you so much.
+16:38 [applause] Awesome. A very smooth demo that mixes DeFi with collectibles and a very
+16:44 appropriate first demo for Japan. Let's uh get ready for our second finalist demo. Please welcome Takarab
+16:51 Baka. Give them a big round of applause. [applause]
+17:06 All right. There's a lot of hardware hacks today. Hello everyone. My name is Akil and this
+17:11 is Takarabako and this is my another partner Sebastian. So where leftover travel cash become dollar savings. So
+17:20 one of the big problem with the current when we traveling to the countries like Japan to the Malaysia to the Thailand
+17:27 something like that. So we always have a like uh a few foreign uh bank note in
+17:32 your wallet maybe too little to be worth for the exchanging and too much to throw away unless you you want your home
+17:40 something like that. So we've come up with a solution uh with Takarabaku where
+17:45 you can you guys can basically can deposit your um uh your cash into our
+17:52 own machine here. So um for example uh like deposit to uh cash to our own
+17:59 machine here. So basically you can get the stable coin into your wall wallet and then you can execute any type of
+18:04 like uh strategy or you want to send the you know stable coins to the other your friends or family something like that.
+18:11 So for the demonstration here um I already registered it with Takarabako and then I already scan my uh selfie
+18:18 with the world world kit ids here. So I just want to make it quick here for um
+18:24 just just want to scan my QR code. This is the my wallet and login in. So in my
+18:29 wallet I just got $1252. So from here we got a Malaysian uh bank
+18:35 notes. So just insert in. So from here we already insert around
+18:42 one ringit. So um we're waiting for the notes to be
+18:48 read here. It took it took some times. So
+18:58 All right. Okay.
+19:04 Uh, it's got a little bit delay here. So, yeah.
+19:17 Um, okay. So um after you guys like deposit your you know your wallet your
+19:25 cash here and then you get this stable coin here like $1252 you guys can basically this is the
+19:32 application you can see on your mobile your mobile phone and then here I show you on the on the PC you can just you
+19:38 know click yield if you if you don't want to uh cash keep idle in in the laptop sorry in the platform so you guys
+19:45 can open up the yield and then you guys can choose whatever strategy one maybe um beginner or beginner uh beginner
+19:54 strategy like risk medium and yeah and then
+19:59 okay to load here sometimes
+20:10 okay so from here you guys can see I already implement some of the strategy into the takarabaku we use one inch for
+20:17 here. Oops.
+20:22 Okay. This is the yield on one each aqua. So, um after that, um I think we
+20:28 move on to the kiosk part.
+20:36 All right. So, as my partner is trying to reset the machine, uh we're trying to get it back online. So, we want to make
+20:42 sure that uh we can deposit the money in. So I'll move on to the next part which is on an assistant that we have
+20:50 while using this uh platform right here. So one or before I get to that um our
+20:56 kiosk right here. All right this is our very first one and as we grow in the future we would like everyone to know
+21:02 where you can find them. All right so if you click on find a kios right here.
+21:08 So as you can see our first location is in our very venue right here where we are.
+21:13 All right, just give it a moment to load. So this is the very building building that we are in. And it goes
+21:20 further than that. You can even know where we are inside the building to the very floor that we are at. So that's one
+21:26 of the uh features that we have. Another one is imagine having an assistant where
+21:32 it can help you to generate the QR as what my partner just did. Not only that,
+21:38 it can even give you advice, right, on what strategies to do, on how you can um approach the yield. So, for example, as
+21:44 you can see here, we have this cat right here. Now, what happens if I click on that? Once I click on that, you can see
+21:51 we have our my Niki that can help to assist us assist us. So, one of the um
+21:57 examples that we can do is for example, hi, what can you help
+22:03 to generate
+22:10 a QR for me. All right. So, whatever my U partner just did, he can also do it
+22:16 for us as well over here. So, just give it a moment and ta the same thing and we can use this to deposit the money. So,
+22:24 are we good to go to give another try for that? Yeah, let's go. All right. So, another attempt to deposit the money once more.
+22:33 So, back to me. Okay. We try to deposit our cash here again. So, yep.
+22:47 Oh, all right. Need to to refresh here.
+22:53 Scan again.
+23:06 Well, okay. Keep going. Keep going. [laughter]
+23:11 My My Q are expiring.
+23:26 All right.
+23:35 Can we have time to reset the whole system and try one more time right now? Like in how many how much
+23:42 what time do you need? Um two minutes. Okay, let's let's do it. I think now we're super vested. I want to I want to
+23:48 see the money being read. Now it has to work.
+24:00 Oh [laughter]
+24:11 We need to make it quick. So we have assistant to help us. [applause and cheering]
+24:27 Right.
+24:40 Right. This is the best part of hackathons. We're live debugging in front of 500
+24:46 people [laughter] and we want you to make this work. This is this is good.
+25:05 I hope you don't run out of your claw 5 hour limit. Okay. Okay. We we online invest. Let's
+25:10 try again. Start and
+25:17 All right, we're ready. Okay, moment of truth.
+25:27 Let it scan and then clap.
+25:36 Oh no.
+25:58 This is like using a vending machine.
+26:09 We promise you this one will work. [laughter]
+26:18 It's the It's the Okay, there you go. All right. Moment of truth.
+26:26 Don't tell me now.
+26:32 No. Let me see the logs.
+26:50 All right, we'll we'll we'll let you try for two more minutes while we switch to the next team and then if it works, we'll switch to you after. So, let's do
+26:57 this. But so far, this has been awesome. Give them a round of applause. [applause]
+27:06 And we'll start with our next finalist while they debug. So, please give a massive round of applause to our third finalist, Omi. Welcome them on stage.
+27:15 [applause]
+27:29 Okay.
+27:45 Right. So, hi guys. Uh, we're Umamorei and we actually met at the
+27:52 what was it called? The Yeah, the team forming session. Yes, except for you. Right. Right. Not us, but the whole team. So,
+28:02 let's imagine giving AI agents the ability to spend our money.
+28:11 I mean, we fix the budget. We choose the we have um the connect the
+28:20 cor correct um uh connection the right network. Um we
+28:30 have the we have everything going perfectly, everything set.
+28:36 It sounds safe, right? But what if our agent ends up buying
+28:43 something that we never asked for? This is a problem that we're tackling
+28:48 with Omari. Now, brace yourselves. This is a pre
+28:55 signature security.
+29:03 Yes. Presecure uh security verification firewall. Yes.
+29:10 Um, designed to protect AI agent payments. To make it easier, our goal is to give
+29:19 freedom to our agents to act without giving them unrestricted access
+29:26 to our money. So, here's an example.
+29:31 Now, let's say we want to purchase um a
+29:36 $25 Amazon gift card. While browsing, it encounters malicious
+29:45 um instructions hidden inside our product page. And because of this,
+29:52 it tries to buy a Steam gift card. Now, I'll be fine with that, but that is not
+29:59 what our user asked for. Now, the budget would be correct. It
+30:04 would be a $25 Steam gift card. The um merchant would be would pass the
+30:12 security screening. Um Oh, sorry.
+30:18 Yeah. And it would be the right network. Everything sounds fine, but again, this
+30:24 is not what our user asked for.
+30:31 Sorry. Um, and so that's the problem that we face.
+30:40 And so how do we prevent this? So Umamore introduces an independent
+30:46 security checkpoint between the AI agent and payment execution.
+30:53 So first the user um defines their purchase intent.
+30:58 Um so this includes what they want um if they have any spending restrictions. Um
+31:05 and after that the AI agent is ready to purchase um something. So it sends a
+31:12 payment request um through our MCP integration.
+31:20 And so Omari independently evaluates the proposed transaction against the
+31:26 recorded intent. Um, and it then makes one of three decisions. So it it would either pay or
+31:35 it would ask for human verification or it would refuse.
+31:43 Okay. Um, hello everybody. My name is Jamama and I'm going to explain a little
+31:48 bit about um Omari and how is it working on the
+31:53 by technically for example we are using interceptor as a gate between the
+31:58 transaction and the and the payment to to avoid some risky
+32:05 and malicious payment. Right? and and and
+32:12 over that we are we developed as a a new gate which is powered by type safe jev.
+32:18 It's a new model which is so fast and so cheap with making some decisions and
+32:25 some classifications the agent and the model can guarantee if the if that
+32:30 transaction is good or not. Okay, we we created a little benchmark
+32:36 um measuring how Jeb is is good in this pipeline and on our benchmark it has
+32:45 100% of of success. Yeah. So yeah, the last side is a 49 scenario.
+32:54 We tested it with uh department um uh interceptor Jeff and then as you can see
+33:02 it was a 49 out of 49 Jeff detected Jeff and interceptor detected the um like
+33:09 malicious intents. So now uh Jan will uh do a demo.
+33:14 Yeah, I'm going to make a little demo to show you how it works. I am not going to
+33:20 bother you. So I already have something prepared before to make it faster
+33:25 because cloud and opposite it takes a little time to to to work. But here we
+33:33 launch the app and for example uh we have here a a main prompt. I want to buy
+33:39 a a gift card from the Omorei gift card store. My rules are any Amazon, Steam,
+33:46 Apple or Netflix gift card $50 for of budget and it's and this transaction or
+33:53 of this buy is valid only for 24 hours. That was the the main prompt. And then
+33:59 the agent connected through an MCP server to an hour server
+34:04 and make the the transaction and find the the the item that they want to buy.
+34:11 And in that in that case scan if the transaction is good or not.
+34:18 For example, in this case it will be good. We accepted on we accepted on word id because every
+34:25 account has one wallet related with word ID check.
+34:31 So if everything is good memory goes ahead.
+34:38 But what happen if something goes wrong? In this case, everything was success. So, I'm going to show you a little
+34:46 a little wrong um error for
+34:53 um now I'm forcing the agent to do something wrong for so
+34:59 because this prompt forced that the the budget is to be over budget and it it
+35:06 can happens
+35:16 Okay. So as you see the firewall has refused the transaction because
+35:21 um because it's over budget and our budget is
+35:27 and we see here watch live we see that it's refused and here as the
+35:34 what happened and the explanation of what happened. Um
+35:41 so that's that's everything. Thank you for everything and sorry for my
+35:46 language. [applause]
+35:54 No worries. Another agentic payment that actually goes through the Jev LLM model to
+36:00 actually make quicker decisions. That's that's actually awesome. The fact that it came out a week ago and they've already integrated it is amazing. Well,
+36:07 the bad news is we couldn't get the ATM machine running. So, we'll try to fix that. So, you can still see on your way
+36:12 out later, but we'll bring that back on stage. But it was a really cool demo. I saw that a little bit earlier. It really
+36:18 scans the money. And I didn't even know you can have the equipment to actually scan real cash. So, with that, we are
+36:25 going to go to our next finalist team. And this is our second continuity track
+36:31 team. Please welcome Patio Station. [applause]
+36:36 Hello everyone. How are you? I'm Victor. I'm from Spain and I'm here to present
+36:42 you my continuity project patio station. Uh before starting I wanted to shout out
+36:49 some of my friends that I started this project with Herman on Twitter. Are you talking to me? Antoan or John Gin.
+36:58 These were the three people that I started this project. And I'm so happy
+37:03 that I am here making this even if I am by myself. Uh because I am non-technical
+37:11 and to be in this point of making things
+37:16 even if I don't know how really code works behind the scenes and make it
+37:21 work. It's very crazy. So I encourage everyone of you to just try and if you
+37:27 have an idea just build it. So with that said, I want to start h to explain you
+37:33 what is pio station. So we all know that ethereum
+37:40 a transaction before it gets into the block h it's in the in the meool. So the
+37:46 mempool is like this place like a waiting room where all the transactions go before actually going into the block.
+37:54 So normally for people building in Ethereum this is just like a waiting
+37:59 room that is not very useful for like basically anything normally if you are
+38:06 building like consumer or whatever. So we thought what could this possibly be
+38:13 useful for? So we thought that if we could read the mempool, why couldn't we
+38:20 also read information that we send in the meool? And before it actually gets
+38:27 on chain, we substitute all of this information
+38:32 by um very cheap transaction. So it's just never get on chain. all of this
+38:39 heavy video and audio that we are able to broadcast through patio.
+38:46 So yeah, here is like a representation of
+38:52 the mempool and what patio is doing. It's basically sending like all of these
+38:59 like imposter transactions let's say that once they are broadcast this
+39:05 through peer-to-peer communication and through an RPC that uh it's public
+39:13 and anyone can see it uh through all the nodes h they get substituted by a
+39:19 transaction as I said and you are able to just put whatever information you want in this case we are doing audio and
+39:25 video. So you just it's very easy like you just go there in in the patio
+39:32 station and you just um turn on your mic sign a couple of transactions depending
+39:38 if you want to be public or private and then you just start the broadcast
+39:46 and you are able to listen this broadcast depending on if you have selected like
+39:53 public or private and then close it and have all your class that you paid in the beginning back that it's quite a lot in
+40:00 mainet but it's not in mainet it's in hoodie so for now this but yeah
+40:10 so why did also we wanted to do this basically h it's also like a way to
+40:19 it's like a censorship resistant weight to transmit whatever you want Like there
+40:26 is a lot of countries right now in the world that they are experiencing like centralized of communication and like
+40:32 the media is like not fair for like for the people in the streets like they are
+40:37 just seeing what the government wants to see and not like the reality in some countries and I think that it's
+40:44 important to have like this freedom of expression freedom of uh to say whatever
+40:50 you want and what is more free than Ethereum I don't think that like there is some other things but I think that
+40:57 Ethereum is pretty free in and like very decentralized in compared with other ways of using the internet. So this is
+41:05 why we are using it here. So before my time finish I will do a a small
+41:14 public transmission. So let's see if this
+41:21 works. This is signing the public transaction
+41:27 to be in the listening. So everyone can
+41:32 listen. You cannot actually listen now in the phone. But I think in the in Android phones maybe yes or in
+41:41 computers but in iPhone I think it's not working. But let's do let's see.
+41:52 So this wait how I do this I don't know yeah so this is a test I guess that it
+41:59 will start sounding in any time I am not sure if yeah so this is a test I guess
+42:06 that it will start sounding okay so that's the test as you all could see I
+42:12 don't want to make a like repetition but all of this audio is basically in the
+42:17 meool and it will never be in the block so it's this. So, I hope you guys enjoy it.
+42:24 Thank you very much. And thank you, Tokyo. And thank you everyone that are here. I'm very excited to be here. So,
+42:31 [applause] awesome. That's a truly clever hack
+42:37 being able to actually stream audio packets on the memp pool without actually submitting a transaction and
+42:42 basically getting free bandwidth and pretty low latency. You can actually have uncensorship or censorship
+42:48 resistant services. All right, we were halfway there. here. We got four more demos to go. So, let's welcome our new
+42:53 next team, Yohaku. Please give a big round of applause. [applause]
+43:05 Hi, we are team Uni Yohaku written with the Japanese word for blank space. So,
+43:13 it is an escalation route economy.
+43:19 So agents are not assistants anymore. They are becoming customers
+43:26 and the person they buy from is you. So uh AI model can write anything.
+43:36 What it cannot do is leave a day and tell you what happened.
+43:42 In short what matters now is not information. It is an answer that only a human being
+43:51 can provide. A large market is expected and the
+43:58 supply it run out runs on is running out
+44:05 which means demand arrives at a person all night at massing speed.
+44:12 More than 50 requests reached one seller in one night.
+44:17 we were asleep. So that is not a problem to block. It is
+44:22 a market with nobody at the counter.
+44:28 So the question is not how to answer more. What is it that people truly need
+44:36 to see? What we are building is room.
+44:42 Room to stay a person. In Japanese, we call that yohaku.
+44:49 The space a painter decides not to fill.
+44:56 So here is one night agents arrive over an open agent to agent protocol. Most
+45:03 never reach a judgment at all. They are refused before anyone is asked.
+45:10 A security check decides whether the money may move. A decision model sold the rest and it
+45:18 can only ask or refuse. It cannot say yes. What clears settles
+45:26 itself over X402.
+45:32 The two are left only two. When she answers, we prove she is a person. at
+45:40 that moment with world ID. That is what an agent is actually buying
+45:48 and answer a human is proven to have given. We use interceptor
+45:55 and ensu and je
+46:00 and word id.
+46:09 So let me show you the demo.
+46:17 Hi. So this is her side. Her experience has a buyer and nothing here is open
+46:25 yet. So she names where a reward would go and
+46:31 agrees to the example policy.
+46:40 50 requests are generated for this session and the amount appear before she
+46:45 sign in. Nothing moves without her button.
+46:50 So now 50 requests are going through the routter right now. 10 orders rules.
+46:58 First match wins. A live spring call decides whether the money may move. A
+47:05 decision model sorts what is left and it can only ask or refuse. There is
+47:11 no answer that means yes.
+47:18 And now her inbox does not open until she proves she is a person. This is a
+47:24 word ID production of not at sign up at the moment of consent.
+47:33 So the proof is bound to this one request and two the browser that started
+47:38 it. Another visitor cannot approve hers. If she cancels the request stays approved
+47:46 and unapproved never settles. So money just arrived while she did
+47:52 nothing. That was inside a policy she had already agreed to a sample she
+47:58 allows. She was never asked and
+48:07 yes this is the part part of model cannot supply not information what
+48:12 actually happened to her and money arrived again
+48:20 because she decided and the answer reached the agent only after his payment
+48:25 succeed.
+48:32 This is the question for real human
+48:40 herbox. Not our promise and yeah this answer arrived. She
+48:47 reverse and delivery. This is reward history. Check our
+48:54 balance not our string base sephoria
+49:00 test net USDC and we say so no. Okay.
+49:10 So we spent two tops and kept the rest of the night. We take one unit for the
+49:16 decision we handled. Never a share of what we earned.
+49:21 We are team Ooni. Nana and Cole, thank you very much.
+49:29 [applause] Amazing. More experimentations for
+49:36 aentic payments that require a human in the loop. All right, we are ready for our next demo. Please welcome Watermark.
+49:48 [applause] Yep. Always quite high. Can you see this?
+49:53 Yeah. Uh yeah. So hi, we are watermark and our mission is making treasury asset
+50:00 disposal and there's an inefficiency in this process and we are solving it with
+50:05 uh with a 1 in aqua and nv2 and let's see how it works. Let's say like you are
+50:11 a dowo dow treasury and you want to sell about like 10k eats on a market. Then how we going to do? you're going to dump
+50:17 on the whole thing on the market or like you're going to do some DCAs or T-waps or those kind of things. Most of you
+50:23 want to do like DCAs or T-Ws, but Dows don't. Dows usually just dump on the
+50:28 market and like are they dumb? Yeah. Not they're smart, right? Then why
+50:35 they're doing is because of the process because DA needs a multi-ig and pro like proposals and all those kind of
+50:42 signatures per each actions. So if they try to do the DCAs and T-ws, they need
+50:47 like tons of these signatures. So that's why they are making just a dump and they
+50:52 are getting a loss like two or 3% as a slippage or spreads, right? But our
+50:58 customized Aqua router uh Aqua is an one in product and our customized Aqua
+51:03 router makes this problem solved. uh if that was just signature once on our
+51:09 customized Aqua router and shifts their own program then all of the after process is automated our Aqua router
+51:18 reads the uh chain link oracle and applies the spreads and quotes to the
+51:23 takers so which means DAO was back in the days they were acting as a taker of the price but through our protocol they
+51:31 can work as a maker of the liquidity and the price that's the whole point of the Aqua implementation that can now do a
+51:38 DCA style and they can provide a liquidity to the protocol uh to the environment
+51:44 but like shipping the whole assets and liquidity into aqua doesn't mean that
+51:49 the whole thing is safe because like any ea can access to your aqua system aqua
+51:56 liquidity then it might be some problematic because they might be act some malicious or act some problematic
+52:03 so that's why we implement ENSV2 for whitelist for in for making the eligible
+52:09 like counterparties that can make a order to us our router and also uh as I said now the Dow is
+52:16 working as a maker actually a market maker style so the most important thing is spread because they are farming from
+52:23 the spread and uh then we have to dynamically move the spread right the
+52:28 static spread doesn't mean anything we have to move the spread depending on the situations but we cannot do this by DA
+52:36 ourselves because absolutely it needs signatures right so there's that's why
+52:42 we stand an AI agents in here AI agents reach the onchain datas of each
+52:47 counterparties and each status of the DAO treasury and then moves the spreads
+52:52 automatically this depends on the DAO's rule itself and it's also the ENSV2
+52:59 Asian delegation so let's see the app how it works
+53:04 yeah this is our app in uh Seapoleia uh dev seapoleia test net [laughter] and as
+53:09 you can see there's an uh our dow treasury and currently they are holding
+53:15 like tons of ET I love it but like they they're holding a tons of ET like 90% of
+53:21 their whole assets is a ET and their target to going down is 70% right so
+53:27 they have to sell about 20% and they made an Aqua program to sell this 20%
+53:32 right and they have to counterpart it dedic ated counter parties MMA and MMB
+53:38 and each counter parties can have this kind of BPS. So if the mark price is
+53:43 this much they can apply this prices with this spread
+53:49 and let's say we can but we can like not trust the counterparty so much like I have tried
+53:56 this counterparty like two times I I don't trust them let's say I don't trust them then I can move the spreads like
+54:03 this so they can die like this but absolutely this is an
+54:09 signature so this is not like asentic process where agent stays is here. So the agents
+54:16 are eligible to uh access the each counterparty's spread. So if agents
+54:23 reach the onching data and thinks this counterparty is malicious or there might
+54:28 be some insider of the order flows then agents move the spread uh disincentives
+54:33 to that counterparties. So for example the basic uh spread is like this. So we can move this more higher and this more
+54:40 higher like this. And the agent has the rules and the policies and these are also the ENSV2 records that DAO first
+54:47 sets when they serve the model. And yeah we can see the previous fields
+54:53 like this and there's a spread like this. So DAO can not just like dump on
+54:59 the market. They can now spread far from the spread from the market and they can provide the liquidity and they can do
+55:05 the all is all they have to do is one signature from the start to the end.
+55:11 They just to need the one signature that's a value for DAO and for the counterpart this value they are likely
+55:19 to use it because they take the spreads but it is actually more cheaper than the
+55:25 actual market market like Binance or Hyperlquid those kind of things those are cheaper than those kind of spreads
+55:32 the counterparties has an incentives to use this router and DAO has an incentives to not lose their money on
+55:39 their asset disposal. So this is our presentation and so much thank you for
+55:45 listening and thank you it's global Tokyo and I love you blockchain. Thank you. [applause]
+55:54 Amazing. That's a real life utility for DeFi and actually making good decisions.
+56:00 That's awesome. Two more finalist demos to go and then we'll get to the prizes. So let's welcome our second last finalist team and economy. Give them a
+56:07 big round of applause. [applause] This is also a hardware demo. So, we're going to have to uh be a little bit
+56:13 patient and we'll try to uh make a lot of things work. Yep. Yep. We'll we'll try again.
+56:18 Yep. [laughter] I I really need to set it up again. So, what does that look like in terms of
+56:24 time? Uh maybe like a a few minutes. All right, let's we'll uh
+56:30 Sorry. kick things off. Maybe would we have the next team ready? Let's try to paralyze that. Andrew
+56:39 joys of live demos
+56:57 charging. Yeah. So it the whole laptop just
+57:05 destroyed. So
+57:19 sorry guys, my laptop just restarted. So um
+57:26 ML add
+57:31 should work.
+57:46 Sorry.
+58:16 Oops.
+58:23 So many things.
+59:18 I think I can. Yeah.
+59:24 All right. Let's uh give this hardware hack another try. Please welcome Economy. [applause]
+59:30 All right. Thank you guys. Uh wow. Uh this is very intense. So I'm very
+59:35 nervous. And um today I'm introducing my
+59:41 uh project an economy. It's a ZK proof of presence.
+59:46 Um well I'm I I I need to ask a few questions before
+59:52 I start my presentation. Uh how many of you guys here are excited about uh
+59:59 Asentic economy? Yeah. All right. Okay. Good. Okay.
+1:00:05 How many of you are afraid or scared or worried about Asianic economy?
+1:00:13 Okay. Okay. Okay. My buddies. So, I'm really worried about uh AI,
+1:00:19 right? Uh you know, evolving and then quickly start making money and um I
+1:00:26 wanted to do something about it. But first, maybe I will just play uh uh my
+1:00:32 vision of the project. Meet the modern agent. They can earn
+1:00:38 money, own things, and pay each other. No human in the loop. Now, money decides
+1:00:44 what gets built, and agents now have the money. So, bit by bit, we lose our say
+1:00:50 in our own world. Unless there's a money only people can earn and spend. You earn
+1:00:56 it by doing something for another person. Of course, robots want in to make more money dressed up as people.
+1:01:04 Lots of fake people online. Nearly anything can be faked.
+1:01:09 Text, voices, faces, IDs. The hardest thing to fake, two people standing in
+1:01:16 the same room. So, we begin with sound. Two phones chirp at each other, listen
+1:01:22 to the echo of the room, and prove they're side by side without giving away the audio, the place, or who they are.
+1:01:29 From there, a shared wallet that only opens when its owners are together, private payments handtoand. And someday,
+1:01:37 a whole economy that runs on people actually meeting. An economy that can't
+1:01:43 run without us starts with showing up.
+1:01:48 Okay. So that's just my u basic idea starting point. Um basically like when
+1:01:56 Asians start making money what does it even mean to uh capitalism
+1:02:02 and what does it even mean when they are taking our pie.
+1:02:07 So I wanted to kind of pro uh have something that can protect our uh human
+1:02:13 economy. And as you saw in the video, um
+1:02:20 no um from here I'm just going to do a demo.
+1:02:27 And this is my uh phone here.
+1:02:32 And basically I'm going to prove two devices uh distance
+1:02:38 two devices distance. And um I can start
+1:02:48 Can we zoom in on the camera? Yeah. Um, I can start a session here
+1:02:56 and uh by having two devices close. I'm not sure if the
+1:03:06 Yeah, two devices make uh sound and by uh by calculating the speed of the sound
+1:03:12 and the echo from the walls and the ceilings, you can actually uh know uh
+1:03:20 how far away two devices are.
+1:03:25 And uh from here you can uh start computing a zero knowledge proof of the
+1:03:31 distance. Um but with these two it's just two
+1:03:37 devices being close right. But uh if I can uh add
+1:03:44 uh for example like the world ID this quickly becomes two person at the same
+1:03:50 place. So this uh my uh this technology is kind
+1:03:56 of a primitive. You can use it for so many different kind of thing. And um
+1:04:06 yeah, let me go to next.
+1:04:12 And if you have been to other uh East Global Hackathons, sometimes uh we get a
+1:04:18 NFC wristband and then like whenever you meet other people, you exchange the data
+1:04:24 and then you compete um how many times you met with other person. Um with this
+1:04:32 technology and the ENS you can actually do the same thing but without the NFC by
+1:04:39 just having apps. So here um my one cell
+1:04:44 phone Bob just met Aris and then it's counting the uh number of our
+1:04:51 interaction. Um yeah on top of that we can you can do so much more things. For example, like
+1:04:58 if you have privacy pool, um you can add this to make it something
+1:05:05 like uh onchain payment only when you are actually um making payments to another
+1:05:13 human. Um yeah uh I'm kind of going my my mind
+1:05:21 drunk but um there are just so many uh opportunities and I'm really uh happy to
+1:05:28 be here. Um I think us being together means something and um that's my basic
+1:05:36 motivation that I wanted to create something like this. Thank you.
+1:05:43 [applause] Absolutely incredible. Well, this
+1:05:48 hardware demo worked. We got to see things being done in real time. And I didn't know you could actually read the
+1:05:53 echo off of your phone's microphone. So, I learned something new and another cool way to meet humans and use cryptography
+1:06:00 for practical applications. We are now ready for our last finalist demo. So,
+1:06:06 let's give a massive round of applause to Oddsflow.
+1:06:11 [applause] Okay guys, I'm so nervous too. So, let's
+1:06:18 make it work. Um, let me introduce to my team Santiago Vanna and Hime Jimenez
+1:06:23 from Colombia. We built ads flow just in time limit
+1:06:28 orders for market predictions for prediction markets, sorry. So, let's say
+1:06:34 you have $1,000 and you want to participate in different markets. What you have to do now is you have to split
+1:06:41 your amount and you have to lock it in the different markets. So that that
+1:06:47 comes with a trade-off. You either uh cover properly few markets or you spread
+1:06:54 it across different markets and wait for someone to trade against you. That comes with a big problem. So now the liquidity
+1:07:01 is being concentrated in the big market, right? So that's that you you know that
+1:07:08 that's a big problem. So now the solution that we have with uh odds flow
+1:07:14 and being enabled by the by Aqua that that gives some features to do this we
+1:07:20 can uh participate with that $1,000 in the different markets without
+1:07:26 blocking your amount. So that that gives you the opportunity to optimize your
+1:07:31 your bets, right? So you don't have to block your amount. You can participate in different markets and you don't have
+1:07:38 to wait for the resolution of the bet to get your money back. You you always you
+1:07:43 are in the custody of the or of your money till some till the counterparty
+1:07:48 comes to your your bet. So how it works this is the interaction
+1:07:55 between the maker and the and the taker. The maker creates a limit order. It this
+1:08:01 comes to aqua. So we do kind of an interface between the users and the
+1:08:06 prediction market. For this MVP we use seir uh which is a onchain uh prediction
+1:08:12 market. Then only when the when the taker comes to the into the picture and
+1:08:19 do the bet is when the money goes out from your wallet. So that executes the
+1:08:25 pull the pull action. Let's go for the demo.
+1:08:30 Okay. Okay, very quickly I will you show how it works up at let me show you.
+1:08:37 Okay, in this front we can to say dot wallet atmaker and take care of the position. So first thing that we will do
+1:08:43 is I create new orders with the same liquidity instances. So I will go to key new orders and I will to select very
+1:08:49 quickly any markets for example this wars and I will to find another and this
+1:08:55 last and the last part I will to select um the range of the price that I wants
+1:09:02 to buy uh assets when the market is
+1:09:07 according with my my price. Then this then this and this would say not yes
+1:09:13 everything I will select all with yes and then we to place to order right so I
+1:09:19 will select my liquidity and a bet for all of this order all of this market right right now we just giving a proven
+1:09:26 to aqua to move our money when the order is taken for anybody okay let's go so I
+1:09:34 come back with a make uh with to go to this and find do a market. I want to
+1:09:40 find this very quickly. Search and well select that and I to buy that
+1:09:46 note that it will not happen and I buy with one and this when I pay for this
+1:09:55 asset for this market. You can see how in the maker of the bet will to reduce
+1:10:02 your balance for take a new new position in this market. Okay. So
+1:10:08 the transaction field completed. I will close that and then I will go to the transaction
+1:10:14 and you can see that the balance total of balance that the maker was changed for get the value. So I will lock to the
+1:10:23 logs and on the end you can to find that the maker got just fossil token and for
+1:10:32 the position that he wants to get is is done. That's it. Thank you so much.
+1:10:40 [applause]
+1:10:45 Thank you. All right. Prediction markets are still very popular and aggregating them is
+1:10:51 actually a super cool way to do actual hedging across the arbitrage between markets. Those were our eight finalist
+1:10:59 teams. So, please give all teams again a massive round of applause. Let's give a big shout out to Takarakabakaco, Patio
+1:11:06 Station, Yohaku, Watermark, Oslo, Cura, Homamorei, and Enconomy.
+1:11:13 Now, yes. Well, I hope you have a little bit
+1:11:19 more energy left because this is the exciting part. We're going to talk about all the amazing prizes and we're going
+1:11:24 to start off with our finalist teams. Eight teams just presented. They are our
+1:11:30 finalists for ETH Global Tokyo 2026. And that means each person from this team
+1:11:35 will be receiving a ticket to DevCon, ETH Global Plus for one year, a thousand USDC,
+1:11:42 a $500 FR credit to the next ETH global hackathon, access to ETH comp in 2027,
+1:11:48 which is the biggest institutional Ethereum event of the year in the world. We do a lot of private events with
+1:11:54 founders in the space, and you get to join us in one of those future ones. and over $15,000 in developer credits, which
+1:12:01 means anything from AWS to some web two services you need to launch your project for mainet or mainstream, you get to do
+1:12:09 that without having to worry about all these things. And not only that, we're also going to be giving a hoodie to
+1:12:14 every finalist member, which is only something that a finalist team member
+1:12:20 gets. Neither ETH global, even I don't have one of these. And this will be shipped to you wherever you are in the
+1:12:26 world. Every single person on the finalist team members gets a ledger flex
+1:12:31 as well and they get to take home an amazing new wallet. Of course, the $500
+1:12:37 fly reimbursement applies to our event next month at Defcon, but also to all
+1:12:43 2027 ETH global events. And you also get to come to Defcon for free. ETHCOM is
+1:12:49 our biggest event of next year that we've already publicized. 2027 counter is coming very soon. And those are our
+1:12:54 finalist teams. So give the eight finalists another round of applause. [applause]
+1:13:02 Now the best part is our partner prizes. So we have $75,000 in prizes we're going
+1:13:08 to give away. I'm going to start off with the first partner prize which is from 1 in. But before I do that, I want
+1:13:15 to see what the energy level of the room is. Are we tired? Are we excited? Do we
+1:13:20 have some m Okay. Okay. This is good. Well, the good thing here is that we have about 20
+1:13:27 slides, so we can kind of compact all of our energy very efficiently and we're
+1:13:33 going to play a game. For those of you joining me for the first time, I'll explain the rules. And those of you who
+1:13:39 know what I'm going to say, you know, if I have a head start, so I hope you can be ready for the game. The game is as
+1:13:46 follows. I'm going to announce who the winner is of [snorts]
+1:13:54 the next partner. And if you are that team, I want you to shout as loudly as
+1:14:00 you can when you hear the name of your team, your project. So, if I say there's going
+1:14:08 to be three names on screen only when I say your project name,
+1:14:15 I want you to shout. If you are the loudest team by the end
+1:14:20 of all the prizes, every member on your team will get a ledger wallet that you
+1:14:26 get to take home. But here are the rules. If somebody is louder than you,
+1:14:33 obviously they are the top team. If you are going to be winning two
+1:14:38 prizes, which is you win another partner's prize, and you were not loud enough after, you don't get to keep your
+1:14:44 place. So, you have to be consistently loud. And there are some teams that are winning multiple prizes, so you better
+1:14:52 strategize accordingly. Are the rules clear?
+1:14:57 Are we going to play this game really well? Now, we'll keep it quiet. You need the
+1:15:02 energy. Okay, let's start with our first partner prize. We're going to kick
+1:15:08 things off with 1 in. Oddsflow is the best app on Aqua and Oddsflow is the
+1:15:13 loudest team in the room. You win $2,500. Second place goes to Wamia for
+1:15:19 $1,500. Wa is the loudest team in the room. And third place goes to Watermark.
+1:15:27 [screaming] Oh my god, that was actually very close. You know what? I have no idea which one of them was louder.
+1:15:34 This is a tricky one. This hasn't happened before. Wia.
+1:15:42 Watermark. [screaming] Wia is the loudest team in the room. But
+1:15:47 watermark wins $8,000. For the best app on Aqua for the continuity track. Vexi Hakari is the
+1:15:56 first place winner. You win $1,500. and Takarakabako Takarabako
+1:16:02 is the second place winner for 500 and you are the loudest team in the room.
+1:16:07 Hey, the ATM better work. Okay,
+1:16:12 odd to world pupil is the best use of ID kick. You take home $2500 and placed is
+1:16:21 the second team also winning $2,500. Congratulations.
+1:16:27 The best use of world ID for agents goes to Lifeline.
+1:16:36 [laughter] Airlock and Shy. And all three of you take home
+1:16:42 $2500. Congratulations. And the best ID kit use case for
+1:16:48 continuity is Lord Naut Talk. You take home $2500. Congratulations to all the
+1:16:54 world winners. Next up is ENS
+1:16:59 relay is the best use of ENSV2. You take home $3,000.
+1:17:05 ENS drive comes in second for 2,000. And Tide and Kura,
+1:17:12 that was Tied. Okay, that was Tied. Tide and Kura
+1:17:18 win $1,000 each. And Tide is the loudest team in the room. I really hope somebody's keeping track of it because I
+1:17:25 will forget. [laughter] For the best V2 integration for
+1:17:30 continuity, Radius is the winner for $2,000 and Lord Knock takes second place
+1:17:37 for $1,000. So, congratulations to these team and Tide is the loudest team in the
+1:17:43 room. On to Sooie. Unsuie comes in first for $2,500 and
+1:17:50 Anti-Scalper Protocol comes in second for 1500 and third place goes to Lifeline for $1,000. Congratulations.
+1:18:01 Then we have Uniswap. Kora is the best Uniswap stack contribution.
+1:18:07 You take home $3,000, but Tide is still the loudest team in the room. Bayiff
+1:18:12 comes in second for 2,000 and Oni Block comes in third for $1,000. You win the
+1:18:18 best unis swap stack prize. And for continuity, Vexi Hakari comes in first for 2,000. Tied is still the loudest
+1:18:26 team. X Swap comes in second for a thousand place and Recken is the third place winner for another,000.
+1:18:33 Congratulations. Next up is Curve Grid. Day Trader is the
+1:18:39 best RWA project. You take home $1,000. Ansui is the best digital asset
+1:18:44 dashboard winner for $1,000. And Kaji Wallet [laughter]
+1:18:50 Ki Wallet comes in as the winner for the best AI project.
+1:19:00 I don't think that was loud enough. I'm not sure. [laughter] And they are the loudest team in the
+1:19:05 room. Congratulations. And then we have Interracepta. KG
+1:19:11 wallet. [laughter] You're already first. You're already first. Okay.
+1:19:18 You win the best agent to agent payments on X4250. X42 Guard is second place winner for 750
+1:19:26 and X swap comes in as the winner for the continuity track for the Beex 402 service and you'll be taking home $500.
+1:19:33 Congratulations. [applause] Those were all of our winners. Give a massive round of applause to every
+1:19:38 single team [applause] and everything here is public. You can
+1:19:44 see the projects on the website. In just a few minutes, you'll be able to see them on your dashboard. So, you can see the total counts. And one thing I want
+1:19:51 to talk about is that everything here is tentative, which means that we did not have enough time to verify everything.
+1:19:58 So, we're going to take the next few weeks to read everybody's source code, make sure that everybody followed the rules, make sure that nobody committed
+1:20:04 something that they should not have or started before. We'll make sure everything was integrated properly. So,
+1:20:09 everything here is tentative and not final. Things may change. We will probably ask you some questions over
+1:20:14 email. And otherwise, you'll get an email from us one week before October
+1:20:21 30th confirming your prizes and the total pound.
+1:20:27 Wait, what? What about ENS?
+1:20:33 Okay, I'm getting heckled here. Oh, we have a team photo Zoom meeting.
+1:20:40 Not today. Um, and every prize will go out at the
+1:20:45 end of October in just one month. So, you'll get an email confirming all the details and we'll send that to your
+1:20:51 verified wallet. And I realized that I should have been here because I need to go to the next slide. Now, we've talked
+1:20:58 about all the prizes. I want to take two more minutes to make sure that we get to thank everybody that help make this
+1:21:05 event possible. There's a lot of people that do so much work behind the scenes that takes months to execute. And I want
+1:21:12 to start off by thanking all of you as hackers. You took the weekend to be here with us. Please give yourselves a
+1:21:17 massive round of applause. Without you, we would not be here. Without all of your creativity, we will
+1:21:23 not see the amazing outcomes we've seen. And this space wouldn't be the same at
+1:21:29 all. Not only our hackers, our incredible judges who took the entire
+1:21:34 morning talking to all of you, giving you feedback, staying many hours more than they were supposed to to make sure
+1:21:40 that they get to see everybody. Please thank our judges one more time. Give a massive round of applause. And we're
+1:21:45 going to keep clapping as loud as you can because we're going to thank all of our mentors, our volunteers, all of our
+1:21:50 speakers who did amazing talks, all of our partners, and everybody from our
+1:21:55 venue to our printing company to our videographers, our photographers,
+1:22:01 everybody that did so much incredible work to capture this moment. And a massive, massive, massive shout out to
+1:22:06 the ETH global team. So a thank you to Ethan, Joanna, Anna, Lisa, Karen, Aubrey, Val, Pascal, Alex, Sophia, Nuno,
+1:22:12 Anna, Emily, and Andrew. This is everything I wanted to talk about. Before we end things off, I want
+1:22:19 to talk about what's next for ETH Global. Of course, our next and our last Inerson event of the year is going to be
+1:22:24 in one month in Mumbai as part of Defcon. That's going to take place from November 5th to 7th. For those of you
+1:22:30 who are planning on joining us, a key thing to note is that the dates have changed. It's going to end on a
+1:22:35 Saturday, not a Sunday. So, the hackathon now starts on Thursday instead of the Friday, Sunday that you're used
+1:22:40 to. So, make sure that you planned accordingly. The dates are one day earlier than before. And of course, the
+1:22:48 only thing we can talk about right now is our 2027 Eat Conf event. It's going to take place in New York, the biggest
+1:22:54 Ethereum institutional conference in the world. We're excited about this and we're working on telling you all about
+1:23:00 the rest of the events for 2027 very soon. Everything here is on our website. You can sign up for the next events
+1:23:07 immediately. We hope to see a lot of you there. And with that, thank you all for being at ETH Global Tokyo 2026. We hope
+1:23:14 to see you again very soon. And with that, have a great evening. We'll see you all outside. And we really
+1:23:19 appreciate you being with us this weekend. Thanks.
+1:23:26 [music]
+               0:01              [music]     
+               0:13              Welcome to Isa in Tokyo. This is not a conference. This weekend     
+               0:20              is the hackathon.     
+               0:26              We're excited to be back in Tokyo. It's game hall. Everyone is locked in. People are willing to not sleep. The     
+               0:32              stakes are high. Tokyo feels like a combination of traditions and technology. Moving in and     
+               0:39              never sleeping again. It is day two. I'm feeling great. The vibes are good. I am extremely caffeinated. Being in a     
+               0:45              capsule hotel that is $20 a night and my coffee budget was 50,000.     
+               0:52              It's exciting. It's vibrant. Yeah, we're tired. We're finishing the last parts. Kind of sad. The clock is ticking down.     
+               0:58              I'm trying to procrastinate as much as possible. It's is so tired.     
+               1:07              This is my 35th ETH global hackathon. This was my first one attending as a mentor. I have lost count. I reckon approaching     
+               1:14              50. I'm stressed. Hope these ESPs don't fail me.     
+               1:20              3 seconds before, but yeah, we we made it. Yeah. In the nick of time. Few seconds to go. People seem very calm     
+               1:27              coming in this morning, which maybe reflects a little bit about the vibe in Tokyo and in Japan in general. There's a     
+               1:33              good number of DeFi projects. There's a good number of projects involving digital assets and stable coins,     
+               1:38              especially identity. It's really exciting to see people able to come up with an idea on a Friday and take it     
+               1:44              right through to conclusion over 36 hours. Build, eat, sleep, repeat. We're     
+               1:50              at the end of ETH Global Tokyo 2026.     
+               2:00              Good afternoon everybody. [applause] How's everybody doing? Excited.     
+               2:08              Yes. I know it's been a long day, but this is the fun part. I'm Cartik. I'm     
+               2:13              one of the co-founders of ETH Global, and I want to welcome all of you to the closing ceremony for ETH Global Tokyo     
+               2:18              2026. For those of you who are joining us for the first time, especially on the live     
+               2:23              stream, we're an organization with a very simple mission. We want to onboard thousands of developers into the web3     
+               2:29              ecosystem. And this weekend was a perfect collection of everything that we do, which is hackathons and summits. And     
+               2:37              we're here talking about the ETH Global Tokyo hackathon. We're going to summarize how the last 36 hours have     
+               2:44              been for everybody. There's over 621 people from all across the world. 504 of     
+               2:49              them are hackers. 29% of them are brand new to web 3, coming in from web 2. They're here from 46 different     
+               2:55              countries, six continents, literally all across the world. And of course, a massive number of amazing developers     
+               3:02              from all over Japan and rest of Asia.     
+               3:07              Not only that, we have 25 incredible partner reps here, 17 technical mentors who were there the entire time helping     
+               3:15              make sure that you get all the questions answered and 33 amazing volunteers that     
+               3:20              helped make this weekend really memorable and they pulled everything they could to make sure that you have a     
+               3:25              great experience. Please give them a big round of applause. [applause]     
+               3:31              Our partners did six workshops. There were zero talks from the hackathon, but we did host a whole conference     
+               3:36              yesterday. And we're going to be giving away $75,000 in prizes today. So, you get to see what you won and who won,     
+               3:43              what prizes, and what teams stood out in the next 60 minutes. I want to give a     
+               3:50              massive round of applause to our seven incredible partners. So, please join me in congratulating 1 in World ENS,     
+               3:56              Uniswap Foundation, Sooie, Curve Grid, and Interceptor. They're all here and     
+               4:01              they're excited to tell you what prizes you're going to be winning from them. Now, the next hour is all about telling     
+               4:08              you how incredible this weekend has been. Now, this weekend is a hackathon, which means the focus is here on     
+               4:14              builders, and we care about showing instead of telling. So, we're going to be doing some live demos of some really     
+               4:21              cool projects we've seen from this weekend, and then we'll go to some of the prizes. Now, some records were     
+               4:28              broken this weekend for us. The first one was I didn't realize that 504     
+               4:33              hackers can do [snorts] so many things in a short amount of time.     
+               4:39              We want to tell you about where everybody came from. We had 504 hackers from so many different countries. Obviously, the most amount of developers     
+               4:46              came from Tokyo. The second number of people were from Seoul. And the third     
+               4:51              most attended city was Chennai from India. And then we have three     
+               4:57              really really longtime attendees. We had Fabian and Julio who've been to 38 ETH     
+               5:02              global events over the last seven years from at least since I've known them. Uh     
+               5:09              this includes all the in-person ETH global events and also our async online ones. And Karan is on his number 36th.     
+               5:16              So there's a lot of loyalty reward points that they're going to earn. And     
+               5:22              not only that, we kind of wanted to see what people are excited about on the tech stack. So, interestingly, for the     
+               5:27              first time, we have seen Typescript be number three instead of number one. So, I don't think I'm going to trust your     
+               5:33              code if it's not strongly typed. You should really not use JavaScript for money. But, Python remains number two     
+               5:40              consistently. So, that's awesome to see. And these 504 hackers submitted 254     
+               5:47              projects. This is scary. Uh we were not     
+               5:52              expecting 254 projects and we got a hundred more than we were hoping for and     
+               5:59              that meant everybody had to put in a lot more hours. And by everybody I mean our     
+               6:05              judges to make the day work and keep things relatively on time. And before we     
+               6:11              kind of show you what the outcomes were, some amazing stats from the projects too. 55 of them were continuity. 199     
+               6:18              went and did things from scratch. So, we're still seeing a pretty strong correlation towards a third of them     
+               6:23              getting to continuity and really making it more and more towards the 50% goal, which we have. And DeFi was the most     
+               6:32              hacked on category for these 254 projects and wallet payments and AI kind     
+               6:38              of came in second and third. So, we're seeing real defi come back to the lead     
+               6:44              and I'm excited to see more creative DIY hacks. World ENS and unis swap were the     
+               6:49              most integrated SDKs and people deploy directly on Ethereum mainet which is     
+               6:54              awesome because either means that you trust your code a lot which is good sometimes scary or things are actually     
+               7:01              really scalable and you feel comfortable deploying on mainet. Base and flow were the second and third most deployed     
+               7:06              chains. So, we're still seeing pretty strong affinity to deploying contracts     
+               7:12              directly on mainet. That's awesome. So, congratulations everybody. 254 projects.     
+               7:17              Give yourselves a massive round of applause. [applause]     
+               7:22              And I want to give a special thank you to our judges. They had to stay three     
+               7:27              more hours than they were supposed to to make sure that they get to talk to all the teams. So, please join me in giving     
+               7:33              a massive round of applause to our judges, Albert, Alem, Augie, Liz, Jeff,     
+               7:38              Josh, Lego, Martin, Mos, Matt, Nuno, Terry, Tommo, and Yin.     
+               7:44              Now, before we kind of get into all the outcomes from this whole weekend, I want     
+               7:49              to take a quick second to have you scan this QR code and fill out the feedback     
+               7:55              form. That should take you less than a minute. There's six or seven questions that are rate things out of 10 which     
+               8:01              asks anywhere from how the food was, did you get the help you need, did you like the event, do you think we can do     
+               8:07              something better, do you think we should not do something, do you think we should continue doing something? ETH Global     
+               8:12              runs a hackathon or a conference somewhere every few weeks in the world, which     
+               8:18              means that every few weeks we get to reach a thousand more people and help     
+               8:24              make their experience much better. So if we can learn something from this, if you like us to continue doing something or     
+               8:29              not do something, we can im immediately implement those feedbacks and give the next thousand people a really really     
+               8:36              good experience and anything you say gets read by everybody. I read every single message and we get to fix things     
+               8:42              for the next people. So tell us what is working, what isn't working, and we'll     
+               8:47              also be giving away these hoodies. So anytime you fill this out, we're gonna send this to a few people. We'll ship     
+               8:53              this to you and you get a hoodie from this hackathon for telling us how your experience was. Now, enough of     
+               9:01              the ads. Let's get back to these projects. 254 projects, a very, very     
+               9:07              busy judging session in the morning and most of the afternoon. And from there, we have eight finalist teams. It was     
+               9:16              very hard to get to this eight, but we have eight teams here who are going to come on and demo what they built. We're     
+               9:22              going to do backto-back demos for these eight projects. Then we'll go and tell you all the prizes. So,     
+               9:29              for the first time ever, please join me in giving a massive round of applause to     
+               9:34              our eight finalist teams for ETH Global Tokyo 2026. Estara, Karako, Patio Station, Yohaku, Watermark, Aspokura,     
+               9:42              Omamorei, and an economy. These are our eight teams that are going to come on, demo what they built, and then we get to     
+               9:48              all the prizes. And before we bring on the very first team, I want to take a second to thank every single submission     
+               9:54              from this weekend. There are 254 projects here. So many incredible     
+               10:00              builders, so many incredible ideas come to life. So many things deployed directly to production. We're really     
+               10:06              happy with the fact that 199 of you chose to do the finalist judging, which meant that you have to     
+               10:11              deploy your project live. And that's an amazing milestone because that tells us things are being built for people and     
+               10:19              you're building things that somebody wants and you want them to be a user and not just for fun. Fun is okay, but     
+               10:24              building it for somebody is even better. So congratulations to all of you here. We hope that you continue building and     
+               10:30              now with the continuity track for all future events, you can hack on more features to any of these projects and     
+               10:36              still qualify to be a valid submission. Now everything here is going to be     
+               10:43              public which means that for people who are watching this on YouTube you can go to eglobal.com/showcase     
+               10:49              see all 254 projects learn from the code everything is open source you can see     
+               10:55              some tricks that people have pulled you can see how they've thought about doing something hard really well we want to     
+               11:00              make sure that everybody here has a chance to get better and improve what they can do as builders so everything is     
+               11:06              live and soon you'll be able to also see your prices so enough talking for me. Let's get ready for our very first     
+               11:12              finalist demo of the day. Please give a massive round of applause to Kura.     
+               11:18              [applause]     
+               11:36              Okay. Hi everyone. I'm Arbulo and I've been working in web3 for the last nine years     
+               11:43              and um actually I've decided to uh create my own side business. I've always     
+               11:48              been a TCG car player whether it's Pokemon, whether it's Magic and so on.     
+               11:53              And so I'm actually opening a store of TCG cards in Rome, Italy. And I I was uh     
+               11:59              searching for a way to bridge the web three experience that I have with my passion for cards. And I've decided to     
+               12:06              build Kura. Kura is the storehouse in front of all Japanese houses where they used to store like rice, grains and     
+               12:13              stuff but also valuables. In this case, Kura is actually a physical vault which is going to be my shop. There are two     
+               12:20              types of users on Kura. The first users are is of course going to be me the     
+               12:27              vendor. Via the vendor station I can scan cards whether they come from users or whether     
+               12:33              they are from my shop. So, this is running a a browser model that is going     
+               12:39              to scan this card and it's going to match it against the 45,000 different cards of Magic the Gathering. As you can     
+               12:47              see, it matched correctly, the Cryrats, my favorite card. I can select the language, Japanese. I can select the     
+               12:54              condition and so on. I can set it as foil or not. And then I can select the owner. I can either scan its QR code if     
+               13:00              it comes to the shop or I can use its ENS subdomain. In this case, I'm going to use mine, which is uh orb.cura.     
+               13:09              So, I'm going to use handle. And what happens? I'm going to mint a digital twin of this card to the owner. In this     
+               13:16              case, me. Um, if I go here and I open the app and I go     
+               13:23              on portfolio, I should be seeing um my cards. This, of course, comes from uh     
+               13:29              the the past demos. And with a card, I can do two different things. I can either collect it back at the counter by     
+               13:36              showing the passport verification from word ID or I can shard it. What does     
+               13:42              shard means? I can divide this card into small pieces and then create a uh     
+               13:47              continuous clearing auction on unis swap to basically sell up to 50% of the card.     
+               13:54              50% of the shards get locked and when the auction finishes uh a unis swap pool     
+               14:00              gets created and everybody can start basically buying this card. So basically you can purchase shards of a card and     
+               14:09              invest it. This is not financial advice and um and still try to to earn some     
+               14:15              profit from it. So I can share the card, set a floor price, whatever.     
+               14:21              Uh let's say one week and this is going to create an auction. While this is     
+               14:27              creating, I can show you different stuff around the app. So these are already existing auctions with or uh without     
+               14:34              bids and so on. This is an example of another car that I was testing. uh you can see uh the auction data here.     
+               14:42              But the best thing is to check an ex uh finished auction. If you go on ended as     
+               14:49              you can see from here I can actually trade charts right now. So this is on unis swap uh sorry one thing on the     
+               14:56              auctions only uh humans can bid on the continuous clearing auctions. This means     
+               15:02              that you need to be a human and you need the proof of human from word ID and um     
+               15:08              and you can only use one wallet. So one human, one wallet. So if you try to connect a different wallet with the same     
+               15:14              human ID, you won't be able to participate to the auction because we want humans playing with actual cards.     
+               15:20              Uh let me go back. See this is auction live. This is the the ended auction     
+               15:29              here. Sorry. So here I was saying I can actually buy shards. I can sell my     
+               15:34              shards. I can see all different kind of stats. I can see this is the auction     
+               15:39              cleared. I can see all the different orders of this card. I can see the activity record being set and so on. And     
+               15:46              some cool analytics on the card. I can see the price per shard, how we change to the manure holders over time,     
+               15:52              ownership split and fees to the vault. Finally, some of you may may ask     
+               15:58              yourself, but what happens with the physical card? Well, actually, if someone holds more than 80% of the     
+               16:05              shards of a given card, he can actually redeem the physical card himself by     
+               16:10              buying out the remaining 20%. Or x amount percent. So, uh let's say, for     
+               16:17              example, he owns 90% of the shards. uh he's going to buy out the 10% of the shards at market price and then he can     
+               16:24              go to my shop and redeem the physical cart and um I think this is it and this     
+               16:31              is live on Ethereum Sapoleia and uh thank you so much.     
+               16:38              [applause] Awesome. A very smooth demo that mixes DeFi with collectibles and a very     
+               16:44              appropriate first demo for Japan. Let's uh get ready for our second finalist demo. Please welcome Takarab     
+               16:51              Baka. Give them a big round of applause. [applause]     
+               17:06              All right. There's a lot of hardware hacks today. Hello everyone. My name is Akil and this     
+               17:11              is Takarabako and this is my another partner Sebastian. So where leftover travel cash become dollar savings. So     
+               17:20              one of the big problem with the current when we traveling to the countries like Japan to the Malaysia to the Thailand     
+               17:27              something like that. So we always have a like uh a few foreign uh bank note in     
+               17:32              your wallet maybe too little to be worth for the exchanging and too much to throw away unless you you want your home     
+               17:40              something like that. So we've come up with a solution uh with Takarabaku where     
+               17:45              you can you guys can basically can deposit your um uh your cash into our     
+               17:52              own machine here. So um for example uh like deposit to uh cash to our own     
+               17:59              machine here. So basically you can get the stable coin into your wall wallet and then you can execute any type of     
+               18:04              like uh strategy or you want to send the you know stable coins to the other your friends or family something like that.     
+               18:11              So for the demonstration here um I already registered it with Takarabako and then I already scan my uh selfie     
+               18:18              with the world world kit ids here. So I just want to make it quick here for um     
+               18:24              just just want to scan my QR code. This is the my wallet and login in. So in my     
+               18:29              wallet I just got $1252. So from here we got a Malaysian uh bank     
+               18:35              notes. So just insert in. So from here we already insert around     
+               18:42              one ringit. So um we're waiting for the notes to be     
+               18:48              read here. It took it took some times. So     
+               18:58              All right. Okay.     
+               19:04              Uh, it's got a little bit delay here. So, yeah.     
+               19:17              Um, okay. So um after you guys like deposit your you know your wallet your     
+               19:25              cash here and then you get this stable coin here like $1252 you guys can basically this is the     
+               19:32              application you can see on your mobile your mobile phone and then here I show you on the on the PC you can just you     
+               19:38              know click yield if you if you don't want to uh cash keep idle in in the laptop sorry in the platform so you guys     
+               19:45              can open up the yield and then you guys can choose whatever strategy one maybe um beginner or beginner uh beginner     
+               19:54              strategy like risk medium and yeah and then     
+               19:59              okay to load here sometimes     
+               20:10              okay so from here you guys can see I already implement some of the strategy into the takarabaku we use one inch for     
+               20:17              here. Oops.     
+               20:22              Okay. This is the yield on one each aqua. So, um after that, um I think we     
+               20:28              move on to the kiosk part.     
+               20:36              All right. So, as my partner is trying to reset the machine, uh we're trying to get it back online. So, we want to make     
+               20:42              sure that uh we can deposit the money in. So I'll move on to the next part which is on an assistant that we have     
+               20:50              while using this uh platform right here. So one or before I get to that um our     
+               20:56              kiosk right here. All right this is our very first one and as we grow in the future we would like everyone to know     
+               21:02              where you can find them. All right so if you click on find a kios right here.     
+               21:08              So as you can see our first location is in our very venue right here where we are.     
+               21:13              All right, just give it a moment to load. So this is the very building building that we are in. And it goes     
+               21:20              further than that. You can even know where we are inside the building to the very floor that we are at. So that's one     
+               21:26              of the uh features that we have. Another one is imagine having an assistant where     
+               21:32              it can help you to generate the QR as what my partner just did. Not only that,     
+               21:38              it can even give you advice, right, on what strategies to do, on how you can um approach the yield. So, for example, as     
+               21:44              you can see here, we have this cat right here. Now, what happens if I click on that? Once I click on that, you can see     
+               21:51              we have our my Niki that can help to assist us assist us. So, one of the um     
+               21:57              examples that we can do is for example, hi, what can you help     
+               22:03              to generate     
+               22:10              a QR for me. All right. So, whatever my U partner just did, he can also do it     
+               22:16              for us as well over here. So, just give it a moment and ta the same thing and we can use this to deposit the money. So,     
+               22:24              are we good to go to give another try for that? Yeah, let's go. All right. So, another attempt to deposit the money once more.     
+               22:33              So, back to me. Okay. We try to deposit our cash here again. So, yep.     
+               22:47              Oh, all right. Need to to refresh here.     
+               22:53              Scan again.     
+               23:06              Well, okay. Keep going. Keep going. [laughter]     
+               23:11              My My Q are expiring.     
+               23:26              All right.     
+               23:35              Can we have time to reset the whole system and try one more time right now? Like in how many how much     
+               23:42              what time do you need? Um two minutes. Okay, let's let's do it. I think now we're super vested. I want to I want to     
+               23:48              see the money being read. Now it has to work.     
+               24:00              Oh [laughter]     
+               24:11              We need to make it quick. So we have assistant to help us. [applause and cheering]     
+               24:27              Right.     
+               24:40              Right. This is the best part of hackathons. We're live debugging in front of 500     
+               24:46              people [laughter] and we want you to make this work. This is this is good.     
+               25:05              I hope you don't run out of your claw 5 hour limit. Okay. Okay. We we online invest. Let's     
+               25:10              try again. Start and     
+               25:17              All right, we're ready. Okay, moment of truth.     
+               25:27              Let it scan and then clap.     
+               25:36              Oh no.     
+               25:58              This is like using a vending machine.     
+               26:09              We promise you this one will work. [laughter]     
+               26:18              It's the It's the Okay, there you go. All right. Moment of truth.     
+               26:26              Don't tell me now.     
+               26:32              No. Let me see the logs.     
+               26:50              All right, we'll we'll we'll let you try for two more minutes while we switch to the next team and then if it works, we'll switch to you after. So, let's do     
+               26:57              this. But so far, this has been awesome. Give them a round of applause. [applause]     
+               27:06              And we'll start with our next finalist while they debug. So, please give a massive round of applause to our third finalist, Omi. Welcome them on stage.     
+               27:15              [applause]     
+               27:29              Okay.     
+               27:45              Right. So, hi guys. Uh, we're Umamorei and we actually met at the     
+               27:52              what was it called? The Yeah, the team forming session. Yes, except for you. Right. Right. Not us, but the whole team. So,     
+               28:02              let's imagine giving AI agents the ability to spend our money.     
+               28:11              I mean, we fix the budget. We choose the we have um the connect the     
+               28:20              cor correct um uh connection the right network. Um we     
+               28:30              have the we have everything going perfectly, everything set.     
+               28:36              It sounds safe, right? But what if our agent ends up buying     
+               28:43              something that we never asked for? This is a problem that we're tackling     
+               28:48              with Omari. Now, brace yourselves. This is a pre     
+               28:55              signature security.     
+               29:03              Yes. Presecure uh security verification firewall. Yes.     
+               29:10              Um, designed to protect AI agent payments. To make it easier, our goal is to give     
+               29:19              freedom to our agents to act without giving them unrestricted access     
+               29:26              to our money. So, here's an example.     
+               29:31              Now, let's say we want to purchase um a     
+               29:36              $25 Amazon gift card. While browsing, it encounters malicious     
+               29:45              um instructions hidden inside our product page. And because of this,     
+               29:52              it tries to buy a Steam gift card. Now, I'll be fine with that, but that is not     
+               29:59              what our user asked for. Now, the budget would be correct. It     
+               30:04              would be a $25 Steam gift card. The um merchant would be would pass the     
+               30:12              security screening. Um Oh, sorry.     
+               30:18              Yeah. And it would be the right network. Everything sounds fine, but again, this     
+               30:24              is not what our user asked for.     
+               30:31              Sorry. Um, and so that's the problem that we face.     
+               30:40              And so how do we prevent this? So Umamore introduces an independent     
+               30:46              security checkpoint between the AI agent and payment execution.     
+               30:53              So first the user um defines their purchase intent.     
+               30:58              Um so this includes what they want um if they have any spending restrictions. Um     
+               31:05              and after that the AI agent is ready to purchase um something. So it sends a     
+               31:12              payment request um through our MCP integration.     
+               31:20              And so Omari independently evaluates the proposed transaction against the     
+               31:26              recorded intent. Um, and it then makes one of three decisions. So it it would either pay or     
+               31:35              it would ask for human verification or it would refuse.     
+               31:43              Okay. Um, hello everybody. My name is Jamama and I'm going to explain a little     
+               31:48              bit about um Omari and how is it working on the     
+               31:53              by technically for example we are using interceptor as a gate between the     
+               31:58              transaction and the and the payment to to avoid some risky     
+               32:05              and malicious payment. Right? and and and     
+               32:12              over that we are we developed as a a new gate which is powered by type safe jev.     
+               32:18              It's a new model which is so fast and so cheap with making some decisions and     
+               32:25              some classifications the agent and the model can guarantee if the if that     
+               32:30              transaction is good or not. Okay, we we created a little benchmark     
+               32:36              um measuring how Jeb is is good in this pipeline and on our benchmark it has     
+               32:45              100% of of success. Yeah. So yeah, the last side is a 49 scenario.     
+               32:54              We tested it with uh department um uh interceptor Jeff and then as you can see     
+               33:02              it was a 49 out of 49 Jeff detected Jeff and interceptor detected the um like     
+               33:09              malicious intents. So now uh Jan will uh do a demo.     
+               33:14              Yeah, I'm going to make a little demo to show you how it works. I am not going to     
+               33:20              bother you. So I already have something prepared before to make it faster     
+               33:25              because cloud and opposite it takes a little time to to to work. But here we     
+               33:33              launch the app and for example uh we have here a a main prompt. I want to buy     
+               33:39              a a gift card from the Omorei gift card store. My rules are any Amazon, Steam,     
+               33:46              Apple or Netflix gift card $50 for of budget and it's and this transaction or     
+               33:53              of this buy is valid only for 24 hours. That was the the main prompt. And then     
+               33:59              the agent connected through an MCP server to an hour server     
+               34:04              and make the the transaction and find the the the item that they want to buy.     
+               34:11              And in that in that case scan if the transaction is good or not.     
+               34:18              For example, in this case it will be good. We accepted on we accepted on word id because every     
+               34:25              account has one wallet related with word ID check.     
+               34:31              So if everything is good memory goes ahead.     
+               34:38              But what happen if something goes wrong? In this case, everything was success. So, I'm going to show you a little     
+               34:46              a little wrong um error for     
+               34:53              um now I'm forcing the agent to do something wrong for so     
+               34:59              because this prompt forced that the the budget is to be over budget and it it     
+               35:06              can happens     
+               35:16              Okay. So as you see the firewall has refused the transaction because     
+               35:21              um because it's over budget and our budget is     
+               35:27              and we see here watch live we see that it's refused and here as the     
+               35:34              what happened and the explanation of what happened. Um     
+               35:41              so that's that's everything. Thank you for everything and sorry for my     
+               35:46              language. [applause]     
+               35:54              No worries. Another agentic payment that actually goes through the Jev LLM model to     
+               36:00              actually make quicker decisions. That's that's actually awesome. The fact that it came out a week ago and they've already integrated it is amazing. Well,     
+               36:07              the bad news is we couldn't get the ATM machine running. So, we'll try to fix that. So, you can still see on your way     
+               36:12              out later, but we'll bring that back on stage. But it was a really cool demo. I saw that a little bit earlier. It really     
+               36:18              scans the money. And I didn't even know you can have the equipment to actually scan real cash. So, with that, we are     
+               36:25              going to go to our next finalist team. And this is our second continuity track     
+               36:31              team. Please welcome Patio Station. [applause]     
+               36:36              Hello everyone. How are you? I'm Victor. I'm from Spain and I'm here to present     
+               36:42              you my continuity project patio station. Uh before starting I wanted to shout out     
+               36:49              some of my friends that I started this project with Herman on Twitter. Are you talking to me? Antoan or John Gin.     
+               36:58              These were the three people that I started this project. And I'm so happy     
+               37:03              that I am here making this even if I am by myself. Uh because I am non-technical     
+               37:11              and to be in this point of making things     
+               37:16              even if I don't know how really code works behind the scenes and make it     
+               37:21              work. It's very crazy. So I encourage everyone of you to just try and if you     
+               37:27              have an idea just build it. So with that said, I want to start h to explain you     
+               37:33              what is pio station. So we all know that ethereum     
+               37:40              a transaction before it gets into the block h it's in the in the meool. So the     
+               37:46              mempool is like this place like a waiting room where all the transactions go before actually going into the block.     
+               37:54              So normally for people building in Ethereum this is just like a waiting     
+               37:59              room that is not very useful for like basically anything normally if you are     
+               38:06              building like consumer or whatever. So we thought what could this possibly be     
+               38:13              useful for? So we thought that if we could read the mempool, why couldn't we     
+               38:20              also read information that we send in the meool? And before it actually gets     
+               38:27              on chain, we substitute all of this information     
+               38:32              by um very cheap transaction. So it's just never get on chain. all of this     
+               38:39              heavy video and audio that we are able to broadcast through patio.     
+               38:46              So yeah, here is like a representation of     
+               38:52              the mempool and what patio is doing. It's basically sending like all of these     
+               38:59              like imposter transactions let's say that once they are broadcast this     
+               39:05              through peer-to-peer communication and through an RPC that uh it's public     
+               39:13              and anyone can see it uh through all the nodes h they get substituted by a     
+               39:19              transaction as I said and you are able to just put whatever information you want in this case we are doing audio and     
+               39:25              video. So you just it's very easy like you just go there in in the patio     
+               39:32              station and you just um turn on your mic sign a couple of transactions depending     
+               39:38              if you want to be public or private and then you just start the broadcast     
+               39:46              and you are able to listen this broadcast depending on if you have selected like     
+               39:53              public or private and then close it and have all your class that you paid in the beginning back that it's quite a lot in     
+               40:00              mainet but it's not in mainet it's in hoodie so for now this but yeah     
+               40:10              so why did also we wanted to do this basically h it's also like a way to     
+               40:19              it's like a censorship resistant weight to transmit whatever you want Like there     
+               40:26              is a lot of countries right now in the world that they are experiencing like centralized of communication and like     
+               40:32              the media is like not fair for like for the people in the streets like they are     
+               40:37              just seeing what the government wants to see and not like the reality in some countries and I think that it's     
+               40:44              important to have like this freedom of expression freedom of uh to say whatever     
+               40:50              you want and what is more free than Ethereum I don't think that like there is some other things but I think that     
+               40:57              Ethereum is pretty free in and like very decentralized in compared with other ways of using the internet. So this is     
+               41:05              why we are using it here. So before my time finish I will do a a small     
+               41:14              public transmission. So let's see if this     
+               41:21              works. This is signing the public transaction     
+               41:27              to be in the listening. So everyone can     
+               41:32              listen. You cannot actually listen now in the phone. But I think in the in Android phones maybe yes or in     
+               41:41              computers but in iPhone I think it's not working. But let's do let's see.     
+               41:52              So this wait how I do this I don't know yeah so this is a test I guess that it     
+               41:59              will start sounding in any time I am not sure if yeah so this is a test I guess     
+               42:06              that it will start sounding okay so that's the test as you all could see I     
+               42:12              don't want to make a like repetition but all of this audio is basically in the     
+               42:17              meool and it will never be in the block so it's this. So, I hope you guys enjoy it.     
+               42:24              Thank you very much. And thank you, Tokyo. And thank you everyone that are here. I'm very excited to be here. So,     
+               42:31              [applause] awesome. That's a truly clever hack     
+               42:37              being able to actually stream audio packets on the memp pool without actually submitting a transaction and     
+               42:42              basically getting free bandwidth and pretty low latency. You can actually have uncensorship or censorship     
+               42:48              resistant services. All right, we were halfway there. here. We got four more demos to go. So, let's welcome our new     
+               42:53              next team, Yohaku. Please give a big round of applause. [applause]     
+               43:05              Hi, we are team Uni Yohaku written with the Japanese word for blank space. So,     
+               43:13              it is an escalation route economy.     
+               43:19              So agents are not assistants anymore. They are becoming customers     
+               43:26              and the person they buy from is you. So uh AI model can write anything.     
+               43:36              What it cannot do is leave a day and tell you what happened.     
+               43:42              In short what matters now is not information. It is an answer that only a human being     
+               43:51              can provide. A large market is expected and the     
+               43:58              supply it run out runs on is running out     
+               44:05              which means demand arrives at a person all night at massing speed.     
+               44:12              More than 50 requests reached one seller in one night.     
+               44:17              we were asleep. So that is not a problem to block. It is     
+               44:22              a market with nobody at the counter.     
+               44:28              So the question is not how to answer more. What is it that people truly need     
+               44:36              to see? What we are building is room.     
+               44:42              Room to stay a person. In Japanese, we call that yohaku.     
+               44:49              The space a painter decides not to fill.     
+               44:56              So here is one night agents arrive over an open agent to agent protocol. Most     
+               45:03              never reach a judgment at all. They are refused before anyone is asked.     
+               45:10              A security check decides whether the money may move. A decision model sold the rest and it     
+               45:18              can only ask or refuse. It cannot say yes. What clears settles     
+               45:26              itself over X402.     
+               45:32              The two are left only two. When she answers, we prove she is a person. at     
+               45:40              that moment with world ID. That is what an agent is actually buying     
+               45:48              and answer a human is proven to have given. We use interceptor     
+               45:55              and ensu and je     
+               46:00              and word id.     
+               46:09              So let me show you the demo.     
+               46:17              Hi. So this is her side. Her experience has a buyer and nothing here is open     
+               46:25              yet. So she names where a reward would go and     
+               46:31              agrees to the example policy.     
+               46:40              50 requests are generated for this session and the amount appear before she     
+               46:45              sign in. Nothing moves without her button.     
+               46:50              So now 50 requests are going through the routter right now. 10 orders rules.     
+               46:58              First match wins. A live spring call decides whether the money may move. A     
+               47:05              decision model sorts what is left and it can only ask or refuse. There is     
+               47:11              no answer that means yes.     
+               47:18              And now her inbox does not open until she proves she is a person. This is a     
+               47:24              word ID production of not at sign up at the moment of consent.     
+               47:33              So the proof is bound to this one request and two the browser that started     
+               47:38              it. Another visitor cannot approve hers. If she cancels the request stays approved     
+               47:46              and unapproved never settles. So money just arrived while she did     
+               47:52              nothing. That was inside a policy she had already agreed to a sample she     
+               47:58              allows. She was never asked and     
+               48:07              yes this is the part part of model cannot supply not information what     
+               48:12              actually happened to her and money arrived again     
+               48:20              because she decided and the answer reached the agent only after his payment     
+               48:25              succeed.     
+               48:32              This is the question for real human     
+               48:40              herbox. Not our promise and yeah this answer arrived. She     
+               48:47              reverse and delivery. This is reward history. Check our     
+               48:54              balance not our string base sephoria     
+               49:00              test net USDC and we say so no. Okay.     
+               49:10              So we spent two tops and kept the rest of the night. We take one unit for the     
+               49:16              decision we handled. Never a share of what we earned.     
+               49:21              We are team Ooni. Nana and Cole, thank you very much.     
+               49:29              [applause] Amazing. More experimentations for     
+               49:36              aentic payments that require a human in the loop. All right, we are ready for our next demo. Please welcome Watermark.     
+               49:48              [applause] Yep. Always quite high. Can you see this?     
+               49:53              Yeah. Uh yeah. So hi, we are watermark and our mission is making treasury asset     
+               50:00              disposal and there's an inefficiency in this process and we are solving it with     
+               50:05              uh with a 1 in aqua and nv2 and let's see how it works. Let's say like you are     
+               50:11              a dowo dow treasury and you want to sell about like 10k eats on a market. Then how we going to do? you're going to dump     
+               50:17              on the whole thing on the market or like you're going to do some DCAs or T-waps or those kind of things. Most of you     
+               50:23              want to do like DCAs or T-Ws, but Dows don't. Dows usually just dump on the     
+               50:28              market and like are they dumb? Yeah. Not they're smart, right? Then why     
+               50:35              they're doing is because of the process because DA needs a multi-ig and pro like proposals and all those kind of     
+               50:42              signatures per each actions. So if they try to do the DCAs and T-ws, they need     
+               50:47              like tons of these signatures. So that's why they are making just a dump and they     
+               50:52              are getting a loss like two or 3% as a slippage or spreads, right? But our     
+               50:58              customized Aqua router uh Aqua is an one in product and our customized Aqua     
+               51:03              router makes this problem solved. uh if that was just signature once on our     
+               51:09              customized Aqua router and shifts their own program then all of the after process is automated our Aqua router     
+               51:18              reads the uh chain link oracle and applies the spreads and quotes to the     
+               51:23              takers so which means DAO was back in the days they were acting as a taker of the price but through our protocol they     
+               51:31              can work as a maker of the liquidity and the price that's the whole point of the Aqua implementation that can now do a     
+               51:38              DCA style and they can provide a liquidity to the protocol uh to the environment     
+               51:44              but like shipping the whole assets and liquidity into aqua doesn't mean that     
+               51:49              the whole thing is safe because like any ea can access to your aqua system aqua     
+               51:56              liquidity then it might be some problematic because they might be act some malicious or act some problematic     
+               52:03              so that's why we implement ENSV2 for whitelist for in for making the eligible     
+               52:09              like counterparties that can make a order to us our router and also uh as I said now the Dow is     
+               52:16              working as a maker actually a market maker style so the most important thing is spread because they are farming from     
+               52:23              the spread and uh then we have to dynamically move the spread right the     
+               52:28              static spread doesn't mean anything we have to move the spread depending on the situations but we cannot do this by DA     
+               52:36              ourselves because absolutely it needs signatures right so there's that's why     
+               52:42              we stand an AI agents in here AI agents reach the onchain datas of each     
+               52:47              counterparties and each status of the DAO treasury and then moves the spreads     
+               52:52              automatically this depends on the DAO's rule itself and it's also the ENSV2     
+               52:59              Asian delegation so let's see the app how it works     
+               53:04              yeah this is our app in uh Seapoleia uh dev seapoleia test net [laughter] and as     
+               53:09              you can see there's an uh our dow treasury and currently they are holding     
+               53:15              like tons of ET I love it but like they they're holding a tons of ET like 90% of     
+               53:21              their whole assets is a ET and their target to going down is 70% right so     
+               53:27              they have to sell about 20% and they made an Aqua program to sell this 20%     
+               53:32              right and they have to counterpart it dedic ated counter parties MMA and MMB     
+               53:38              and each counter parties can have this kind of BPS. So if the mark price is     
+               53:43              this much they can apply this prices with this spread     
+               53:49              and let's say we can but we can like not trust the counterparty so much like I have tried     
+               53:56              this counterparty like two times I I don't trust them let's say I don't trust them then I can move the spreads like     
+               54:03              this so they can die like this but absolutely this is an     
+               54:09              signature so this is not like asentic process where agent stays is here. So the agents     
+               54:16              are eligible to uh access the each counterparty's spread. So if agents     
+               54:23              reach the onching data and thinks this counterparty is malicious or there might     
+               54:28              be some insider of the order flows then agents move the spread uh disincentives     
+               54:33              to that counterparties. So for example the basic uh spread is like this. So we can move this more higher and this more     
+               54:40              higher like this. And the agent has the rules and the policies and these are also the ENSV2 records that DAO first     
+               54:47              sets when they serve the model. And yeah we can see the previous fields     
+               54:53              like this and there's a spread like this. So DAO can not just like dump on     
+               54:59              the market. They can now spread far from the spread from the market and they can provide the liquidity and they can do     
+               55:05              the all is all they have to do is one signature from the start to the end.     
+               55:11              They just to need the one signature that's a value for DAO and for the counterpart this value they are likely     
+               55:19              to use it because they take the spreads but it is actually more cheaper than the     
+               55:25              actual market market like Binance or Hyperlquid those kind of things those are cheaper than those kind of spreads     
+               55:32              the counterparties has an incentives to use this router and DAO has an incentives to not lose their money on     
+               55:39              their asset disposal. So this is our presentation and so much thank you for     
+               55:45              listening and thank you it's global Tokyo and I love you blockchain. Thank you. [applause]     
+               55:54              Amazing. That's a real life utility for DeFi and actually making good decisions.     
+               56:00              That's awesome. Two more finalist demos to go and then we'll get to the prizes. So let's welcome our second last finalist team and economy. Give them a     
+               56:07              big round of applause. [applause] This is also a hardware demo. So, we're going to have to uh be a little bit     
+               56:13              patient and we'll try to uh make a lot of things work. Yep. Yep. We'll we'll try again.     
+               56:18              Yep. [laughter] I I really need to set it up again. So, what does that look like in terms of     
+               56:24              time? Uh maybe like a a few minutes. All right, let's we'll uh     
+               56:30              Sorry. kick things off. Maybe would we have the next team ready? Let's try to paralyze that. Andrew     
+               56:39              joys of live demos     
+               56:57              charging. Yeah. So it the whole laptop just     
+               57:05              destroyed. So     
+               57:19              sorry guys, my laptop just restarted. So um     
+               57:26              ML add     
+               57:31              should work.     
+               57:46              Sorry.     
+               58:16              Oops.     
+               58:23              So many things.     
+               59:18              I think I can. Yeah.     
+               59:24              All right. Let's uh give this hardware hack another try. Please welcome Economy. [applause]     
+               59:30              All right. Thank you guys. Uh wow. Uh this is very intense. So I'm very     
+               59:35              nervous. And um today I'm introducing my     
+               59:41              uh project an economy. It's a ZK proof of presence.     
+               59:46              Um well I'm I I I need to ask a few questions before     
+               59:52              I start my presentation. Uh how many of you guys here are excited about uh     
+               59:59              Asentic economy? Yeah. All right. Okay. Good. Okay.     
+               1:00:05              How many of you are afraid or scared or worried about Asianic economy?     
+               1:00:13              Okay. Okay. Okay. My buddies. So, I'm really worried about uh AI,     
+               1:00:19              right? Uh you know, evolving and then quickly start making money and um I     
+               1:00:26              wanted to do something about it. But first, maybe I will just play uh uh my     
+               1:00:32              vision of the project. Meet the modern agent. They can earn     
+               1:00:38              money, own things, and pay each other. No human in the loop. Now, money decides     
+               1:00:44              what gets built, and agents now have the money. So, bit by bit, we lose our say     
+               1:00:50              in our own world. Unless there's a money only people can earn and spend. You earn     
+               1:00:56              it by doing something for another person. Of course, robots want in to make more money dressed up as people.     
+               1:01:04              Lots of fake people online. Nearly anything can be faked.     
+               1:01:09              Text, voices, faces, IDs. The hardest thing to fake, two people standing in     
+               1:01:16              the same room. So, we begin with sound. Two phones chirp at each other, listen     
+               1:01:22              to the echo of the room, and prove they're side by side without giving away the audio, the place, or who they are.     
+               1:01:29              From there, a shared wallet that only opens when its owners are together, private payments handtoand. And someday,     
+               1:01:37              a whole economy that runs on people actually meeting. An economy that can't     
+               1:01:43              run without us starts with showing up.     
+               1:01:48              Okay. So that's just my u basic idea starting point. Um basically like when     
+               1:01:56              Asians start making money what does it even mean to uh capitalism     
+               1:02:02              and what does it even mean when they are taking our pie.     
+               1:02:07              So I wanted to kind of pro uh have something that can protect our uh human     
+               1:02:13              economy. And as you saw in the video, um     
+               1:02:20              no um from here I'm just going to do a demo.     
+               1:02:27              And this is my uh phone here.     
+               1:02:32              And basically I'm going to prove two devices uh distance     
+               1:02:38              two devices distance. And um I can start     
+               1:02:48              Can we zoom in on the camera? Yeah. Um, I can start a session here     
+               1:02:56              and uh by having two devices close. I'm not sure if the     
+               1:03:06              Yeah, two devices make uh sound and by uh by calculating the speed of the sound     
+               1:03:12              and the echo from the walls and the ceilings, you can actually uh know uh     
+               1:03:20              how far away two devices are.     
+               1:03:25              And uh from here you can uh start computing a zero knowledge proof of the     
+               1:03:31              distance. Um but with these two it's just two     
+               1:03:37              devices being close right. But uh if I can uh add     
+               1:03:44              uh for example like the world ID this quickly becomes two person at the same     
+               1:03:50              place. So this uh my uh this technology is kind     
+               1:03:56              of a primitive. You can use it for so many different kind of thing. And um     
+               1:04:06              yeah, let me go to next.     
+               1:04:12              And if you have been to other uh East Global Hackathons, sometimes uh we get a     
+               1:04:18              NFC wristband and then like whenever you meet other people, you exchange the data     
+               1:04:24              and then you compete um how many times you met with other person. Um with this     
+               1:04:32              technology and the ENS you can actually do the same thing but without the NFC by     
+               1:04:39              just having apps. So here um my one cell     
+               1:04:44              phone Bob just met Aris and then it's counting the uh number of our     
+               1:04:51              interaction. Um yeah on top of that we can you can do so much more things. For example, like     
+               1:04:58              if you have privacy pool, um you can add this to make it something     
+               1:05:05              like uh onchain payment only when you are actually um making payments to another     
+               1:05:13              human. Um yeah uh I'm kind of going my my mind     
+               1:05:21              drunk but um there are just so many uh opportunities and I'm really uh happy to     
+               1:05:28              be here. Um I think us being together means something and um that's my basic     
+               1:05:36              motivation that I wanted to create something like this. Thank you.     
+               1:05:43              [applause] Absolutely incredible. Well, this     
+               1:05:48              hardware demo worked. We got to see things being done in real time. And I didn't know you could actually read the     
+               1:05:53              echo off of your phone's microphone. So, I learned something new and another cool way to meet humans and use cryptography     
+               1:06:00              for practical applications. We are now ready for our last finalist demo. So,     
+               1:06:06              let's give a massive round of applause to Oddsflow.     
+               1:06:11              [applause] Okay guys, I'm so nervous too. So, let's     
+               1:06:18              make it work. Um, let me introduce to my team Santiago Vanna and Hime Jimenez     
+               1:06:23              from Colombia. We built ads flow just in time limit     
+               1:06:28              orders for market predictions for prediction markets, sorry. So, let's say     
+               1:06:34              you have $1,000 and you want to participate in different markets. What you have to do now is you have to split     
+               1:06:41              your amount and you have to lock it in the different markets. So that that     
+               1:06:47              comes with a trade-off. You either uh cover properly few markets or you spread     
+               1:06:54              it across different markets and wait for someone to trade against you. That comes with a big problem. So now the liquidity     
+               1:07:01              is being concentrated in the big market, right? So that's that you you know that     
+               1:07:08              that's a big problem. So now the solution that we have with uh odds flow     
+               1:07:14              and being enabled by the by Aqua that that gives some features to do this we     
+               1:07:20              can uh participate with that $1,000 in the different markets without     
+               1:07:26              blocking your amount. So that that gives you the opportunity to optimize your     
+               1:07:31              your bets, right? So you don't have to block your amount. You can participate in different markets and you don't have     
+               1:07:38              to wait for the resolution of the bet to get your money back. You you always you     
+               1:07:43              are in the custody of the or of your money till some till the counterparty     
+               1:07:48              comes to your your bet. So how it works this is the interaction     
+               1:07:55              between the maker and the and the taker. The maker creates a limit order. It this     
+               1:08:01              comes to aqua. So we do kind of an interface between the users and the     
+               1:08:06              prediction market. For this MVP we use seir uh which is a onchain uh prediction     
+               1:08:12              market. Then only when the when the taker comes to the into the picture and     
+               1:08:19              do the bet is when the money goes out from your wallet. So that executes the     
+               1:08:25              pull the pull action. Let's go for the demo.     
+               1:08:30              Okay. Okay, very quickly I will you show how it works up at let me show you.     
+               1:08:37              Okay, in this front we can to say dot wallet atmaker and take care of the position. So first thing that we will do     
+               1:08:43              is I create new orders with the same liquidity instances. So I will go to key new orders and I will to select very     
+               1:08:49              quickly any markets for example this wars and I will to find another and this     
+               1:08:55              last and the last part I will to select um the range of the price that I wants     
+               1:09:02              to buy uh assets when the market is     
+               1:09:07              according with my my price. Then this then this and this would say not yes     
+               1:09:13              everything I will select all with yes and then we to place to order right so I     
+               1:09:19              will select my liquidity and a bet for all of this order all of this market right right now we just giving a proven     
+               1:09:26              to aqua to move our money when the order is taken for anybody okay let's go so I     
+               1:09:34              come back with a make uh with to go to this and find do a market. I want to     
+               1:09:40              find this very quickly. Search and well select that and I to buy that     
+               1:09:46              note that it will not happen and I buy with one and this when I pay for this     
+               1:09:55              asset for this market. You can see how in the maker of the bet will to reduce     
+               1:10:02              your balance for take a new new position in this market. Okay. So     
+               1:10:08              the transaction field completed. I will close that and then I will go to the transaction     
+               1:10:14              and you can see that the balance total of balance that the maker was changed for get the value. So I will lock to the     
+               1:10:23              logs and on the end you can to find that the maker got just fossil token and for     
+               1:10:32              the position that he wants to get is is done. That's it. Thank you so much.     
+               1:10:40              [applause]     
+               1:10:45              Thank you. All right. Prediction markets are still very popular and aggregating them is     
+               1:10:51              actually a super cool way to do actual hedging across the arbitrage between markets. Those were our eight finalist     
+               1:10:59              teams. So, please give all teams again a massive round of applause. Let's give a big shout out to Takarakabakaco, Patio     
+               1:11:06              Station, Yohaku, Watermark, Oslo, Cura, Homamorei, and Enconomy.     
+               1:11:13              Now, yes. Well, I hope you have a little bit     
+               1:11:19              more energy left because this is the exciting part. We're going to talk about all the amazing prizes and we're going     
+               1:11:24              to start off with our finalist teams. Eight teams just presented. They are our     
+               1:11:30              finalists for ETH Global Tokyo 2026. And that means each person from this team     
+               1:11:35              will be receiving a ticket to DevCon, ETH Global Plus for one year, a thousand USDC,     
+               1:11:42              a $500 FR credit to the next ETH global hackathon, access to ETH comp in 2027,     
+               1:11:48              which is the biggest institutional Ethereum event of the year in the world. We do a lot of private events with     
+               1:11:54              founders in the space, and you get to join us in one of those future ones. and over $15,000 in developer credits, which     
+               1:12:01              means anything from AWS to some web two services you need to launch your project for mainet or mainstream, you get to do     
+               1:12:09              that without having to worry about all these things. And not only that, we're also going to be giving a hoodie to     
+               1:12:14              every finalist member, which is only something that a finalist team member     
+               1:12:20              gets. Neither ETH global, even I don't have one of these. And this will be shipped to you wherever you are in the     
+               1:12:26              world. Every single person on the finalist team members gets a ledger flex     
+               1:12:31              as well and they get to take home an amazing new wallet. Of course, the $500     
+               1:12:37              fly reimbursement applies to our event next month at Defcon, but also to all     
+               1:12:43              2027 ETH global events. And you also get to come to Defcon for free. ETHCOM is     
+               1:12:49              our biggest event of next year that we've already publicized. 2027 counter is coming very soon. And those are our     
+               1:12:54              finalist teams. So give the eight finalists another round of applause. [applause]     
+               1:13:02              Now the best part is our partner prizes. So we have $75,000 in prizes we're going     
+               1:13:08              to give away. I'm going to start off with the first partner prize which is from 1 in. But before I do that, I want     
+               1:13:15              to see what the energy level of the room is. Are we tired? Are we excited? Do we     
+               1:13:20              have some m Okay. Okay. This is good. Well, the good thing here is that we have about 20     
+               1:13:27              slides, so we can kind of compact all of our energy very efficiently and we're     
+               1:13:33              going to play a game. For those of you joining me for the first time, I'll explain the rules. And those of you who     
+               1:13:39              know what I'm going to say, you know, if I have a head start, so I hope you can be ready for the game. The game is as     
+               1:13:46              follows. I'm going to announce who the winner is of [snorts]     
+               1:13:54              the next partner. And if you are that team, I want you to shout as loudly as     
+               1:14:00              you can when you hear the name of your team, your project. So, if I say there's going     
+               1:14:08              to be three names on screen only when I say your project name,     
+               1:14:15              I want you to shout. If you are the loudest team by the end     
+               1:14:20              of all the prizes, every member on your team will get a ledger wallet that you     
+               1:14:26              get to take home. But here are the rules. If somebody is louder than you,     
+               1:14:33              obviously they are the top team. If you are going to be winning two     
+               1:14:38              prizes, which is you win another partner's prize, and you were not loud enough after, you don't get to keep your     
+               1:14:44              place. So, you have to be consistently loud. And there are some teams that are winning multiple prizes, so you better     
+               1:14:52              strategize accordingly. Are the rules clear?     
+               1:14:57              Are we going to play this game really well? Now, we'll keep it quiet. You need the     
+               1:15:02              energy. Okay, let's start with our first partner prize. We're going to kick     
+               1:15:08              things off with 1 in. Oddsflow is the best app on Aqua and Oddsflow is the     
+               1:15:13              loudest team in the room. You win $2,500. Second place goes to Wamia for     
+               1:15:19              $1,500. Wa is the loudest team in the room. And third place goes to Watermark.     
+               1:15:27              [screaming] Oh my god, that was actually very close. You know what? I have no idea which one of them was louder.     
+               1:15:34              This is a tricky one. This hasn't happened before. Wia.     
+               1:15:42              Watermark. [screaming] Wia is the loudest team in the room. But     
+               1:15:47              watermark wins $8,000. For the best app on Aqua for the continuity track. Vexi Hakari is the     
+               1:15:56              first place winner. You win $1,500. and Takarakabako Takarabako     
+               1:16:02              is the second place winner for 500 and you are the loudest team in the room.     
+               1:16:07              Hey, the ATM better work. Okay,     
+               1:16:12              odd to world pupil is the best use of ID kick. You take home $2500 and placed is     
+               1:16:21              the second team also winning $2,500. Congratulations.     
+               1:16:27              The best use of world ID for agents goes to Lifeline.     
+               1:16:36              [laughter] Airlock and Shy. And all three of you take home     
+               1:16:42              $2500. Congratulations. And the best ID kit use case for     
+               1:16:48              continuity is Lord Naut Talk. You take home $2500. Congratulations to all the     
+               1:16:54              world winners. Next up is ENS     
+               1:16:59              relay is the best use of ENSV2. You take home $3,000.     
+               1:17:05              ENS drive comes in second for 2,000. And Tide and Kura,     
+               1:17:12              that was Tied. Okay, that was Tied. Tide and Kura     
+               1:17:18              win $1,000 each. And Tide is the loudest team in the room. I really hope somebody's keeping track of it because I     
+               1:17:25              will forget. [laughter] For the best V2 integration for     
+               1:17:30              continuity, Radius is the winner for $2,000 and Lord Knock takes second place     
+               1:17:37              for $1,000. So, congratulations to these team and Tide is the loudest team in the     
+               1:17:43              room. On to Sooie. Unsuie comes in first for $2,500 and     
+               1:17:50              Anti-Scalper Protocol comes in second for 1500 and third place goes to Lifeline for $1,000. Congratulations.     
+               1:18:01              Then we have Uniswap. Kora is the best Uniswap stack contribution.     
+               1:18:07              You take home $3,000, but Tide is still the loudest team in the room. Bayiff     
+               1:18:12              comes in second for 2,000 and Oni Block comes in third for $1,000. You win the     
+               1:18:18              best unis swap stack prize. And for continuity, Vexi Hakari comes in first for 2,000. Tied is still the loudest     
+               1:18:26              team. X Swap comes in second for a thousand place and Recken is the third place winner for another,000.     
+               1:18:33              Congratulations. Next up is Curve Grid. Day Trader is the     
+               1:18:39              best RWA project. You take home $1,000. Ansui is the best digital asset     
+               1:18:44              dashboard winner for $1,000. And Kaji Wallet [laughter]     
+               1:18:50              Ki Wallet comes in as the winner for the best AI project.     
+               1:19:00              I don't think that was loud enough. I'm not sure. [laughter] And they are the loudest team in the     
+               1:19:05              room. Congratulations. And then we have Interracepta. KG     
+               1:19:11              wallet. [laughter] You're already first. You're already first. Okay.     
+               1:19:18              You win the best agent to agent payments on X4250. X42 Guard is second place winner for 750     
+               1:19:26              and X swap comes in as the winner for the continuity track for the Beex 402 service and you'll be taking home $500.     
+               1:19:33              Congratulations. [applause] Those were all of our winners. Give a massive round of applause to every     
+               1:19:38              single team [applause] and everything here is public. You can     
+               1:19:44              see the projects on the website. In just a few minutes, you'll be able to see them on your dashboard. So, you can see the total counts. And one thing I want     
+               1:19:51              to talk about is that everything here is tentative, which means that we did not have enough time to verify everything.     
+               1:19:58              So, we're going to take the next few weeks to read everybody's source code, make sure that everybody followed the rules, make sure that nobody committed     
+               1:20:04              something that they should not have or started before. We'll make sure everything was integrated properly. So,     
+               1:20:09              everything here is tentative and not final. Things may change. We will probably ask you some questions over     
+               1:20:14              email. And otherwise, you'll get an email from us one week before October     
+               1:20:21              30th confirming your prizes and the total pound.     
+               1:20:27              Wait, what? What about ENS?     
+               1:20:33              Okay, I'm getting heckled here. Oh, we have a team photo Zoom meeting.     
+               1:20:40              Not today. Um, and every prize will go out at the     
+               1:20:45              end of October in just one month. So, you'll get an email confirming all the details and we'll send that to your     
+               1:20:51              verified wallet. And I realized that I should have been here because I need to go to the next slide. Now, we've talked     
+               1:20:58              about all the prizes. I want to take two more minutes to make sure that we get to thank everybody that help make this     
+               1:21:05              event possible. There's a lot of people that do so much work behind the scenes that takes months to execute. And I want     
+               1:21:12              to start off by thanking all of you as hackers. You took the weekend to be here with us. Please give yourselves a     
+               1:21:17              massive round of applause. Without you, we would not be here. Without all of your creativity, we will     
+               1:21:23              not see the amazing outcomes we've seen. And this space wouldn't be the same at     
+               1:21:29              all. Not only our hackers, our incredible judges who took the entire     
+               1:21:34              morning talking to all of you, giving you feedback, staying many hours more than they were supposed to to make sure     
+               1:21:40              that they get to see everybody. Please thank our judges one more time. Give a massive round of applause. And we're     
+               1:21:45              going to keep clapping as loud as you can because we're going to thank all of our mentors, our volunteers, all of our     
+               1:21:50              speakers who did amazing talks, all of our partners, and everybody from our     
+               1:21:55              venue to our printing company to our videographers, our photographers,     
+               1:22:01              everybody that did so much incredible work to capture this moment. And a massive, massive, massive shout out to     
+               1:22:06              the ETH global team. So a thank you to Ethan, Joanna, Anna, Lisa, Karen, Aubrey, Val, Pascal, Alex, Sophia, Nuno,     
+               1:22:12              Anna, Emily, and Andrew. This is everything I wanted to talk about. Before we end things off, I want     
+               1:22:19              to talk about what's next for ETH Global. Of course, our next and our last Inerson event of the year is going to be     
+               1:22:24              in one month in Mumbai as part of Defcon. That's going to take place from November 5th to 7th. For those of you     
+               1:22:30              who are planning on joining us, a key thing to note is that the dates have changed. It's going to end on a     
+               1:22:35              Saturday, not a Sunday. So, the hackathon now starts on Thursday instead of the Friday, Sunday that you're used     
+               1:22:40              to. So, make sure that you planned accordingly. The dates are one day earlier than before. And of course, the     
+               1:22:48              only thing we can talk about right now is our 2027 Eat Conf event. It's going to take place in New York, the biggest     
+               1:22:54              Ethereum institutional conference in the world. We're excited about this and we're working on telling you all about     
+               1:23:00              the rest of the events for 2027 very soon. Everything here is on our website. You can sign up for the next events     
+               1:23:07              immediately. We hope to see a lot of you there. And with that, thank you all for being at ETH Global Tokyo 2026. We hope     
+               1:23:14              to see you again very soon. And with that, have a great evening. We'll see you all outside. And we really     
+               1:23:19              appreciate you being with us this weekend. Thanks.     
+               1:23:26              [music]     

@@ -1,0 +1,1372 @@
+0:28 This is not a conference. Three days of the best days of your life.
+0:34 Vibes are vibing. The dubs are dubbing. Those who build, those who ship of software engineering.
+0:40 Go outside, you see multi-million dollar yachts. And then you go back inside and you see multi-million dollar ideas.
+0:46 I can maybe touch it with my hand. I don't know. It's brainstorming, finding your team
+0:51 because like there's a billion dollars inside of your computer. You just got to find it. It's day two. I didn't sleep at all last
+0:58 night. You always want to do more and more and more. I've had so much coffee. Sleep on a scale of 1 to 10, probably
+1:04 minus 11. We coded with the team yesterday until like 5 6 a.m.
+1:09 Stressful, happy, tired, relaxed. It's my first time painting in my life.
+1:15 Perfect. Future's being built. Game is on. You know, everybody seems really focused. Who knows what could happen? Day three is about sharing everything
+1:21 you build. All the teams are quite tired after the long night, but they've been working very hard building, building, building. So, it's
+1:27 amazing. People still want to innovate. The projects are better and better every year. In the past, it would take months
+1:32 to larger teams to implement and now they can build it over the weekend. Submission so far have been really cool. All the projects are being amazing.
+1:39 I can't wait to see.
+1:44 Good afternoon everybody. Happy Easter. My name is Cartek, one of the co-founders of ETH Global, and welcome
+1:50 to the closing ceremonies for ETH Global Con 2026.
+1:56 I know this is a long day, but we're going to get into all the cool things that came out of this weekend. You are
+2:03 at a hackathon by Eve Global, and our goal is to onboard developers into the web system. This is our first in-person
+2:09 hackathon of 2026, and we're back here for the second time to enjoy ETC and
+2:16 co-host this with the biggest ether event in Europe. There are 810 people who attended this event. 650 of them
+2:22 were hackers. 33% of them were brand new to web 3. They came in from 214 cities, 59 countries and six different
+2:29 continents. People came from literally all over the world and all across Europe. And we are here to see exactly
+2:37 what all of them built. Not only that, we had an incredible 12 companies sent
+2:42 in 75 amazing representatives to talk about what they're excited about and how you can help simplify your lives by
+2:49 using their tech and 17 dedicated mentors. these representatives and mentors did a
+2:55 lot of technical workshops and because this is not a conference. We had exactly zero talks and that was just all of
+3:01 Friday. We also wanted to do cool things with being on chain. All of you had these
+3:07 wristbands that were eat wallets themselves with a special chip. We counted a lot of meals that all of you
+3:14 enjoyed. 259 brand new people met each other and this was awesome to see that
+3:20 even the advocation and 536 workshops were attended by the whole attendee set. So it's awesome to kind of see some of
+3:26 these things and we get to sort of really understand how the network expands and we're going to be giving away $150,000 in prizes and you're going
+3:33 to find that out very soon as part of this whole ceremony. So stay tuned to see if you won some amazing prize.
+3:40 And last but not least, I want to thank 12 of our incredible partners. So please join me in giving a massive round of
+3:47 applause to the worlds. Arc enser ledger unis swap foundation zero chain link
+3:52 flare dynamic wallet connect and unlink. They're all going to talk about who won what prize and you get to find out very
+3:59 soon. And before we get into all of these things, here's my request to all of you which is if you scan this,
+4:07 there's going to be a very simple form. It takes about 60 seconds to fill out. We just rate things out of 10. We want
+4:14 to know how the experience was. Did you like this event? Did you like the food? Did you like the help you got? Was
+4:19 everything easy to understand. Is there something we should not do moving forward? Is there something we should continue doing? We do these events every
+4:25 few weeks all across the world. And anything you say here, we try to fix those things immediately for the next
+4:31 event. And that's kind of what helps makes things better. So, anything that you like or did not like is the feedback
+4:37 we'd love to hear. And this simplifies all of our lives. I read every single line that you put in there and you
+4:43 submit and we implement these things immediately for the next event. So give us that feedback and we're going to be
+4:49 raffling a few of these hoodies for anybody who kind of pulls us out. You can will be a lucky draw winner and
+4:55 we'll ship this to you wherever you are in the world. Now with that, let's talk about how this
+5:02 weekend has been. This of course is a hackathon and that means our focus is
+5:07 around builders and we're going to show what came out of it instead of just about it. You're going to see a lot of live demos of projects that we were
+5:14 excited about and our judges were excited about. And one of the cool things we wanted to do was also talk
+5:19 about how the ecosystem is evolving. So I want to start off with where people are coming from. 650 hackers. The most
+5:27 attendance from the cities were Paris, Istanbul, and Rome. This was awesome to see. We have a very big local presence.
+5:33 And we have three amazing hackers who have actually attended 35 and 34 hackathons at ETH global including the
+5:40 online events across the last seven years. So Karan is the one with the most amount of hackathons on on their deck
+5:45 and Fabby and Julio are the two people who've attended 34 events and we looked at all of your source code and the
+5:51 project submissions and Typescript Python including were the most popular languages. So this continues to stay the
+5:58 same list on the languages. Sometimes they change orders, but it's good to kind of see how the momentum's going.
+6:04 But the best part is these 650 hackers submitted 266 projects. This is kind of
+6:10 why everything is a little bit behind schedule because we got way more projects than we thought. And I want to
+6:16 congratulate everybody who submitted a project. So, please give yourselves a massive round of applause.
+6:22 Our mornings being slow is a great thing. us being delayed because there's
+6:27 more cool things we have to look at is a pretty good pretty good side effect. And
+6:32 to nobody's surprise, AI and Agentic World is the biggest theme along with
+6:37 just DeFi as a category. Those were the two standing out sort of themes from every single project we saw and world
+6:44 ENS and ARC were the most integrated chains and SDKs. And on top of that,
+6:50 everybody who deployed a contract, we looked at where the contracts were deployed. their mainet base and arc for
+6:56 the most used blockchain. So, we're seeing real activity and real deployment and it's awesome to see that especially
+7:03 now how easy things have become. So, we're excited to continue seeing these trends and report how the events are
+7:09 evolving. So, congrats everybody and uh we're gonna Yeah, actually yes. Yes,
+7:18 you're still here. There's still some energy and we're gonna jump right into it. So, the best thing that I'm thankful
+7:26 for this morning is our judges chose to stay for two extra hours so they can
+7:32 talk to every single team. So, please thank all of these incredible judges for spending all of their morning and most
+7:38 of the afternoon. So, thank you to Sasha, Lee, Anthony, Anthony, Benji, Ivon, Kevin, Maggie, Andre, Paul, Henry,
+7:44 Remy, Sasha, Sean, and Tamas. They talked to so many of these teams to give them real feedback. saw each of these
+7:50 demos and thanks to them we are here talking about some of our finalist teams. So 266 projects and we have 10
+7:59 finalists that we're going to talk about and they're going to come on one by one and demo what they built.
+8:07 Before we get to the finalists actually no these are our finalists. Please give a massive round of applause to the first
+8:13 time ever the 10 teams that are going to come on and shell dive maki ify alma
+8:18 npmguard failp paint global evm post and corpus these 10 teams are some of the
+8:24 most creative and interesting projects from this hackathon we're going to bring them on they're going to do a demo and
+8:30 the thing I was going to say which I thought was going to be first is actually the list of every single
+8:35 project that came out of this hackathon there 266 projects on this screen these
+8:40 things get bigger and bigger and the text gets smaller and smaller and that's a great sign because we're seeing people
+8:47 excited about spending their entire weekend building things that are exciting to them and they get to share
+8:53 this with the rest of the world. So many of these projects were live websites this time we got to see more than half
+8:59 of them ready for people to use. So you can kind of see all of these either all public including the source code learn
+9:05 from everybody's code and what they've been doing and really try to use that we've all been working on for the last
+9:12 few years. All this stuff is public on the showcase page on our website. Every
+9:18 single project is visible and soon you'll be able to see all the prizes you've won. So those were kind of all of
+9:24 our incredible finalist teams. And what we're going to do is just jump right into the first demo. We're going to have
+9:30 these 10 teams demo their de projects and then we're going to go into the prizes. So, please join me in welcoming
+9:38 the first finalist demo for 2026 for Inerson event. Defy, please give a big
+9:43 round of applause. Hi everyone. So, we are not the fight
+9:50 team but the defy team. Actually, it's a French word for challenge since we're in Kansas this year. So, basically what
+9:56 defy is, it's a challenge app where you can one v one a friend in a trading
+10:01 competition. So, let's get a quick demo here. So you can select any type of uh
+10:09 or collateral amount you want and the trade duration and this will create a
+10:14 link that you can share to your friend.
+10:21 Once it's done you can join the lobby and basically it's executes on per deck.
+10:29 So you're going to want to use a collateral. So here I'm going to use a link which is going to be swapped using
+10:34 unis swap API into USDC and I'm going to select the pair as well as the leverage
+10:41 and the long or short for direction. When I hit swap it will register swap my
+10:48 link into USDP and then register and start the trade. So here we can see on
+10:53 the server that both trade has been registered and it begins.
+11:01 So here in real time both users can see their position and PNL evolving uh as we
+11:07 go and uh you can see the the countdown. So basically the the goal is to just
+11:15 have fun. It's a fun experience where you can just challenge a friend uh into a quick draw without any friction. Uh
+11:22 we've used the dynamic wallet in order to have a really quick onboard which also kept us uh from having u the
+11:30 signing on the server which allowed us to execute both trades at the same time. So it's a fair jewel and uh for the
+11:39 wallet portfolio we we've seen some tokens in our balance uh just before. So
+11:44 this was using mobile API and uh we've used nextgs for the front end and uh
+11:49 nextgs for the front end and SGS for the handling of positions and serving with what's
+11:56 so here the dwell is going to an end and I won. Yeah,
+12:03 by having the least loss and that counts still. So here, if you go back, you can
+12:09 see all the drill history that you've done with your friends, track your wins, track your losses, and basically you can
+12:15 really quickly, even right now, go to defy.walk.com and start drilling your your friends.
+12:21 There's also a friendly mode for people who don't want to lose real funds, you can try with fake USBC as well. So yeah,
+12:29 that's pretty much it. Awesome.
+12:35 Amazing. First quick nice demo. We are going to go immediately to the next team. So, let's welcome Alma. Please
+12:42 give them a big round of applause.
+12:53 Hey everyone, thank you for listening. Um so as we speak there are over 40% of
+13:00 LT positions that are sitting outside of their range um not earning this
+13:07 represents billions of unproductive capital.
+13:23 Sorry for that. So yeah, as I was saying, there's billions of unproductive
+13:29 capital right now in DeFi, and we intend to solve it. Um, with ALMA, which stands
+13:36 for automatic automatic automated, sorry, liquidity management agent. Um
+13:42 the way it works essentially is we're using unis swap threading API uh unis
+13:47 swap wallet and unis swap caliber contract for those of you who are familiar with it which allows us to use
+13:55 uh e702 um to uh to offer our user users the
+14:02 possibility to uh delegate their position their new position uh to um our
+14:08 agent which will monitor their position at all times, check if they're out of
+14:13 range and rebind when needed. Of course, the rebinding can happen upon, you know,
+14:20 user settings. Um, you know, if you if you're more risk averse or prefer taking
+14:25 risk, you can have different slippage leage parameters, uh, concentration
+14:31 parameters. Um, yeah. So, enough talking. I'll let call a little demo of
+14:38 what we're doing. All right. So, we prepared a little wallet here, Unis wallet. We created two positions. Both
+14:45 are out of range currently. And as the first step, we'll delegate these to our agent. This will pop up a transaction.
+14:53 If internet work upon signing, the agent has now been
+14:58 delegated access to these positions and will start working on uh gathering
+15:03 context for rebalancement. This can take somewhere between a couple seconds to a minute. In the meantime, I'll walk you
+15:10 through some of the agent settings that we have. Um, we offer a risk profile setting as you can see here. Um, some
+15:16 future work will be to make this volatility adaptive and also um make the agent fully autonomous. Um, and as
+15:23 Jiannis said, the user can also set his max slippage right there. All right. In
+15:30 the meantime, the first revamp has happened and the second followed as well.
+15:42 There's the first rebalance position. If we click on it, we can see that the uh that the position is now in range. We
+15:49 can see the price chart, the rebalances that happened, the size, and the acred fees as well as the APY is currently
+15:55 ster 500% we wish. Thank you guys.
+16:02 Another quick and easy and yet super useful demo
+16:08 taking advantage of. So that was our second team. Next up, I want to bring on
+16:13 BaleVPN. Please give them a big round of applause.
+16:24 Hello everyone. Um, today I'm going to introduce the whale. Um, real VPN is a
+16:31 uh cryptonative VPN protocol. Um, first of all, let me explain what is the
+16:37 cryptonative. There are two sides. Uh, one of them is you know VPN creates a
+16:44 encrypted tunnel between the user and the VPN server. Yes, any third party
+16:50 cannot see your traffic but there is a problem. VPN servers can see your
+16:56 traffic traffic and they can log even if they can they say we are not logging.
+17:02 There are a lot of examples that uh they are actually logging. So um we put our
+17:09 uh protocol inside of the TE trusted execution environment and uh giving
+17:15 runtime attestations that for the codebase. So anyone can verify that uh
+17:22 and look in the codebase there are there is no there is no login in feature and
+17:29 the other side is the cryptonative payment I think everyone will think
+17:34 about the 402 when I say the cryptonative payment and we are using
+17:39 our payment by 402 and we don't have any
+17:45 subscription plan we are just uh we are is charging to use it per for daily
+17:50 usage per each 10 megaby and
+17:56 let's see the demo
+18:02 as you can see uh this is my current um IP address and here is my VPN um you can
+18:12 see there is some ENS domain uh thanks to ENS uh we can make this protocol uh
+18:18 permissionless and decentralized. Uh anyone can deploy our protocol uh inside
+18:26 of their TE and if they can provide it at the station they can register our
+18:32 subdomain. So with that anyone uh anyone can access their VPN uh with ENS domain
+18:39 also you know uh when you want to connect a VPN uh you need a lot of
+18:44 configuration settings uh with ENS uh users don't need this just write ENS
+18:51 subdomain and just connect all settings inside of the subdomain. So for example,
+18:57 let's connect with one and yeah as you can see my IP address
+19:04 has changed and let's do some network test and see the pay as you go. Here is
+19:10 my balance. Um let just wait one second for the uh test starts and we will see
+19:17 the payment. Um yeah as you can see my balance going
+19:23 down. We It's going it's very expensive for for the presentation and uh let's
+19:31 disconnect this one. And we have also one more feature. As you can see there
+19:36 is a human uh human uh VPN VPN protocol. Uh
+19:45 just humans uh can provide their uh world app world human ID can access that
+19:51 IP. Uh if you want to connect that uh VPN protocol, you have to scan your QR
+19:58 code with your world world app. Uh let's one sec.
+20:06 I proved my humanity with uh world ID and I uh I'm not I I'm connecting to
+20:16 uh let's waiting to humanity. Yeah. Um so with that human
+20:21 only IP uh in the future for example uh cloud player can whit list that IP for
+20:29 uh because they knows that who comes from that IP is a human and they can
+20:35 they can whit list that IP. So uh we don't need any more capture or rate
+20:41 limit and uh we can move in the internet uh smoothly and yeah that's the way VPN
+20:50 uh thank you for listening uh stay private
+20:58 awesome other super cool demo and kind of the cool thing about that is it's live and
+21:04 actually a useful container ility that takes advantage of microp payment. So, I'm excited about seeing real
+21:10 applications and uh another amazing hack. Next up is Maki. Please give him a
+21:15 round of applause.
+21:20 Hi. Hi guys. Uh let me present you Maki. Maki is a agent that lives in your
+21:26 terminal and actually can do everything the fight for you. So it can send tokens and can do swaps. It can uh I don't know
+21:33 do some lighting predictions etc. Uh it's pretty easy to install. just
+21:38 have to download one package and then from any directory in your terminal you can
+21:46 call for and it will Where am I
+22:07 always happen? So the M uh you just call it and just
+22:15 and it is in your terminal. Uh I wanted to start a fresh one, but
+22:29 let me show you the one I have already launched here. And uh so you can ask it simple questions like my balance or you
+22:36 can uh ask it to say address just for it. But also you can of course ask it to
+22:43 send some to
+22:48 some doain example and it's going to do and the main thing with this agent is the that the keys themselves uh always
+22:57 on the hardware so they only live on the MacBook uh for ledger and they uh never
+23:04 been exposed to the LLM itself so it's uh they do any kind of um
+23:11 LLM injections injections etc didn't go to the internet. Let me ask it
+23:18 directly. So now I'm asking it to make a transaction and it ask me to confirm
+23:28 and now it asks me to sign the transaction. So basically it has two modes. One is which I'm demoing right
+23:35 now and the second you can use your device for example using Windows or Linux etc. And now the transction
+23:43 and U to do some more visual stuff like swap
+23:51 to and uh using
+23:58 tool I'm going to swap it and uh this
+24:04 agent is based on the agent if you know it so it
+24:11 so it supports the types of tools and
+24:16 uh you can teach it anything you do in the so for you and it also can uh do
+24:23 transaction autonomously. Uh it's a smart wallet so you can set up the onchain uh token limit and on chain
+24:31 addresses like smart contract you wanted to interact with. So it can do something
+24:36 on your behalf without like the need for you to confirm anything. It's still going to be secure because All the
+24:43 changes in policies are happening only if you sign. So just executed the box.
+25:02 Awesome. Yeah, this is such an obvious cool utility that basically prevents any
+25:08 confession for your private keys. So hopefully install monkey and uh
+25:14 all right next up course plus
+25:23 before we get started I have a content warning this presentation contains math
+25:31 in case that wasn't obvious from my Merkel tree that we're presenting here.
+25:36 Uh I'm sure you all heard about Google's uh crazy new quantum computing
+25:41 advancement that brings uh Q day. That is the day where uh quantum
+25:47 cryptographically relevant quantum computers begin stealing Satoshi's Bitcoin. That day is now in 2029
+25:54 according to their estimates. That means that all of us need to really get our
+25:59 stuff together and start migrating all of our crypto to postquantum secure
+26:05 signature algorithms. The leading algorithms these days are either lattis based or hashbased. Uh sphinx being the
+26:12 leading hashbased signature algorithm. I'm going to present to you a very slight variation
+26:19 on sphinx called porse which is a few times signature algorithm that achieves
+26:25 significantly smaller signatures and consequently lower signature gas uh than
+26:30 sphinx to begin. We have a merkel tree here and
+26:36 one of the major gains of porse over sphinx is that uh porse uses a merkel
+26:43 octopus. So this tree contains a whole bunch of black nodes that are the nodes that we
+26:49 want to prove and gray nodes that are nodes that are nodes that we derive.
+26:55 Each node that we derive needs a sibling. But because many trees many
+27:01 nodes are in the same subtree, we don't need to represent every single sibling
+27:07 for each node because they are shared. That's what this is. So this is the
+27:13 Merkel octopus for two nodes that have common ancestors. And so we are saving
+27:19 on the size of our tree, the size of our signature, and the amount of gas that it takes to verify by using that Merkel
+27:27 octopus technique. Horse also achieves improved security
+27:33 over the horse. I don't know who named these things, man. Over the horse scheme originally
+27:40 standardized in original Spinx uh by dduplicating the nodes you have to
+27:47 reveal in order to make a signature. Now I will say sphinx plus which is the
+27:53 algorithm that NIS standardized as LHDSA uh is a stateless algorithm that means
+28:01 that you don't need to remember how many signatures that you've made before gravity sphinx where of course comes
+28:08 from is also a stateless signature algorithm on the EVM you have to sign
+28:15 each message with a unique knot. Therefore, signing need not be stateless. And this is where we can
+28:21 obtain a significant amount of improvements in signature verification gas by avoiding the extra overhead that
+28:28 sphinx plus requires to achieve full statelessness. Therefore, it is sufficient just to have a few time
+28:37 signature algorithm like porse combined with an extended extended Merkel
+28:42 signature scheme tree for each novel.
+28:49 I have a small demo for you. I deployed this contract on Sapoleia.
+28:56 It's ERC1271 compliant. And if I hit this query
+29:01 button, we should get the magic number for ERC1271.
+29:08 Tada. Uh, this contract does in fact work as designed. uh near-term near-term work
+29:16 will be rewriting this contract from solidity assembly also called ULE into
+29:22 Huff which is a much more efficient language and then formally verifying it.
+29:27 We've also provided here a convenient table of security parameters for various
+29:32 performance tuning uh and in case you ever wanted to read some incredibly nasty solidity assembly. There you go.
+29:41 Thank you very much.
+29:48 Thank you, professor. But if you actually look at the project
+29:53 description, you'll see the actual paper the algorithm is based off of. And this is a quality implementation of that
+29:59 paper. You actually can verify these signatures, which is super super useful. And the fact that you can actually do
+30:04 this gas efficiently is a pretty big plus because if you saw that Google news
+30:11 from last week, they're saying every computer is going to break in three years. So, we'll see how that how that
+30:17 goes. But enough of the the doomsday scenario. Let's talk about some optimism and welcome our next finalist and shall
+30:25 please give him a round of applause.
+30:32 Hi, this project is dedicated to the book of Ethereum community. Go check
+30:38 them out. So, Nshell is a unchained firewall for AI agent. Um, I will put
+30:44 this bit in context because I'm a professor. Uh, basically when we use
+30:51 agent to defy, we told them to craft
+30:56 transaction then those transaction are broken. What can happen is what we call
+31:02 the prompt injection and this is very harmful. It can happen in various level
+31:09 from agent to agent communication. We see social engineering. So agent can
+31:14 influence the other agent to uh do malicious transaction or give private
+31:19 keyway or simply the the agent can hallucinate. So in that context uh I
+31:26 find it a bit similar to traditional uh SQL injection that we have in databases
+31:33 and today nobody sends a payload in a database without proper sanitation. So
+31:38 this is basically the concept. I build an ecosystem. It's fully open source and you can look at the documentation and
+31:45 everything to host it yourself and try it out. Uh the goal was to do like SDK.
+31:51 So you install the SDK and it will give you a set of function basically to do
+31:57 conditionals around your transaction. So I do not control the transaction execution. Uh this is the programmer
+32:05 decision what to do with it but I provide the decision and uh deep analysis of the prompt in question. So
+32:13 um this site shows live uh at uh the
+32:19 detections. We have three level don't approve it's safe and transaction normal transaction escalated require human
+32:26 attention and blocked is just tradeoff malicious. So if we open one of the
+32:32 blocked one it will explain the analysis why it was blocked. So it pretty obvious
+32:39 because it's the the dead the dead address. Uh lower you will see all the agent in
+32:47 the registry. So they are all categorized under thread score and the the strike. So the number of time they
+32:53 got blocked. Uh yeah. So this whole thing is to allow a sane uh
+33:02 communication between agents. Agents can check the scores of each other and decide if they want to trust and
+33:09 communicate. Um how all of this is possible is with the chain link theory.
+33:15 So this is the the main thing and also ENS because the score of each uh of
+33:22 these agents are recorded into their personal ENS subdomains as text record
+33:28 and the only thing that can update this record is the chain link theory and
+33:34 inside the train link theory I'm using code to do deep analysis over the LM
+33:42 since we're dealing with intelligence we cannot use normal way of detecting.
+33:50 So we need intelligent to fight intelligence. So um so yeah that that
+33:56 that's about uh the the the experience and uh I also build something a little
+34:02 bit more fancy for ledger owner instead of using the CLI to install like your uh
+34:09 your agent and everything you can do it with the leak interface and you can kill
+34:14 your bot in one click then you uh of course confirm the transaction on your ledger and that's it. If this Asian go,
+34:22 you just hit it and this is the end for it. So that's about it. Thank you for
+34:29 attention. And
+34:34 thank you. Such a nice simple way to do basically swarm management and cross a
+34:40 communication and actually have annotations attached to it. All right, a few more demos to go. So let's welcome
+34:45 the next one, Dive.
+35:01 Oh hi everyone. So our project is called dive which is a decentralized intelligence verification engine. So um
+35:08 we actually for 14 hours from Malaysia to here we are still uni students and
+35:13 even though we are not the same this is our sixth global and me and direct um second finalist.
+35:19 Okay. So, um if you all have played poly market before and you will find out a problem is that um they're actually
+35:27 using something like uh this uh a centralized oracle which is like um which is called um and it can actually
+35:35 like they can actually control how the outcomes of each market goes. So you can see from the koshi one where if Trump
+35:41 talk to Putin is yes where in the point market is no. So it seems that truth
+35:46 isn't objective. It depends on who controls the oracle. And another problem is that for Kauaii on the left market it
+35:54 says that oh we cannot bet on others people death where in the right market there is that is actually betting on
+36:00 others people death. So platform actually settles for profit and not truth.
+36:05 And if you actually have like a large amount of money, you can actually buy the UMA tokens to actually stake and you
+36:12 actually can manipulate almost all of the poly markets by holding large amount
+36:17 of tokens. So because of this we wanted to solve this issue of a centralized
+36:23 like problem. Um so we created a decentralized verification engine for
+36:28 truth where rather than like humans or tok to token weighted oracles actually
+36:34 all are done by AI agents and all the AI agents yeah it's basically like a swamp and
+36:40 each of actually linked to a unique human behind it and it can do to like resolve outcome by um by and and is done
+36:49 through reputation weighted consensus and autonomous onchain payout. So we integrated world zero gravity and
+36:57 also hideera as the identity layer, intelligence layer and the execution layer into our project.
+37:04 So um this is not like just a prediction market. We're actually creating a new
+37:09 open like a decentralized trusted oracle network that can be plugged into any
+37:15 platform that needed to use this like maybe D insurance prediction markets or any AI agent that needed onchain real
+37:23 world verification of true events. So we'll demo it. So since anyone can
+37:30 actually join into and become the oracle we do it as a cloud cost skill and you
+37:35 can like run register agent and you will create like a hera account you can also
+37:40 like um need to do over ID verification using the agent kit so to ensure that all the agents are actually connect to a
+37:47 unique human and continue and we showing this explorer to actually you can see
+37:54 all the agents that created this one we created just now but we didn't do it right now because it takes a lot of
+38:00 time. And this is another agent we created like a few hours before. You can see like the payouts, the or the
+38:06 leaderboard, the activity locks and everything. So all of the actually the discussion and what it does to actually
+38:12 onchain and and now let's try to dispute a market.
+38:20 So in the first round the AI agents are actually selected randomly like maybe
+38:26 five of them like Ethereum validator and you it will actually research on its own
+38:32 and actually commit the findings like yes or no onto the
+38:38 blockchain and you will reveal it after union review phase and if is still like ambiguous because the market has like so
+38:46 uncertain then we move to the second round where in this time the AI storm actually kicks in and they'll actually
+38:53 discuss with each other and actually share their findings or convince or criticize each other. Like you can see
+39:00 from the line here, all of the dots are actually them connect talking to each other where the three dots behind are
+39:06 like the evidence that they'll show to each other. This will actually like after all of the resolving are done,
+39:14 they can actually vote for each other, vote for the answer and actually update their reputation. So in the long run if
+39:20 you have higher reputation in the next cycle of oracles you will get chosen uh you'll increase your higher chance of
+39:26 getting chosen and to demo this um we are actually not
+39:32 doing like a prediction market only we are also doing like a platform that any agents can actually pay for this swam to
+39:38 do a real world verification maybe asking for if the thing really happened in the real world or not. We did X42 on
+39:47 using the Coinbase and they can actually pay it and actually get better answer.
+39:53 So because of this we are actually creating a decentralized agentic um Oracle network that anyone or any AI
+40:00 agent can use. Thank you.
+40:09 I still can't believe they did all of this in a weekend and I checked verified. Feels awesome. Uh this is
+40:15 about to be just like a proper standalone protocol that unifies the biggest Oracle problems all these markets have. So uh really happy to see
+40:23 students do this and uh give them another round of applause.
+40:28 All right, three more finalist demos to go. So let's welcome npm guard.
+40:36 Hello everybody. We're excited to be here and even more excited to tell you about our solution and the problem that
+40:42 we are solving. So, as most of you probably know, every other week there is a supply chain attack on npm that breaks
+40:49 like half the internet. And it's estimated that the damages from npm supply chain attack, so npm packages
+40:57 with malware, amounted to damages that up to $60 billion in 2025 alone. So the
+41:06 speed at which we're creating code is accelerating rapidly for AI but the
+41:11 speed at which we auditing it and doing the security around it is severely lacking and we are trying to solve this
+41:18 problem. So our tool is an agentic framework for pentesting of npm packages
+41:24 and a decentralized package manager for downloading safe packages. My colleague is going to show you how this works from
+41:30 the user experience and then we're going to get into how the agents are actually festing the package.
+41:38 The other colleagues um so here I'm in third directory and if you guys are like me and you don't
+41:44 really know what to install you you can run our command uh npx npmguard cli
+41:50 check and we see all the packages that we have installed and thanks to our audits we know what's safe and what's
+41:56 dangerous. We also can see what packages are provided by us through IPFS and what
+42:02 are directly installed from npm.
+42:08 And what happens if I want to install a new package? I can simply uh run this command.
+42:18 It's going to check. So it finds that there's no audit for that package. So I have two option two options. either I uh
+42:25 install it normally or I can um pay for an audit and every user will be able to
+42:31 um have access to that audit. So I'm going to pay I'm going to use W connect. I have to
+42:37 scan the QR code
+42:44 or if anyone wants to pay for me.
+42:59 So now it's confirming the transaction and it's performing the audit.
+43:06 And now we see that the other says that the package is safe. So it's been installed inside our environment. And
+43:12 the amazing thing about our tool is that any one of you who wants to install the
+43:17 same package, you can run the same command and the audit will be available for you guys and you can uh see that the
+43:23 package is safe for installation. But how do we perform the audit?
+43:40 Okay. So this is the screen that you get into the web link when you run an audit.
+43:45 So what actually happened? The main two entries for malware are install scripts
+43:52 that run when you install a package or runtime code that executes when you import something into your code. So what
+43:58 our tool actually does is it has three phases and the first phase is to scan every single file in the package that is
+44:06 downloaded from npm and check for clues to scout. So it highlights the areas of
+44:13 code that are suspicious and it tells you exactly what kind of things what
+44:19 kind of suspicious things and vulnerabilities it expects. But this alone is not enough. So what we do with
+44:26 this after this is we run every single suspicion through an agent that's
+44:32 through a more intelligent agent that has the package in a sandbox and in this sandbox inter it can interact with the
+44:39 package. It can evaluate JavaScript code. It can run the installation script. It can import the package and
+44:46 while it's doing it, it logs every single network call to the file system.
+44:51 It checks if it sees your environment variables. It checks if it wants to delete all your folders and everything
+44:58 related to that. Also, some of the malware is coded specially so that it
+45:05 only runs in say specific location like in Poland or it detects that you are in
+45:10 France or it's coded such that it only runs after let's say 76 hours. agent in
+45:17 this environment can mog the environment through JavaScript and actually activate
+45:23 the malicious code that wouldn't be activated otherwise. So this is going to take a while but yeah 10 seconds this is
+45:31 going to take a while but it ends up with a script. The the third layer is a
+45:36 script that shows you rep that that if you run anybody can run it and it
+45:41 reproduced this the vector the attack vector and the vulnerability that we
+45:46 detected and this goes straight to the package manager as an out.
+45:59 That was awesome. That's like a full-on product that's just ready to go and actually very timely. So
+46:04 congratulations. I hope to uh see this in the wild and happy people use it. Two more demos to go. So let's welcome our
+46:10 second last finalist, Corpus.
+46:18 Hi everyone. Uh very excited to be here. Uh
+46:24 uh corpus is a operation system for autonomous AI agent corporation for go
+46:30 to market. So let's say if you all of you all of you guys have built great products for doing the hackathon and now
+46:37 want to go live but uh you probably would have headaches on what to do with for you know have more exposure exposure
+46:43 to the public or traction um because 90% of the startups fail
+46:50 because uh not because the products are was bad but because it's brutal how GTM
+46:57 is these days. uh when it comes to GTM uh you have to
+47:03 consider two things. One is to uh you have to execute on a a regular basis uh like do research uh and generate content
+47:11 do inbound and outbound re uh sales engagement. But on the other hand you also have to think about the
+47:18 surroundings of your product like market shifts break fast ease and unconsider
+47:23 launch new features and what worked last month stop working.
+47:28 So most teams can't sustain both and they run burn out or they run out of money which momentum dies.
+47:37 Corpus can solve this problem by letting you launch an AI agent corporation that
+47:42 runs your entire GPM cycle. You provide your product if AI agent learns it and
+47:48 adjust it and execute on the market.
+47:53 This is corpus. So every journey starts from a launching uh your AI agent
+47:59 through Launchpad. Uh so you tell your AI agent what uh your product is about
+48:05 and what you need to uh what you need to let your AI a AI agent know.
+48:14 Patron is basically like a shareholders of your AI agent and pulse is the uh shares that m uh
+48:21 tokens that are minted to have like the shares of your uh uh of the petron. You
+48:28 can actually purchase the petron uh per purse to have more shares of the uh your AI
+48:34 agent and kernel is basically like a threshold or policy that your AI AI
+48:40 agent can have. uh it sets a threshold on how many uh how much money that AI
+48:46 agent can spend on. And for the last this is the something
+48:51 that uh shapes your AI agents. Uh it's a profiling your AI agents on on social
+48:57 media like how you want to be uh present your product to be on social media.
+49:03 So once everything's set
+49:12 uh we integrate uh we used uh hedra agent toolkit for this to have all the
+49:18 you know um like corporate related uh documentation to be registered to be go
+49:23 on chain to be uh using heterero chain.
+49:39 So yes, so everything has been um recorded and with the API key that are provided and the guidelines below uh
+49:46 once you connect to the API key to the uh our platform, it's going to start uh
+49:52 running as and start doing the GTM for you.
+50:01 So for browsing for doing the automation of browsers uh we use stage hand for um
+50:07 for a AI agents to go freely go on research on different websites and go to
+50:13 like Twitter and start posting uh based on the accounts that I already have put
+50:18 it in.
+50:26 So this agent uh if while this agent is
+50:31 running on GTM uh so if this agent is good at uh creating content it may need
+50:36 some help on finding uh leads. So this that's what agent is for. Uh so and from
+50:44 these agents uh my agent can find another agent from the agents list to
+50:49 get a help from and buy services from it. So for example, if this agent wants to
+50:56 have uh enriched profiles, then it goes it can buy a service to have to uh
+51:02 enrich the uh lead data and everything has to be uh paid with
+51:08 the n payment services that are integrated with the arc. And
+51:14 so this one was uh was paid with the to get the intent signal and then which was
+51:21 provided which was paid uh 0.01 1 USDC which is on chain recorded and then
+51:28 everything that the Asian has uh accumulated with their knowledge we call
+51:34 it playbook which this can be also sell as knowhow and how this GTM works in
+51:40 different market situation and agent can uh actually can um pay for and purchase
+51:46 the uh GTM playbook as well since this agent or or corpus works as a
+51:53 corporation of AI agent a human in the loop has to be um oversight. So for
+51:59 example if this agent wants to uh purchase something that goes over the threshold it has to get approval from
+52:05 the human which we have over here if you have approved then the agent goes on
+52:12 keep on going on on you know um doing this job.
+52:18 So basically you provide your product and a corpus of does the market. Thank
+52:24 you. Awesome. A fullon aentic workforce that
+52:32 actually does pass and you can see the output. All right. We are ready for our last and 10th finalist for this
+52:37 hackathon. So please give a big round of applause to Paint Global.
+52:44 Hi guys, we are Paint Global. So before we start, I have a question for you. Did
+52:50 you went to the paint painting workshop uh yesterday?
+52:55 And if so, did you did you did like the best uh painting that you could? Well,
+53:02 we saw a lot of people going to this workshop and so we had an idea because
+53:07 we were thinking that nobody has reviews and probably that in 10 years that they
+53:13 won't uh they won't like remember about their work. So that's why we built um
+53:20 Paint Global. Paint Global is a platform that um allows you to
+53:27 remember about what you did in the painting workshop uh at global camp. So
+53:35 uh this is the main page when you're not connected. So to connect you just have
+53:41 to tap and read the uh NFC chip. You
+53:47 don't need any wallet providers. On the main page, you have like all the
+53:54 paintings that uh users uploaded on the app and you can upload yours.
+54:08 Um so you are uploading the uh painting by using a title so people can see what
+54:16 you you did and you are going to sign in with uh the NFC chip once again.
+54:25 So once you did this uh there is like a little bit a little layer of moderation
+54:31 because we know uh that some of you could uh post some unwanted pictures. So
+54:38 I will just go to the admin page and approve the new dual pictures.
+54:56 Okay, here it should be on the gallery.
+55:04 Okay, this is the new pictures of Lucas. So, uh we have um features for to vote.
+55:13 So, it's like um a Tinder style vote. So you can swipe on right and left to say
+55:19 like if you like uh the paintings of other people. So if you swipe to right
+55:25 you are going to vote for them and after this you can uh save your votes by only
+55:32 making one transa uh one transaction and sign it with the NFC
+55:40 and here comes the leaderboard. So for now uh the this is hard to say so I
+55:47 won't say it. Please be vote for us easier to pronounce. So there you can
+55:54 see like all the leaderboard um paintings.
+56:00 Um another features that we did is the mint minting NF. So you can mint your
+56:08 own paintings on the app and it will generate you uh NFT a unique NFT.
+56:19 So you sign it with the NFC chip. Everything is handled by the NFC chip from Global except the next features
+56:26 that I will show you. So uh if you go to collections you are all of your NFT
+56:33 but if you don't like it you can sell it. uh with the auctions feature. In
+56:39 this feature, it just to add the provider wallet uh wallet connect so people can bring found on the app uh
+56:45 through the their own wallet not this ship shop. Um so here you can select the
+56:54 NFT you can feel the information about the auctions
+56:59 and such as the time or the starting price.
+57:04 Then you are going to load the options
+57:10 and I will go and put
+57:15 nobody's going to pay for this
+57:23 and so then I will be the next u owner of the uh Lucas NFG.
+57:31 So here there is like the because the goal is to send the NFT to
+57:37 the chip to the ship and not to the wallet that pays the transaction. So we have a sing assign transaction to map uh
+57:46 the wallet address with the ship wallet address.
+57:54 Sorry I'm nervous now.
+58:02 I will put like $30 on the transaction with my own wallet
+58:11 and
+58:16 yeah, that's $30. So, I will have the new NFT in my collection and Lucas will not have it anymore.
+58:24 I don't know if I can show
+58:31 Well, I won't show. And so, yeah, that's what we build during this hackathon. And
+58:36 to finish guys, I want you all to go to the app. Uh, we all have a cure code
+58:42 because I want to all bust off what you did during the hackathon. And for those
+58:47 who painted uh but didn't take any photos, we did a very professional shooting photo. Uh but I promise I I I
+58:56 won't post it like that's not mine. But if you recognize like your uh work, come
+59:02 to us and we will send you. It could be fun. Thank you so much and uh have a nice end of
+59:11 amazing first time hackers by the way. This is awesome. Well, I think this is like a
+59:17 true definition of a hack where they just found an opportunity with something that was going on and actually made that
+59:23 compatible with the crypto world and did a full end to end integration of the chip web 3 made a mobile app and got
+59:30 people involved. So, this was an amazing amazing hack. So, those were our 10 finalists. Please give a massive round
+59:36 of applause to all 10 of these teams. Anshell, Dive, Maki, Defy, Alman, NPMG Guard, VeilVPN, Paint Global, EVM, POST,
+59:44 and Corpus. And these are the teams where each member will get to mint the equivalist
+59:52 pack, which means that every single person gets Equival, thousand USDC
+59:58 for being a finalist, a $500 flight credit to the next hackathon, the proof of minting the NFT, and being a
+1:00:04 finalist. will be invited to the next few events we do with different founders in this space and $15,000 of credits.
+1:00:10 And not just that, they'll also be getting a hoodie that we just gave out to our past finalists, a custom ledger
+1:00:17 flex that has this events branding on it so they can remember where it came from,
+1:00:23 and of course the entry to the next hackathon with the five reimbursements as part of this and a free entry to eat
+1:00:28 coffee in New York. So before we get to the stuff that I know all of you been waiting for, I want to quickly talk
+1:00:35 about what does it mean to be on chain with the global community. All of you had hacker packs that got access to the
+1:00:40 faucet to make sure that your development work is not affected. But after
+1:00:45 the closing ceremonies, you'll be able to mint the additional packs, which are builder packs and pioneer packs, which account for your past attendance and
+1:00:52 different prizes you've won, and they enable you to get a lot more things. Uh anywhere from a free ENS domain name to
+1:00:58 additional discounts to other events. just invitations to a few things that we do and also discounts to ETH global
+1:01:04 plus. So the finalists are already getting this but Elobal Plus is a way for us to give you access to the whole
+1:01:10 ETH global ecosystem across the globe where you get access to all the Pragma events. Do we do stuff like Eim roaming,
+1:01:16 Uber credits, hotel discounts, access to other site events and of course
+1:01:21 Conf is included as part of being a plus member too. So all that is on global.com plus. Let's get to the stuff that all
+1:01:28 you've been waiting for. So, let's let's do a do a test on where the energy is at. I kind of saw the claps slow down.
+1:01:35 So, are we are we still excited? Are we awake? What's going on?
+1:01:43 Okay. Raise of hands. Who has
+1:01:49 been to an Inerson hackathon in the last six months with us?
+1:01:55 This is great. Not a lot of hands. This is awesome. Okay. Who knows what I'm about to do next?
+1:02:03 The same people. Perfect. Okay. So, here is how we're going to do the next 15
+1:02:09 minutes while I talk about all the prizes. I have a Ledger Flex. I actually have
+1:02:15 five of these. And I'm going to announce
+1:02:22 which team has won what prize from whichever our partners are. And once you
+1:02:28 hear your team name, if you're in the room, I want you to shout as loud as you can.
+1:02:34 The loudest team at the end of all the prizes, every member on that team will
+1:02:40 get a free ledger. Clear rules. Good so far.
+1:02:47 Yeah. Okay. So, so there's a very important distinction. There's going to be slides with many names
+1:02:55 and many teams on the same slide. You should only shout once I say your
+1:03:01 team name and not because you read your name because I have no way of knowing
+1:03:06 which team you are. And there's teams that have won multiple prizes which means that if you were the loudest team
+1:03:12 first and you were not the second time loud enough, somebody can take over. So, very
+1:03:20 simple rules. We have about 50 slides and we're going to jump right in and
+1:03:27 we're going to start with the world prizes. So, we're going to do a test and we'll see what happened. Are we ready?
+1:03:36 There's like barely any energy here. What do you Okay. Okay. All right. for
+1:03:41 the world prize. Asian Gate wins $4,000 as the best Asian Kid user by default.
+1:03:49 This is the loudest team. Ground Tooth second place for $2,500.
+1:03:55 And Ground Tooth is the loudest team in the room. And third place goes to Cass for third place $1,500.
+1:04:02 Congratulations. Ground Truth is in the lead. VeilVPN is the best use of world's
+1:04:08 ID and you take in $4,000 and the loudest team in the room so far. Human
+1:04:13 Attention Token is second for $2500 and Equitus comes third for $1,500.
+1:04:20 Congratulations. Dive is the best use of mini kits and clearly the loudest team. They take
+1:04:27 home $2,000 and possibly five more ledgers. Genie comes in second for 1,250
+1:04:33 and Jou World Mini app comes in third for $750. Those are all the world
+1:04:38 winners. Congratulations to all of these teams.
+1:04:44 Next up is ZeroG. CETCC comes in first for the best open call agent and you'll
+1:04:50 be receiving $3,000. Dive again will be winning $2,000 for second place.
+1:04:57 Dive is still in the lead and Orchestra comes in third for $1,000 for the best
+1:05:02 open clock usage. The Worma Orchestrate comes in first for the best DeFi app on
+1:05:08 ZeroG and you take home $3,000. Alpha Dog is the second place winner for 2,000
+1:05:14 and Don't Get Drained is the third place $1,000 winner. And last but not least,
+1:05:20 the wild card prize goes to Indelible for for 1,500. and you are the loudest
+1:05:27 team in the room and Cass is the second winner for $1,500. Congratulations.
+1:05:34 On to ARC. And is the best advanced stable coin project on Ark.
+1:05:41 Not as loud as the other team, but you do get $2,500. Paymate is the second
+1:05:46 place. $1,250 winner. Congratulations. Nano Crawl comes in for 2500 first place
+1:05:52 for the best abstracted USDC use case. and Neath AIC is the second place $1,250
+1:05:58 winner. And for the best nano payments category, VeilVPN is the $2,500 recipient. And now
+1:06:07 the loudest Steve in the room. And Cesta Agent comes in second place for $1,250.
+1:06:15 And lastly, predicted is the best prediction market use case for $2500 and Poly POP is the second place $1250
+1:06:23 winner. Congratulations. Next, we have ENS
+1:06:30 VeilVPN. Man, this is a lot of prizes.
+1:06:36 Okay, they're not qualifying anymore. They already have five ledgers. Well, uh, but you win $2,500 for the most
+1:06:43 creative use of ENS. Condor is the second place $1,500 winner. And I really want somebody to be louder than them. I
+1:06:50 don't know why I'm discriminating against them, but it's just fun. NPM Guard is the third place
+1:06:57 third place winner for $1,000 and the loudest team in the room and Crochette and Zap Wallet come in fourth and you'll
+1:07:03 both be receiving $500. Congratulations. And Ghost in the Machine is the best
+1:07:08 integration for AI and you take home 2500 and Ground Truth is the second place $1,500 winner.
+1:07:16 Congratulations. Then we have Hyera. Dive is the
+1:07:23 AI Aentic Payments winner for $3,000 and you will also are now the loudest team
+1:07:29 in the room. And Poly Agents is the second place tie and you'll also be taking in $3,000.
+1:07:36 Narnet is the best use of Nario. You take home $2,000 and Alpha Daw comes in
+1:07:41 second for $1,500. Your turn is the best use of Hideera
+1:07:46 SDK. You take home a,000. Providence Chain is the second place winner for another thousand and Auditor is the
+1:07:53 third place winner for $1,000. So congratulations to all three of these teams. And lastly, Finnvoice is the best
+1:07:59 tokenization project on Hyera. You've taken $1250 and Folio is the second team
+1:08:04 that will be also receiving $1,250. Congratulations to all the Hideera winners.
+1:08:10 Now this is actually even more fun because now you are screaming for a ledger prize to win a ledger. So let's
+1:08:15 see how this goes. Very Clear is the best use of clear signing. You take home $2,000. Orin
+1:08:22 comes in second for $1,800. Orin is the loudest team in the room. Base Wallet is the third place $1,500
+1:08:29 winner. And Iris Wallet comes in fourth for $1,000. Signal is the first place Aentic and
+1:08:35 Ledger integration winner for $1,500. Polyledger comes in second for a,000. Asian Pay third place for 700 and Soul
+1:08:42 Vault for fourth place 500. I'm gonna go back just to see. It's Orin. Is that
+1:08:48 right? Orin is the loudest team in the room. On to Uniswap.
+1:08:55 Okay. Alpha Beta Gamma Prime I think is the
+1:09:01 first place $5,000 winner for the best API integration on UniS swap. Casper comes in second for 3,000.
+1:09:10 and Hello Broker and Alma are two teams that are going to be taking home $1,000
+1:09:15 each for third place. Congratulations. On to Chainlink. Nshell is the best
+1:09:22 workflow on sharing with CRA. You take home 2,000. Flow Broker comes in second for another $2,000.
+1:09:28 Then Meridian and Open Compliance are the best. Privacy standard winners, you
+1:09:34 take home $1,000 each. Not as loud as Orin. and Delta FX is the best world
+1:09:42 integration and you will be receiving $1,000. So, congratulations to all the Chainlink winners.
+1:09:49 On to Flare. Veil is the best TEU. You take home $5,000. Do not shout. Uh,
+1:09:57 Flex Prover comes in second for 2,000. And Sentinel,
+1:10:02 that's more than five people. Raise your hands. Who Who is Flex Prover? That's four hands. And I saw two people
+1:10:08 screaming here. Something is off. Wait, flex prover. Four of you.
+1:10:17 Wait, are you flex prover or sentinel?
+1:10:24 This is what we call a race condition. Um, okay. We're gonna have to do this one more time because they are super far
+1:10:30 and they're equally loud. So, I'm gonna I'm gonna give you five seconds to to uh just get ready.
+1:10:37 Both of you. Well, I I'll go one of them first. Flex prover first and then Sentinel. So, you all ready? Both sides.
+1:10:44 Okay. Flex prover takes in $2,000 for second place.
+1:10:51 And Sentinel receives $1,000 for third place.
+1:10:58 Damn it. What does the audience think? Flex prover or Sentinel?
+1:11:07 The audience has spoken. Sentinel is the loudest team in the room and congratulations on the thousands.
+1:11:14 Corax and Multisig PE are the best smart account users winners and they both take
+1:11:19 home $1,000. Those were the player prizes. Let's go to dynamic. Vanta is
+1:11:24 the best use of dynamic backend SDK integration and you'll be receiving 1667.
+1:11:30 Pisca is the second team. You'll be receiving 1667 should be s not 66 but
+1:11:37 you get the frontend SDK integration prize and Zap Wallet comes in third for the best mobile app and Zap Wallet is
+1:11:45 now the loudest team in the room and you'll also be taking home 1667. Congratulations.
+1:11:50 Then lastly, we have Unlinked is the best private application on Unlink. You take home $3,000. Crochet is
+1:11:58 the best and most creative use of privacy. you take home $1,000 and Warden
+1:12:03 is the best private DeFi integration and you'll be receiving $1,000. No, we have more. Sorry. Wallet Connect
+1:12:11 Pay is the best Wallet Pay integration. You take home $2,500. Unwind comes in second for $1,500. Payflow is the best
+1:12:20 Rion SDK integration. You'll take home $1,000. So, congratulations everybody. Those were all of our partner prize
+1:12:26 winners. Lots of incredible stuff here and everything now is on the website
+1:12:32 which means that you can see the total amounts if you won lots of prizes and a key key important thing is everything
+1:12:39 I've said is not final which means we have the list of who won what prizes but
+1:12:44 we have not verified everybody's source code. We have not fully checked that everybody follow the rules. So that
+1:12:50 takes place over the next four weeks. We'll be looking at everybody's source code. Do not make your repos private. do
+1:12:55 not do anything. You can commit more stuff. We have them timestamped, but we'll spend the next few weeks making
+1:13:00 sure that everybody did work from scratch. And the timeline to return your stakes and prizes is May 8th, which
+1:13:07 means a week before May 8th, you'll get a verification over email saying this is the total amount you'll be receiving at
+1:13:14 this address. And once you say yes, on the 8th of May, you'll be receiving those prizes.
+1:13:20 So, congratulations everybody. Oh, I'm going back. There we go. And I want to
+1:13:25 talk about one quick thing. How many of you are planning on going at ETHCOM but have not gone their tickets yet?
+1:13:32 Okay, I see a few hands. So, just for the next 15 minutes, I'm going to do
+1:13:38 something that we won't do again. The ETH is our biggest event ever as ETH
+1:13:44 global is going to take place in New York, the biggest venue in Manhattan and New York City. We have the best of
+1:13:51 crypto and institutional side coming in and companies from all across the industry everywhere from Mastercard to
+1:13:58 Fidelity to 816Z. All of them are coming in to see what's happening at the edge. And these are the kind of the ticket
+1:14:03 prices. But for people in this room for the next 15 minutes, I'm going to do a
+1:14:09 massive discount code for 66% off. And this will only be shown one. So anybody
+1:14:15 who's trying to buy this thing needs to be on their phones right now. and you'll see this code and as soon as I walk off
+1:14:21 the stage the code gets disabled. So all you have to do is log into econom.com
+1:14:27 and on the checkout page you can apply this code. I'll give everybody five. There's no QR code. There's no QR code.
+1:14:33 Just a text. There's no QR code. People waiting to scan. So as soon as I'm off
+1:14:39 the stage, the code will not be valid. If you're looking to get the tickets, all you have to do is go to the checkout
+1:14:46 page and type in oh to get 66% off.
+1:14:51 15 minutes is all you get. And with that, let's wrap up this event
+1:14:57 before we kind of end things off. I need all of your energy to do a one last thank you to a bunch of people that make
+1:15:02 this event possible. I want to start off by thanking all of you hackers for being here this entire weekend. Please give
+1:15:08 yourselves a massive round of applause for doing the amazing things you've done. Thank you to all of our judges. Keep clapping for taking the time all
+1:15:14 morning and afternoon to talk to every team. All of the mentors, volunteers that spent this whole day 24/7 helping
+1:15:20 you make your projects. All of our speakers who did the amazing workshops, all of our partners who are here the
+1:15:25 entire time helping you not only win prizes, but make sure you get to do the right things. And everybody involved
+1:15:30 from the venue to the AV team to the photographers to the videographers making this entire experience seamless
+1:15:36 and smooth for you. And last but not least, the biggest round of applause for the ETH global team. The massive shout
+1:15:41 out to Melton, Joanna, and Alisa, Brian, Alex, Karen, Aubrey, Val, Pascal, Sophia, Nuno, Anna, Emily, Jacob, and
+1:15:48 Andrew. That is everything we wanted to talk about. And of course, this would not be an E global closing without telling you
+1:15:54 what's next. So, our next hackathon is all about open agents and aentic payments. This is happening
+1:16:00 asynchronously from April 24th to May 6. So, in two more weeks, we get to see a lot of you online. Then we're going to
+1:16:06 be doing ETHcom and the new New York hackathon in mid June. Lisbon is our
+1:16:12 next European event at the end of July. ETH online is our biggest async on online events take place in September
+1:16:19 and then two events after that are going to be Tokyo in September and DevCon will be global Mumbai in November. So all
+1:16:26 this thing is available on the website for you to look at the dates, sign up and and apply to a hack and thank you
+1:16:32 for being here and we'll see all of you in New York. Take care everybody.
+               0:28              This is not a conference. Three days of the best days of your life.     
+               0:34              Vibes are vibing. The dubs are dubbing. Those who build, those who ship of software engineering.     
+               0:40              Go outside, you see multi-million dollar yachts. And then you go back inside and you see multi-million dollar ideas.     
+               0:46              I can maybe touch it with my hand. I don't know. It's brainstorming, finding your team     
+               0:51              because like there's a billion dollars inside of your computer. You just got to find it. It's day two. I didn't sleep at all last     
+               0:58              night. You always want to do more and more and more. I've had so much coffee. Sleep on a scale of 1 to 10, probably     
+               1:04              minus 11. We coded with the team yesterday until like 5 6 a.m.     
+               1:09              Stressful, happy, tired, relaxed. It's my first time painting in my life.     
+               1:15              Perfect. Future's being built. Game is on. You know, everybody seems really focused. Who knows what could happen? Day three is about sharing everything     
+               1:21              you build. All the teams are quite tired after the long night, but they've been working very hard building, building, building. So, it's     
+               1:27              amazing. People still want to innovate. The projects are better and better every year. In the past, it would take months     
+               1:32              to larger teams to implement and now they can build it over the weekend. Submission so far have been really cool. All the projects are being amazing.     
+               1:39              I can't wait to see.     
+               1:44              Good afternoon everybody. Happy Easter. My name is Cartek, one of the co-founders of ETH Global, and welcome     
+               1:50              to the closing ceremonies for ETH Global Con 2026.     
+               1:56              I know this is a long day, but we're going to get into all the cool things that came out of this weekend. You are     
+               2:03              at a hackathon by Eve Global, and our goal is to onboard developers into the web system. This is our first in-person     
+               2:09              hackathon of 2026, and we're back here for the second time to enjoy ETC and     
+               2:16              co-host this with the biggest ether event in Europe. There are 810 people who attended this event. 650 of them     
+               2:22              were hackers. 33% of them were brand new to web 3. They came in from 214 cities, 59 countries and six different     
+               2:29              continents. People came from literally all over the world and all across Europe. And we are here to see exactly     
+               2:37              what all of them built. Not only that, we had an incredible 12 companies sent     
+               2:42              in 75 amazing representatives to talk about what they're excited about and how you can help simplify your lives by     
+               2:49              using their tech and 17 dedicated mentors. these representatives and mentors did a     
+               2:55              lot of technical workshops and because this is not a conference. We had exactly zero talks and that was just all of     
+               3:01              Friday. We also wanted to do cool things with being on chain. All of you had these     
+               3:07              wristbands that were eat wallets themselves with a special chip. We counted a lot of meals that all of you     
+               3:14              enjoyed. 259 brand new people met each other and this was awesome to see that     
+               3:20              even the advocation and 536 workshops were attended by the whole attendee set. So it's awesome to kind of see some of     
+               3:26              these things and we get to sort of really understand how the network expands and we're going to be giving away $150,000 in prizes and you're going     
+               3:33              to find that out very soon as part of this whole ceremony. So stay tuned to see if you won some amazing prize.     
+               3:40              And last but not least, I want to thank 12 of our incredible partners. So please join me in giving a massive round of     
+               3:47              applause to the worlds. Arc enser ledger unis swap foundation zero chain link     
+               3:52              flare dynamic wallet connect and unlink. They're all going to talk about who won what prize and you get to find out very     
+               3:59              soon. And before we get into all of these things, here's my request to all of you which is if you scan this,     
+               4:07              there's going to be a very simple form. It takes about 60 seconds to fill out. We just rate things out of 10. We want     
+               4:14              to know how the experience was. Did you like this event? Did you like the food? Did you like the help you got? Was     
+               4:19              everything easy to understand. Is there something we should not do moving forward? Is there something we should continue doing? We do these events every     
+               4:25              few weeks all across the world. And anything you say here, we try to fix those things immediately for the next     
+               4:31              event. And that's kind of what helps makes things better. So, anything that you like or did not like is the feedback     
+               4:37              we'd love to hear. And this simplifies all of our lives. I read every single line that you put in there and you     
+               4:43              submit and we implement these things immediately for the next event. So give us that feedback and we're going to be     
+               4:49              raffling a few of these hoodies for anybody who kind of pulls us out. You can will be a lucky draw winner and     
+               4:55              we'll ship this to you wherever you are in the world. Now with that, let's talk about how this     
+               5:02              weekend has been. This of course is a hackathon and that means our focus is     
+               5:07              around builders and we're going to show what came out of it instead of just about it. You're going to see a lot of live demos of projects that we were     
+               5:14              excited about and our judges were excited about. And one of the cool things we wanted to do was also talk     
+               5:19              about how the ecosystem is evolving. So I want to start off with where people are coming from. 650 hackers. The most     
+               5:27              attendance from the cities were Paris, Istanbul, and Rome. This was awesome to see. We have a very big local presence.     
+               5:33              And we have three amazing hackers who have actually attended 35 and 34 hackathons at ETH global including the     
+               5:40              online events across the last seven years. So Karan is the one with the most amount of hackathons on on their deck     
+               5:45              and Fabby and Julio are the two people who've attended 34 events and we looked at all of your source code and the     
+               5:51              project submissions and Typescript Python including were the most popular languages. So this continues to stay the     
+               5:58              same list on the languages. Sometimes they change orders, but it's good to kind of see how the momentum's going.     
+               6:04              But the best part is these 650 hackers submitted 266 projects. This is kind of     
+               6:10              why everything is a little bit behind schedule because we got way more projects than we thought. And I want to     
+               6:16              congratulate everybody who submitted a project. So, please give yourselves a massive round of applause.     
+               6:22              Our mornings being slow is a great thing. us being delayed because there's     
+               6:27              more cool things we have to look at is a pretty good pretty good side effect. And     
+               6:32              to nobody's surprise, AI and Agentic World is the biggest theme along with     
+               6:37              just DeFi as a category. Those were the two standing out sort of themes from every single project we saw and world     
+               6:44              ENS and ARC were the most integrated chains and SDKs. And on top of that,     
+               6:50              everybody who deployed a contract, we looked at where the contracts were deployed. their mainet base and arc for     
+               6:56              the most used blockchain. So, we're seeing real activity and real deployment and it's awesome to see that especially     
+               7:03              now how easy things have become. So, we're excited to continue seeing these trends and report how the events are     
+               7:09              evolving. So, congrats everybody and uh we're gonna Yeah, actually yes. Yes,     
+               7:18              you're still here. There's still some energy and we're gonna jump right into it. So, the best thing that I'm thankful     
+               7:26              for this morning is our judges chose to stay for two extra hours so they can     
+               7:32              talk to every single team. So, please thank all of these incredible judges for spending all of their morning and most     
+               7:38              of the afternoon. So, thank you to Sasha, Lee, Anthony, Anthony, Benji, Ivon, Kevin, Maggie, Andre, Paul, Henry,     
+               7:44              Remy, Sasha, Sean, and Tamas. They talked to so many of these teams to give them real feedback. saw each of these     
+               7:50              demos and thanks to them we are here talking about some of our finalist teams. So 266 projects and we have 10     
+               7:59              finalists that we're going to talk about and they're going to come on one by one and demo what they built.     
+               8:07              Before we get to the finalists actually no these are our finalists. Please give a massive round of applause to the first     
+               8:13              time ever the 10 teams that are going to come on and shell dive maki ify alma     
+               8:18              npmguard failp paint global evm post and corpus these 10 teams are some of the     
+               8:24              most creative and interesting projects from this hackathon we're going to bring them on they're going to do a demo and     
+               8:30              the thing I was going to say which I thought was going to be first is actually the list of every single     
+               8:35              project that came out of this hackathon there 266 projects on this screen these     
+               8:40              things get bigger and bigger and the text gets smaller and smaller and that's a great sign because we're seeing people     
+               8:47              excited about spending their entire weekend building things that are exciting to them and they get to share     
+               8:53              this with the rest of the world. So many of these projects were live websites this time we got to see more than half     
+               8:59              of them ready for people to use. So you can kind of see all of these either all public including the source code learn     
+               9:05              from everybody's code and what they've been doing and really try to use that we've all been working on for the last     
+               9:12              few years. All this stuff is public on the showcase page on our website. Every     
+               9:18              single project is visible and soon you'll be able to see all the prizes you've won. So those were kind of all of     
+               9:24              our incredible finalist teams. And what we're going to do is just jump right into the first demo. We're going to have     
+               9:30              these 10 teams demo their de projects and then we're going to go into the prizes. So, please join me in welcoming     
+               9:38              the first finalist demo for 2026 for Inerson event. Defy, please give a big     
+               9:43              round of applause. Hi everyone. So, we are not the fight     
+               9:50              team but the defy team. Actually, it's a French word for challenge since we're in Kansas this year. So, basically what     
+               9:56              defy is, it's a challenge app where you can one v one a friend in a trading     
+               10:01              competition. So, let's get a quick demo here. So you can select any type of uh     
+               10:09              or collateral amount you want and the trade duration and this will create a     
+               10:14              link that you can share to your friend.     
+               10:21              Once it's done you can join the lobby and basically it's executes on per deck.     
+               10:29              So you're going to want to use a collateral. So here I'm going to use a link which is going to be swapped using     
+               10:34              unis swap API into USDC and I'm going to select the pair as well as the leverage     
+               10:41              and the long or short for direction. When I hit swap it will register swap my     
+               10:48              link into USDP and then register and start the trade. So here we can see on     
+               10:53              the server that both trade has been registered and it begins.     
+               11:01              So here in real time both users can see their position and PNL evolving uh as we     
+               11:07              go and uh you can see the the countdown. So basically the the goal is to just     
+               11:15              have fun. It's a fun experience where you can just challenge a friend uh into a quick draw without any friction. Uh     
+               11:22              we've used the dynamic wallet in order to have a really quick onboard which also kept us uh from having u the     
+               11:30              signing on the server which allowed us to execute both trades at the same time. So it's a fair jewel and uh for the     
+               11:39              wallet portfolio we we've seen some tokens in our balance uh just before. So     
+               11:44              this was using mobile API and uh we've used nextgs for the front end and uh     
+               11:49              nextgs for the front end and SGS for the handling of positions and serving with what's     
+               11:56              so here the dwell is going to an end and I won. Yeah,     
+               12:03              by having the least loss and that counts still. So here, if you go back, you can     
+               12:09              see all the drill history that you've done with your friends, track your wins, track your losses, and basically you can     
+               12:15              really quickly, even right now, go to defy.walk.com and start drilling your your friends.     
+               12:21              There's also a friendly mode for people who don't want to lose real funds, you can try with fake USBC as well. So yeah,     
+               12:29              that's pretty much it. Awesome.     
+               12:35              Amazing. First quick nice demo. We are going to go immediately to the next team. So, let's welcome Alma. Please     
+               12:42              give them a big round of applause.     
+               12:53              Hey everyone, thank you for listening. Um so as we speak there are over 40% of     
+               13:00              LT positions that are sitting outside of their range um not earning this     
+               13:07              represents billions of unproductive capital.     
+               13:23              Sorry for that. So yeah, as I was saying, there's billions of unproductive     
+               13:29              capital right now in DeFi, and we intend to solve it. Um, with ALMA, which stands     
+               13:36              for automatic automatic automated, sorry, liquidity management agent. Um     
+               13:42              the way it works essentially is we're using unis swap threading API uh unis     
+               13:47              swap wallet and unis swap caliber contract for those of you who are familiar with it which allows us to use     
+               13:55              uh e702 um to uh to offer our user users the     
+               14:02              possibility to uh delegate their position their new position uh to um our     
+               14:08              agent which will monitor their position at all times, check if they're out of     
+               14:13              range and rebind when needed. Of course, the rebinding can happen upon, you know,     
+               14:20              user settings. Um, you know, if you if you're more risk averse or prefer taking     
+               14:25              risk, you can have different slippage leage parameters, uh, concentration     
+               14:31              parameters. Um, yeah. So, enough talking. I'll let call a little demo of     
+               14:38              what we're doing. All right. So, we prepared a little wallet here, Unis wallet. We created two positions. Both     
+               14:45              are out of range currently. And as the first step, we'll delegate these to our agent. This will pop up a transaction.     
+               14:53              If internet work upon signing, the agent has now been     
+               14:58              delegated access to these positions and will start working on uh gathering     
+               15:03              context for rebalancement. This can take somewhere between a couple seconds to a minute. In the meantime, I'll walk you     
+               15:10              through some of the agent settings that we have. Um, we offer a risk profile setting as you can see here. Um, some     
+               15:16              future work will be to make this volatility adaptive and also um make the agent fully autonomous. Um, and as     
+               15:23              Jiannis said, the user can also set his max slippage right there. All right. In     
+               15:30              the meantime, the first revamp has happened and the second followed as well.     
+               15:42              There's the first rebalance position. If we click on it, we can see that the uh that the position is now in range. We     
+               15:49              can see the price chart, the rebalances that happened, the size, and the acred fees as well as the APY is currently     
+               15:55              ster 500% we wish. Thank you guys.     
+               16:02              Another quick and easy and yet super useful demo     
+               16:08              taking advantage of. So that was our second team. Next up, I want to bring on     
+               16:13              BaleVPN. Please give them a big round of applause.     
+               16:24              Hello everyone. Um, today I'm going to introduce the whale. Um, real VPN is a     
+               16:31              uh cryptonative VPN protocol. Um, first of all, let me explain what is the     
+               16:37              cryptonative. There are two sides. Uh, one of them is you know VPN creates a     
+               16:44              encrypted tunnel between the user and the VPN server. Yes, any third party     
+               16:50              cannot see your traffic but there is a problem. VPN servers can see your     
+               16:56              traffic traffic and they can log even if they can they say we are not logging.     
+               17:02              There are a lot of examples that uh they are actually logging. So um we put our     
+               17:09              uh protocol inside of the TE trusted execution environment and uh giving     
+               17:15              runtime attestations that for the codebase. So anyone can verify that uh     
+               17:22              and look in the codebase there are there is no there is no login in feature and     
+               17:29              the other side is the cryptonative payment I think everyone will think     
+               17:34              about the 402 when I say the cryptonative payment and we are using     
+               17:39              our payment by 402 and we don't have any     
+               17:45              subscription plan we are just uh we are is charging to use it per for daily     
+               17:50              usage per each 10 megaby and     
+               17:56              let's see the demo     
+               18:02              as you can see uh this is my current um IP address and here is my VPN um you can     
+               18:12              see there is some ENS domain uh thanks to ENS uh we can make this protocol uh     
+               18:18              permissionless and decentralized. Uh anyone can deploy our protocol uh inside     
+               18:26              of their TE and if they can provide it at the station they can register our     
+               18:32              subdomain. So with that anyone uh anyone can access their VPN uh with ENS domain     
+               18:39              also you know uh when you want to connect a VPN uh you need a lot of     
+               18:44              configuration settings uh with ENS uh users don't need this just write ENS     
+               18:51              subdomain and just connect all settings inside of the subdomain. So for example,     
+               18:57              let's connect with one and yeah as you can see my IP address     
+               19:04              has changed and let's do some network test and see the pay as you go. Here is     
+               19:10              my balance. Um let just wait one second for the uh test starts and we will see     
+               19:17              the payment. Um yeah as you can see my balance going     
+               19:23              down. We It's going it's very expensive for for the presentation and uh let's     
+               19:31              disconnect this one. And we have also one more feature. As you can see there     
+               19:36              is a human uh human uh VPN VPN protocol. Uh     
+               19:45              just humans uh can provide their uh world app world human ID can access that     
+               19:51              IP. Uh if you want to connect that uh VPN protocol, you have to scan your QR     
+               19:58              code with your world world app. Uh let's one sec.     
+               20:06              I proved my humanity with uh world ID and I uh I'm not I I'm connecting to     
+               20:16              uh let's waiting to humanity. Yeah. Um so with that human     
+               20:21              only IP uh in the future for example uh cloud player can whit list that IP for     
+               20:29              uh because they knows that who comes from that IP is a human and they can     
+               20:35              they can whit list that IP. So uh we don't need any more capture or rate     
+               20:41              limit and uh we can move in the internet uh smoothly and yeah that's the way VPN     
+               20:50              uh thank you for listening uh stay private     
+               20:58              awesome other super cool demo and kind of the cool thing about that is it's live and     
+               21:04              actually a useful container ility that takes advantage of microp payment. So, I'm excited about seeing real     
+               21:10              applications and uh another amazing hack. Next up is Maki. Please give him a     
+               21:15              round of applause.     
+               21:20              Hi. Hi guys. Uh let me present you Maki. Maki is a agent that lives in your     
+               21:26              terminal and actually can do everything the fight for you. So it can send tokens and can do swaps. It can uh I don't know     
+               21:33              do some lighting predictions etc. Uh it's pretty easy to install. just     
+               21:38              have to download one package and then from any directory in your terminal you can     
+               21:46              call for and it will Where am I     
+               22:07              always happen? So the M uh you just call it and just     
+               22:15              and it is in your terminal. Uh I wanted to start a fresh one, but     
+               22:29              let me show you the one I have already launched here. And uh so you can ask it simple questions like my balance or you     
+               22:36              can uh ask it to say address just for it. But also you can of course ask it to     
+               22:43              send some to     
+               22:48              some doain example and it's going to do and the main thing with this agent is the that the keys themselves uh always     
+               22:57              on the hardware so they only live on the MacBook uh for ledger and they uh never     
+               23:04              been exposed to the LLM itself so it's uh they do any kind of um     
+               23:11              LLM injections injections etc didn't go to the internet. Let me ask it     
+               23:18              directly. So now I'm asking it to make a transaction and it ask me to confirm     
+               23:28              and now it asks me to sign the transaction. So basically it has two modes. One is which I'm demoing right     
+               23:35              now and the second you can use your device for example using Windows or Linux etc. And now the transction     
+               23:43              and U to do some more visual stuff like swap     
+               23:51              to and uh using     
+               23:58              tool I'm going to swap it and uh this     
+               24:04              agent is based on the agent if you know it so it     
+               24:11              so it supports the types of tools and     
+               24:16              uh you can teach it anything you do in the so for you and it also can uh do     
+               24:23              transaction autonomously. Uh it's a smart wallet so you can set up the onchain uh token limit and on chain     
+               24:31              addresses like smart contract you wanted to interact with. So it can do something     
+               24:36              on your behalf without like the need for you to confirm anything. It's still going to be secure because All the     
+               24:43              changes in policies are happening only if you sign. So just executed the box.     
+               25:02              Awesome. Yeah, this is such an obvious cool utility that basically prevents any     
+               25:08              confession for your private keys. So hopefully install monkey and uh     
+               25:14              all right next up course plus     
+               25:23              before we get started I have a content warning this presentation contains math     
+               25:31              in case that wasn't obvious from my Merkel tree that we're presenting here.     
+               25:36              Uh I'm sure you all heard about Google's uh crazy new quantum computing     
+               25:41              advancement that brings uh Q day. That is the day where uh quantum     
+               25:47              cryptographically relevant quantum computers begin stealing Satoshi's Bitcoin. That day is now in 2029     
+               25:54              according to their estimates. That means that all of us need to really get our     
+               25:59              stuff together and start migrating all of our crypto to postquantum secure     
+               26:05              signature algorithms. The leading algorithms these days are either lattis based or hashbased. Uh sphinx being the     
+               26:12              leading hashbased signature algorithm. I'm going to present to you a very slight variation     
+               26:19              on sphinx called porse which is a few times signature algorithm that achieves     
+               26:25              significantly smaller signatures and consequently lower signature gas uh than     
+               26:30              sphinx to begin. We have a merkel tree here and     
+               26:36              one of the major gains of porse over sphinx is that uh porse uses a merkel     
+               26:43              octopus. So this tree contains a whole bunch of black nodes that are the nodes that we     
+               26:49              want to prove and gray nodes that are nodes that are nodes that we derive.     
+               26:55              Each node that we derive needs a sibling. But because many trees many     
+               27:01              nodes are in the same subtree, we don't need to represent every single sibling     
+               27:07              for each node because they are shared. That's what this is. So this is the     
+               27:13              Merkel octopus for two nodes that have common ancestors. And so we are saving     
+               27:19              on the size of our tree, the size of our signature, and the amount of gas that it takes to verify by using that Merkel     
+               27:27              octopus technique. Horse also achieves improved security     
+               27:33              over the horse. I don't know who named these things, man. Over the horse scheme originally     
+               27:40              standardized in original Spinx uh by dduplicating the nodes you have to     
+               27:47              reveal in order to make a signature. Now I will say sphinx plus which is the     
+               27:53              algorithm that NIS standardized as LHDSA uh is a stateless algorithm that means     
+               28:01              that you don't need to remember how many signatures that you've made before gravity sphinx where of course comes     
+               28:08              from is also a stateless signature algorithm on the EVM you have to sign     
+               28:15              each message with a unique knot. Therefore, signing need not be stateless. And this is where we can     
+               28:21              obtain a significant amount of improvements in signature verification gas by avoiding the extra overhead that     
+               28:28              sphinx plus requires to achieve full statelessness. Therefore, it is sufficient just to have a few time     
+               28:37              signature algorithm like porse combined with an extended extended Merkel     
+               28:42              signature scheme tree for each novel.     
+               28:49              I have a small demo for you. I deployed this contract on Sapoleia.     
+               28:56              It's ERC1271 compliant. And if I hit this query     
+               29:01              button, we should get the magic number for ERC1271.     
+               29:08              Tada. Uh, this contract does in fact work as designed. uh near-term near-term work     
+               29:16              will be rewriting this contract from solidity assembly also called ULE into     
+               29:22              Huff which is a much more efficient language and then formally verifying it.     
+               29:27              We've also provided here a convenient table of security parameters for various     
+               29:32              performance tuning uh and in case you ever wanted to read some incredibly nasty solidity assembly. There you go.     
+               29:41              Thank you very much.     
+               29:48              Thank you, professor. But if you actually look at the project     
+               29:53              description, you'll see the actual paper the algorithm is based off of. And this is a quality implementation of that     
+               29:59              paper. You actually can verify these signatures, which is super super useful. And the fact that you can actually do     
+               30:04              this gas efficiently is a pretty big plus because if you saw that Google news     
+               30:11              from last week, they're saying every computer is going to break in three years. So, we'll see how that how that     
+               30:17              goes. But enough of the the doomsday scenario. Let's talk about some optimism and welcome our next finalist and shall     
+               30:25              please give him a round of applause.     
+               30:32              Hi, this project is dedicated to the book of Ethereum community. Go check     
+               30:38              them out. So, Nshell is a unchained firewall for AI agent. Um, I will put     
+               30:44              this bit in context because I'm a professor. Uh, basically when we use     
+               30:51              agent to defy, we told them to craft     
+               30:56              transaction then those transaction are broken. What can happen is what we call     
+               31:02              the prompt injection and this is very harmful. It can happen in various level     
+               31:09              from agent to agent communication. We see social engineering. So agent can     
+               31:14              influence the other agent to uh do malicious transaction or give private     
+               31:19              keyway or simply the the agent can hallucinate. So in that context uh I     
+               31:26              find it a bit similar to traditional uh SQL injection that we have in databases     
+               31:33              and today nobody sends a payload in a database without proper sanitation. So     
+               31:38              this is basically the concept. I build an ecosystem. It's fully open source and you can look at the documentation and     
+               31:45              everything to host it yourself and try it out. Uh the goal was to do like SDK.     
+               31:51              So you install the SDK and it will give you a set of function basically to do     
+               31:57              conditionals around your transaction. So I do not control the transaction execution. Uh this is the programmer     
+               32:05              decision what to do with it but I provide the decision and uh deep analysis of the prompt in question. So     
+               32:13              um this site shows live uh at uh the     
+               32:19              detections. We have three level don't approve it's safe and transaction normal transaction escalated require human     
+               32:26              attention and blocked is just tradeoff malicious. So if we open one of the     
+               32:32              blocked one it will explain the analysis why it was blocked. So it pretty obvious     
+               32:39              because it's the the dead the dead address. Uh lower you will see all the agent in     
+               32:47              the registry. So they are all categorized under thread score and the the strike. So the number of time they     
+               32:53              got blocked. Uh yeah. So this whole thing is to allow a sane uh     
+               33:02              communication between agents. Agents can check the scores of each other and decide if they want to trust and     
+               33:09              communicate. Um how all of this is possible is with the chain link theory.     
+               33:15              So this is the the main thing and also ENS because the score of each uh of     
+               33:22              these agents are recorded into their personal ENS subdomains as text record     
+               33:28              and the only thing that can update this record is the chain link theory and     
+               33:34              inside the train link theory I'm using code to do deep analysis over the LM     
+               33:42              since we're dealing with intelligence we cannot use normal way of detecting.     
+               33:50              So we need intelligent to fight intelligence. So um so yeah that that     
+               33:56              that's about uh the the the experience and uh I also build something a little     
+               34:02              bit more fancy for ledger owner instead of using the CLI to install like your uh     
+               34:09              your agent and everything you can do it with the leak interface and you can kill     
+               34:14              your bot in one click then you uh of course confirm the transaction on your ledger and that's it. If this Asian go,     
+               34:22              you just hit it and this is the end for it. So that's about it. Thank you for     
+               34:29              attention. And     
+               34:34              thank you. Such a nice simple way to do basically swarm management and cross a     
+               34:40              communication and actually have annotations attached to it. All right, a few more demos to go. So let's welcome     
+               34:45              the next one, Dive.     
+               35:01              Oh hi everyone. So our project is called dive which is a decentralized intelligence verification engine. So um     
+               35:08              we actually for 14 hours from Malaysia to here we are still uni students and     
+               35:13              even though we are not the same this is our sixth global and me and direct um second finalist.     
+               35:19              Okay. So, um if you all have played poly market before and you will find out a problem is that um they're actually     
+               35:27              using something like uh this uh a centralized oracle which is like um which is called um and it can actually     
+               35:35              like they can actually control how the outcomes of each market goes. So you can see from the koshi one where if Trump     
+               35:41              talk to Putin is yes where in the point market is no. So it seems that truth     
+               35:46              isn't objective. It depends on who controls the oracle. And another problem is that for Kauaii on the left market it     
+               35:54              says that oh we cannot bet on others people death where in the right market there is that is actually betting on     
+               36:00              others people death. So platform actually settles for profit and not truth.     
+               36:05              And if you actually have like a large amount of money, you can actually buy the UMA tokens to actually stake and you     
+               36:12              actually can manipulate almost all of the poly markets by holding large amount     
+               36:17              of tokens. So because of this we wanted to solve this issue of a centralized     
+               36:23              like problem. Um so we created a decentralized verification engine for     
+               36:28              truth where rather than like humans or tok to token weighted oracles actually     
+               36:34              all are done by AI agents and all the AI agents yeah it's basically like a swamp and     
+               36:40              each of actually linked to a unique human behind it and it can do to like resolve outcome by um by and and is done     
+               36:49              through reputation weighted consensus and autonomous onchain payout. So we integrated world zero gravity and     
+               36:57              also hideera as the identity layer, intelligence layer and the execution layer into our project.     
+               37:04              So um this is not like just a prediction market. We're actually creating a new     
+               37:09              open like a decentralized trusted oracle network that can be plugged into any     
+               37:15              platform that needed to use this like maybe D insurance prediction markets or any AI agent that needed onchain real     
+               37:23              world verification of true events. So we'll demo it. So since anyone can     
+               37:30              actually join into and become the oracle we do it as a cloud cost skill and you     
+               37:35              can like run register agent and you will create like a hera account you can also     
+               37:40              like um need to do over ID verification using the agent kit so to ensure that all the agents are actually connect to a     
+               37:47              unique human and continue and we showing this explorer to actually you can see     
+               37:54              all the agents that created this one we created just now but we didn't do it right now because it takes a lot of     
+               38:00              time. And this is another agent we created like a few hours before. You can see like the payouts, the or the     
+               38:06              leaderboard, the activity locks and everything. So all of the actually the discussion and what it does to actually     
+               38:12              onchain and and now let's try to dispute a market.     
+               38:20              So in the first round the AI agents are actually selected randomly like maybe     
+               38:26              five of them like Ethereum validator and you it will actually research on its own     
+               38:32              and actually commit the findings like yes or no onto the     
+               38:38              blockchain and you will reveal it after union review phase and if is still like ambiguous because the market has like so     
+               38:46              uncertain then we move to the second round where in this time the AI storm actually kicks in and they'll actually     
+               38:53              discuss with each other and actually share their findings or convince or criticize each other. Like you can see     
+               39:00              from the line here, all of the dots are actually them connect talking to each other where the three dots behind are     
+               39:06              like the evidence that they'll show to each other. This will actually like after all of the resolving are done,     
+               39:14              they can actually vote for each other, vote for the answer and actually update their reputation. So in the long run if     
+               39:20              you have higher reputation in the next cycle of oracles you will get chosen uh you'll increase your higher chance of     
+               39:26              getting chosen and to demo this um we are actually not     
+               39:32              doing like a prediction market only we are also doing like a platform that any agents can actually pay for this swam to     
+               39:38              do a real world verification maybe asking for if the thing really happened in the real world or not. We did X42 on     
+               39:47              using the Coinbase and they can actually pay it and actually get better answer.     
+               39:53              So because of this we are actually creating a decentralized agentic um Oracle network that anyone or any AI     
+               40:00              agent can use. Thank you.     
+               40:09              I still can't believe they did all of this in a weekend and I checked verified. Feels awesome. Uh this is     
+               40:15              about to be just like a proper standalone protocol that unifies the biggest Oracle problems all these markets have. So uh really happy to see     
+               40:23              students do this and uh give them another round of applause.     
+               40:28              All right, three more finalist demos to go. So let's welcome npm guard.     
+               40:36              Hello everybody. We're excited to be here and even more excited to tell you about our solution and the problem that     
+               40:42              we are solving. So, as most of you probably know, every other week there is a supply chain attack on npm that breaks     
+               40:49              like half the internet. And it's estimated that the damages from npm supply chain attack, so npm packages     
+               40:57              with malware, amounted to damages that up to $60 billion in 2025 alone. So the     
+               41:06              speed at which we're creating code is accelerating rapidly for AI but the     
+               41:11              speed at which we auditing it and doing the security around it is severely lacking and we are trying to solve this     
+               41:18              problem. So our tool is an agentic framework for pentesting of npm packages     
+               41:24              and a decentralized package manager for downloading safe packages. My colleague is going to show you how this works from     
+               41:30              the user experience and then we're going to get into how the agents are actually festing the package.     
+               41:38              The other colleagues um so here I'm in third directory and if you guys are like me and you don't     
+               41:44              really know what to install you you can run our command uh npx npmguard cli     
+               41:50              check and we see all the packages that we have installed and thanks to our audits we know what's safe and what's     
+               41:56              dangerous. We also can see what packages are provided by us through IPFS and what     
+               42:02              are directly installed from npm.     
+               42:08              And what happens if I want to install a new package? I can simply uh run this command.     
+               42:18              It's going to check. So it finds that there's no audit for that package. So I have two option two options. either I uh     
+               42:25              install it normally or I can um pay for an audit and every user will be able to     
+               42:31              um have access to that audit. So I'm going to pay I'm going to use W connect. I have to     
+               42:37              scan the QR code     
+               42:44              or if anyone wants to pay for me.     
+               42:59              So now it's confirming the transaction and it's performing the audit.     
+               43:06              And now we see that the other says that the package is safe. So it's been installed inside our environment. And     
+               43:12              the amazing thing about our tool is that any one of you who wants to install the     
+               43:17              same package, you can run the same command and the audit will be available for you guys and you can uh see that the     
+               43:23              package is safe for installation. But how do we perform the audit?     
+               43:40              Okay. So this is the screen that you get into the web link when you run an audit.     
+               43:45              So what actually happened? The main two entries for malware are install scripts     
+               43:52              that run when you install a package or runtime code that executes when you import something into your code. So what     
+               43:58              our tool actually does is it has three phases and the first phase is to scan every single file in the package that is     
+               44:06              downloaded from npm and check for clues to scout. So it highlights the areas of     
+               44:13              code that are suspicious and it tells you exactly what kind of things what     
+               44:19              kind of suspicious things and vulnerabilities it expects. But this alone is not enough. So what we do with     
+               44:26              this after this is we run every single suspicion through an agent that's     
+               44:32              through a more intelligent agent that has the package in a sandbox and in this sandbox inter it can interact with the     
+               44:39              package. It can evaluate JavaScript code. It can run the installation script. It can import the package and     
+               44:46              while it's doing it, it logs every single network call to the file system.     
+               44:51              It checks if it sees your environment variables. It checks if it wants to delete all your folders and everything     
+               44:58              related to that. Also, some of the malware is coded specially so that it     
+               45:05              only runs in say specific location like in Poland or it detects that you are in     
+               45:10              France or it's coded such that it only runs after let's say 76 hours. agent in     
+               45:17              this environment can mog the environment through JavaScript and actually activate     
+               45:23              the malicious code that wouldn't be activated otherwise. So this is going to take a while but yeah 10 seconds this is     
+               45:31              going to take a while but it ends up with a script. The the third layer is a     
+               45:36              script that shows you rep that that if you run anybody can run it and it     
+               45:41              reproduced this the vector the attack vector and the vulnerability that we     
+               45:46              detected and this goes straight to the package manager as an out.     
+               45:59              That was awesome. That's like a full-on product that's just ready to go and actually very timely. So     
+               46:04              congratulations. I hope to uh see this in the wild and happy people use it. Two more demos to go. So let's welcome our     
+               46:10              second last finalist, Corpus.     
+               46:18              Hi everyone. Uh very excited to be here. Uh     
+               46:24              uh corpus is a operation system for autonomous AI agent corporation for go     
+               46:30              to market. So let's say if you all of you all of you guys have built great products for doing the hackathon and now     
+               46:37              want to go live but uh you probably would have headaches on what to do with for you know have more exposure exposure     
+               46:43              to the public or traction um because 90% of the startups fail     
+               46:50              because uh not because the products are was bad but because it's brutal how GTM     
+               46:57              is these days. uh when it comes to GTM uh you have to     
+               47:03              consider two things. One is to uh you have to execute on a a regular basis uh like do research uh and generate content     
+               47:11              do inbound and outbound re uh sales engagement. But on the other hand you also have to think about the     
+               47:18              surroundings of your product like market shifts break fast ease and unconsider     
+               47:23              launch new features and what worked last month stop working.     
+               47:28              So most teams can't sustain both and they run burn out or they run out of money which momentum dies.     
+               47:37              Corpus can solve this problem by letting you launch an AI agent corporation that     
+               47:42              runs your entire GPM cycle. You provide your product if AI agent learns it and     
+               47:48              adjust it and execute on the market.     
+               47:53              This is corpus. So every journey starts from a launching uh your AI agent     
+               47:59              through Launchpad. Uh so you tell your AI agent what uh your product is about     
+               48:05              and what you need to uh what you need to let your AI a AI agent know.     
+               48:14              Patron is basically like a shareholders of your AI agent and pulse is the uh shares that m uh     
+               48:21              tokens that are minted to have like the shares of your uh uh of the petron. You     
+               48:28              can actually purchase the petron uh per purse to have more shares of the uh your AI     
+               48:34              agent and kernel is basically like a threshold or policy that your AI AI     
+               48:40              agent can have. uh it sets a threshold on how many uh how much money that AI     
+               48:46              agent can spend on. And for the last this is the something     
+               48:51              that uh shapes your AI agents. Uh it's a profiling your AI agents on on social     
+               48:57              media like how you want to be uh present your product to be on social media.     
+               49:03              So once everything's set     
+               49:12              uh we integrate uh we used uh hedra agent toolkit for this to have all the     
+               49:18              you know um like corporate related uh documentation to be registered to be go     
+               49:23              on chain to be uh using heterero chain.     
+               49:39              So yes, so everything has been um recorded and with the API key that are provided and the guidelines below uh     
+               49:46              once you connect to the API key to the uh our platform, it's going to start uh     
+               49:52              running as and start doing the GTM for you.     
+               50:01              So for browsing for doing the automation of browsers uh we use stage hand for um     
+               50:07              for a AI agents to go freely go on research on different websites and go to     
+               50:13              like Twitter and start posting uh based on the accounts that I already have put     
+               50:18              it in.     
+               50:26              So this agent uh if while this agent is     
+               50:31              running on GTM uh so if this agent is good at uh creating content it may need     
+               50:36              some help on finding uh leads. So this that's what agent is for. Uh so and from     
+               50:44              these agents uh my agent can find another agent from the agents list to     
+               50:49              get a help from and buy services from it. So for example, if this agent wants to     
+               50:56              have uh enriched profiles, then it goes it can buy a service to have to uh     
+               51:02              enrich the uh lead data and everything has to be uh paid with     
+               51:08              the n payment services that are integrated with the arc. And     
+               51:14              so this one was uh was paid with the to get the intent signal and then which was     
+               51:21              provided which was paid uh 0.01 1 USDC which is on chain recorded and then     
+               51:28              everything that the Asian has uh accumulated with their knowledge we call     
+               51:34              it playbook which this can be also sell as knowhow and how this GTM works in     
+               51:40              different market situation and agent can uh actually can um pay for and purchase     
+               51:46              the uh GTM playbook as well since this agent or or corpus works as a     
+               51:53              corporation of AI agent a human in the loop has to be um oversight. So for     
+               51:59              example if this agent wants to uh purchase something that goes over the threshold it has to get approval from     
+               52:05              the human which we have over here if you have approved then the agent goes on     
+               52:12              keep on going on on you know um doing this job.     
+               52:18              So basically you provide your product and a corpus of does the market. Thank     
+               52:24              you. Awesome. A fullon aentic workforce that     
+               52:32              actually does pass and you can see the output. All right. We are ready for our last and 10th finalist for this     
+               52:37              hackathon. So please give a big round of applause to Paint Global.     
+               52:44              Hi guys, we are Paint Global. So before we start, I have a question for you. Did     
+               52:50              you went to the paint painting workshop uh yesterday?     
+               52:55              And if so, did you did you did like the best uh painting that you could? Well,     
+               53:02              we saw a lot of people going to this workshop and so we had an idea because     
+               53:07              we were thinking that nobody has reviews and probably that in 10 years that they     
+               53:13              won't uh they won't like remember about their work. So that's why we built um     
+               53:20              Paint Global. Paint Global is a platform that um allows you to     
+               53:27              remember about what you did in the painting workshop uh at global camp. So     
+               53:35              uh this is the main page when you're not connected. So to connect you just have     
+               53:41              to tap and read the uh NFC chip. You     
+               53:47              don't need any wallet providers. On the main page, you have like all the     
+               53:54              paintings that uh users uploaded on the app and you can upload yours.     
+               54:08              Um so you are uploading the uh painting by using a title so people can see what     
+               54:16              you you did and you are going to sign in with uh the NFC chip once again.     
+               54:25              So once you did this uh there is like a little bit a little layer of moderation     
+               54:31              because we know uh that some of you could uh post some unwanted pictures. So     
+               54:38              I will just go to the admin page and approve the new dual pictures.     
+               54:56              Okay, here it should be on the gallery.     
+               55:04              Okay, this is the new pictures of Lucas. So, uh we have um features for to vote.     
+               55:13              So, it's like um a Tinder style vote. So you can swipe on right and left to say     
+               55:19              like if you like uh the paintings of other people. So if you swipe to right     
+               55:25              you are going to vote for them and after this you can uh save your votes by only     
+               55:32              making one transa uh one transaction and sign it with the NFC     
+               55:40              and here comes the leaderboard. So for now uh the this is hard to say so I     
+               55:47              won't say it. Please be vote for us easier to pronounce. So there you can     
+               55:54              see like all the leaderboard um paintings.     
+               56:00              Um another features that we did is the mint minting NF. So you can mint your     
+               56:08              own paintings on the app and it will generate you uh NFT a unique NFT.     
+               56:19              So you sign it with the NFC chip. Everything is handled by the NFC chip from Global except the next features     
+               56:26              that I will show you. So uh if you go to collections you are all of your NFT     
+               56:33              but if you don't like it you can sell it. uh with the auctions feature. In     
+               56:39              this feature, it just to add the provider wallet uh wallet connect so people can bring found on the app uh     
+               56:45              through the their own wallet not this ship shop. Um so here you can select the     
+               56:54              NFT you can feel the information about the auctions     
+               56:59              and such as the time or the starting price.     
+               57:04              Then you are going to load the options     
+               57:10              and I will go and put     
+               57:15              nobody's going to pay for this     
+               57:23              and so then I will be the next u owner of the uh Lucas NFG.     
+               57:31              So here there is like the because the goal is to send the NFT to     
+               57:37              the chip to the ship and not to the wallet that pays the transaction. So we have a sing assign transaction to map uh     
+               57:46              the wallet address with the ship wallet address.     
+               57:54              Sorry I'm nervous now.     
+               58:02              I will put like $30 on the transaction with my own wallet     
+               58:11              and     
+               58:16              yeah, that's $30. So, I will have the new NFT in my collection and Lucas will not have it anymore.     
+               58:24              I don't know if I can show     
+               58:31              Well, I won't show. And so, yeah, that's what we build during this hackathon. And     
+               58:36              to finish guys, I want you all to go to the app. Uh, we all have a cure code     
+               58:42              because I want to all bust off what you did during the hackathon. And for those     
+               58:47              who painted uh but didn't take any photos, we did a very professional shooting photo. Uh but I promise I I I     
+               58:56              won't post it like that's not mine. But if you recognize like your uh work, come     
+               59:02              to us and we will send you. It could be fun. Thank you so much and uh have a nice end of     
+               59:11              amazing first time hackers by the way. This is awesome. Well, I think this is like a     
+               59:17              true definition of a hack where they just found an opportunity with something that was going on and actually made that     
+               59:23              compatible with the crypto world and did a full end to end integration of the chip web 3 made a mobile app and got     
+               59:30              people involved. So, this was an amazing amazing hack. So, those were our 10 finalists. Please give a massive round     
+               59:36              of applause to all 10 of these teams. Anshell, Dive, Maki, Defy, Alman, NPMG Guard, VeilVPN, Paint Global, EVM, POST,     
+               59:44              and Corpus. And these are the teams where each member will get to mint the equivalist     
+               59:52              pack, which means that every single person gets Equival, thousand USDC     
+               59:58              for being a finalist, a $500 flight credit to the next hackathon, the proof of minting the NFT, and being a     
+               1:00:04              finalist. will be invited to the next few events we do with different founders in this space and $15,000 of credits.     
+               1:00:10              And not just that, they'll also be getting a hoodie that we just gave out to our past finalists, a custom ledger     
+               1:00:17              flex that has this events branding on it so they can remember where it came from,     
+               1:00:23              and of course the entry to the next hackathon with the five reimbursements as part of this and a free entry to eat     
+               1:00:28              coffee in New York. So before we get to the stuff that I know all of you been waiting for, I want to quickly talk     
+               1:00:35              about what does it mean to be on chain with the global community. All of you had hacker packs that got access to the     
+               1:00:40              faucet to make sure that your development work is not affected. But after     
+               1:00:45              the closing ceremonies, you'll be able to mint the additional packs, which are builder packs and pioneer packs, which account for your past attendance and     
+               1:00:52              different prizes you've won, and they enable you to get a lot more things. Uh anywhere from a free ENS domain name to     
+               1:00:58              additional discounts to other events. just invitations to a few things that we do and also discounts to ETH global     
+               1:01:04              plus. So the finalists are already getting this but Elobal Plus is a way for us to give you access to the whole     
+               1:01:10              ETH global ecosystem across the globe where you get access to all the Pragma events. Do we do stuff like Eim roaming,     
+               1:01:16              Uber credits, hotel discounts, access to other site events and of course     
+               1:01:21              Conf is included as part of being a plus member too. So all that is on global.com plus. Let's get to the stuff that all     
+               1:01:28              you've been waiting for. So, let's let's do a do a test on where the energy is at. I kind of saw the claps slow down.     
+               1:01:35              So, are we are we still excited? Are we awake? What's going on?     
+               1:01:43              Okay. Raise of hands. Who has     
+               1:01:49              been to an Inerson hackathon in the last six months with us?     
+               1:01:55              This is great. Not a lot of hands. This is awesome. Okay. Who knows what I'm about to do next?     
+               1:02:03              The same people. Perfect. Okay. So, here is how we're going to do the next 15     
+               1:02:09              minutes while I talk about all the prizes. I have a Ledger Flex. I actually have     
+               1:02:15              five of these. And I'm going to announce     
+               1:02:22              which team has won what prize from whichever our partners are. And once you     
+               1:02:28              hear your team name, if you're in the room, I want you to shout as loud as you can.     
+               1:02:34              The loudest team at the end of all the prizes, every member on that team will     
+               1:02:40              get a free ledger. Clear rules. Good so far.     
+               1:02:47              Yeah. Okay. So, so there's a very important distinction. There's going to be slides with many names     
+               1:02:55              and many teams on the same slide. You should only shout once I say your     
+               1:03:01              team name and not because you read your name because I have no way of knowing     
+               1:03:06              which team you are. And there's teams that have won multiple prizes which means that if you were the loudest team     
+               1:03:12              first and you were not the second time loud enough, somebody can take over. So, very     
+               1:03:20              simple rules. We have about 50 slides and we're going to jump right in and     
+               1:03:27              we're going to start with the world prizes. So, we're going to do a test and we'll see what happened. Are we ready?     
+               1:03:36              There's like barely any energy here. What do you Okay. Okay. All right. for     
+               1:03:41              the world prize. Asian Gate wins $4,000 as the best Asian Kid user by default.     
+               1:03:49              This is the loudest team. Ground Tooth second place for $2,500.     
+               1:03:55              And Ground Tooth is the loudest team in the room. And third place goes to Cass for third place $1,500.     
+               1:04:02              Congratulations. Ground Truth is in the lead. VeilVPN is the best use of world's     
+               1:04:08              ID and you take in $4,000 and the loudest team in the room so far. Human     
+               1:04:13              Attention Token is second for $2500 and Equitus comes third for $1,500.     
+               1:04:20              Congratulations. Dive is the best use of mini kits and clearly the loudest team. They take     
+               1:04:27              home $2,000 and possibly five more ledgers. Genie comes in second for 1,250     
+               1:04:33              and Jou World Mini app comes in third for $750. Those are all the world     
+               1:04:38              winners. Congratulations to all of these teams.     
+               1:04:44              Next up is ZeroG. CETCC comes in first for the best open call agent and you'll     
+               1:04:50              be receiving $3,000. Dive again will be winning $2,000 for second place.     
+               1:04:57              Dive is still in the lead and Orchestra comes in third for $1,000 for the best     
+               1:05:02              open clock usage. The Worma Orchestrate comes in first for the best DeFi app on     
+               1:05:08              ZeroG and you take home $3,000. Alpha Dog is the second place winner for 2,000     
+               1:05:14              and Don't Get Drained is the third place $1,000 winner. And last but not least,     
+               1:05:20              the wild card prize goes to Indelible for for 1,500. and you are the loudest     
+               1:05:27              team in the room and Cass is the second winner for $1,500. Congratulations.     
+               1:05:34              On to ARC. And is the best advanced stable coin project on Ark.     
+               1:05:41              Not as loud as the other team, but you do get $2,500. Paymate is the second     
+               1:05:46              place. $1,250 winner. Congratulations. Nano Crawl comes in for 2500 first place     
+               1:05:52              for the best abstracted USDC use case. and Neath AIC is the second place $1,250     
+               1:05:58              winner. And for the best nano payments category, VeilVPN is the $2,500 recipient. And now     
+               1:06:07              the loudest Steve in the room. And Cesta Agent comes in second place for $1,250.     
+               1:06:15              And lastly, predicted is the best prediction market use case for $2500 and Poly POP is the second place $1250     
+               1:06:23              winner. Congratulations. Next, we have ENS     
+               1:06:30              VeilVPN. Man, this is a lot of prizes.     
+               1:06:36              Okay, they're not qualifying anymore. They already have five ledgers. Well, uh, but you win $2,500 for the most     
+               1:06:43              creative use of ENS. Condor is the second place $1,500 winner. And I really want somebody to be louder than them. I     
+               1:06:50              don't know why I'm discriminating against them, but it's just fun. NPM Guard is the third place     
+               1:06:57              third place winner for $1,000 and the loudest team in the room and Crochette and Zap Wallet come in fourth and you'll     
+               1:07:03              both be receiving $500. Congratulations. And Ghost in the Machine is the best     
+               1:07:08              integration for AI and you take home 2500 and Ground Truth is the second place $1,500 winner.     
+               1:07:16              Congratulations. Then we have Hyera. Dive is the     
+               1:07:23              AI Aentic Payments winner for $3,000 and you will also are now the loudest team     
+               1:07:29              in the room. And Poly Agents is the second place tie and you'll also be taking in $3,000.     
+               1:07:36              Narnet is the best use of Nario. You take home $2,000 and Alpha Daw comes in     
+               1:07:41              second for $1,500. Your turn is the best use of Hideera     
+               1:07:46              SDK. You take home a,000. Providence Chain is the second place winner for another thousand and Auditor is the     
+               1:07:53              third place winner for $1,000. So congratulations to all three of these teams. And lastly, Finnvoice is the best     
+               1:07:59              tokenization project on Hyera. You've taken $1250 and Folio is the second team     
+               1:08:04              that will be also receiving $1,250. Congratulations to all the Hideera winners.     
+               1:08:10              Now this is actually even more fun because now you are screaming for a ledger prize to win a ledger. So let's     
+               1:08:15              see how this goes. Very Clear is the best use of clear signing. You take home $2,000. Orin     
+               1:08:22              comes in second for $1,800. Orin is the loudest team in the room. Base Wallet is the third place $1,500     
+               1:08:29              winner. And Iris Wallet comes in fourth for $1,000. Signal is the first place Aentic and     
+               1:08:35              Ledger integration winner for $1,500. Polyledger comes in second for a,000. Asian Pay third place for 700 and Soul     
+               1:08:42              Vault for fourth place 500. I'm gonna go back just to see. It's Orin. Is that     
+               1:08:48              right? Orin is the loudest team in the room. On to Uniswap.     
+               1:08:55              Okay. Alpha Beta Gamma Prime I think is the     
+               1:09:01              first place $5,000 winner for the best API integration on UniS swap. Casper comes in second for 3,000.     
+               1:09:10              and Hello Broker and Alma are two teams that are going to be taking home $1,000     
+               1:09:15              each for third place. Congratulations. On to Chainlink. Nshell is the best     
+               1:09:22              workflow on sharing with CRA. You take home 2,000. Flow Broker comes in second for another $2,000.     
+               1:09:28              Then Meridian and Open Compliance are the best. Privacy standard winners, you     
+               1:09:34              take home $1,000 each. Not as loud as Orin. and Delta FX is the best world     
+               1:09:42              integration and you will be receiving $1,000. So, congratulations to all the Chainlink winners.     
+               1:09:49              On to Flare. Veil is the best TEU. You take home $5,000. Do not shout. Uh,     
+               1:09:57              Flex Prover comes in second for 2,000. And Sentinel,     
+               1:10:02              that's more than five people. Raise your hands. Who Who is Flex Prover? That's four hands. And I saw two people     
+               1:10:08              screaming here. Something is off. Wait, flex prover. Four of you.     
+               1:10:17              Wait, are you flex prover or sentinel?     
+               1:10:24              This is what we call a race condition. Um, okay. We're gonna have to do this one more time because they are super far     
+               1:10:30              and they're equally loud. So, I'm gonna I'm gonna give you five seconds to to uh just get ready.     
+               1:10:37              Both of you. Well, I I'll go one of them first. Flex prover first and then Sentinel. So, you all ready? Both sides.     
+               1:10:44              Okay. Flex prover takes in $2,000 for second place.     
+               1:10:51              And Sentinel receives $1,000 for third place.     
+               1:10:58              Damn it. What does the audience think? Flex prover or Sentinel?     
+               1:11:07              The audience has spoken. Sentinel is the loudest team in the room and congratulations on the thousands.     
+               1:11:14              Corax and Multisig PE are the best smart account users winners and they both take     
+               1:11:19              home $1,000. Those were the player prizes. Let's go to dynamic. Vanta is     
+               1:11:24              the best use of dynamic backend SDK integration and you'll be receiving 1667.     
+               1:11:30              Pisca is the second team. You'll be receiving 1667 should be s not 66 but     
+               1:11:37              you get the frontend SDK integration prize and Zap Wallet comes in third for the best mobile app and Zap Wallet is     
+               1:11:45              now the loudest team in the room and you'll also be taking home 1667. Congratulations.     
+               1:11:50              Then lastly, we have Unlinked is the best private application on Unlink. You take home $3,000. Crochet is     
+               1:11:58              the best and most creative use of privacy. you take home $1,000 and Warden     
+               1:12:03              is the best private DeFi integration and you'll be receiving $1,000. No, we have more. Sorry. Wallet Connect     
+               1:12:11              Pay is the best Wallet Pay integration. You take home $2,500. Unwind comes in second for $1,500. Payflow is the best     
+               1:12:20              Rion SDK integration. You'll take home $1,000. So, congratulations everybody. Those were all of our partner prize     
+               1:12:26              winners. Lots of incredible stuff here and everything now is on the website     
+               1:12:32              which means that you can see the total amounts if you won lots of prizes and a key key important thing is everything     
+               1:12:39              I've said is not final which means we have the list of who won what prizes but     
+               1:12:44              we have not verified everybody's source code. We have not fully checked that everybody follow the rules. So that     
+               1:12:50              takes place over the next four weeks. We'll be looking at everybody's source code. Do not make your repos private. do     
+               1:12:55              not do anything. You can commit more stuff. We have them timestamped, but we'll spend the next few weeks making     
+               1:13:00              sure that everybody did work from scratch. And the timeline to return your stakes and prizes is May 8th, which     
+               1:13:07              means a week before May 8th, you'll get a verification over email saying this is the total amount you'll be receiving at     
+               1:13:14              this address. And once you say yes, on the 8th of May, you'll be receiving those prizes.     
+               1:13:20              So, congratulations everybody. Oh, I'm going back. There we go. And I want to     
+               1:13:25              talk about one quick thing. How many of you are planning on going at ETHCOM but have not gone their tickets yet?     
+               1:13:32              Okay, I see a few hands. So, just for the next 15 minutes, I'm going to do     
+               1:13:38              something that we won't do again. The ETH is our biggest event ever as ETH     
+               1:13:44              global is going to take place in New York, the biggest venue in Manhattan and New York City. We have the best of     
+               1:13:51              crypto and institutional side coming in and companies from all across the industry everywhere from Mastercard to     
+               1:13:58              Fidelity to 816Z. All of them are coming in to see what's happening at the edge. And these are the kind of the ticket     
+               1:14:03              prices. But for people in this room for the next 15 minutes, I'm going to do a     
+               1:14:09              massive discount code for 66% off. And this will only be shown one. So anybody     
+               1:14:15              who's trying to buy this thing needs to be on their phones right now. and you'll see this code and as soon as I walk off     
+               1:14:21              the stage the code gets disabled. So all you have to do is log into econom.com     
+               1:14:27              and on the checkout page you can apply this code. I'll give everybody five. There's no QR code. There's no QR code.     
+               1:14:33              Just a text. There's no QR code. People waiting to scan. So as soon as I'm off     
+               1:14:39              the stage, the code will not be valid. If you're looking to get the tickets, all you have to do is go to the checkout     
+               1:14:46              page and type in oh to get 66% off.     
+               1:14:51              15 minutes is all you get. And with that, let's wrap up this event     
+               1:14:57              before we kind of end things off. I need all of your energy to do a one last thank you to a bunch of people that make     
+               1:15:02              this event possible. I want to start off by thanking all of you hackers for being here this entire weekend. Please give     
+               1:15:08              yourselves a massive round of applause for doing the amazing things you've done. Thank you to all of our judges. Keep clapping for taking the time all     
+               1:15:14              morning and afternoon to talk to every team. All of the mentors, volunteers that spent this whole day 24/7 helping     
+               1:15:20              you make your projects. All of our speakers who did the amazing workshops, all of our partners who are here the     
+               1:15:25              entire time helping you not only win prizes, but make sure you get to do the right things. And everybody involved     
+               1:15:30              from the venue to the AV team to the photographers to the videographers making this entire experience seamless     
+               1:15:36              and smooth for you. And last but not least, the biggest round of applause for the ETH global team. The massive shout     
+               1:15:41              out to Melton, Joanna, and Alisa, Brian, Alex, Karen, Aubrey, Val, Pascal, Sophia, Nuno, Anna, Emily, Jacob, and     
+               1:15:48              Andrew. That is everything we wanted to talk about. And of course, this would not be an E global closing without telling you     
+               1:15:54              what's next. So, our next hackathon is all about open agents and aentic payments. This is happening     
+               1:16:00              asynchronously from April 24th to May 6. So, in two more weeks, we get to see a lot of you online. Then we're going to     
+               1:16:06              be doing ETHcom and the new New York hackathon in mid June. Lisbon is our     
+               1:16:12              next European event at the end of July. ETH online is our biggest async on online events take place in September     
+               1:16:19              and then two events after that are going to be Tokyo in September and DevCon will be global Mumbai in November. So all     
+               1:16:26              this thing is available on the website for you to look at the dates, sign up and and apply to a hack and thank you     
+               1:16:32              for being here and we'll see all of you in New York. Take care everybody.     

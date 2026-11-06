@@ -1,0 +1,6 @@
+import { createPublicClient, http, parseAbi } from "/Users/mulaydm10/Dhruv/ETH mumbai/node_modules/viem/_esm/index.js";
+import { sepolia } from "/Users/mulaydm10/Dhruv/ETH mumbai/node_modules/viem/_esm/chains/index.js";
+const c = createPublicClient({ chain: sepolia, transport: http("https://ethereum-sepolia-rpc.publicnode.com") });
+const a="0x35133267A8F7EC35046a83DCA0f4Ca8A6e1b7A9A";
+const abi=parseAbi(["function workerHash() view returns (bytes32)","function workerResolvers() view returns (string[])","function owner() view returns (address)"]);
+for (const f of ["workerHash","workerResolvers","owner"]) { try { console.log(f, await c.readContract({address:a,abi,functionName:f})); } catch(e){ console.log(f,"ERR",e.shortMessage) } }
