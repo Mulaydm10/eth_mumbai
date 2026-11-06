@@ -62,6 +62,21 @@ object MeshState {
         recompute()
         if (id().site != null) ShakeSensor.start(app)
         scope.launch { while (isActive) { delay(60_000); regossip(); Uploader.uploadPending(app) } }
+        // As soon as any network comes back: upload our outbox, and refresh a stale site list.
+        try {
+            val cm = app.getSystemService(android.net.ConnectivityManager::class.java)
+            cm.registerDefaultNetworkCallback(object : android.net.ConnectivityManager.NetworkCallback() {
+                override fun onAvailable(network: android.net.Network) {
+                    scope.launch {
+                        delay(1500)   // let DNS settle
+                        Uploader.uploadPending(app)
+                        val site = id().site ?: return@launch
+                        val age = roster()?.ageMs() ?: Long.MAX_VALUE
+                        if (age > 10 * 60_000 && RosterStore.get(app).refresh(site).isSuccess) recompute()
+                    }
+                }
+            })
+        } catch (e: Exception) { Log.w(TAG, "no network callback: ${e.message}") }
     }
 
     fun now() = System.currentTimeMillis() + clockOffsetMs

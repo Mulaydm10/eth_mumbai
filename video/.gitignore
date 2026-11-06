@@ -1,0 +1,13 @@
+out/
+cut/vo/
+cut/png/
+cut/seg/
+cut/*.mp4
+cut/*.m4a
+cut/concat*.txt
+cut/*.edl
+cut/*.jpg
+cut/png916/
+cut/seg916/
+cut/stems/
+assets/*.png

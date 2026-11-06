@@ -1,0 +1,1465 @@
+[
+ {
+  "id": "01",
+  "card": {
+   "eyebrow": "ETHGlobal Mumbai 2026 \u00b7 Tremor Witness extension",
+   "title": "Disaster Mesh: <em>works when the internet doesn't</em>.",
+   "fine": "Real Android app (TW Mesh, GPL-3.0 fork of SafeMesh / bitchat). Three emulators, real ENS names on Sepolia, real Arkiv writes. Shaking = labelled test signal."
+  },
+  "cardDur": 5.5,
+  "pieces": [
+   {
+    "vo": "Disaster Mesh. When the internet is gone, the phones of a Tremor Witness site keep working together.",
+    "cap": "Disaster Mesh: when the internet is gone, a site's phones keep working together.",
+    "at": 0.4,
+    "dur": 5.497,
+    "wav": "vo/01-0.wav",
+    "words": [
+     {
+      "w": "Disaster",
+      "t0": 0.05,
+      "t1": 0.479,
+      "est": true
+     },
+     {
+      "w": "Mesh.",
+      "t0": 0.526,
+      "t1": 0.812,
+      "est": true
+     },
+     {
+      "w": "When",
+      "t0": 0.844,
+      "t1": 1.082,
+      "est": true
+     },
+     {
+      "w": "the",
+      "t0": 1.109,
+      "t1": 1.299,
+      "est": true
+     },
+     {
+      "w": "internet",
+      "t0": 1.321,
+      "t1": 1.749,
+      "est": true
+     },
+     {
+      "w": "is",
+      "t0": 1.797,
+      "t1": 1.94,
+      "est": true
+     },
+     {
+      "w": "gone,",
+      "t0": 1.956,
+      "t1": 2.242,
+      "est": true
+     },
+     {
+      "w": "the",
+      "t0": 2.274,
+      "t1": 2.464,
+      "est": true
+     },
+     {
+      "w": "phones",
+      "t0": 2.485,
+      "t1": 2.819,
+      "est": true
+     },
+     {
+      "w": "of",
+      "t0": 2.856,
+      "t1": 2.999,
+      "est": true
+     },
+     {
+      "w": "a",
+      "t0": 3.015,
+      "t1": 3.11,
+      "est": true
+     },
+     {
+      "w": "Tremor",
+      "t0": 3.121,
+      "t1": 3.454,
+      "est": true
+     },
+     {
+      "w": "Witness",
+      "t0": 3.491,
+      "t1": 3.872,
+      "est": true
+     },
+     {
+      "w": "site",
+      "t0": 3.915,
+      "t1": 4.153,
+      "est": true
+     },
+     {
+      "w": "keep",
+      "t0": 4.179,
+      "t1": 4.418,
+      "est": true
+     },
+     {
+      "w": "working",
+      "t0": 4.444,
+      "t1": 4.825,
+      "est": true
+     },
+     {
+      "w": "together.",
+      "t0": 4.868,
+      "t1": 5.344,
+      "est": true
+     }
+    ]
+   }
+  ],
+  "sfx": [
+   {
+    "type": "pop",
+    "at": 0.3
+   }
+  ],
+  "segDur": 6.5,
+  "chunks": [
+   {
+    "file": "png/cap-01-0-0.png",
+    "text": "Disaster Mesh: when the internet is gone, a site's phones keep working together.",
+    "a": 0.4,
+    "b": 6.5
+   }
+  ],
+  "t": 0.0
+ },
+ {
+  "id": "02",
+  "src": "three.mp4",
+  "start": 1.0,
+  "end": 12.0,
+  "speed": 1.0,
+  "v916": {
+   "mode": "fit"
+  },
+  "pieces": [
+   {
+    "vo": "Three phones, each registered on E N S at one site. Wi-Fi and mobile data are off. They find each other over Bluetooth.",
+    "cap": "3 phones, each registered on ENS at one site. Wi-Fi and data off: they connect over Bluetooth.",
+    "at": 0.4,
+    "dur": 7.292,
+    "wav": "vo/02-0.wav",
+    "words": [
+     {
+      "w": "Three",
+      "t0": 0.05,
+      "t1": 0.371,
+      "est": true
+     },
+     {
+      "w": "phones,",
+      "t0": 0.407,
+      "t1": 0.836,
+      "est": true
+     },
+     {
+      "w": "each",
+      "t0": 0.883,
+      "t1": 1.151,
+      "est": true
+     },
+     {
+      "w": "registered",
+      "t0": 1.181,
+      "t1": 1.77,
+      "est": true
+     },
+     {
+      "w": "on",
+      "t0": 1.835,
+      "t1": 1.996,
+      "est": true
+     },
+     {
+      "w": "E",
+      "t0": 2.014,
+      "t1": 2.121,
+      "est": true
+     },
+     {
+      "w": "N",
+      "t0": 2.133,
+      "t1": 2.24,
+      "est": true
+     },
+     {
+      "w": "S",
+      "t0": 2.252,
+      "t1": 2.359,
+      "est": true
+     },
+     {
+      "w": "at",
+      "t0": 2.371,
+      "t1": 2.532,
+      "est": true
+     },
+     {
+      "w": "one",
+      "t0": 2.55,
+      "t1": 2.764,
+      "est": true
+     },
+     {
+      "w": "site.",
+      "t0": 2.788,
+      "t1": 3.109,
+      "est": true
+     },
+     {
+      "w": "Wi-Fi",
+      "t0": 3.145,
+      "t1": 3.466,
+      "est": true
+     },
+     {
+      "w": "and",
+      "t0": 3.502,
+      "t1": 3.716,
+      "est": true
+     },
+     {
+      "w": "mobile",
+      "t0": 3.74,
+      "t1": 4.115,
+      "est": true
+     },
+     {
+      "w": "data",
+      "t0": 4.157,
+      "t1": 4.424,
+      "est": true
+     },
+     {
+      "w": "are",
+      "t0": 4.454,
+      "t1": 4.668,
+      "est": true
+     },
+     {
+      "w": "off.",
+      "t0": 4.692,
+      "t1": 4.96,
+      "est": true
+     },
+     {
+      "w": "They",
+      "t0": 4.99,
+      "t1": 5.258,
+      "est": true
+     },
+     {
+      "w": "find",
+      "t0": 5.287,
+      "t1": 5.555,
+      "est": true
+     },
+     {
+      "w": "each",
+      "t0": 5.585,
+      "t1": 5.853,
+      "est": true
+     },
+     {
+      "w": "other",
+      "t0": 5.883,
+      "t1": 6.204,
+      "est": true
+     },
+     {
+      "w": "over",
+      "t0": 6.24,
+      "t1": 6.508,
+      "est": true
+     },
+     {
+      "w": "Bluetooth.",
+      "t0": 6.537,
+      "t1": 7.127,
+      "est": true
+     }
+    ]
+   }
+  ],
+  "segDur": 11.0,
+  "chunks": [
+   {
+    "file": "png/cap-02-0-0.png",
+    "text": "3 phones, each registered on ENS at one site.",
+    "a": 0.4,
+    "b": 3.928
+   },
+   {
+    "file": "png/cap-02-0-1.png",
+    "text": "Wi-Fi and data off: they connect over Bluetooth.",
+    "a": 3.928,
+    "b": 11.0
+   }
+  ],
+  "t": 6.5
+ },
+ {
+  "id": "03",
+  "src": "three.mp4",
+  "start": 16.0,
+  "end": 30.0,
+  "speed": 1.4,
+  "v916": {
+   "mode": "fit"
+  },
+  "pieces": [
+   {
+    "vo": "For this demo, each phone sends a test shaking signal. Real detection needs strong shaking, about ninety-six millimetres per second.",
+    "cap": "Demo: a labelled TEST shaking signal on each phone. Real detection: \u2265 96 mm/s (intensity VI).",
+    "at": 0.3,
+    "dur": 8.024,
+    "wav": "vo/03-0.wav",
+    "words": [
+     {
+      "w": "For",
+      "t0": 0.05,
+      "t1": 0.263,
+      "est": true
+     },
+     {
+      "w": "this",
+      "t0": 0.287,
+      "t1": 0.553,
+      "est": true
+     },
+     {
+      "w": "demo,",
+      "t0": 0.583,
+      "t1": 0.903,
+      "est": true
+     },
+     {
+      "w": "each",
+      "t0": 0.938,
+      "t1": 1.204,
+      "est": true
+     },
+     {
+      "w": "phone",
+      "t0": 1.234,
+      "t1": 1.554,
+      "est": true
+     },
+     {
+      "w": "sends",
+      "t0": 1.589,
+      "t1": 1.909,
+      "est": true
+     },
+     {
+      "w": "a",
+      "t0": 1.944,
+      "t1": 2.051,
+      "est": true
+     },
+     {
+      "w": "test",
+      "t0": 2.063,
+      "t1": 2.329,
+      "est": true
+     },
+     {
+      "w": "shaking",
+      "t0": 2.359,
+      "t1": 2.785,
+      "est": true
+     },
+     {
+      "w": "signal.",
+      "t0": 2.833,
+      "t1": 3.259,
+      "est": true
+     },
+     {
+      "w": "Real",
+      "t0": 3.306,
+      "t1": 3.573,
+      "est": true
+     },
+     {
+      "w": "detection",
+      "t0": 3.602,
+      "t1": 4.135,
+      "est": true
+     },
+     {
+      "w": "needs",
+      "t0": 4.194,
+      "t1": 4.514,
+      "est": true
+     },
+     {
+      "w": "strong",
+      "t0": 4.549,
+      "t1": 4.922,
+      "est": true
+     },
+     {
+      "w": "shaking,",
+      "t0": 4.964,
+      "t1": 5.443,
+      "est": true
+     },
+     {
+      "w": "about",
+      "t0": 5.497,
+      "t1": 5.816,
+      "est": true
+     },
+     {
+      "w": "ninety-six",
+      "t0": 5.852,
+      "t1": 6.438,
+      "est": true
+     },
+     {
+      "w": "millimetres",
+      "t0": 6.503,
+      "t1": 7.143,
+      "est": true
+     },
+     {
+      "w": "per",
+      "t0": 7.214,
+      "t1": 7.427,
+      "est": true
+     },
+     {
+      "w": "second.",
+      "t0": 7.45,
+      "t1": 7.877,
+      "est": true
+     }
+    ]
+   }
+  ],
+  "sfx": [
+   {
+    "type": "tick",
+    "at": 8.4
+   }
+  ],
+  "segDur": 10.0,
+  "chunks": [
+   {
+    "file": "png/cap-03-0-0.png",
+    "text": "Demo: a labelled TEST shaking signal on each phone.",
+    "a": 0.3,
+    "b": 4.748
+   },
+   {
+    "file": "png/cap-03-0-1.png",
+    "text": "Real detection: \u2265 96 mm/s (intensity VI).",
+    "a": 4.748,
+    "b": 10.0
+   }
+  ],
+  "t": 17.5
+ },
+ {
+  "id": "04",
+  "src": "z-confirm.mp4",
+  "start": 0.3,
+  "end": 9.5,
+  "speed": 1.0,
+  "v916": {
+   "mode": "fit"
+  },
+  "pieces": [
+   {
+    "vo": "Every phone runs the same quorum rule as the dashboard: three registered phones within two seconds. Disaster confirmed, on every phone, with no server.",
+    "cap": "Same quorum rule as the dashboard: 3 registered phones within 2 s \u2192 DISASTER CONFIRMED. No server.",
+    "at": 0.3,
+    "dur": 8.843,
+    "wav": "vo/04-0.wav",
+    "words": [
+     {
+      "w": "Every",
+      "t0": 0.05,
+      "t1": 0.359,
+      "est": true
+     },
+     {
+      "w": "phone",
+      "t0": 0.393,
+      "t1": 0.702,
+      "est": true
+     },
+     {
+      "w": "runs",
+      "t0": 0.736,
+      "t1": 0.994,
+      "est": true
+     },
+     {
+      "w": "the",
+      "t0": 1.022,
+      "t1": 1.228,
+      "est": true
+     },
+     {
+      "w": "same",
+      "t0": 1.251,
+      "t1": 1.508,
+      "est": true
+     },
+     {
+      "w": "quorum",
+      "t0": 1.537,
+      "t1": 1.897,
+      "est": true
+     },
+     {
+      "w": "rule",
+      "t0": 1.937,
+      "t1": 2.195,
+      "est": true
+     },
+     {
+      "w": "as",
+      "t0": 2.223,
+      "t1": 2.378,
+      "est": true
+     },
+     {
+      "w": "the",
+      "t0": 2.395,
+      "t1": 2.601,
+      "est": true
+     },
+     {
+      "w": "dashboard:",
+      "t0": 2.624,
+      "t1": 3.19,
+      "est": true
+     },
+     {
+      "w": "three",
+      "t0": 3.253,
+      "t1": 3.562,
+      "est": true
+     },
+     {
+      "w": "registered",
+      "t0": 3.596,
+      "t1": 4.162,
+      "est": true
+     },
+     {
+      "w": "phones",
+      "t0": 4.225,
+      "t1": 4.585,
+      "est": true
+     },
+     {
+      "w": "within",
+      "t0": 4.625,
+      "t1": 4.986,
+      "est": true
+     },
+     {
+      "w": "two",
+      "t0": 5.026,
+      "t1": 5.231,
+      "est": true
+     },
+     {
+      "w": "seconds.",
+      "t0": 5.254,
+      "t1": 5.718,
+      "est": true
+     },
+     {
+      "w": "Disaster",
+      "t0": 5.769,
+      "t1": 6.232,
+      "est": true
+     },
+     {
+      "w": "confirmed,",
+      "t0": 6.284,
+      "t1": 6.85,
+      "est": true
+     },
+     {
+      "w": "on",
+      "t0": 6.913,
+      "t1": 7.067,
+      "est": true
+     },
+     {
+      "w": "every",
+      "t0": 7.084,
+      "t1": 7.393,
+      "est": true
+     },
+     {
+      "w": "phone,",
+      "t0": 7.428,
+      "t1": 7.788,
+      "est": true
+     },
+     {
+      "w": "with",
+      "t0": 7.828,
+      "t1": 8.085,
+      "est": true
+     },
+     {
+      "w": "no",
+      "t0": 8.114,
+      "t1": 8.268,
+      "est": true
+     },
+     {
+      "w": "server.",
+      "t0": 8.285,
+      "t1": 8.697,
+      "est": true
+     }
+    ]
+   }
+  ],
+  "sfx": [
+   {
+    "type": "hit",
+    "word": "confirmed"
+   }
+  ],
+  "segDur": 9.75,
+  "chunks": [
+   {
+    "file": "png/cap-04-0-0.png",
+    "text": "Same quorum rule as the dashboard: 3 registered phones within 2 s \u2192 DISASTER CONFIRMED.",
+    "a": 0.3,
+    "b": 8.231
+   },
+   {
+    "file": "png/cap-04-0-1.png",
+    "text": "No server.",
+    "a": 8.231,
+    "b": 9.75
+   }
+  ],
+  "t": 27.5
+ },
+ {
+  "id": "05",
+  "src": "three.mp4",
+  "start": 43.0,
+  "end": 56.0,
+  "speed": 1.0,
+  "v916": {
+   "mode": "fit"
+  },
+  "pieces": [
+   {
+    "vo": "Phone B needs help, and adds a note. Phone A is safe. Every message is signed by the phone's own key, and only registered phones count.",
+    "cap": "B: \u201cI need help \u00b7 flat 302\u201d. A: \u201cI'm safe\u201d. Signed by each phone; only registered phones count.",
+    "at": 0.3,
+    "dur": 8.07,
+    "wav": "vo/05-0.wav",
+    "words": [
+     {
+      "w": "Phone",
+      "t0": 0.05,
+      "t1": 0.364,
+      "est": true
+     },
+     {
+      "w": "B",
+      "t0": 0.399,
+      "t1": 0.504,
+      "est": true
+     },
+     {
+      "w": "needs",
+      "t0": 0.516,
+      "t1": 0.83,
+      "est": true
+     },
+     {
+      "w": "help,",
+      "t0": 0.865,
+      "t1": 1.18,
+      "est": true
+     },
+     {
+      "w": "and",
+      "t0": 1.215,
+      "t1": 1.424,
+      "est": true
+     },
+     {
+      "w": "adds",
+      "t0": 1.448,
+      "t1": 1.71,
+      "est": true
+     },
+     {
+      "w": "a",
+      "t0": 1.739,
+      "t1": 1.844,
+      "est": true
+     },
+     {
+      "w": "note.",
+      "t0": 1.855,
+      "t1": 2.17,
+      "est": true
+     },
+     {
+      "w": "Phone",
+      "t0": 2.205,
+      "t1": 2.519,
+      "est": true
+     },
+     {
+      "w": "A",
+      "t0": 2.554,
+      "t1": 2.659,
+      "est": true
+     },
+     {
+      "w": "is",
+      "t0": 2.671,
+      "t1": 2.828,
+      "est": true
+     },
+     {
+      "w": "safe.",
+      "t0": 2.845,
+      "t1": 3.16,
+      "est": true
+     },
+     {
+      "w": "Every",
+      "t0": 3.195,
+      "t1": 3.509,
+      "est": true
+     },
+     {
+      "w": "message",
+      "t0": 3.544,
+      "t1": 3.963,
+      "est": true
+     },
+     {
+      "w": "is",
+      "t0": 4.01,
+      "t1": 4.167,
+      "est": true
+     },
+     {
+      "w": "signed",
+      "t0": 4.185,
+      "t1": 4.552,
+      "est": true
+     },
+     {
+      "w": "by",
+      "t0": 4.592,
+      "t1": 4.75,
+      "est": true
+     },
+     {
+      "w": "the",
+      "t0": 4.767,
+      "t1": 4.977,
+      "est": true
+     },
+     {
+      "w": "phone's",
+      "t0": 5.0,
+      "t1": 5.419,
+      "est": true
+     },
+     {
+      "w": "own",
+      "t0": 5.466,
+      "t1": 5.676,
+      "est": true
+     },
+     {
+      "w": "key,",
+      "t0": 5.699,
+      "t1": 5.961,
+      "est": true
+     },
+     {
+      "w": "and",
+      "t0": 5.99,
+      "t1": 6.2,
+      "est": true
+     },
+     {
+      "w": "only",
+      "t0": 6.223,
+      "t1": 6.485,
+      "est": true
+     },
+     {
+      "w": "registered",
+      "t0": 6.514,
+      "t1": 7.091,
+      "est": true
+     },
+     {
+      "w": "phones",
+      "t0": 7.155,
+      "t1": 7.522,
+      "est": true
+     },
+     {
+      "w": "count.",
+      "t0": 7.562,
+      "t1": 7.929,
+      "est": true
+     }
+    ]
+   }
+  ],
+  "sfx": [
+   {
+    "type": "pop",
+    "word": "help"
+   },
+   {
+    "type": "pop",
+    "word": "safe"
+   }
+  ],
+  "segDur": 13.0,
+  "chunks": [
+   {
+    "file": "png/cap-05-0-0.png",
+    "text": "B: \u201cI need help \u00b7 flat 302\u201d.",
+    "a": 0.3,
+    "b": 2.73
+   },
+   {
+    "file": "png/cap-05-0-1.png",
+    "text": "A: \u201cI'm safe\u201d.",
+    "a": 2.73,
+    "b": 3.945
+   },
+   {
+    "file": "png/cap-05-0-2.png",
+    "text": "Signed by each phone; only registered phones count.",
+    "a": 3.945,
+    "b": 13.0
+   }
+  ],
+  "t": 37.25
+ },
+ {
+  "id": "06",
+  "src": "z-lists.mp4",
+  "start": 0.3,
+  "end": 7.8,
+  "speed": 1.0,
+  "v916": {
+   "mode": "fit"
+  },
+  "pieces": [
+   {
+    "vo": "Each phone lists who has not been heard from, straight from the registry. No G P S.",
+    "cap": "\u201cNot heard from\u201d = the ENS roster minus check-ins. No GPS.",
+    "at": 0.3,
+    "dur": 4.978,
+    "wav": "vo/06-0.wav",
+    "words": [
+     {
+      "w": "Each",
+      "t0": 0.05,
+      "t1": 0.309,
+      "est": true
+     },
+     {
+      "w": "phone",
+      "t0": 0.337,
+      "t1": 0.648,
+      "est": true
+     },
+     {
+      "w": "lists",
+      "t0": 0.682,
+      "t1": 0.993,
+      "est": true
+     },
+     {
+      "w": "who",
+      "t0": 1.027,
+      "t1": 1.234,
+      "est": true
+     },
+     {
+      "w": "has",
+      "t0": 1.257,
+      "t1": 1.464,
+      "est": true
+     },
+     {
+      "w": "not",
+      "t0": 1.487,
+      "t1": 1.694,
+      "est": true
+     },
+     {
+      "w": "been",
+      "t0": 1.717,
+      "t1": 1.975,
+      "est": true
+     },
+     {
+      "w": "heard",
+      "t0": 2.004,
+      "t1": 2.315,
+      "est": true
+     },
+     {
+      "w": "from,",
+      "t0": 2.349,
+      "t1": 2.659,
+      "est": true
+     },
+     {
+      "w": "straight",
+      "t0": 2.694,
+      "t1": 3.159,
+      "est": true
+     },
+     {
+      "w": "from",
+      "t0": 3.211,
+      "t1": 3.47,
+      "est": true
+     },
+     {
+      "w": "the",
+      "t0": 3.499,
+      "t1": 3.705,
+      "est": true
+     },
+     {
+      "w": "registry.",
+      "t0": 3.728,
+      "t1": 4.246,
+      "est": true
+     },
+     {
+      "w": "No",
+      "t0": 4.303,
+      "t1": 4.458,
+      "est": true
+     },
+     {
+      "w": "G",
+      "t0": 4.476,
+      "t1": 4.579,
+      "est": true
+     },
+     {
+      "w": "P",
+      "t0": 4.591,
+      "t1": 4.694,
+      "est": true
+     },
+     {
+      "w": "S.",
+      "t0": 4.706,
+      "t1": 4.861,
+      "est": true
+     }
+    ]
+   }
+  ],
+  "segDur": 7.5,
+  "chunks": [
+   {
+    "file": "png/cap-06-0-0.png",
+    "text": "\u201cNot heard from\u201d = the ENS roster minus check-ins.",
+    "a": 0.3,
+    "b": 4.667
+   },
+   {
+    "file": "png/cap-06-0-1.png",
+    "text": "No GPS.",
+    "a": 4.667,
+    "b": 7.5
+   }
+  ],
+  "t": 50.25
+ },
+ {
+  "id": "07",
+  "src": "z-arkiv.mp4",
+  "start": 0.0,
+  "end": 15.0,
+  "speed": 1.5,
+  "v916": {
+   "mode": "fit"
+  },
+  "pieces": [
+   {
+    "vo": "Phone A gets internet back. It writes its own check-in to Arkiv. The test signals never leave the phone.",
+    "cap": "A is back online \u2192 writes its OWN check-in to Arkiv. Test signals are never uploaded.",
+    "at": 0.3,
+    "dur": 5.854,
+    "wav": "vo/07-0.wav",
+    "words": [
+     {
+      "w": "Phone",
+      "t0": 0.05,
+      "t1": 0.343,
+      "est": true
+     },
+     {
+      "w": "A",
+      "t0": 0.376,
+      "t1": 0.474,
+      "est": true
+     },
+     {
+      "w": "gets",
+      "t0": 0.485,
+      "t1": 0.729,
+      "est": true
+     },
+     {
+      "w": "internet",
+      "t0": 0.756,
+      "t1": 1.196,
+      "est": true
+     },
+     {
+      "w": "back.",
+      "t0": 1.245,
+      "t1": 1.538,
+      "est": true
+     },
+     {
+      "w": "It",
+      "t0": 1.571,
+      "t1": 1.718,
+      "est": true
+     },
+     {
+      "w": "writes",
+      "t0": 1.734,
+      "t1": 2.076,
+      "est": true
+     },
+     {
+      "w": "its",
+      "t0": 2.114,
+      "t1": 2.31,
+      "est": true
+     },
+     {
+      "w": "own",
+      "t0": 2.332,
+      "t1": 2.527,
+      "est": true
+     },
+     {
+      "w": "check-in",
+      "t0": 2.549,
+      "t1": 2.989,
+      "est": true
+     },
+     {
+      "w": "to",
+      "t0": 3.038,
+      "t1": 3.184,
+      "est": true
+     },
+     {
+      "w": "Arkiv.",
+      "t0": 3.201,
+      "t1": 3.543,
+      "est": true
+     },
+     {
+      "w": "The",
+      "t0": 3.581,
+      "t1": 3.777,
+      "est": true
+     },
+     {
+      "w": "test",
+      "t0": 3.798,
+      "t1": 4.043,
+      "est": true
+     },
+     {
+      "w": "signals",
+      "t0": 4.07,
+      "t1": 4.461,
+      "est": true
+     },
+     {
+      "w": "never",
+      "t0": 4.505,
+      "t1": 4.798,
+      "est": true
+     },
+     {
+      "w": "leave",
+      "t0": 4.83,
+      "t1": 5.124,
+      "est": true
+     },
+     {
+      "w": "the",
+      "t0": 5.156,
+      "t1": 5.352,
+      "est": true
+     },
+     {
+      "w": "phone.",
+      "t0": 5.374,
+      "t1": 5.716,
+      "est": true
+     }
+    ]
+   }
+  ],
+  "sfx": [
+   {
+    "type": "chime",
+    "at": 8.1
+   }
+  ],
+  "segDur": 10.0,
+  "chunks": [
+   {
+    "file": "png/cap-07-0-0.png",
+    "text": "A is back online \u2192 writes its OWN check-in to Arkiv.",
+    "a": 0.3,
+    "b": 3.924
+   },
+   {
+    "file": "png/cap-07-0-1.png",
+    "text": "Test signals are never uploaded.",
+    "a": 3.924,
+    "b": 10.0
+   }
+  ],
+  "t": 57.75
+ },
+ {
+  "id": "08",
+  "src": "readback.mp4",
+  "start": 2.5,
+  "end": 12.6,
+  "speed": 1.0,
+  "v916": {
+   "mode": "fit"
+  },
+  "pieces": [
+   {
+    "vo": "Read back with the Tremor Witness code: the creator is phone A, and it points to the confirmed alert.",
+    "cap": "Read back with Tremor Witness's own fetchCheckins: creator = phone A, armMs = the confirmed alert.",
+    "at": 0.3,
+    "dur": 5.51,
+    "wav": "vo/08-0.wav",
+    "words": [
+     {
+      "w": "Read",
+      "t0": 0.05,
+      "t1": 0.286,
+      "est": true
+     },
+     {
+      "w": "back",
+      "t0": 0.313,
+      "t1": 0.549,
+      "est": true
+     },
+     {
+      "w": "with",
+      "t0": 0.575,
+      "t1": 0.812,
+      "est": true
+     },
+     {
+      "w": "the",
+      "t0": 0.838,
+      "t1": 1.027,
+      "est": true
+     },
+     {
+      "w": "Tremor",
+      "t0": 1.048,
+      "t1": 1.379,
+      "est": true
+     },
+     {
+      "w": "Witness",
+      "t0": 1.416,
+      "t1": 1.795,
+      "est": true
+     },
+     {
+      "w": "code:",
+      "t0": 1.837,
+      "t1": 2.12,
+      "est": true
+     },
+     {
+      "w": "the",
+      "t0": 2.152,
+      "t1": 2.341,
+      "est": true
+     },
+     {
+      "w": "creator",
+      "t0": 2.362,
+      "t1": 2.741,
+      "est": true
+     },
+     {
+      "w": "is",
+      "t0": 2.783,
+      "t1": 2.924,
+      "est": true
+     },
+     {
+      "w": "phone",
+      "t0": 2.94,
+      "t1": 3.224,
+      "est": true
+     },
+     {
+      "w": "A,",
+      "t0": 3.255,
+      "t1": 3.397,
+      "est": true
+     },
+     {
+      "w": "and",
+      "t0": 3.413,
+      "t1": 3.602,
+      "est": true
+     },
+     {
+      "w": "it",
+      "t0": 3.623,
+      "t1": 3.765,
+      "est": true
+     },
+     {
+      "w": "points",
+      "t0": 3.781,
+      "t1": 4.112,
+      "est": true
+     },
+     {
+      "w": "to",
+      "t0": 4.149,
+      "t1": 4.291,
+      "est": true
+     },
+     {
+      "w": "the",
+      "t0": 4.306,
+      "t1": 4.496,
+      "est": true
+     },
+     {
+      "w": "confirmed",
+      "t0": 4.517,
+      "t1": 4.99,
+      "est": true
+     },
+     {
+      "w": "alert.",
+      "t0": 5.042,
+      "t1": 5.373,
+      "est": true
+     }
+    ]
+   }
+  ],
+  "segDur": 10.1,
+  "chunks": [
+   {
+    "file": "png/cap-08-0-0.png",
+    "text": "Read back with Tremor Witness's own fetchCheckins: creator = phone A,",
+    "a": 0.3,
+    "b": 4.219
+   },
+   {
+    "file": "png/cap-08-0-1.png",
+    "text": "armMs = the confirmed alert.",
+    "a": 4.219,
+    "b": 10.1
+   }
+  ],
+  "t": 67.75
+ },
+ {
+  "id": "99",
+  "card": {
+   "eyebrow": "Open source \u00b7 GPL-3.0",
+   "title": "<em>github.com/Mulaydm10/tremor-witness-mesh</em>",
+   "fine": "<b>Real:</b> the app, the Bluetooth mesh, ENS names on Sepolia, Arkiv writes. <b>Simulated:</b> the shaking (test signal) and the phones (emulators)."
+  },
+  "cardDur": 6,
+  "pieces": [
+   {
+    "vo": "Same phones, same keys, same quorum rule. It keeps working when the servers and the internet are gone.",
+    "cap": "Same phones, same keys, same quorum rule. Works when the servers and the internet are gone.",
+    "at": 0.4,
+    "dur": 6.11,
+    "wav": "vo/99-0.wav",
+    "words": [
+     {
+      "w": "Same",
+      "t0": 0.05,
+      "t1": 0.31,
+      "est": true
+     },
+     {
+      "w": "phones,",
+      "t0": 0.339,
+      "t1": 0.756,
+      "est": true
+     },
+     {
+      "w": "same",
+      "t0": 0.802,
+      "t1": 1.063,
+      "est": true
+     },
+     {
+      "w": "keys,",
+      "t0": 1.092,
+      "t1": 1.404,
+      "est": true
+     },
+     {
+      "w": "same",
+      "t0": 1.439,
+      "t1": 1.699,
+      "est": true
+     },
+     {
+      "w": "quorum",
+      "t0": 1.728,
+      "t1": 2.093,
+      "est": true
+     },
+     {
+      "w": "rule.",
+      "t0": 2.133,
+      "t1": 2.446,
+      "est": true
+     },
+     {
+      "w": "It",
+      "t0": 2.48,
+      "t1": 2.637,
+      "est": true
+     },
+     {
+      "w": "keeps",
+      "t0": 2.654,
+      "t1": 2.966,
+      "est": true
+     },
+     {
+      "w": "working",
+      "t0": 3.001,
+      "t1": 3.418,
+      "est": true
+     },
+     {
+      "w": "when",
+      "t0": 3.464,
+      "t1": 3.724,
+      "est": true
+     },
+     {
+      "w": "the",
+      "t0": 3.753,
+      "t1": 3.962,
+      "est": true
+     },
+     {
+      "w": "servers",
+      "t0": 3.985,
+      "t1": 4.401,
+      "est": true
+     },
+     {
+      "w": "and",
+      "t0": 4.448,
+      "t1": 4.656,
+      "est": true
+     },
+     {
+      "w": "the",
+      "t0": 4.679,
+      "t1": 4.887,
+      "est": true
+     },
+     {
+      "w": "internet",
+      "t0": 4.911,
+      "t1": 5.379,
+      "est": true
+     },
+     {
+      "w": "are",
+      "t0": 5.431,
+      "t1": 5.64,
+      "est": true
+     },
+     {
+      "w": "gone.",
+      "t0": 5.663,
+      "t1": 5.975,
+      "est": true
+     }
+    ]
+   }
+  ],
+  "segDur": 7.116666666666666,
+  "chunks": [
+   {
+    "file": "png/cap-99-0-0.png",
+    "text": "Same phones, same keys, same quorum rule.",
+    "a": 0.4,
+    "b": 3.183
+   },
+   {
+    "file": "png/cap-99-0-1.png",
+    "text": "Works when the servers and the internet are gone.",
+    "a": 3.183,
+    "b": 7.117
+   }
+  ],
+  "t": 77.85
+ }
+]

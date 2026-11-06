@@ -145,7 +145,7 @@ fun TwmHomeScreen(peerCount: Int, onOpenChat: () -> Unit) {
                 fontSize = 15.sp, color = c.onBackground)
             refreshNote?.let { Text(it, fontSize = 15.sp, color = Red) }
             Text("Saved on Arkiv: ${up.uploaded} of this phone's messages" + (if (up.pending > 0) ", ${up.pending} waiting for internet" else "") +
-                (up.lastError?.let { " (last try failed: $it)" } ?: ""), fontSize = 15.sp, color = c.onBackground)
+                (if (up.pending > 0) up.lastError?.let { " ($it)" } ?: "" else ""), fontSize = 15.sp, color = c.onBackground)
             OutlinedButton(onClick = { refreshRoster() }, modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)) {
                 Text(if (refreshing) "Updating site list…" else "Update site list (needs internet)", fontSize = 18.sp) }
 

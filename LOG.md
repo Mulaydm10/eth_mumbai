@@ -159,3 +159,20 @@ Test phones are named A/B/C here; raw device logs stay local (SafeMesh AGENTS.md
   Emulator: runs at 20 Hz; a ±25 m/s² square wave from the sensor console → 1275 mm/s, tilt 27° → handling (correct
   for an artificial signal).
 - Version 0.7.0 (code 42). Tests: 714 pass (8 skipped: 3 upstream + 5 live-only).
+
+## 2026-11-06 18:40–19:10 IST — M7 demo video (+ upload on network return)
+- 85 s demo (16:9 + 9:16), built with the demo-video toolchain: `video/shots/emulators.sh` plays the scene through the
+  real app on 3 emulators and records them host-side (`adb emu screenrecord`, 30 fps wall clock; `adb shell
+  screenrecord` compresses still periods and drifted between phones), `video/terminal.tape` records the Arkiv
+  read-back, `video/cut/shots.json` is the edit. Voice: macOS `say` (the stored ElevenLabs key returned 401).
+  Mastered −14 LUFS / −1.4 dBTP. Finals copied to the Omen's ~/Downloads (not committed, not published).
+- What the video shows, all real except where labelled: 3 phones registered on ENS (meshtest, third phone
+  `mesh-36bb` joined live with the v2 invite, 1 use left) → Wi-Fi + data off → each phone sends the labelled TEST
+  shaking signal (k = 3 within 2 s from the site's ENS records) → DISASTER CONFIRMED on all three (triggers 12 ms
+  apart) → B "I need help · flat 302", A "I'm safe" (C saw A's check-in "via 1 relay") → "Not heard from" from the
+  roster → A back online writes its own check-in to Arkiv (~10 s) → read back with the TW repo's fetchCheckins:
+  creator = A, armMs = the confirmed alert, test triggers not uploaded.
+- Takes that failed (kept honest): take 1 had only 2 phones (meshtest needs k = 3: correctly no confirmation);
+  take 2's composite drifted (adb screenrecord timing); take 3 missed one phone's tap (scroll differed).
+- App fix found while filming: upload + stale roster refresh now run as soon as the network returns
+  (ConnectivityManager callback); before, the outbox waited for the 60 s loop. Offline status reads "no internet".

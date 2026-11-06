@@ -65,7 +65,8 @@ object Uploader {
             }
         } catch (e: Exception) {
             Log.w(TAG, "upload failed: ${e.message}")
-            _status.value = _status.value.copy(lastError = e.message?.take(120) ?: "offline")
+            val offline = e is java.io.IOException || e.cause is java.io.IOException
+            _status.value = _status.value.copy(lastError = if (offline) "no internet" else e.message?.take(80) ?: "error")
         } finally { lock.unlock() }
     }
 }
