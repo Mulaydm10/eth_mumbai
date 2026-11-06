@@ -75,3 +75,6 @@ Format: `## YYYY-MM-DD HH:MM IST · who · title`
 - T1 readonly + seq gaps, T2a keep-alive, T3 phone-owned ENS head (verified live incl. refusals), T4-lite attack checklist. Dashboard Arkiv load reduced after public-RPC throttling.
 - T7 report: SHA-256 + certificate draft + bilingual joint-inspection request. T10 language toggle. T8 measured privacy doc. 33 tests green.
 - Not done (Tier 2 remainder): Swarm feed per site, websocket push, verify-build, Safe 2-of-3 (needs owner addresses). Needs phones: DEMO-0001 rehearsal, sound-sync retest, EXP-0002.
+
+## 2026-11-06 15:20 IST · Claude Code (for Dhruv Mulay) · Extension analysis: Disaster Mesh
+- Recorded Dhruv's idea plus the earlier review, with an in-depth analysis in `design/extensions/disaster-mesh.md`. Not implemented, by request. Decision: pitch as an extension (roadmap slide plus ~10 s of the video); no SafeMesh (GPL-3.0, pre-hackathon) code in this repo; partner picks unchanged.
