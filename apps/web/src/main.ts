@@ -2,7 +2,7 @@
 // and writes every detected event to Arkiv, signed by its own in-browser key. The dashboard reads Arkiv and
 // computes the multi-phone quorum.
 import { StaLta, VelocityTracker, defaultBand, dominantHz, lowFreqRatio, measuredRateHz, type Sample } from "@tw/core";
-import { ensPublic, walletClientFor, writePhoneHead, writeSensor, writeSync, writeTrigger, SEPOLIA_RPC, type ArkivWallet, type TriggerInput } from "@tw/chain";
+import { ensPublic, publicClientFor, walletClientFor, writePhoneHead, writeSensor, writeSync, writeTrigger, SEPOLIA_RPC, type ArkivWallet, type TriggerInput } from "@tw/chain";
 import { createWalletClient, http as viemHttp } from "viem";
 import { sepolia } from "viem/chains";
 import { listenForSync, playSyncSignal } from "./sound";
@@ -405,6 +405,8 @@ function closeEvent() {
 
 // ---- T3: publish this phone's reading head on its OWN ENS record (EAC lets it write only that key). ----
 const sepoliaWallet = createWalletClient({ account, chain: sepolia, transport: viemHttp(SEPOLIA_RPC) });
+// ---- Debug panel state (shown under "Debug" on the phone page) ----
+const dbg = { head: "not yet", mic: "not started", lastWrite: "–" };
 let headBusy = false;
 async function publishHead(site: string, sensor: string, seq: number) {
   if (!ensName || headBusy || !navigator.onLine) return;
@@ -413,8 +415,9 @@ async function publishHead(site: string, sensor: string, seq: number) {
     await writePhoneHead(sepoliaWallet, ensPublic(), site, sensor, { seq, tMs: Date.now() });
     ui.clock.dataset.head = String(seq);
     setChainNote(`ENS: <b>${ensName}</b> · head #${seq} published on this phone's own ENS record`);
-  } catch {
-    /* best-effort: readings still go to Arkiv; next publish retries */
+    dbg.head = `#${seq} published ${new Date().toLocaleTimeString()}`;
+  } catch (e) {
+    dbg.head = `#${seq} FAILED: ${shortErr(e)}`; // best-effort: readings still go to Arkiv; next publish retries
   } finally {
     headBusy = false;
   }
@@ -589,8 +592,10 @@ ui.start.addEventListener("click", async () => {
       },
     );
     ui.syncStatus.textContent = "Listening for the sync sound…";
+    dbg.mic = "listening";
   } catch {
     ui.syncStatus.textContent = "Microphone not allowed: sound sync off (internet sync still works).";
+    dbg.mic = "DENIED or unavailable";
   }
   await syncClock();
   // Phone clocks drift and network time can step: re-sync every 2 minutes while sensing.
@@ -661,3 +666,44 @@ initLang();
 
 import { showBuild } from "./build";
 showBuild();
+
+// ---- Phone debug panel: this phone's own view of every sponsor stack (refreshes every 10 s while open) ----
+{
+  const box = document.createElement("details");
+  box.className = "card";
+  box.innerHTML = `<summary class="label">Debug (this phone)</summary><pre id="dbgOut" class="small" style="white-space:pre-wrap;margin:8px 0 0"></pre>`;
+  document.querySelector("main")?.appendChild(box);
+  const out = box.querySelector("#dbgOut") as HTMLElement;
+  const arkivPub = publicClientFor(ACCESS_KEY);
+  const ensPub = ensPublic();
+  async function refreshDbg() {
+    if (!box.open) return;
+    const site = ui.site.value.trim();
+    const sensor = ui.name.value.trim();
+    const lines: string[] = [];
+    const add = (k: string, v: string) => lines.push(`${k.padEnd(14)} ${v}`);
+    add("wallet", account.address);
+    try {
+      add("Arkiv gas", `${(Number(await arkivPub.getBalance({ address: account.address })) / 1e18).toFixed(5)} tGLM`);
+    } catch (e) {
+      add("Arkiv gas", `ERROR ${shortErr(e)}`);
+    }
+    try {
+      add("Sepolia gas", `${(Number(await ensPub.getBalance({ address: account.address })) / 1e18).toFixed(6)} ETH`);
+    } catch (e) {
+      add("Sepolia gas", `ERROR ${shortErr(e)}`);
+    }
+    add("ENS name", ensName || "none yet (needs internet + invite for new phones)");
+    add("ENS head", dbg.head);
+    add("seq (local)", lsGet(`tw.seq.${site}.${sensor}`) ?? "0");
+    add("outbox", `${outbox.length} waiting${outbox[0] ? ` · next: ${outbox[0].kind}, tries ${outbox[0].tries}` : ""}`);
+    add("online", String(navigator.onLine));
+    add("clock", `ref offset ${refOffset} ms · rtt ${Number.isFinite(refRtt) ? refRtt : "–"} ms`);
+    add("mic", dbg.mic);
+    add("sensor", `${ui.api.textContent} · ${fs ? fs.toFixed(1) + " Hz" : "not running"}`);
+    add("arkiv key", ACCESS_KEY ? "yes (origin-locked)" : "no (public endpoint)");
+    out.textContent = lines.join("\n");
+  }
+  box.addEventListener("toggle", () => void refreshDbg());
+  setInterval(() => void refreshDbg(), 10_000);
+}
