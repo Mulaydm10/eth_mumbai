@@ -2,20 +2,20 @@
 
 **Audience:** the Claude Code session that builds this app. Read all of this before writing code.
 **Owner:** Dhruv Mulay (team: Dhruv, Akhilesh Nawale, Somnath Ghadge).
-**Parent project:** Tremor Witness, ETHGlobal Mumbai 2026. This app is an **extension**, pitched as one.
+**Parent project:** Tremor Mesh, ETHGlobal Mumbai 2026. This app is an **extension**, pitched as one.
 **Background analysis (read second):** `design/extensions/disaster-mesh.md` in this repo.
 
 ---
 
 ## 0. Hard rules (read first, never break)
 
-1. **The Tremor Witness web app is LOCKED. Do not modify, move, reformat or "improve" anything in this repo outside `extensions/disaster-mesh/`.** That means none of `apps/web/**` (pages, `src/`, the `api/` server functions, `vite.config.ts`, `vercel.json`), `packages/core/**`, `packages/chain/**`, `scripts/**`, the root `package.json` or lockfile, `README.md`, `DEMO.md` or `STATE.md`. Don't run its deploy command. Don't touch its Vercel project or env vars.
-2. **Backend changes are made by the main Tremor Witness session, not by you.** If you need a backend change (new endpoint, new Arkiv schema, a change to joining), write a request in `extensions/disaster-mesh/BACKEND_REQUESTS.md` (format in §8) and tell Dhruv. Build against a stub until it ships.
+1. **The Tremor Mesh web app is LOCKED. Do not modify, move, reformat or "improve" anything in this repo outside `extensions/disaster-mesh/`.** That means none of `apps/web/**` (pages, `src/`, the `api/` server functions, `vite.config.ts`, `vercel.json`), `packages/core/**`, `packages/chain/**`, `scripts/**`, the root `package.json` or lockfile, `README.md`, `DEMO.md` or `STATE.md`. Don't run its deploy command. Don't touch its Vercel project or env vars.
+2. **Backend changes are made by the main Tremor Mesh session, not by you.** If you need a backend change (new endpoint, new Arkiv schema, a change to joining), write a request in `extensions/disaster-mesh/BACKEND_REQUESTS.md` (format in §8) and tell Dhruv. Build against a stub until it ships.
 3. **Build the app in its own repo/folder, not inside this monorepo's workspaces.** Recommended: a new repo `Mulaydm10/tremor-witness-mesh`. Ask Dhruv for the location before creating it. You may *read* this repo's code (`packages/core`, `packages/chain`) as the reference implementation and copy the protocol constants.
 4. **Build on SafeMesh, under its licence.** The app reuses the mesh layer of `github.com/Mulaydm10/safemesh` (a GPL-3.0 fork of bitchat-android, pre-hackathon). Therefore:
    - the app repo is licensed **GPL-3.0**, keeping the bitchat and SafeMesh copyright notices and LICENSE;
    - its README states plainly which parts come from SafeMesh/bitchat and which are new (our protocol: §5–§6);
-   - the app stays a **separate program** in its own repo. It talks to Tremor Witness only over HTTP and the chains, so the MIT web app is unaffected. Never copy GPL code into this repo.
+   - the app stays a **separate program** in its own repo. It talks to Tremor Mesh only over HTTP and the chains, so the MIT web app is unaffected. Never copy GPL code into this repo.
    - **Take:** the BLE multi-hop mesh (TTL/7 hops, dedupe, store-and-forward), Wi-Fi Aware/hotspot transports, `MeshGraph` (it becomes the proximity view), and bitchat's link encryption.
    - **Don't take:** the unauthenticated public SOS message, or broadcasting GPS. They are replaced by our signed check-ins (§5.3) and opt-in encrypted location (§5.4).
 5. **Never commit secrets.** No private keys, `.env`, the committee passcode or Arkiv keys. The phone's own key lives in Android Keystore / EncryptedSharedPreferences.
@@ -27,7 +27,7 @@
 
 ## 1. The idea in one paragraph
 
-Tremor Witness phones at a construction site already detect vibration, sign readings with their own keys, and count an event only when **k registered phones agree** (an ENSv2 registry of phones, readings on Arkiv, evidence on Swarm). Disaster Mesh adds a **disaster mode**. When shaking far stronger than construction vibration is felt by several registered phones (or someone presses Emergency), the phones **connect to each other directly over Bluetooth / Wi-Fi Direct** with no internet. They agree among themselves that a disaster event happened, using the **same quorum rule** the web dashboard uses. Each resident then **checks in** ("I'm safe" / "I need help"), signed by their registered phone. Because the site's phone roster is public on ENS, **roster minus check-ins = the "not heard from" list**, which is what rescuers need, with no GPS tracking. Everything is stored on the phones and uploaded to Arkiv (and the pack to Swarm) as soon as **any** phone in the mesh gets internet.
+Tremor Mesh phones at a construction site already detect vibration, sign readings with their own keys, and count an event only when **k registered phones agree** (an ENSv2 registry of phones, readings on Arkiv, evidence on Swarm). Disaster Mesh adds a **disaster mode**. When shaking far stronger than construction vibration is felt by several registered phones (or someone presses Emergency), the phones **connect to each other directly over Bluetooth / Wi-Fi Direct** with no internet. They agree among themselves that a disaster event happened, using the **same quorum rule** the web dashboard uses. Each resident then **checks in** ("I'm safe" / "I need help"), signed by their registered phone. Because the site's phone roster is public on ENS, **roster minus check-ins = the "not heard from" list**, which is what rescuers need, with no GPS tracking. Everything is stored on the phones and uploaded to Arkiv (and the pack to Swarm) as soon as **any** phone in the mesh gets internet.
 
 **Pitch line:** "The same quorum that proves construction damage keeps working phone-to-phone when the servers and the internet are gone. Only registered phones count, and the registry tells rescuers who hasn't checked in."
 
@@ -144,7 +144,7 @@ All mesh messages are JSON, signed by the phone key with EIP-191 over the canoni
 
 ---
 
-## 8. Backend requests (to the main Tremor Witness session)
+## 8. Backend requests (to the main Tremor Mesh session)
 
 Append to `extensions/disaster-mesh/BACKEND_REQUESTS.md`. One row per request: `| ID | date IST | what & why | proposed shape | status |`. Don't implement it yourself. Expected requests (proposed, not built):
 - **R1:** let a "mesh" device register without using one of the 5 slots, or allow a role flag, OR confirm the `<name>-m` label approach.

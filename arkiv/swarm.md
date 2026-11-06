@@ -1,6 +1,6 @@
-# Swarm in Tremor Witness (Arkiv + Swarm bonus)
+# Swarm in Tremor Mesh (Arkiv + Swarm bonus)
 
-Tremor Witness uses **both Arkiv and Swarm**: Arkiv holds the signed, queryable, time-scoped records, and Swarm holds the evidence file people hand to a court or journalist. The sections below answer each of the bonus's qualification items in order.
+Tremor Mesh uses **both Arkiv and Swarm**: Arkiv holds the signed, queryable, time-scoped records, and Swarm holds the evidence file people hand to a court or journalist. The sections below answer each of the bonus's qualification items in order.
 
 ## 1. What we keep on Swarm, what we keep on Arkiv, and which field holds the reference
 | On Swarm | On Arkiv | Linking field |

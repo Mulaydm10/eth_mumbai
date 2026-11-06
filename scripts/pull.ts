@@ -1,4 +1,4 @@
-// Pull Tremor Witness data straight from Arkiv into logs/ (no server of ours involved).
+// Pull Tremor Mesh data straight from Arkiv into logs/ (no server of ours involved).
 // Usage: node scripts/pull.ts [site=demo] [minutes=180]
 import { writeFileSync, mkdirSync } from "node:fs";
 import { fetchSensors, fetchTriggers, publicClientFor } from "@tw/chain";

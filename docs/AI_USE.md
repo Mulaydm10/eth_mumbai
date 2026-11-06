@@ -4,7 +4,7 @@ We used **Claude Code** (Anthropic, Claude Opus as the main session, with Claude
 
 ## What the humans did
 - **Dhruv Mulay**:
-  - chose the problem and the product (Tremor Witness), the sponsors and the scope;
+  - chose the problem and the product (Tremor Mesh), the sponsors and the scope;
   - directed every build step ("one phone first, then grow", web app not native, max 5 phones, offline mode, the depth list);
   - made the product decisions (revocation semantics, which features to cut);
   - ran the real-phone tests;

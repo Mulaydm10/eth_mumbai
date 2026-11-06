@@ -1,4 +1,4 @@
-// ENSv2 (Sepolia) for Tremor Witness: the sensor registry the quorum reads.
+// ENSv2 (Sepolia) for Tremor Mesh: the sensor registry the quorum reads.
 //   tremorwitness.eth → <site>.tremorwitness.eth (its own UserRegistry, owned by the committee)
 //                     → <phone>.<site>.tremorwitness.eth (owner = phone wallet, expiring, NON-transferable, revocable)
 // Reads (browser-safe, no keys): phone list from registry logs, live resolution, site params (text records).

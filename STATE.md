@@ -5,7 +5,7 @@
 **Clock warning:** this Mac's clock runs **CET**. IST = CET + 4:30.
 
 ## What we are building
-**Tremor Witness**: residents' Android phones record construction vibration. An event counts only when several ENS-registered phones feel it together. Readings are signed by each phone on **Arkiv**, sealed evidence packs go to **Swarm**, and the record survives our servers going off (**EF CROPS**). Plan: `design/build-plan.md` · stack: `ADR-0002` (Accepted) · commands: `CLAUDE.md`.
+**Tremor Mesh**: residents' Android phones record construction vibration. An event counts only when several ENS-registered phones feel it together. Readings are signed by each phone on **Arkiv**, sealed evidence packs go to **Swarm**, and the record survives our servers going off (**EF CROPS**). Plan: `design/build-plan.md` · stack: `ADR-0002` (Accepted) · commands: `CLAUDE.md`.
 
 ## Live
 - Sensor page: https://tremor-witness.vercel.app/?site=<site> · Dashboard: `/dashboard.html?site=<site>` (big join QR) · Offline viewer: `/tremor-witness-viewer.html`

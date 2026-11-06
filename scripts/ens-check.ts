@@ -1,4 +1,4 @@
-// Resolve Tremor Witness ENS names with stock viem on Sepolia, exactly as the browser dashboard will.
+// Resolve Tremor Mesh ENS names with stock viem on Sepolia, exactly as the browser dashboard will.
 // Usage: npx tsx scripts/ens-check.ts <name> [textKey...]
 import { createPublicClient, http } from "viem";
 import { sepolia } from "viem/chains";

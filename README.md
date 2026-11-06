@@ -1,4 +1,6 @@
-# Tremor Witness (ETHGlobal Mumbai 2026)
+# Tremor Mesh (ETHGlobal Mumbai 2026)
+
+> **Name:** the project is called **Tremor Mesh** (it was built as "Tremor Witness"). The URL, ENS names (`*.tremorwitness.eth`) and Arkiv schemas (`tremor-witness.v1.*`) keep the original name, because renaming them would orphan every phone, reading and sealed event already on-chain.
 
 **Residents' phones become a shared vibration record.** Android phones in neighbouring flats detect construction vibration. An event counts only when several **ENS-registered** phones feel it at the same time. Each phone signs its own readings to **Arkiv**. Sealed evidence packs go to **Swarm**. The dashboard recomputes everything in your browser from public data.
 

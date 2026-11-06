@@ -85,7 +85,7 @@ async function main() {
     <div class="kv" contenteditable="true" style="outline:1px dashed var(--line);padding:8px">
       <div>Name and address of the person certifying</div><div>[ name, flat, building ]</div>
       <div>Devices that produced the record</div><div>${pack.members.map((m) => `Android phone registered as ${esc(phoneName(site, m.sensor))} (wallet ${esc(m.creator)})`).join("<br>")}</div>
-      <div>Record</div><div>Tremor Witness evidence pack for event ${esc(eventId)} at ${ist(pack.event.tMs)}, stored on Swarm at reference ${esc(ev.swarmRef)}</div>
+      <div>Record</div><div>Tremor Mesh evidence pack for event ${esc(eventId)} at ${ist(pack.event.tMs)}, stored on Swarm at reference ${esc(ev.swarmRef)}</div>
       <div>Hash value and algorithm</div><div class="mono">SHA-256: ${sha256}<br>keccak-256 (also recorded on Arkiv): ${esc(ev.packHash)}</div>
       <div>Statement</div><div>[ The devices were under my lawful control and working properly during the period; the record was produced in the ordinary course of their use. ]</div>
       <div>Date, place, signature</div><div>[ … ]</div>

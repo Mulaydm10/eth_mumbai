@@ -1,7 +1,7 @@
 # CLAUDE.md: cold-start entry point
 
 **What this is:** the working repo for our ETHGlobal Mumbai hackathon entry. Humans and agents work on it at the same time.
-**Thesis:** Tremor Witness (Dhruv's direction, 2026-11-06; `Q-0001`, plan `design/build-plan.md`). **Stack:** TypeScript monorepo (`ADR-0002`, Accepted). **Track:** From Scratch (`Q-0003`).
+**Thesis:** Tremor Mesh (Dhruv's direction, 2026-11-06; `Q-0001`, plan `design/build-plan.md`). **Stack:** TypeScript monorepo (`ADR-0002`, Accepted). **Track:** From Scratch (`Q-0003`).
 **Event facts** (deadline, rules, rubric) live **only** in `COMPETITION.md`. Never restate them elsewhere; link instead.
 
 ## Read order

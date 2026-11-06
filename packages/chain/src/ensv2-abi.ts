@@ -1,4 +1,4 @@
-// ENSv2 (Sepolia) ABIs, role constants and addresses for Tremor Witness.
+// ENSv2 (Sepolia) ABIs, role constants and addresses for Tremor Mesh.
 // Every signature was copied from ensdomains/contracts-v2 @ 07e55a056f5b6a9c90119f501bdd05714e67dddd
 // (contracts/src/** and contracts/deployments/sepolia/*.json) and the selectors re-checked against those artifacts.
 // Notes: see research/tremor-witness/ensv2-recipe.md

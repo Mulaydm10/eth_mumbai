@@ -1,6 +1,6 @@
 # Arkiv friction log (logged as we hit it, with reproductions)
 
-Context: Tremor Witness has **many lightweight writers**. Every resident's phone signs its own readings from a browser. Most friction below comes from that shape: many browser wallets with tiny budgets, writing often and reading constantly. All times are IST on 6 Nov 2026. Code references are to this repo.
+Context: Tremor Mesh has **many lightweight writers**. Every resident's phone signs its own readings from a browser. Most friction below comes from that shape: many browser wallets with tiny budgets, writing often and reading constantly. All times are IST on 6 Nov 2026. Code references are to this repo.
 
 ## 1. Every phone needs gas, and there is no sponsored-write path
 - **What happened (02:00):** each write costs tGLM from the sender. Each phone is its own wallet (by design: `$creator` *is* the trust signal), so every phone needs gas before its first reading.

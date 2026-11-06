@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
-  "description": "Tremor Witness: a phone-vibration quorum gives residents a tamper-evident record nobody controls (ETHGlobal Mumbai 2026).",
+  "description": "Tremor Mesh: a phone-vibration quorum gives residents a tamper-evident record nobody controls (ETHGlobal Mumbai 2026).",
   "license": "MIT",
   "workspaces": [
     "packages/*",

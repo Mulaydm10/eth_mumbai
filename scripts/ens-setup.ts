@@ -1,4 +1,4 @@
-// ENSv2 (Sepolia) setup for Tremor Witness: parent .eth name -> per-site UserRegistry -> phone subnames.
+// ENSv2 (Sepolia) setup for Tremor Mesh: parent .eth name -> per-site UserRegistry -> phone subnames.
 // Recipe + sources: research/tremor-witness/ensv2-recipe.md
 //
 // DRY-RUN BY DEFAULT: without --send nothing is broadcast; every step is printed and (where possible) eth_call-simulated.

@@ -3,7 +3,7 @@
 Status: **roadmap / pitched as an extension.** Not part of the hackathon build. No code from it is in this repo. Recorded 2026-11-06 ~14:10 IST.
 
 ## 1. The idea (Dhruv, paraphrased)
-When the quorum fires (≥k phones agree there was shaking), every registered device on the site starts connecting to each other over Bluetooth / hotspot and forms a mesh (borrowing from Dhruv's earlier SafeMesh project), so that in an earthquake or other calamity we know where everyone is and can track each device on a map of the mesh. Execution would be a separate native app; it would be pitched as an extension of Tremor Witness.
+When the quorum fires (≥k phones agree there was shaking), every registered device on the site starts connecting to each other over Bluetooth / hotspot and forms a mesh (borrowing from Dhruv's earlier SafeMesh project), so that in an earthquake or other calamity we know where everyone is and can track each device on a map of the mesh. Execution would be a separate native app; it would be pitched as an extension of Tremor Mesh.
 
 ## 2. Inputs
 - **SafeMesh** (`github.com/Mulaydm10/safemesh`, public, **GPL-3.0**, last push 2026-11-01, i.e. before the hackathon): fork of bitchat-android, ~283 Kotlin files / ~80k lines. Transports: BLE multi-hop (7 hops), Wi-Fi Aware, hotspot. `MeshGraph` debug view (≈ "map of devices"). SOS = public text + GPS, unauthenticated and not rate-limited.

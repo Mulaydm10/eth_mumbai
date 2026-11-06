@@ -1,4 +1,4 @@
-# How Tremor Witness uses Arkiv
+# How Tremor Mesh uses Arkiv
 
 Code: `packages/chain/src/arkiv.ts` (schemas, reads, writes) · `apps/web/src/main.ts` (phone) · `apps/web/src/dashboard.ts` (dashboard) · `scripts/` (CLI).
 

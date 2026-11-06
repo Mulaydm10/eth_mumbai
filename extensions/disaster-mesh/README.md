@@ -27,6 +27,6 @@ The app is a separate program that talks to the same public backend as the web a
 - **Quorum:** the same quorum rule as `packages/core`.
 
 ## Provenance and license
-- The app is built on SafeMesh, Dhruv's earlier fork of bitchat-android. The Tremor Witness parts were added at the event. To see which commits came from where, run `git log -- extensions/disaster-mesh/app`.
+- The app is built on SafeMesh, Dhruv's earlier fork of bitchat-android. The Tremor Mesh parts were added at the event. To see which commits came from where, run `git log -- extensions/disaster-mesh/app`.
 - The app is GPL-3.0; its license is in [`app/LICENSE.md`](app/LICENSE.md). The rest of this repo is unchanged: the app is a separate program that only talks to the public backend.
 - **Build:** open `app/` in Android Studio, or run `cd extensions/disaster-mesh/app && ./gradlew assembleDebug`. The npm workspaces don't include it, so `npm test` is unaffected.

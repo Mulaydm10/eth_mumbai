@@ -1,6 +1,6 @@
 # Backend requests from the Disaster Mesh app
 
-The app session writes rows here. The main Tremor Witness session decides and implements them. The web app and backend stay locked to the app session (see `BRIEF.md` §0).
+The app session writes rows here. The main Tremor Mesh session decides and implements them. The web app and backend stay locked to the app session (see `BRIEF.md` §0).
 
 | ID | Date IST | What & why | Proposed shape | Status |
 |---|---|---|---|---|

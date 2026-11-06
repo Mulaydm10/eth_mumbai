@@ -1,4 +1,4 @@
-# ENSv2 in Tremor Witness (ENS: Best Use of ENSv2)
+# ENSv2 in Tremor Mesh (ENS: Best Use of ENSv2)
 
 **In one line:** ENSv2 is the **sensor registry that decides whose readings count**. Every phone is a non-transferable, expiring, revocable subname issued by the building's committee, and the quorum reads ENS history to decide what was valid *when it was recorded*. Remove ENS and the product has no answer to "who is allowed to testify?".
 
@@ -17,7 +17,7 @@ PermissionedResolver (shared) 0xFA87654E65542Ad82428f3326c322d6a12C55957
 ```
 
 ## ENSv2 features we use, and why each one is load-bearing
-| ENSv2 feature (the prize's own words) | What it does in Tremor Witness | Code |
+| ENSv2 feature (the prize's own words) | What it does in Tremor Mesh | Code |
 | --- | --- | --- |
 | "deploy your own subname registry … under your own rules" | One **UserRegistry per building**, deployed through `VerifiableFactory`. The building's committee holds its roles, and nobody else can add or remove that building's phones. | `packages/chain/src/ens.ts` `ensCreateSite` |
 | "expiring, revocable, non-transferable" subnames | A phone name is issued to the phone's own wallet with **roleBitmap 0**, so it lacks `CAN_TRANSFER_ADMIN` and **cannot be sold or handed to someone else**. It expires in 30 days and is revoked with `unregister` (`ROLE_UNREGISTER`). | `ensRegisterPhone`, `ensRevokePhone` |

@@ -1,6 +1,6 @@
 # Why Arkiv
 
-Tremor Witness gives residents next to heavy construction a vibration record **no single party controls**: not the contractor, not the authority, not the housing-society secretary, and not us. Each Arkiv property maps to a requirement the product cannot meet otherwise:
+Tremor Mesh gives residents next to heavy construction a vibration record **no single party controls**: not the contractor, not the authority, not the housing-society secretary, and not us. Each Arkiv property maps to a requirement the product cannot meet otherwise:
 
 | Requirement | Arkiv property | What we would need without it |
 | --- | --- | --- |

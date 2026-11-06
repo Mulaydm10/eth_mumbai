@@ -1,4 +1,4 @@
-# Arkiv schema: Tremor Witness
+# Arkiv schema: Tremor Mesh
 
 Network: **Rabdi testnet** (chain ID 7794095). SDK: `@arkiv-network/sdk` 1.0.1. Code: `packages/chain/src/arkiv.ts`.
 All schemas are tagged `tremor-witness.v1.*`, so a query through a schema only sees our tag. Anyone can copy a tag, so **readers trust an entity only by its `$creator`** (see "Trust" below).

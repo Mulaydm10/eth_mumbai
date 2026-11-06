@@ -1,4 +1,4 @@
-# Build plan: Tremor Witness
+# Build plan: Tremor Mesh
 
 **Status:** Draft v1, written Fri 2026-11-06 01:45 IST by Claude Code for Dhruv. Not yet approved.
 **Deadline:** Sat 7 Nov 09:00 IST (see `COMPETITION.md`). About **31 hours** were left when this was written.
@@ -11,7 +11,7 @@
 ---
 
 ## 1. What we are building (one paragraph)
-Tremor Witness lets residents' Android phones record construction vibration in old Mumbai buildings and turn it into a **shared record that no single party controls**.
+Tremor Mesh lets residents' Android phones record construction vibration in old Mumbai buildings and turn it into a **shared record that no single party controls**.
 - A phone lying on a floor runs our web app (PWA). When it feels a vibration in the construction band, it writes a signed **trigger** to Arkiv.
 - An event is **confirmed** only when *k* of *n* registered phones trigger within the same time window. A single shaken phone never counts.
 - Phones are registered as **ENSv2 sensor subnames** (expiring, revocable, non-transferable), issued by the housing society's **2-of-3 committee Safe**.
