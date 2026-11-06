@@ -184,13 +184,16 @@ async function ensureGas() {
   }
 }
 let ensName = "";
+// T14: joining a site needs a committee invite (from the invite QR). Keep it for this session's registration attempts.
+const inviteParam = params.get("inv") ?? sessionStorage.getItem("tw.inv") ?? "";
+if (params.get("inv")) sessionStorage.setItem("tw.inv", params.get("inv")!);
 async function ensureEnsName() {
   setChainNote("Registering this phone's ENS name…");
   try {
     const r = await fetch("/api/ens-register", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ site: ui.site.value.trim(), label: ui.name.value.trim(), address: account.address }),
+      body: JSON.stringify({ site: ui.site.value.trim(), label: ui.name.value.trim(), address: account.address, invite: inviteParam }),
     });
     const j = (await r.json()) as { ok: boolean; name?: string; error?: string };
     if (!j.ok) return setChainNote(`ENS registration failed: ${j.error ?? r.status}. Readings will not count until this phone has a name.`, true);

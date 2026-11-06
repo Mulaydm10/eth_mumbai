@@ -2,7 +2,7 @@
 // Prototype 1 trust rule: the first MAX_PHONES distinct phones (by join time) at a site count; a trigger counts only
 // if its Arkiv $creator is the wallet that registered that phone name. Prototype 2 replaces this with ENS names.
 import { alignBySound, asOfCheck, coherence, type AsOfReason, type RegistrationInterval, computeQuorum, correctTime, type CoherenceResult, type SyncSession, type Trigger } from "@tw/core";
-import { ensPublic, siteRegistrationHistory, listSitePhones, resolvePhones, siteExists, siteName, siteParams, type EnsPhone, fetchEvents, fetchSensors, fetchSyncs, fetchTriggers, publicClientFor, swarmUploadJson, swarmUrl, walletClientFor, writeEvent, type SensorRow, type TriggerRow } from "@tw/chain";
+import { ENS_DEPLOYER, encodeInvite as _encInv, fetchInviteRecords, ensPublic, siteRegistrationHistory, listSitePhones, resolvePhones, siteExists, siteName, siteParams, type EnsPhone, fetchEvents, fetchSensors, fetchSyncs, fetchTriggers, publicClientFor, swarmUploadJson, swarmUrl, walletClientFor, writeEvent, type SensorRow, type TriggerRow } from "@tw/chain";
 import { keccak256, toHex, type Hex } from "viem";
 import QRCode from "qrcode";
 import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
@@ -58,6 +58,8 @@ const ui = {
   triggers: $("triggers"),
   autoseal: $<HTMLInputElement>("autoseal"),
   trust: $("trust"),
+  inviteNote: $("inviteNote"),
+  invites: $("invites"),
 };
 ui.site.value = q.get("site") ?? "demo";
 if (q.get("k")) ui.k.value = q.get("k")!;
@@ -185,13 +187,58 @@ const cohCell = (r: CoherenceResult | null) => {
   return `<span title="experimental indicator; thresholds not yet measured (EXP-0001)">${r.score.toFixed(2)} · lag ${Math.round(lag)} ms</span>`;
 };
 
+// ---- T14 invites: committee creates a one-time QR; every issue/use is public on Arkiv ----
+let activeInvite: { url: string; exp: number } | null = null;
+document.getElementById("inviteBtn")!.addEventListener("click", async () => {
+  const site = ui.site.value.trim();
+  let pass = sessionStorage.getItem("tw.pass") ?? "";
+  if (!pass) pass = prompt("Committee passcode to create an invite:") ?? "";
+  if (!pass) return;
+  ui.inviteNote.textContent = "Signing invite and logging it on Arkiv…";
+  try {
+    const r = await fetch("/api/ens-invite", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ site, pass }) });
+    const j = (await r.json()) as { ok: boolean; invite?: string; exp?: number; inviteId?: string; error?: string };
+    if (!j.ok || !j.invite) throw new Error(j.error ?? String(r.status));
+    sessionStorage.setItem("tw.pass", pass);
+    const base = location.origin.startsWith("http") && !location.origin.includes("localhost") ? location.origin : "https://tremor-witness.vercel.app";
+    activeInvite = { url: `${base}/?site=${encodeURIComponent(site)}&inv=${j.invite}`, exp: j.exp! };
+    ui.joinLink.textContent = `one-time invite ${j.inviteId!.slice(0, 8)}… (valid until ${new Date(j.exp!).toLocaleTimeString()})`;
+    ui.inviteNote.textContent = "Scan with ONE new phone. Single use, 30 minutes; the issue and the use are logged publicly on Arkiv.";
+    void QRCode.toCanvas($<HTMLCanvasElement>("joinQr"), activeInvite.url, { width: 220, margin: 1 });
+  } catch (e) {
+    if (String(e).includes("passcode")) sessionStorage.removeItem("tw.pass");
+    ui.inviteNote.textContent = `Invite failed: ${String((e as Error).message ?? e).slice(0, 80)}`;
+  }
+});
+let invitesBusy = false;
+async function refreshInvites(site: string) {
+  if (invitesBusy) return;
+  invitesBusy = true;
+  try {
+    const recs = await fetchInviteRecords(client, site, ENS_DEPLOYER);
+    const issued = recs.filter((r) => r.kind === "issued");
+    const used = recs.filter((r) => r.kind === "used");
+    ui.invites.innerHTML = `Invites (public audit on Arkiv, committee-signed): <b>${issued.length}</b> issued · <b>${used.length}</b> used${used.length ? " — " + used.slice(0, 5).map((u) => `${esc(u.label)} ← ${esc(u.inviteId.slice(0, 8))}`).join(", ") : ""}`;
+  } catch {
+    /* audit list is best-effort */
+  } finally {
+    invitesBusy = false;
+  }
+}
+void _encInv;
+
 let busy = false;
 async function refresh() {
   if (busy) return;
   busy = true;
   const site = ui.site.value.trim();
   const join = `${location.origin.startsWith("http") && !location.origin.includes("localhost") ? location.origin : "https://tremor-witness.vercel.app"}/?site=${encodeURIComponent(site)}`;
-  if (ui.joinLink.textContent !== join) {
+  if (activeInvite && activeInvite.exp < Date.now()) {
+    activeInvite = null;
+    ui.inviteNote.textContent = "Invite expired. New phones need a committee invite.";
+  }
+  void refreshInvites(site);
+  if (!activeInvite && ui.joinLink.textContent !== join) {
     ui.joinLink.textContent = join;
     void QRCode.toCanvas($<HTMLCanvasElement>("joinQr"), join, { width: 220, margin: 1 });
   }
