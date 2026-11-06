@@ -44,4 +44,4 @@
 | --- | --- | --- | --- |
 | _none_ | | | |
 
-Last updated: 2026-11-06 06:53 (local CET) · Claude Code (T13/T14 + Tier 0)
+Last updated: 2026-11-06 06:53 IST · Claude Code (T13/T14 + Tier 0)
