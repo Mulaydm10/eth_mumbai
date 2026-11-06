@@ -469,7 +469,7 @@ const sv = (id: string) => $<HTMLInputElement>(id);
 const num = (id: string) => Number(sv(id).value);
 function committeePass(action: string) {
   let pass = sessionStorage.getItem("tw.pass") ?? "";
-  if (!pass) pass = prompt(`Committee passcode to ${action}:`) ?? "";
+  if (!pass) pass = (prompt(`Committee passcode to ${action}:`) ?? "").trim();
   return pass;
 }
 async function loadSetup() {
