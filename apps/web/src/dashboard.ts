@@ -505,7 +505,7 @@ async function loadSetup() {
     sv("sMaxPhones").value = String(lim.maxPhones);
     sv("sMaxMesh").value = String(lim.maxMesh);
     const nMesh = phones.filter((x) => isMeshLabel(x.label)).length;
-    $("sCurrent").textContent = `On ENS now: web ${phones.length - nMesh}/${lim.maxPhones} phones, ${p.k ?? "–"} must agree in ${p.windowMs ?? "–"} ms · mesh ${nMesh}/${lim.maxMesh} phones, ${d.dk ?? "not set"}${d.dk ? ` must agree in ${d.dwindowMs} ms` : ""}${lim.fromEns.maxPhones ? "" : " · limits are defaults"}`;
+    $("sCurrent").textContent = `On ENS now: web ${phones.length - nMesh}/${lim.maxPhones} phones, ${p.k ?? "–"} must agree in ${p.windowMs ?? "–"} ms · mesh ${nMesh}/${lim.maxMesh} phones, ${d.dk ?? "not set"}${d.dk ? ` must agree in ${d.dwindowMs ?? "–"} ms` : ""}${lim.fromEns.maxPhones ? "" : " · limits are defaults"}`;
   } catch (e) {
     $("sCurrent").textContent = `Could not read ENS: ${String((e as Error).message ?? e).slice(0, 80)}`;
   }
@@ -526,7 +526,8 @@ $("sSave").addEventListener("click", async () => {
     sv("sUses").value = String(body.maxPhones + body.maxMesh > 50 ? 50 : Math.max(1, Number(sv("sUses").value)));
     ui.site.value = site;
     slowAt.clear();
-    void loadSetup();
+    $("sCurrent").textContent = "Saved. Re-reading from ENS in a few seconds (the public RPC lags a block or two)…";
+    setTimeout(() => void loadSetup(), 8000);
   } catch (e) {
     if (String(e).includes("passcode")) passRejected();
     $("sSaveNote").innerHTML = `<span class="bad">Not saved: ${esc(String((e as Error).message ?? e).slice(0, 160))}</span>`;
