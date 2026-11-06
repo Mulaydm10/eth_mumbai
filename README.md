@@ -40,9 +40,10 @@ A phone's reading counts if the phone's ENSv2 name (`<phone>.<site>.tremorwitnes
     | --- | --- | --- |
     | `/api/drip` | Gives a new phone a little testnet gas | Write or alter readings |
     | `/api/time` | Reference clock for aligning phones | Nothing depends on it: phones fall back to their own clock and sound sync |
-    | `/api/ens-invite` | Committee signs a one-time invite (passcode) | — |
+    | `/api/ens-invite` | Committee signs an invite for one phone, or a multi-use one for up to 50 (passcode) | — |
     | `/api/ens-register` | Registers an invited phone's ENS name | Register without a valid, unused, Arkiv-logged invite |
     | `/api/ens-revoke` | Committee revokes a phone (passcode) | — |
+    | `/api/site-setup` | Committee sets a site's rules as public ENS text records (passcode): phone limits `tw.max_phones` / `tw.max_mesh`, quorum `tw.k` / `tw.window_ms`, mesh quorum `tw.dk` / `tw.dwindow_ms` (dashboard Setup tab) | Change the rules secretly: every change is a public Sepolia transaction |
 
     None of them is needed to **read or verify** evidence.
 

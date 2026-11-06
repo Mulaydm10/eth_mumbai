@@ -1,5 +1,5 @@
 // T14: the committee issues a single-use, 30-minute invite for one phone to join a site.
-// R5 (Disaster Mesh demo): optional `uses` (2-20) makes a v2 multi-use invite, with optional `ttlMin` (max 360).
+// R5 (Disaster Mesh demo): optional `uses` (2-50) makes a v2 multi-use invite, with optional `ttlMin` (max 360).
 // The invite is signed by the committee key and the issuance is logged publicly on Arkiv before it is handed out.
 import { randomBytes } from "node:crypto";
 import { MAX_INVITE_USES, encodeInvite, inviteMessage, writeInviteRecord } from "../../../packages/chain/src/invite.js";

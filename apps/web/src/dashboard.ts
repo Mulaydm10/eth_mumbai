@@ -2,7 +2,7 @@
 // Prototype 1 trust rule: the first MAX_PHONES distinct phones (by join time) at a site count; a trigger counts only
 // if its Arkiv $creator is the wallet that registered that phone name. Prototype 2 replaces this with ENS names.
 import { alignBySound, asOfCheck, coherence, gapCount, seqGaps, type AsOfReason, type RegistrationInterval, computeQuorum, correctTime, type CoherenceResult, type SyncSession, type Trigger } from "@tw/core";
-import { ENS_DEPLOYER, encodeInvite as _encInv, fetchInviteRecords, readPhoneHead, type PhoneHead, ensPublic, siteRegistrationHistory, listSitePhones, resolvePhones, siteExists, siteName, siteParams, type EnsPhone, extendEvent, fetchEvents, fetchSensors, fetchSyncs, fetchTriggers, publicClientFor, swarmUploadJson, swarmUrl, walletClientFor, writeEvent, type SensorRow, type TriggerRow } from "@tw/chain";
+import { ENS_DEPLOYER, encodeInvite as _encInv, fetchInviteRecords, readPhoneHead, type PhoneHead, ensPublic, siteRegistrationHistory, listSitePhones, resolvePhones, siteExists, siteName, siteParams, siteLimits, siteDisasterParams, isMeshLabel, type EnsPhone, extendEvent, fetchEvents, fetchSensors, fetchSyncs, fetchTriggers, publicClientFor, swarmUploadJson, swarmUrl, walletClientFor, writeEvent, type SensorRow, type TriggerRow } from "@tw/chain";
 import { keccak256, toHex, type Hex } from "viem";
 import QRCode from "qrcode";
 import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
@@ -130,14 +130,14 @@ let lastEns: EnsState = { ok: false, error: "not read yet" };
 let lastSync: SyncSession | null = null;
 const asOfWhy = new Map<string, AsOfReason>();
 type EnsState =
-  | { ok: true; siteName: string; phones: EnsPhone[]; resolved: Map<string, string | null>; history: RegistrationInterval[]; k: number | null; windowMs: number | null }
+  | { ok: true; siteName: string; phones: EnsPhone[]; resolved: Map<string, string | null>; history: RegistrationInterval[]; k: number | null; windowMs: number | null; maxPhones: number; maxMesh: number }
   | { ok: false; error: string };
 async function readEns(site: string): Promise<EnsState> {
   try {
     if (!(await siteExists(ensClient, site))) return { ok: false, error: "no such site name" };
-    const [phones, params, history] = await Promise.all([listSitePhones(ensClient, site), siteParams(ensClient, site), siteRegistrationHistory(ensClient, site)]);
+    const [phones, params, history, lim] = await Promise.all([listSitePhones(ensClient, site), siteParams(ensClient, site), siteRegistrationHistory(ensClient, site), siteLimits(ensClient, site)]);
     const resolved = await resolvePhones(ensClient, site, phones.map((p) => p.label));
-    return { ok: true, siteName: siteName(site), phones, resolved, history, k: params.k, windowMs: params.windowMs };
+    return { ok: true, siteName: siteName(site), phones, resolved, history, k: params.k, windowMs: params.windowMs, maxPhones: lim.maxPhones, maxMesh: lim.maxMesh };
   } catch (e) {
     return { ok: false, error: String((e as Error).message ?? e).slice(0, 80) };
   }
@@ -305,7 +305,9 @@ async function refresh() {
         asOfWhy.set(t.id, why);
         return why === "ok";
       };
-      phoneCount = ens.phones.length;
+      phoneCount = ens.phones.filter((p) => !isMeshLabel(p.label)).length;
+      const nMesh = ens.phones.length - phoneCount;
+      $("nSensorsLabel").textContent = `Phones (ENS, max ${ens.maxPhones})${nMesh ? ` + ${nMesh} mesh` : ""}`;
       ui.trust.innerHTML = `${lastSync ? `<span class="ok">Clocks aligned by sound sync${lastSync.chirp !== undefined ? ` #${lastSync.chirp}` : ""}</span> (${[...lastSync.corrections].map(([k, v]) => `${esc(k)} ${v >= 0 ? "−" : "+"}${Math.abs(Math.round(v))} ms`).join(", ")}) · ` : ""}<span class="ok">Registry: ENSv2 (as-of: registered when recorded)</span> · <a href="https://sepolia.app.ens.domains/${esc(ens.siteName)}" target="_blank" rel="noopener">${esc(ens.siteName)}</a> · params from ENS text records: k=${ens.k ?? "–"}, window=${ens.windowMs ?? "–"} ms`;
     } else {
       const { inside } = admitted(sensors);
@@ -315,7 +317,7 @@ async function refresh() {
       ui.trust.innerHTML = `<span class="bad">Site not registered in ENS (${esc(ens.error)})</span>: using the weaker first-writer rule.`;
     }
     // k / window: manual override → ENS text records → auto.
-    const k = ui.k.value ? Math.max(1, Math.min(MAX_PHONES, Number(ui.k.value))) : (ens.ok && ens.k) || Math.max(2, Math.min(3, phoneCount));
+    const k = ui.k.value ? Math.max(1, Math.min(20, Number(ui.k.value))) : (ens.ok && ens.k) || Math.max(2, Math.min(3, phoneCount));
     const windowMs = ui.win.value ? Number(ui.win.value) : (ens.ok && ens.windowMs) || 2000;
     const res = computeQuorum(triggers, { k, windowMs, isLive });
 
@@ -337,7 +339,7 @@ async function refresh() {
             const maxSeq = Math.max(0, ...mine.map((r) => r.seq ?? 0));
             const tail = head && maxSeq && head.seq > maxSeq ? `<br><span class="small bad">ENS head #${head.seq} but Arkiv only up to #${maxSeq} in this window: latest ${head.seq - maxSeq} missing</span>` : head ? `<br><span class="small muted">ENS head #${head.seq} (phone-declared)</span>` : "";
             const integ = (!mine.length ? "" : `<br><span class="small ${gaps.length ? "bad" : "ok"}">${ro ? "edit-proof ✓" : "not edit-proof"} · ${gaps.length ? `${gapCount(gaps)} missing (#${gaps.map((g) => (g.from === g.to ? g.from : `${g.from}–${g.to}`)).join(", #")}): deleted or never uploaded` : "no gaps"}</span>`) + tail;
-            return `<tr><td><b>${esc(p.label)}</b><br><span class="muted small">${esc(p.name)}</span>${integ}</td><td>${a ? `${a.rateHz.toFixed(1)} Hz` : "–"}</td><td>${live ? '<span class="ok">resolves ✓</span>' : '<span class="bad">not resolving</span>'}<br><span class="muted small">expires ${new Date(p.expiry * 1000).toLocaleDateString()}</span></td><td><a href="${EXPLORER}/address/${p.owner}" target="_blank" rel="noopener">${short(p.owner)}</a></td><td><button class="ghost" data-revoke="${esc(p.label)}">Revoke</button></td></tr>`;
+            return `<tr><td><b>${esc(p.label)}</b>${isMeshLabel(p.label) ? ' <span class="tag">mesh app</span>' : ""}<br><span class="muted small">${esc(p.name)}</span>${integ}</td><td>${a ? `${a.rateHz.toFixed(1)} Hz` : "–"}</td><td>${live ? '<span class="ok">resolves ✓</span>' : '<span class="bad">not resolving</span>'}<br><span class="muted small">expires ${new Date(p.expiry * 1000).toLocaleDateString()}</span></td><td><a href="${EXPLORER}/address/${p.owner}" target="_blank" rel="noopener">${short(p.owner)}</a></td><td><button class="ghost" data-revoke="${esc(p.label)}">Revoke</button></td></tr>`;
           })
           .join("") || `<tr><td colspan="5" class="muted">No phones registered in ENS yet. Open the join link on a phone and press Start.</td></tr>`
       : sensors
@@ -433,3 +435,97 @@ setInterval(() => void refresh(), 8000);
 
 import { showBuild } from "./build";
 showBuild();
+
+// ---- Setup tab (committee): per-site rules as ENS text records + one invite QR for both apps ----
+const tabs = { monitor: $("monitorTab"), setup: $("setupTab") };
+function showTab(t: "monitor" | "setup") {
+  tabs.monitor.hidden = t !== "monitor";
+  tabs.setup.hidden = t !== "setup";
+  for (const [id, on] of [["tabMonitor", t === "monitor"], ["tabSetup", t === "setup"]] as const) {
+    $(id).classList.toggle("active", on);
+    $(id).setAttribute("aria-selected", String(on));
+  }
+  if (t === "setup") void loadSetup();
+  window.history.replaceState(null, "", `${location.pathname}${location.search}${t === "setup" ? "#setup" : ""}`);
+}
+$("tabMonitor").addEventListener("click", () => showTab("monitor"));
+$("tabSetup").addEventListener("click", () => showTab("setup"));
+const sv = (id: string) => $<HTMLInputElement>(id);
+const num = (id: string) => Number(sv(id).value);
+function committeePass(action: string) {
+  let pass = sessionStorage.getItem("tw.pass") ?? "";
+  if (!pass) pass = prompt(`Committee passcode to ${action}:`) ?? "";
+  return pass;
+}
+async function loadSetup() {
+  if (!sv("sSite").value) sv("sSite").value = ui.site.value.trim();
+  const site = sv("sSite").value.trim().toLowerCase();
+  $("sCurrent").textContent = "Reading current rules from ENS…";
+  try {
+    if (!(await siteExists(ensClient, site))) {
+      $("sCurrent").textContent = "New site: it is created when you save.";
+      return;
+    }
+    const [p, d, lim, phones] = await Promise.all([siteParams(ensClient, site), siteDisasterParams(ensClient, site), siteLimits(ensClient, site), listSitePhones(ensClient, site)]);
+    if (p.k) sv("sK").value = String(p.k);
+    if (p.windowMs) sv("sWin").value = String(p.windowMs);
+    if (d.dk) sv("sDk").value = String(d.dk);
+    if (d.dwindowMs) sv("sDwin").value = String(d.dwindowMs);
+    sv("sMaxPhones").value = String(lim.maxPhones);
+    sv("sMaxMesh").value = String(lim.maxMesh);
+    const nMesh = phones.filter((x) => isMeshLabel(x.label)).length;
+    $("sCurrent").textContent = `On ENS now: web ${phones.length - nMesh}/${lim.maxPhones} phones, ${p.k ?? "–"} must agree in ${p.windowMs ?? "–"} ms · mesh ${nMesh}/${lim.maxMesh} phones, ${d.dk ?? "not set"}${d.dk ? ` must agree in ${d.dwindowMs} ms` : ""}${lim.fromEns.maxPhones ? "" : " · limits are defaults"}`;
+  } catch (e) {
+    $("sCurrent").textContent = `Could not read ENS: ${String((e as Error).message ?? e).slice(0, 80)}`;
+  }
+}
+$("sSave").addEventListener("click", async () => {
+  const site = sv("sSite").value.trim().toLowerCase();
+  const pass = committeePass(`save rules for ${site}`);
+  if (!pass) return;
+  const body = { site, pass, maxPhones: num("sMaxPhones"), k: num("sK"), windowMs: num("sWin"), maxMesh: num("sMaxMesh"), dk: num("sDk"), dwindowMs: num("sDwin") };
+  $("sSaveNote").textContent = "Writing rules to ENS (Sepolia)… this takes 15-60 s (a new site takes longer).";
+  (sv("sSave") as unknown as HTMLButtonElement).disabled = true;
+  try {
+    const r = await fetch("/api/site-setup", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
+    const j = (await r.json()) as { ok: boolean; error?: string; txs?: string[] };
+    if (!j.ok) throw new Error(j.error ?? String(r.status));
+    sessionStorage.setItem("tw.pass", pass);
+    $("sSaveNote").innerHTML = `<span class="ok">Saved.</span> ${(j.txs ?? []).map((h) => `<a href="https://sepolia.etherscan.io/tx/${h}" target="_blank" rel="noopener">tx ${h.slice(0, 10)}…</a>`).join(" · ")}`;
+    sv("sUses").value = String(body.maxPhones + body.maxMesh > 50 ? 50 : Math.max(1, Number(sv("sUses").value)));
+    ui.site.value = site;
+    slowAt.clear();
+    void loadSetup();
+  } catch (e) {
+    if (String(e).includes("passcode")) sessionStorage.removeItem("tw.pass");
+    $("sSaveNote").innerHTML = `<span class="bad">Not saved: ${esc(String((e as Error).message ?? e).slice(0, 160))}</span>`;
+  } finally {
+    (sv("sSave") as unknown as HTMLButtonElement).disabled = false;
+  }
+});
+$("sInvite").addEventListener("click", async () => {
+  const site = sv("sSite").value.trim().toLowerCase();
+  const pass = committeePass(`create an invite for ${site}`);
+  if (!pass) return;
+  const uses = Math.max(1, Math.min(50, Math.round(num("sUses"))));
+  const ttlMin = Math.max(5, Math.min(360, Math.round(num("sTtl"))));
+  $("sInviteNote").textContent = "Signing the invite and logging it on Arkiv…";
+  try {
+    const r = await fetch("/api/ens-invite", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(uses > 1 ? { site, pass, uses, ttlMin } : { site, pass }) });
+    const j = (await r.json()) as { ok: boolean; invite?: string; exp?: number; inviteId?: string; error?: string };
+    if (!j.ok || !j.invite) throw new Error(j.error ?? String(r.status));
+    sessionStorage.setItem("tw.pass", pass);
+    const base = location.origin.startsWith("http") && !location.origin.includes("localhost") ? location.origin : "https://tremor-witness.vercel.app";
+    const url = `${base}/?site=${encodeURIComponent(site)}&inv=${j.invite}`;
+    sv("sQr").hidden = false;
+    await QRCode.toCanvas($<HTMLCanvasElement>("sQr"), url, { width: 260, margin: 1 });
+    $("sLink").textContent = url;
+    $("sInviteNote").innerHTML = `<b>${uses} phone${uses > 1 ? "s" : ""}</b> can join <b>${esc(site)}</b> until <b>${new Date(j.exp!).toLocaleTimeString()}</b> (invite ${esc(j.inviteId!.slice(0, 8))}…). Web app: scan with Chrome. Mesh app: scan in the APK (names start with "mesh-"). Each phone wallet joins once; site limits still apply.`;
+  } catch (e) {
+    if (String(e).includes("passcode")) sessionStorage.removeItem("tw.pass");
+    $("sInviteNote").innerHTML = `<span class="bad">Invite failed: ${esc(String((e as Error).message ?? e).slice(0, 160))}</span>`;
+  }
+});
+sv("sSite").addEventListener("change", () => void loadSetup());
+if (location.hash === "#setup") showTab("setup");
+window.addEventListener("hashchange", () => showTab(location.hash === "#setup" ? "setup" : "monitor"));

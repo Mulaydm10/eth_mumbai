@@ -34,6 +34,9 @@ export const SEPOLIA_RPC = "https://ethereum-sepolia-rpc.publicnode.com";
 export const MAX_PHONES_PER_SITE = 5; // vibration-sensing phones (web app)
 /** Disaster Mesh R1: companion-app phones use labels "mesh-…" and have their own cap, so they never take a sensing slot. */
 export const MAX_MESH_PHONES_PER_SITE = 15;
+/** Per-site limits are committee-set ENS text records (tw.max_phones, tw.max_mesh); these are the hard ceilings. */
+export const HARD_MAX_PHONES = 20;
+export const HARD_MAX_MESH = 50;
 export const isMeshLabel = (label: string) => label.startsWith("mesh-");
 
 export const ensPublic = (rpc = SEPOLIA_RPC) => createPublicClient({ chain: sepolia, transport: http(rpc) });
@@ -129,7 +132,22 @@ export async function siteDisasterParams(pub: Pub, site: string) {
   return { dk: k ? Number(k) : null, dwindowMs: w ? Number(w) : null };
 }
 
+/** Per-site phone limits from ENS (committee-set via the dashboard Setup tab). Missing → defaults 5 / 15. */
+export async function siteLimits(pub: Pub, site: string) {
+  const name = siteName(site);
+  const [p, m] = await Promise.all([pub.getEnsText({ name, key: "tw.max_phones" }).catch(() => null), pub.getEnsText({ name, key: "tw.max_mesh" }).catch(() => null)]);
+  const clamp = (v: string | null, d: number, hi: number) => (v && Number.isInteger(Number(v)) ? Math.min(Math.max(Number(v), 0), hi) : d);
+  return { maxPhones: clamp(p, MAX_PHONES_PER_SITE, HARD_MAX_PHONES), maxMesh: clamp(m, MAX_MESH_PHONES_PER_SITE, HARD_MAX_MESH), fromEns: { maxPhones: p !== null && p !== "", maxMesh: m !== null && m !== "" } };
+}
+
 // ---------------------------------------------------------------- committee writes (server only)
+
+/** Committee: set several text records on the site name in one multicall. */
+export async function ensSetSiteText(w: WalletClient, pub: Pub, site: string, records: Record<string, string>) {
+  const name = dns(siteName(site));
+  const calls = Object.entries(records).map(([k, v]) => encodeFunctionData({ abi: permissionedResolverAbi, functionName: "setText", args: [name, k, v] }));
+  return send(w, pub, { address: ENS_RESOLVER, abi: permissionedResolverAbi, functionName: "multicall", args: [calls] });
+}
 async function send(w: WalletClient, pub: Pub, call: { address: Address; abi: unknown; functionName: string; args: readonly unknown[] }) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const hash = await w.writeContract({ ...(call as any), chain: sepolia, account: w.account! });

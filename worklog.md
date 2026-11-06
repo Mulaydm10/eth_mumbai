@@ -86,3 +86,6 @@ Format: `## YYYY-MM-DD HH:MM IST · who · title`
 ## 2026-11-06 17:06 IST · Claude Code (for Dhruv Mulay) · Disaster Mesh backend (R1, R2, R3, R5)
 - R5: v2 multi-use invites (`uses` 2-20, `ttlMin` ≤ 360, one join per wallet). R1: `mesh-` labels get a separate cap of 15/site. R2/R3: `dtrigger` and `checkin` Arkiv schemas, plus the disaster quorum text-record reader and setter. R4 deferred. BRIEF corrected (`inv=`, `mesh-` labels, schema pointers).
 - Tests: 42 unit (37 core + 5 chain invite/mesh). Live: `scripts/mesh-backend-check.ts meshtest` 12/12 against production. v1 invites and sensing-phone joins verified unchanged.
+
+## 2026-11-06 20:39 IST · Claude Code (for Dhruv Mulay) · Dashboard Setup tab (dynamic phone limits, both apps)
+- New `/api/site-setup` (passcode) writes site rules to ENS. Phone limits are now per site (`tw.max_phones`, `tw.max_mesh`) instead of a hard-coded 5. The dashboard Setup tab edits the rules and makes one invite QR for the web and mesh apps. The Monitor tab tags mesh phones and counts only sensing phones. Verified live (see LOG). 42 tests.

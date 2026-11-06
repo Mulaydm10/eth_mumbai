@@ -15,7 +15,7 @@ export interface Invite {
 }
 
 /** Max phones one multi-use (v2) invite may admit. */
-export const MAX_INVITE_USES = 20;
+export const MAX_INVITE_USES = 50;
 
 /** v1 (single-use) message is unchanged; v2 adds `uses`, so a v1 signature can never be replayed as multi-use. */
 export const inviteMessage = (site: string, inviteId: string, exp: number, uses?: number) =>

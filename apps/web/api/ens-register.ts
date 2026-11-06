@@ -3,7 +3,7 @@
 // too. A phone already registered to the same wallet may re-join without an invite.
 import { getAddress, isAddress, type Address, type Hex } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { LABEL_RE, MAX_MESH_PHONES_PER_SITE, MAX_PHONES_PER_SITE, ensCreateSite, isMeshLabel, ensRegisterPhone, ensureHeadGrant, listSitePhones, siteExists } from "../../../packages/chain/src/ens.js";
+import { LABEL_RE, MAX_MESH_PHONES_PER_SITE, MAX_PHONES_PER_SITE, ensCreateSite, isMeshLabel, siteLimits, ensRegisterPhone, ensureHeadGrant, listSitePhones, siteExists } from "../../../packages/chain/src/ens.js";
 import { decodeInvite, fetchInviteRecords, inviteSigner, writeInviteRecord } from "../../../packages/chain/src/invite.js";
 import { publicClientFor, walletClientFor } from "../../../packages/chain/src/arkiv.js";
 import { committee, fail } from "./_committee.js";
@@ -29,7 +29,9 @@ export async function POST(req: Request): Promise<Response> {
     }
     // Sensing phones and Disaster Mesh phones ("mesh-…" labels, R1) have separate caps.
     const mesh = isMeshLabel(l);
-    const cap = mesh ? MAX_MESH_PHONES_PER_SITE : MAX_PHONES_PER_SITE;
+    // Limits are per site (committee sets tw.max_phones / tw.max_mesh from the dashboard Setup tab); defaults 5 / 15.
+    const lim = exists ? await siteLimits(pub, s) : { maxPhones: MAX_PHONES_PER_SITE, maxMesh: MAX_MESH_PHONES_PER_SITE };
+    const cap = mesh ? lim.maxMesh : lim.maxPhones;
     if (live.filter((p) => isMeshLabel(p.label) === mesh).length >= cap) return fail(409, `site is full (${cap} ${mesh ? "mesh " : ""}phones)`);
 
     // ---- T14 invite check ----

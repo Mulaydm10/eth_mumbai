@@ -51,3 +51,12 @@ main.wide { max-width: 960px; }
 .controls .input { max-width: 140px; }
 .join { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
 .join canvas { background: #fff; border-radius: 8px; padding: 8px; width: 220px; height: 220px; }
+
+/* Dashboard tabs + Setup form */
+.tabs { display: flex; gap: 6px; margin: 0 0 12px; }
+.tab { background: transparent; color: var(--muted, #9aa3b2); border: 1px solid #2a2f3a; border-radius: 8px; padding: 8px 14px; cursor: pointer; font: inherit; }
+.tab.active { color: inherit; border-color: var(--accent, #f5a524); }
+.setup-grid { display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 160px); gap: 8px 12px; align-items: center; margin: 10px 0; }
+@media (max-width: 520px) { .setup-grid { grid-template-columns: 1fr; } }
+[hidden] { display: none !important; }
+#sCurrent { grid-column: 1 / -1; }

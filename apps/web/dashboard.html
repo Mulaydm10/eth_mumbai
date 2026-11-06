@@ -14,9 +14,44 @@
         <p class="sub">Read directly from Arkiv (Rabdi testnet). The quorum is recomputed in your browser; no server of ours decides anything. <a href="/">sensor page →</a> · <a href="./tremor-witness-viewer.html" download>download offline viewer (one HTML file)</a></p>
       </header>
 
+      <nav class="tabs" role="tablist">
+        <button id="tabMonitor" class="tab active" role="tab" aria-selected="true">Monitor</button>
+        <button id="tabSetup" class="tab" role="tab" aria-selected="false">Setup (committee)</button>
+      </nav>
+
+      <div id="setupTab" hidden>
+        <section class="card">
+          <div class="row"><span class="label">Site rules (stored publicly as ENS text records on the site name)</span></div>
+          <p class="small muted">Choose how many phones each app may register and how many must agree. Saving writes the rules to ENS (Sepolia) with the committee key; new sites are created on save. Then create one invite QR that both the web app and the Disaster Mesh app accept.</p>
+          <div class="setup-grid">
+            <label class="label" for="sSite">Site</label><input id="sSite" class="input" />
+            <span class="small muted" id="sCurrent">–</span>
+            <label class="label" for="sMaxPhones">Web app phones (max)</label><input id="sMaxPhones" class="input" type="number" min="1" max="20" value="5" />
+            <label class="label" for="sK">Web quorum: phones that must agree</label><input id="sK" class="input" type="number" min="2" max="20" value="2" />
+            <label class="label" for="sWin">Web window (ms)</label><input id="sWin" class="input" type="number" min="500" max="10000" step="100" value="2000" />
+            <label class="label" for="sMaxMesh">Mesh app phones (max)</label><input id="sMaxMesh" class="input" type="number" min="0" max="50" value="15" />
+            <label class="label" for="sDk">Mesh quorum: phones that must agree</label><input id="sDk" class="input" type="number" min="2" max="50" value="2" />
+            <label class="label" for="sDwin">Mesh window (ms)</label><input id="sDwin" class="input" type="number" min="500" max="30000" step="100" value="2000" />
+          </div>
+          <button id="sSave" class="ghost">Save rules to ENS</button>
+          <p id="sSaveNote" class="status small"></p>
+        </section>
+        <section class="card">
+          <div class="row"><span class="label">Invite QR for both apps</span></div>
+          <div class="setup-grid">
+            <label class="label" for="sUses">Phones this QR admits</label><input id="sUses" class="input" type="number" min="1" max="50" value="4" />
+            <label class="label" for="sTtl">Valid for (minutes, max 360)</label><input id="sTtl" class="input" type="number" min="5" max="360" value="360" />
+          </div>
+          <button id="sInvite" class="ghost">Create invite QR</button>
+          <div class="join"><canvas id="sQr" width="260" height="260" hidden></canvas><div><code id="sLink" class="small" style="word-break:break-all"></code><p id="sInviteNote" class="status small">Web app: scan with Chrome and pick any name. Mesh app: scan in the APK (names start with "mesh-"). Each phone wallet joins once; every issue and use is logged on Arkiv.</p></div></div>
+        </section>
+      </div>
+
+      <div id="monitorTab">
+
       <section class="card controls">
         <label class="label" for="site">Site</label><input id="site" class="input" />
-        <label class="label" for="k">Quorum k</label><input id="k" class="input" type="number" min="1" max="5" placeholder="from ENS" />
+        <label class="label" for="k">Quorum k</label><input id="k" class="input" type="number" min="1" max="20" placeholder="from ENS" />
         <label class="label" for="win">Window ms</label><input id="win" class="input" type="number" min="200" max="10000" step="100" placeholder="from ENS" />
         <label class="label" for="mins">Last min</label><input id="mins" class="input" type="number" min="1" max="1440" value="30" />
         <label class="label"><input id="autoseal" type="checkbox" checked /> Auto-seal to Swarm</label>
@@ -26,7 +61,7 @@
       <section class="card"><span id="trust" class="small">Reading the ENS registry…</span></section>
 
       <section class="grid">
-        <div class="stat"><span class="label">Phones (ENS, max 5)</span><span id="nSensors" class="value big">–</span></div>
+        <div class="stat"><span class="label" id="nSensorsLabel">Phones (ENS)</span><span id="nSensors" class="value big">–</span></div>
         <div class="stat"><span class="label">Confirmed events</span><span id="nEvents" class="value big ok">–</span></div>
         <div class="stat"><span class="label">Triggers seen</span><span id="nTriggers" class="value">–</span></div>
         <div class="stat"><span class="label">Rejected</span><span id="nRejected" class="value bad">–</span></div>
@@ -62,6 +97,7 @@
         <div class="row"><span class="label">All triggers</span></div>
         <table><thead><tr><th>Time</th><th>Phone</th><th>PPV</th><th>Freq</th><th>Label</th><th>Result</th></tr></thead><tbody id="triggers"></tbody></table>
       </section>
+      </div>
     </main>
     <script type="module" src="/src/dashboard.ts"></script>
   </body>
