@@ -23,6 +23,12 @@ Context: Tremor Witness has **many lightweight writers**. Every resident's phone
 - **Reproduce:** `createPublicClient({ chain: rabdi({ accessKey: "" }), transport: http() })`. The console prints the warning; then poll `select().from(...)` every few seconds from several tabs.
 - **Suggestion:** an unauthenticated **read** tier separate from write limits, since dashboards and verifiers are read-heavy. Also document what "heavily" means in numbers.
 
+### 3b. A browser access key is public by construction (06:55)
+- **What happened:** to stop the throttling we added an access key. Arkiv's docs say to read it from the bundler's public env and "lock it to your site". Vercel then flagged `VITE_ARKIV_ACCESS_KEY` as "looks like a credential … exposes its value to anyone visiting your site" and refused to add it until we chose `--type config`.
+- **The tension:** keeping the key server-side would force a proxy into the read path, which defeats our censorship-resistance design (readers must not depend on our server).
+- **What we did:** exposed it as Arkiv recommends, and locked it to our origin in the Hub.
+- **Suggestion:** a documented read-only, origin-scoped key type (or keyless reads with higher limits for reads), so browser dApps don't have to publish a key that also carries write or quota power.
+
 ## 4. Typed values: `u64(...)` wrappers on write, `{ value }` on read, and `bytes` in two shapes
 - **What happened (02:10):** numbers must be wrapped (`u64(Date.now())`) and come back as `{ value: bigint }`. A `bytes` column came back in a form we had to handle both as a `0x…` hex string and as a `Uint8Array`.
 - **Reproduce:** write `wave: stringToBytes(json)` with `createEntity`, then read it back with `.select({ wave: true })` and log `typeof e.wave.value`.
