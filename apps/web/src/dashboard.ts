@@ -323,6 +323,7 @@ async function refresh() {
     const windowMs = ui.win.value ? Number(ui.win.value) : (ens.ok && ens.windowMs) || 2000;
     const res = computeQuorum(triggers, { k, windowMs, isLive });
 
+    if (recorded) return; // the demo was opened while this live read was in flight: don't overwrite it
     ui.nSensors.textContent = String(phoneCount);
     ui.nEvents.textContent = String(res.events.length);
     ui.nTriggers.textContent = String(rows.length);
@@ -438,6 +439,7 @@ async function refresh() {
     ui.sync.textContent = `synced ${new Date().toLocaleTimeString()} from Arkiv`;
     ui.sync.className = "muted small";
   } catch (e) {
+    if (recorded) return;
     ui.sync.textContent = `Arkiv read failed: ${String((e as Error).message ?? e).slice(0, 120)}`;
     ui.sync.className = "bad small";
     document.getElementById("livePill")?.classList.add("down");
