@@ -89,3 +89,7 @@ Format: `## YYYY-MM-DD HH:MM IST · who · title`
 
 ## 2026-11-06 20:39 IST · Claude Code (for Dhruv Mulay) · Dashboard Setup tab (dynamic phone limits, both apps)
 - New `/api/site-setup` (passcode) writes site rules to ENS. Phone limits are now per site (`tw.max_phones`, `tw.max_mesh`) instead of a hard-coded 5. The dashboard Setup tab edits the rules and makes one invite QR for the web and mesh apps. The Monitor tab tags mesh phones and counts only sensing phones. Verified live (see LOG). 42 tests.
+
+## 2026-11-06 22:00 IST: dashboard visual upgrade
+- Monitor tab: status hero (latest confirmed event, seal state, flashes on a new event), quorum meter (newest burst n of k), live timeline canvas (phones x time, every reading coloured by result, size = PPV, green bands = quorum reached, hover tooltip, 2 min / 10 min / whole window), phone activity chips, sticky tabs, accented stat tiles, scrollable tables. New file apps/web/src/dashviz.ts (presentation only; quorum logic untouched).
+- Verified locally on test2 (6 events) at 1280px and 390px (no horizontal scroll); typecheck clean, 42 tests pass; deployed to production.

@@ -5,6 +5,7 @@ import { alignBySound, asOfCheck, coherence, gapCount, seqGaps, type AsOfReason,
 import { ENS_DEPLOYER, encodeInvite as _encInv, fetchInviteRecords, readPhoneHead, type PhoneHead, ensPublic, siteRegistrationHistory, listSitePhones, resolvePhones, siteExists, siteName, siteParams, siteLimits, siteDisasterParams, isMeshLabel, type EnsPhone, extendEvent, fetchEvents, fetchSensors, fetchSyncs, fetchTriggers, publicClientFor, swarmUploadJson, swarmUrl, walletClientFor, writeEvent, type SensorRow, type TriggerRow } from "@tw/chain";
 import { keccak256, toHex, type Hex } from "viem";
 import QRCode from "qrcode";
+import { initViz, renderViz } from "./dashviz";
 import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
 
 const MAX_PHONES = 5;
@@ -419,17 +420,31 @@ async function refresh() {
         })
         .join("") || `<tr><td colspan="6" class="muted">No triggers in this window.</td></tr>`;
 
+    renderViz({
+      site,
+      sinceMs: since,
+      k,
+      windowMs,
+      triggers,
+      res,
+      phones: ens.ok ? ens.phones.map((p) => ({ label: p.label, mesh: isMeshLabel(p.label) })) : admitted(sensors).inside.map((x) => ({ label: x.sensor, mesh: false })),
+      sealed: (id) => (sealed.has(id) ? "sealed" : sealing.get(id) === "sealing" ? "sealing" : sealing.get(id) === "error" ? "error" : "none"),
+      eventIdOf,
+      ok: true,
+    });
     ui.sync.textContent = `synced ${new Date().toLocaleTimeString()} from Arkiv`;
     ui.sync.className = "muted small";
   } catch (e) {
     ui.sync.textContent = `Arkiv read failed: ${String((e as Error).message ?? e).slice(0, 120)}`;
     ui.sync.className = "bad small";
+    document.getElementById("livePill")?.classList.add("down");
   } finally {
     busy = false;
   }
 }
 
 for (const el of [ui.site, ui.k, ui.win, ui.mins]) el.addEventListener("change", () => (slowAt.clear(), void refresh()));
+initViz();
 void refresh();
 setInterval(() => void refresh(), 8000);
 

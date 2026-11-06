@@ -9,8 +9,8 @@
   </head>
   <body>
     <main class="wide">
-      <header>
-        <h1>Tremor Witness · Dashboard</h1>
+      <header class="top">
+        <h1><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M2 12h4l2-6 4 12 3-9 2 3h5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Tremor Witness <span class="muted thin">· Dashboard</span><span id="livePill" class="pill"><i></i>live</span></h1>
         <p class="sub">Read directly from Arkiv (Rabdi testnet). The quorum is recomputed in your browser; no server of ours decides anything. <a href="/">sensor page →</a> · <a href="./tremor-witness-viewer.html" download>download offline viewer (one HTML file)</a></p>
       </header>
 
@@ -58,6 +58,19 @@
         <span id="sync" class="muted small">–</span>
       </section>
 
+      <section id="hero" class="card hero">
+        <div class="hero-main">
+          <span class="label">Site status</span>
+          <div id="heroTitle" class="hero-title">Loading…</div>
+          <div id="heroSub" class="muted hero-sub"></div>
+        </div>
+        <div class="hero-meter">
+          <span class="label" id="meterLabel">Agreeing right now</span>
+          <div id="meter" class="meter"></div>
+          <div id="meterSub" class="muted hero-sub"></div>
+        </div>
+      </section>
+
       <section class="card"><span id="trust" class="small">Reading the ENS registry…</span></section>
 
       <section class="grid">
@@ -68,6 +81,14 @@
       </section>
 
       <section class="card">
+        <div class="row"><span class="label">Live timeline: every reading, every phone</span>
+          <span class="spans"><button class="chip" data-span="120000">2 min</button><button class="chip active" data-span="600000">10 min</button><button class="chip" data-span="0">whole window</button></span></div>
+        <div class="tl-wrap"><canvas id="timeline"></canvas><div id="tlTip" class="tl-tip" hidden></div></div>
+        <div class="legend small muted"><span><i class="dot g"></i>in a confirmed event</span><span><i class="dot r"></i>rejected</span><span><i class="dot n"></i>waiting / grouped</span><span><i class="band"></i>quorum reached (k phones within the window)</span><span>dot size = PPV</span></div>
+        <div id="chips" class="phone-chips"></div>
+      </section>
+
+      <section class="card">
         <div class="row"><span class="label">Join: scan with each phone (Chrome)</span></div>
         <div class="join"><canvas id="joinQr" width="220" height="220"></canvas><div><code id="joinLink" class="small"></code><p id="inviteNote" class="status small">New phones need a committee invite. Already-registered phones can rejoin with this link.</p><button id="inviteBtn" class="ghost">Create invite (committee)</button></div></div>
         <p id="invites" class="status small">Invites: –</p>
@@ -75,27 +96,27 @@
 
       <section class="card">
         <div class="row"><span class="label">Phones at this site</span></div>
-        <table><thead><tr><th>Phone (ENS)</th><th>Rate</th><th>Status</th><th>Wallet</th><th>Committee</th></tr></thead><tbody id="sensors"></tbody></table>
+        <div class="tablewrap"><table><thead><tr><th>Phone (ENS)</th><th>Rate</th><th>Status</th><th>Wallet</th><th>Committee</th></tr></thead><tbody id="sensors"></tbody></table></div>
       </section>
 
       <section class="card">
         <div class="row"><span class="label">Attack checklist (what we refuse, live)</span></div>
-        <table><thead><tr><th>Attack</th><th>Defence</th><th>Status</th></tr></thead><tbody id="attacks"></tbody></table>
+        <div class="tablewrap"><table><thead><tr><th>Attack</th><th>Defence</th><th>Status</th></tr></thead><tbody id="attacks"></tbody></table></div>
       </section>
 
       <section class="card">
         <div class="row"><span class="label">Latest sealed evidence (any age, from Arkiv)</span></div>
-        <table><thead><tr><th>Time (IST)</th><th>Phones</th><th>PPV band</th><th>Evidence</th></tr></thead><tbody id="sealedAll"></tbody></table>
+        <div class="tablewrap"><table><thead><tr><th>Time (IST)</th><th>Phones</th><th>PPV band</th><th>Evidence</th></tr></thead><tbody id="sealedAll"></tbody></table></div>
       </section>
 
       <section class="card">
         <div class="row"><span class="label">Confirmed events (quorum reached)</span></div>
-        <table><thead><tr><th>Time</th><th>Phones</th><th>PPV band</th><th>Coherence (experimental)</th><th>Evidence</th></tr></thead><tbody id="events"></tbody></table>
+        <div class="tablewrap"><table><thead><tr><th>Time</th><th>Phones</th><th>PPV band</th><th>Coherence (experimental)</th><th>Evidence</th></tr></thead><tbody id="events"></tbody></table></div>
       </section>
 
       <section class="card">
         <div class="row"><span class="label">All triggers</span></div>
-        <table><thead><tr><th>Time</th><th>Phone</th><th>PPV</th><th>Freq</th><th>Label</th><th>Result</th></tr></thead><tbody id="triggers"></tbody></table>
+        <div class="tablewrap scroll"><table><thead><tr><th>Time</th><th>Phone</th><th>PPV</th><th>Freq</th><th>Label</th><th>Result</th></tr></thead><tbody id="triggers"></tbody></table></div>
       </section>
       </div>
     </main>
