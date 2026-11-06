@@ -63,7 +63,9 @@ export function alignBySound(anchors: SyncAnchor[], spreadMs = 15_000, minPhones
   const sessions: { chirp?: number; items: SyncAnchor[] }[] = [];
   for (const a of sorted) {
     // Find an open session with the same chirp ID (or both undefined) that started within spreadMs.
-    const s = [...sessions].reverse().find((x) => x.chirp === a.chirp && a.tMs - x.items[0]!.tMs <= spreadMs);
+    // Same chirp ID within the spread, AND this phone has no anchor of the same role in it yet: with only 6 IDs, an ID
+    // repeats within seconds when people tap repeatedly (real test), and a phone can't hear one chirp twice.
+    const s = [...sessions].reverse().find((x) => x.chirp === a.chirp && a.tMs - x.items[0]!.tMs <= spreadMs && !x.items.some((y) => y.sensor === a.sensor && y.role === a.role));
     if (s) s.items.push(a);
     else sessions.push({ chirp: a.chirp, items: [a] });
   }

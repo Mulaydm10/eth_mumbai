@@ -50,10 +50,16 @@ export async function listenForSync(toWallFromPerf: (perfMs: number) => number, 
   const det = new ToneSyncDetector(c.sampleRate, (perfMs, chirp) => onHeard(toWallFromPerf(perfMs), chirp));
   proc.onaudioprocess = (ev) => {
     const x = ev.inputBuffer.getChannelData(0);
-    // The buffer just captured ends ~now; date each 256-sample block back from the end.
-    const endPerf = performance.now();
     const bufMs = (x.length / c.sampleRate) * 1000;
-    for (let i = 0; i + BLOCK <= x.length; i += BLOCK) det.push(x.subarray(i, i + BLOCK), endPerf - bufMs + (i / c.sampleRate) * 1000);
+    // Date the buffer from the AUDIO clock, not from when this callback happens to run: on a busy phone callbacks slip
+    // by 100+ ms (real test). The input buffer precedes playbackTime by one buffer; map context time → performance
+    // time with getOutputTimestamp. Fall back to the callback time if the browser lacks either.
+    const ts = c.getOutputTimestamp?.();
+    const startPerf =
+      ts && ts.performanceTime && ts.contextTime !== undefined && Number.isFinite(ev.playbackTime)
+        ? ts.performanceTime + (ev.playbackTime - x.length / c.sampleRate - ts.contextTime) * 1000
+        : performance.now() - bufMs;
+    for (let i = 0; i + BLOCK <= x.length; i += BLOCK) det.push(x.subarray(i, i + BLOCK), startPerf + (i / c.sampleRate) * 1000);
   };
   const mute = c.createGain();
   mute.gain.value = 0;

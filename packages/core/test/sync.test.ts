@@ -59,6 +59,17 @@ describe("alignBySound v2", () => {
     expect(Math.abs(s.corrections.get("b")! - s.corrections.get("a")! - 5)).toBeLessThan(1);
   });
 
+  it("splits a repeated chirp ID into separate sessions (only 6 IDs; repeats within seconds in the real test)", () => {
+    const s = alignBySound([
+      { sensor: "a", tMs: 1_000, chirp: 3, role: "hear" },
+      { sensor: "b", tMs: 1_004, chirp: 3, role: "hear" },
+      { sensor: "a", tMs: 7_000, chirp: 3, role: "hear" }, // same ID 6 s later: a new chirp, not part of the first
+      { sensor: "b", tMs: 7_130, chirp: 3, role: "hear" },
+    ])!;
+    // Newest session = the second one (b 130 ms after a), not a mix of the two.
+    expect(Math.abs(s.corrections.get("b")! - s.corrections.get("a")! - 130)).toBeLessThan(1);
+  });
+
   it("returns null when no session has two phones", () => {
     expect(alignBySound([{ sensor: "a", tMs: 1, chirp: 0 }])).toBeNull();
   });
