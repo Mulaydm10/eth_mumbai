@@ -195,3 +195,14 @@ Test phones are named A/B/C here; raw device logs stay local (SafeMesh AGENTS.md
   sync (7 ms apart). C restarted offline: clock restored from disk (±118 ms).
 - Limit: with only 2 answering neighbours there is no majority, so the smaller error wins (a registered phone lying
   about its time could skew one neighbour). Emulator Bluetooth is simulated: real BLE δ TODO(measure).
+
+## 2026-11-06 20:25 IST — release 0.8.0 (pre-release)
+- versionCode 43 / 0.8.0. GitHub pre-release v0.8.0 (arm64 + universal + SHA256SUMS); v0.7.0 stays "Latest".
+- Secret check before publishing: every value in the Tremor Witness `.env` files (committee passcode, funder key,
+  Arkiv key, Vercel token) and the signing key file was searched for in the full git history and the unzipped
+  release APK: no hits except the funder's public address (an on-chain address, not a secret). No `.env`, keystore
+  or key.properties is tracked. The only 32-byte private key in the repo is the widely published example key used
+  in the golden test vectors (`src/test`, not packaged in the APK). Debug receiver not in the release APK. Phone keys
+  are generated on the phone (SecureRandom).
+- Downloaded assets re-verified against SHA256SUMS; public download link returns 200.
+- On hold until tomorrow (per Dhruv): no disaster settings, no new site; demo site name, settings and invite to come.

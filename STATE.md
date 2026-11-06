@@ -22,7 +22,7 @@ Demo phones: APK by public link, not on the tailnet, join + ENS-register on thei
 1. Dhruv's phone joins meshtest with the same v2 invite (1 use left, valid until 00:00 IST 7 Nov).
 2. Real-phone run (range/latency, relay via a 3rd phone), public APK link for demo phones.
 3. EXP-0001 validation: replay published accelerograms through the DSP; false-positive soak.
-4. Release 0.8.0 (clock + upload-on-reconnect) when asked. Re-voice M7 with ElevenLabs once the key works (cut/prep.py without DEMO_TTS=say).
+4. 0.8.0 published as pre-release. Waiting for the demo site name, settings and fresh invite (Dhruv, 7 Nov morning). Re-voice M7 with ElevenLabs once the key works (cut/prep.py without DEMO_TTS=say).
 
 ## How to run
 - Tests: `./gradlew :app:testDebugUnitTest` (live: `TWM_LIVE=1`). Vectors: `TW_REPO=… node tools/golden/{chain,core}-vectors.mjs`.
