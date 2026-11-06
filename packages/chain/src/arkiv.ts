@@ -280,22 +280,43 @@ export const SyncSchema = defineSchema(`${APP_TAG}.sync`, {
   sensor: str().indexed(),
   tMs: u64().indexed(),
   method: str(), // "sound"
+  chirp: u64().optional(), // v2: which of the 6 tone orders (the chirp's ID)
+  role: str().optional(), // v2: "emit" (this phone played it) | "hear" (this phone heard it)
 });
 
-export async function writeSync(w: ArkivWallet, a: { site: string; sensor: string; tMs: number; method: string }) {
-  return w.createEntity(SyncSchema, { site: a.site.slice(0, 64), sensor: a.sensor.slice(0, 64), tMs: u64(Math.round(a.tMs)), method: a.method.slice(0, 16) }, { expiration: ExpirationTime.fromDays(30) });
+export async function writeSync(w: ArkivWallet, a: { site: string; sensor: string; tMs: number; method: string; chirp?: number; role?: "emit" | "hear" }) {
+  return w.createEntity(
+    SyncSchema,
+    {
+      site: a.site.slice(0, 64),
+      sensor: a.sensor.slice(0, 64),
+      tMs: u64(Math.round(a.tMs)),
+      method: a.method.slice(0, 16),
+      ...(a.chirp !== undefined ? { chirp: u64(a.chirp) } : {}),
+      ...(a.role ? { role: a.role } : {}),
+    },
+    { expiration: ExpirationTime.fromDays(30), flags: { readonly: true } },
+  );
 }
 
 export async function fetchSyncs(p: ArkivPublic, site: string, sinceMs: number) {
   const res = await p
-    .select({ $key: true, $creator: true, sensor: true, tMs: true, method: true })
+    .select({ $key: true, $creator: true, sensor: true, tMs: true, method: true, chirp: true, role: true })
     .from(SyncSchema)
     .where(and(eq("site", site), gt("tMs", u64(Math.max(0, Math.floor(sinceMs))))))
     .orderBy(desc("tMs"))
     .limit(100)
     .fetch();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return res.entities.map((e: any) => ({ key: String(e.$key), creator: String(e.$creator), sensor: String(e.sensor.value), tMs: num(e.tMs), method: String(e.method.value) }));
+  return res.entities.map((e: any) => ({
+    key: String(e.$key),
+    creator: String(e.$creator),
+    sensor: String(e.sensor.value),
+    tMs: num(e.tMs),
+    method: String(e.method.value),
+    chirp: e.chirp?.value !== undefined ? Number(e.chirp.value) : undefined,
+    role: e.role?.value === "emit" ? ("emit" as const) : e.role?.value === "hear" ? ("hear" as const) : undefined,
+  }));
 }
 
 /** T2a: anyone can keep a sealed event alive on Arkiv (it was created with permissionlessExtension). */

@@ -254,7 +254,7 @@ const due = (k: string) => {
   slowAt.set(k, now);
   return true;
 };
-let syncCache: { sensor: string; tMs: number; creator: string }[] = [];
+let syncCache: { sensor: string; tMs: number; creator: string; chirp?: number; role?: "emit" | "hear" }[] = [];
 const headCache = new Map<string, PhoneHead>();
 async function refreshHeads(site: string, labels: string[]) {
   await Promise.all(labels.map(async (l) => { const h = await readPhoneHead(ensClient, site, l); if (h) headCache.set(l, h); }));
@@ -306,7 +306,7 @@ async function refresh() {
         return why === "ok";
       };
       phoneCount = ens.phones.length;
-      ui.trust.innerHTML = `${lastSync ? `<span class="ok">Clocks aligned by sound sync</span> (${[...lastSync.corrections].map(([k, v]) => `${esc(k)} ${v >= 0 ? "−" : "+"}${Math.abs(Math.round(v))} ms`).join(", ")}) · ` : ""}<span class="ok">Registry: ENSv2 (as-of: registered when recorded)</span> · <a href="https://sepolia.app.ens.domains/${esc(ens.siteName)}" target="_blank" rel="noopener">${esc(ens.siteName)}</a> · params from ENS text records: k=${ens.k ?? "–"}, window=${ens.windowMs ?? "–"} ms`;
+      ui.trust.innerHTML = `${lastSync ? `<span class="ok">Clocks aligned by sound sync${lastSync.chirp !== undefined ? ` #${lastSync.chirp}` : ""}</span> (${[...lastSync.corrections].map(([k, v]) => `${esc(k)} ${v >= 0 ? "−" : "+"}${Math.abs(Math.round(v))} ms`).join(", ")}) · ` : ""}<span class="ok">Registry: ENSv2 (as-of: registered when recorded)</span> · <a href="https://sepolia.app.ens.domains/${esc(ens.siteName)}" target="_blank" rel="noopener">${esc(ens.siteName)}</a> · params from ENS text records: k=${ens.k ?? "–"}, window=${ens.windowMs ?? "–"} ms`;
     } else {
       const { inside } = admitted(sensors);
       const owner = new Map(inside.map((s) => [s.sensor, s.creator.toLowerCase()]));

@@ -582,9 +582,9 @@ ui.start.addEventListener("click", async () => {
     stopListen?.();
     stopListen = await listenForSync(
       (perfMs) => Date.now() - (performance.now() - perfMs) + refOffset,
-      (wallMs) => {
-        ui.syncStatus.textContent = `Heard sync sound at ${new Date(wallMs).toLocaleTimeString()} — anchor saved (aligns phones even offline).`;
-        post({ kind: "sync", payload: { site: ui.site.value.trim(), sensor: ui.name.value.trim(), tMs: wallMs, method: "sound" } });
+      (wallMs, chirp) => {
+        ui.syncStatus.textContent = `Heard sync sound #${chirp} at ${new Date(wallMs).toLocaleTimeString()}: anchor saved (aligns phones even offline).`;
+        post({ kind: "sync", payload: { site: ui.site.value.trim(), sensor: ui.name.value.trim(), tMs: wallMs, method: "sound", chirp, role: "hear" } });
         if (navigator.vibrate) navigator.vibrate([40, 40, 40]);
       },
     );
@@ -618,9 +618,14 @@ ui.exportBtn.addEventListener("click", () => {
 
 requestAnimationFrame(draw);
 
-ui.syncBtn.addEventListener("click", () => {
-  void playSyncSignal();
-  ui.syncStatus.textContent = "Playing sync sound… every running phone nearby should hear it.";
+ui.syncBtn.addEventListener("click", async () => {
+  const { chirp, emitPerfMs } = await playSyncSignal();
+  const wallMs = Date.now() - (performance.now() - emitPerfMs) + refOffset;
+  ui.syncStatus.textContent = `Playing sync sound #${chirp}: other running phones nearby should hear it.`;
+  // The player anchors on its own emission time (it often can't hear its own speaker). Only if it is sensing.
+  if (running) post({ kind: "sync", payload: { site: ui.site.value.trim(), sensor: ui.name.value.trim(), tMs: wallMs, method: "sound", chirp, role: "emit" } });
+  ui.syncBtn.disabled = true;
+  setTimeout(() => (ui.syncBtn.disabled = false), 3000);
 });
 void flush();
 
