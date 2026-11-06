@@ -31,7 +31,10 @@ export const ENS_DEPLOY_BLOCK = 12072217n;
 export const ENS_RESOLVER: Address = "0xFA87654E65542Ad82428f3326c322d6a12C55957";
 export const ENS_PARENT_REGISTRY: Address = "0xf2EC49c03254C9F4F2843B00B1ECF277dDbeF76B";
 export const SEPOLIA_RPC = "https://ethereum-sepolia-rpc.publicnode.com";
-export const MAX_PHONES_PER_SITE = 5;
+export const MAX_PHONES_PER_SITE = 5; // vibration-sensing phones (web app)
+/** Disaster Mesh R1: companion-app phones use labels "mesh-…" and have their own cap, so they never take a sensing slot. */
+export const MAX_MESH_PHONES_PER_SITE = 15;
+export const isMeshLabel = (label: string) => label.startsWith("mesh-");
 
 export const ensPublic = (rpc = SEPOLIA_RPC) => createPublicClient({ chain: sepolia, transport: http(rpc) });
 type Pub = ReturnType<typeof ensPublic>;
@@ -117,6 +120,13 @@ export async function siteParams(pub: Pub, site: string) {
   const name = siteName(site);
   const [k, w] = await Promise.all([pub.getEnsText({ name, key: "tw.k" }).catch(() => null), pub.getEnsText({ name, key: "tw.window_ms" }).catch(() => null)]);
   return { k: k ? Number(k) : null, windowMs: w ? Number(w) : null };
+}
+
+/** Disaster Mesh R2: disaster-tier quorum (tw.dk, tw.dwindow_ms). Missing → null; the app falls back to tw.k/tw.window_ms. */
+export async function siteDisasterParams(pub: Pub, site: string) {
+  const name = siteName(site);
+  const [k, w] = await Promise.all([pub.getEnsText({ name, key: "tw.dk" }).catch(() => null), pub.getEnsText({ name, key: "tw.dwindow_ms" }).catch(() => null)]);
+  return { dk: k ? Number(k) : null, dwindowMs: w ? Number(w) : null };
 }
 
 // ---------------------------------------------------------------- committee writes (server only)

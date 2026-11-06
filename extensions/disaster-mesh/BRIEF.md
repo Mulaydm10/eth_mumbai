@@ -76,9 +76,11 @@ Base URL: `https://tremor-witness.vercel.app`. All endpoints are `POST` JSON (ex
 | `POST /api/ens-invite` | `{ site, pass }` | `{ ok, inviteId, exp, invite }` | **Committee only** (passcode). The app must NOT hold the passcode. A resident gets an invite (a QR/link containing `invite=...`) from the dashboard. |
 | `POST /api/ens-revoke` | `{ site, label, pass }` | `{ ok, txs }` | Committee only. Don't use it. |
 
-**Invite format:** the `invite` string is produced by `encodeInvite` in `packages/chain/src/invite.ts`. It is signed by the committee over `tremor-witness invite v1|site=<site>|id=<inviteId>|exp=<exp>` and is valid for 30 minutes, once. Accept it from a scanned QR (the URL's `invite` query parameter) and pass it through unchanged.
+**Invite format:** the `invite` string is produced by `encodeInvite` in `packages/chain/src/invite.ts`. It is signed by the committee over `tremor-witness invite v1|site=<site>|id=<inviteId>|exp=<exp>` and is valid for 30 minutes, once. Accept it from a scanned QR (the dashboard's URL carries it as the **`inv`** query parameter: `/?site=…&inv=…`; corrected 2026-11-06) and pass it through unchanged.
 
-**Labels:** `^[a-z0-9][a-z0-9-]{1,30}[a-z0-9]$`. **Max 5 phones per site** (`MAX_PHONES_PER_SITE`). ⚠ A native-app key registered as its own subname **uses one of the 5 slots** (the web app's key lives in browser localStorage, which a native app can't read). Recommended label: `<name>-m` (for example `dhruv-m`). If the limit is a problem, file a backend request (§8, R1).
+**Multi-use invites (v2, live since 2026-11-06, R5):** `POST /api/ens-invite {site, pass, uses: 2-20, ttlMin: 5-360}` returns an invite whose JSON adds `uses`, signed over `tremor-witness invite v2|site=…|id=…|exp=…|uses=…`. `/api/ens-register` admits up to `uses` phones, one per wallet (409 `this phone already joined with this invite` / `invite fully used`), and returns `usesLeft`. A v1 signature with `uses` added fails the signature check (403). The committee issues these (curl or `scripts/mesh-backend-check.ts` shows how); the app never holds the passcode.
+
+**Labels:** `^[a-z0-9][a-z0-9-]{1,30}[a-z0-9]$`. **Max 5 phones per site** (`MAX_PHONES_PER_SITE`). **Mesh phones use labels starting with `mesh-`** (for example `mesh-b0a8`). They have their own cap of **15 per site** (`MAX_MESH_PHONES_PER_SITE`) and never take one of the 5 sensing slots (R1, live). Any other label counts as a sensing phone.
 
 ### Chains and contracts (constants from `packages/chain/src/ens.ts` / `arkiv.ts`)
 - **Arkiv (Rabdi testnet), chain id 7794095.** Use the **public endpoint with no access key.** The project key is origin-locked to the website, and requests without an Origin get 403. Expect rate limits: back off on 429 and batch reads.
@@ -105,7 +107,7 @@ All mesh messages are JSON, signed by the phone key with EIP-191 over the canoni
 
 ### 5.2 Offline quorum
 - Every phone collects verified `dtrigger`s and runs `computeQuorum(triggers, {k, windowMs, isLive})` from `packages/core/src/quorum.ts`.
-- `k` and `windowMs` come from the cached site text records (disaster tier: `TODO`, propose `tw.dk` / `tw.dwindow_ms` in R2).
+- `k` and `windowMs` come from the cached site text records (disaster tier: `TODO`, read `tw.dk` / `tw.dwindow_ms` (R2: keys defined, reader `siteDisasterParams` in `packages/chain/src/ens.ts`, committee sets them with `scripts/ens-setup.ts dparams`; **not set on any site yet**, so fall back to `tw.k` / `tw.window_ms` and say so)).
 - Clock alignment: the last `/api/time` offset (kept from when online), plus mesh time-exchange (NTP-style RTT over the link) when offline.
 - Same inputs give the same output on every phone. Prove it with the golden vectors (§9).
 
@@ -124,7 +126,7 @@ All mesh messages are JSON, signed by the phone key with EIP-191 over the canoni
 - Every phone keeps an outbox (as the web app does). When online, it writes **its own** messages with its own key, so `$creator` = the phone. Phones never relay-write others' messages under their own key: that would break the trust model.
 - Optional (R4): one online phone uploads a **bundle** of other phones' signed messages, which verifiers check signature by signature. Needs a backend request first.
 - Gas: call `/api/drip` before the first write; about 0.00019 tGLM per write (measured).
-- Expiry: check-ins 30 days; disaster triggers 180 days (TODO: confirm with R2/R3).
+- Schemas (R2/R3, live): `tremor-witness.v1.dtrigger` and `tremor-witness.v1.checkin`, exact fields in `packages/chain/src/mesh.ts` (`DTriggerSchema`, `CheckinSchema`, write/fetch helpers). Both are written `readonly`. Expiry: dtrigger 180 days, check-in 30 days. Verified live: a mesh phone wrote both and they read back with `$creator` = that phone.
 
 ---
 

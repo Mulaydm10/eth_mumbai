@@ -7,6 +7,7 @@
 //   npx tsx --env-file=.env scripts/ens-setup.ts parent  [parentLabel=tremorwitness]            [--send]
 //   npx tsx --env-file=.env scripts/ens-setup.ts site    <site> [parentLabel]                     [--send]
 //   npx tsx --env-file=.env scripts/ens-setup.ts params  <site> <k> <windowMs> [parentLabel]      [--send]
+//   npx tsx --env-file=.env scripts/ens-setup.ts dparams <site> <dk> <dwindowMs> [parentLabel]    [--send]  (Disaster Mesh)
 //   npx tsx --env-file=.env scripts/ens-setup.ts phone   <site> <label> <0xaddr> [days=30]        [--send]
 //   npx tsx --env-file=.env scripts/ens-setup.ts revoke  <site> <label>                           [--send]
 //   npx tsx --env-file=.env scripts/ens-setup.ts phones  <site> [parentLabel]    (read-only: lists phones from logs)
@@ -224,6 +225,17 @@ export async function setSiteParams(site: string, k: number, windowMs: number, p
   });
 }
 
+/** Disaster Mesh R2: separate disaster-tier quorum text records (tw.dk, tw.dwindow_ms). */
+export async function setSiteDisasterParams(site: string, dk: number, dwindowMs: number, parent = PARENT_DEFAULT) {
+  const res = await addrs.resolver(parent.toLowerCase());
+  const name = dns(fullName([site.toLowerCase(), parent.toLowerCase()]));
+  const calls = [
+    encodeFunctionData({ abi: permissionedResolverAbi, functionName: "setText", args: [name, "tw.dk", String(dk)] }),
+    encodeFunctionData({ abi: permissionedResolverAbi, functionName: "setText", args: [name, "tw.dwindow_ms", String(dwindowMs)] }),
+  ];
+  return tx(`set tw.dk=${dk}, tw.dwindow_ms=${dwindowMs} on ${site}.${parent}.eth`, { address: res, abi: permissionedResolverAbi, functionName: "multicall", args: [calls] });
+}
+
 // ---------------------------------------------------------------- 4. phones
 export async function registerPhone(site: string, label: string, addr: Address, expiryDays: number, parent = PARENT_DEFAULT) {
   site = site.toLowerCase();
@@ -292,6 +304,7 @@ if (isMain) {
   if (cmd === "parent") await setupParent(rest[0]);
   else if (cmd === "site") await setupSite(rest[0]!, rest[1]);
   else if (cmd === "params") await setSiteParams(rest[0]!, Number(rest[1]), Number(rest[2]), rest[3]);
+  else if (cmd === "dparams") await setSiteDisasterParams(rest[0]!, Number(rest[1]), Number(rest[2]), rest[3]);
   else if (cmd === "phone") await registerPhone(rest[0]!, rest[1]!, rest[2] as Address, Number(rest[3] ?? 30));
   else if (cmd === "revoke") await revokePhone(rest[0]!, rest[1]!);
   else if (cmd === "phones") console.log(await listPhones(rest[0]!, rest[1]));

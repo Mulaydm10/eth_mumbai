@@ -3,7 +3,7 @@
 // too. A phone already registered to the same wallet may re-join without an invite.
 import { getAddress, isAddress, type Address, type Hex } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { LABEL_RE, MAX_PHONES_PER_SITE, ensCreateSite, ensRegisterPhone, ensureHeadGrant, listSitePhones, siteExists } from "../../../packages/chain/src/ens.js";
+import { LABEL_RE, MAX_MESH_PHONES_PER_SITE, MAX_PHONES_PER_SITE, ensCreateSite, isMeshLabel, ensRegisterPhone, ensureHeadGrant, listSitePhones, siteExists } from "../../../packages/chain/src/ens.js";
 import { decodeInvite, fetchInviteRecords, inviteSigner, writeInviteRecord } from "../../../packages/chain/src/invite.js";
 import { publicClientFor, walletClientFor } from "../../../packages/chain/src/arkiv.js";
 import { committee, fail } from "./_committee.js";
@@ -27,7 +27,10 @@ export async function POST(req: Request): Promise<Response> {
       }
       return fail(409, `${same.name} belongs to another phone; pick another name`);
     }
-    if (live.length >= MAX_PHONES_PER_SITE) return fail(409, `site is full (${MAX_PHONES_PER_SITE} phones)`);
+    // Sensing phones and Disaster Mesh phones ("mesh-…" labels, R1) have separate caps.
+    const mesh = isMeshLabel(l);
+    const cap = mesh ? MAX_MESH_PHONES_PER_SITE : MAX_PHONES_PER_SITE;
+    if (live.filter((p) => isMeshLabel(p.label) === mesh).length >= cap) return fail(409, `site is full (${cap} ${mesh ? "mesh " : ""}phones)`);
 
     // ---- T14 invite check ----
     const inv = invite ? decodeInvite(invite) : null;
@@ -40,12 +43,16 @@ export async function POST(req: Request): Promise<Response> {
     const arkiv = publicClientFor(process.env.ARKIV_ACCESS_KEY ?? "");
     const recs = await fetchInviteRecords(arkiv, s, committeeAddr, inv.inviteId);
     if (!recs.some((r) => r.kind === "issued")) return fail(403, "invite issuance not found on Arkiv");
-    if (recs.some((r) => r.kind === "used")) return fail(409, "invite already used");
+    // v1: single use. v2 (R5): up to `uses` joins, one per phone wallet. (Two joins racing at the same instant could
+    // both pass this count; acceptable for a committee-issued, short-lived demo invite.)
+    const used = recs.filter((r) => r.kind === "used");
+    if (used.length >= (inv.uses ?? 1)) return fail(409, inv.uses ? `invite fully used (${inv.uses} phones)` : "invite already used");
+    if (used.some((r) => r.phone.toLowerCase() === address.toLowerCase())) return fail(409, "this phone already joined with this invite");
 
     if (!exists) await ensCreateSite(wallet, pub, s);
     const r = await ensRegisterPhone(wallet, pub, s, l, address as Address, 30);
     await writeInviteRecord(walletClientFor(key, process.env.ARKIV_ACCESS_KEY ?? ""), { site: s, inviteId: inv.inviteId, kind: "used", exp: inv.exp, phone: getAddress(address), label: l });
-    return Response.json({ ok: true, ...r, inviteId: inv.inviteId });
+    return Response.json({ ok: true, ...r, inviteId: inv.inviteId, ...(inv.uses ? { usesLeft: inv.uses - used.length - 1 } : {}) });
   } catch (e) {
     return fail(500, String((e as Error).message ?? e).slice(0, 300));
   }

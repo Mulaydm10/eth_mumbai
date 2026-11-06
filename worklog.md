@@ -82,3 +82,7 @@ Format: `## YYYY-MM-DD HH:MM IST · who · title`
 ## 2026-11-06 15:34 IST · Claude Code (for Dhruv Mulay) · Disaster Mesh build brief
 - Wrote `extensions/disaster-mesh/BRIEF.md` (handoff to a separate Claude that builds the native Android companion app) and `BACKEND_REQUESTS.md` (requests R1–R4; only the main session implements backend changes). The brief locks the web app, packages and backend against edits by the app session. No web app code changed.
 - 15:45 IST: Brief updated (Dhruv): the app now builds on the SafeMesh code (GPL-3.0 app repo, provenance stated, separate program; take the mesh layer, drop the unauthenticated SOS and GPS broadcast).
+
+## 2026-11-06 17:06 IST · Claude Code (for Dhruv Mulay) · Disaster Mesh backend (R1, R2, R3, R5)
+- R5: v2 multi-use invites (`uses` 2-20, `ttlMin` ≤ 360, one join per wallet). R1: `mesh-` labels get a separate cap of 15/site. R2/R3: `dtrigger` and `checkin` Arkiv schemas, plus the disaster quorum text-record reader and setter. R4 deferred. BRIEF corrected (`inv=`, `mesh-` labels, schema pointers).
+- Tests: 42 unit (37 core + 5 chain invite/mesh). Live: `scripts/mesh-backend-check.ts meshtest` 12/12 against production. v1 invites and sensing-phone joins verified unchanged.
