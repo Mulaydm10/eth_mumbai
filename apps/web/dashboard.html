@@ -3,14 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#0f1115" />
+    <meta name="theme-color" content="#050505" />
     <title>Tremor Mesh · Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;700&family=Courier+Prime:wght@400;700&family=JetBrains+Mono:wght@400;500;700&display=swap" />
     <link rel="stylesheet" href="/src/style.css" />
   </head>
-  <body>
+  <body class="dash">
     <main class="wide">
       <header class="top">
         <h1><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M2 12h4l2-6 4 12 3-9 2 3h5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Tremor Mesh <span class="muted thin">· Dashboard</span><span id="livePill" class="pill"><i></i>live</span></h1>
+        <p class="kicker">ETHGlobal Mumbai 2026 · Arkiv · ENSv2 · Swarm</p>
         <p class="sub">Read directly from Arkiv (Rabdi testnet). The quorum is recomputed in your browser; no server of ours decides anything. <a href="/">sensor page →</a> · <a href="./tremor-witness-viewer.html" download>download offline viewer (one HTML file)</a></p>
       </header>
 
@@ -61,7 +64,10 @@
         <label class="label" for="mins">Last min</label><input id="mins" class="input" type="number" min="1" max="1440" value="30" />
         <label class="label"><input id="autoseal" type="checkbox" checked /> Auto-seal to Swarm</label>
         <span id="sync" class="muted small">–</span>
+        <button id="recBtn" class="rec-btn" type="button">▶ Replay recorded session (6 Nov)</button>
       </section>
+
+      <section id="recBanner" class="card rec-banner" hidden><b>RECORDED SESSION · not live</b><span id="recInfo" class="mono small"></span><span class="muted small">The 6 Nov live test at ETHGlobal Mumbai, saved from Arkiv + ENS and recomputed here exactly like live data.</span></section>
 
       <section id="hero" class="card hero">
         <div class="hero-main">
@@ -76,7 +82,7 @@
         </div>
       </section>
 
-      <section class="card"><span id="trust" class="small">Reading the ENS registry…</span></section>
+      <section class="card live-only"><span id="trust" class="small">Reading the ENS registry…</span></section>
 
       <section class="grid">
         <div class="stat"><span class="label" id="nSensorsLabel">Phones (ENS)</span><span id="nSensors" class="value big">–</span></div>
@@ -94,32 +100,48 @@
       </section>
 
       <section class="card">
+        <div class="row"><span class="label">Event replay · latest confirmed event</span><span id="replayNote" class="small muted mono"></span></div>
+        <canvas id="replay"></canvas>
+      </section>
+
+      <section class="duo">
+        <div class="card"><div class="row"><span class="label">Why readings were refused</span></div><div id="refusals"></div></div>
+        <div class="card"><div class="row"><span class="label" id="syncLabel">Sound sync</span></div><div id="syncPanel"></div></div>
+      </section>
+
+      <section class="card">
+        <div class="row"><span class="label">Session map · readings per minute, per phone</span></div>
+        <canvas id="heat"></canvas>
+        <div class="legend small muted"><span>brighter = more readings</span><span><i class="band"></i>red outline = in a confirmed event</span></div>
+      </section>
+
+      <section class="card live-only">
         <div class="row"><span class="label">Join: scan with each phone (Chrome)</span></div>
         <div class="join"><canvas id="joinQr" width="220" height="220"></canvas><div><code id="joinLink" class="small"></code><p id="inviteNote" class="status small">New phones need a committee invite. Already-registered phones can rejoin with this link.</p><button id="inviteBtn" class="ghost">Create invite (committee)</button></div></div>
         <p id="invites" class="status small">Invites: –</p>
       </section>
 
-      <section class="card">
+      <section class="card live-only">
         <div class="row"><span class="label">Phones at this site</span></div>
         <div class="tablewrap"><table><thead><tr><th>Phone (ENS)</th><th>Rate</th><th>Status</th><th>Wallet</th><th>Committee</th></tr></thead><tbody id="sensors"></tbody></table></div>
       </section>
 
-      <section class="card">
+      <section class="card live-only">
         <div class="row"><span class="label">Attack checklist (what we refuse, live)</span></div>
         <div class="tablewrap"><table><thead><tr><th>Attack</th><th>Defence</th><th>Status</th></tr></thead><tbody id="attacks"></tbody></table></div>
       </section>
 
-      <section class="card">
+      <section class="card live-only">
         <div class="row"><span class="label">Latest sealed evidence (any age, from Arkiv)</span></div>
         <div class="tablewrap"><table><thead><tr><th>Time (IST)</th><th>Phones</th><th>PPV band</th><th>Evidence</th></tr></thead><tbody id="sealedAll"></tbody></table></div>
       </section>
 
-      <section class="card">
+      <section class="card live-only">
         <div class="row"><span class="label">Confirmed events (quorum reached)</span></div>
         <div class="tablewrap"><table><thead><tr><th>Time</th><th>Phones</th><th>PPV band</th><th>Coherence (experimental)</th><th>Evidence</th></tr></thead><tbody id="events"></tbody></table></div>
       </section>
 
-      <section class="card">
+      <section class="card live-only">
         <div class="row"><span class="label">All triggers</span></div>
         <div class="tablewrap scroll"><table><thead><tr><th>Time</th><th>Phone</th><th>PPV</th><th>Freq</th><th>Label</th><th>Result</th></tr></thead><tbody id="triggers"></tbody></table></div>
       </section>

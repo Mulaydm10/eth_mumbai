@@ -5,7 +5,7 @@ import { alignBySound, asOfCheck, coherence, gapCount, seqGaps, type AsOfReason,
 import { ENS_DEPLOYER, encodeInvite as _encInv, fetchInviteRecords, readPhoneHead, type PhoneHead, ensPublic, siteRegistrationHistory, listSitePhones, resolvePhones, siteExists, siteName, siteParams, siteLimits, siteDisasterParams, isMeshLabel, type EnsPhone, extendEvent, fetchEvents, fetchSensors, fetchSyncs, fetchTriggers, publicClientFor, swarmUploadJson, swarmUrl, walletClientFor, writeEvent, type SensorRow, type TriggerRow } from "@tw/chain";
 import { keccak256, toHex, type Hex } from "viem";
 import QRCode from "qrcode";
-import { initViz, renderViz } from "./dashviz";
+import { initViz, renderViz, setSpan } from "./dashviz";
 import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
 
 const MAX_PHONES = 5;
@@ -262,8 +262,9 @@ async function refreshHeads(site: string, labels: string[]) {
 }
 
 let busy = false;
+let recorded = false; // showing the recorded 6 Nov session instead of live data
 async function refresh() {
-  if (busy) return;
+  if (busy || recorded) return;
   busy = true;
   const site = ui.site.value.trim();
   const join = `${location.origin.startsWith("http") && !location.origin.includes("localhost") ? location.origin : "https://tremor-witness.vercel.app"}/?site=${encodeURIComponent(site)}`;
@@ -431,6 +432,8 @@ async function refresh() {
       sealed: (id) => (sealed.has(id) ? "sealed" : sealing.get(id) === "sealing" ? "sealing" : sealing.get(id) === "error" ? "error" : "none"),
       eventIdOf,
       ok: true,
+      rawT: new Map(rows.map((r) => [r.key, r.tMs])),
+      sync: lastSync ? { chirp: lastSync.chirp, refMs: lastSync.refMs, corrections: [...lastSync.corrections] } : null,
     });
     ui.sync.textContent = `synced ${new Date().toLocaleTimeString()} from Arkiv`;
     ui.sync.className = "muted small";
@@ -447,6 +450,53 @@ for (const el of [ui.site, ui.k, ui.win, ui.mins]) el.addEventListener("change",
 initViz();
 void refresh();
 setInterval(() => void refresh(), 8000);
+
+// ---- Recorded session: the 6 Nov live test (EXP-0004), saved from Arkiv + ENS before the entities expire.
+// Recomputed here exactly like live data: sound-sync correction, the stored as-of verdicts, computeQuorum.
+const REC_URL = "/demo/ethmumbai-demo-2026-11-06.json";
+interface RecData {
+  site: string; window: { from: string; to: string }; rules: { k: number; windowMs: number };
+  phones: string[]; readings: (TriggerRow & { result: string; asOf: string })[];
+  sync: { chirp: number; refIST: string; refMs: number; corrections: Record<string, number> };
+  sealed: { eventId: string; swarmRef: string }[];
+}
+async function showRecorded() {
+  const d = (await (await fetch(REC_URL)).json()) as RecData;
+  recorded = true;
+  document.querySelector("main")!.classList.add("recorded");
+  $("recBanner").hidden = false;
+  $("recBtn").textContent = "■ Back to live";
+  const corr = new Map(Object.entries(d.sync.corrections));
+  const session: SyncSession = { refMs: 0, chirp: d.sync.chirp, corrections: corr };
+  const asOf = new Map(d.readings.map((r) => [r.key, r.asOf]));
+  const triggers: Trigger[] = d.readings.map((r) => ({ id: r.key, sensor: r.sensor, creator: r.creator, tMs: correctTime(r.sensor, r.tMs, session), ppvMmS: r.ppvMmS, fDomHz: r.fDomHz, label: r.label, createdAtMs: r.createdAtMs }));
+  const res = computeQuorum(triggers, { k: d.rules.k, windowMs: d.rules.windowMs, isLive: (_s, _c, _t, t) => asOf.get(t.id) === "ok" });
+  const sealedIds = new Set(d.sealed.map((e) => e.eventId));
+  const from = Date.parse(d.window.from), to = Date.parse(d.window.to);
+  ui.nSensors.textContent = String(d.phones.length);
+  ui.nEvents.textContent = String(res.events.length);
+  ui.nTriggers.textContent = String(d.readings.length);
+  ui.nRejected.textContent = String(res.rejected.length);
+  $("recInfo").textContent = `${d.site} · ${new Date(from).toLocaleString("en-IN", { timeZone: "Asia/Kolkata", hour12: false })} – ${new Date(to).toLocaleTimeString("en-IN", { timeZone: "Asia/Kolkata", hour12: false })} IST · ${d.readings.length} readings · ${d.sealed[0] ? `sealed on Swarm ${d.sealed[0].swarmRef.slice(0, 10)}…` : ""}`;
+  setSpan(0);
+  renderViz({
+    site: d.site, sinceMs: from, k: d.rules.k, windowMs: d.rules.windowMs, triggers, res,
+    phones: d.phones.map((label) => ({ label, mesh: isMeshLabel(label) })),
+    sealed: (id) => (sealedIds.has(id) ? "sealed" : "none"), eventIdOf, ok: true, nowMs: to, recorded: true,
+    rawT: new Map(d.readings.map((r) => [r.key, r.tMs])),
+    sync: { chirp: d.sync.chirp, refMs: d.sync.refMs, corrections: [...corr] },
+  });
+}
+function showLive() {
+  recorded = false;
+  document.querySelector("main")!.classList.remove("recorded");
+  $("recBanner").hidden = true;
+  $("recBtn").textContent = "▶ Replay recorded session (6 Nov)";
+  setSpan(600_000);
+  void refresh();
+}
+$("recBtn").addEventListener("click", () => (recorded ? showLive() : void showRecorded().catch((e) => alert(`Could not load the recorded session: ${e}`))));
+if (q.get("recorded") === "1") void showRecorded();
 
 import { showBuild } from "./build";
 showBuild();

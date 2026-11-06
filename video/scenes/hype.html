@@ -1,0 +1,453 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<title>Tremor Mesh hype scenes</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Atkinson+Hyperlegible+Next:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap">
+<style>html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}</style>
+</head><body><canvas id="c" width="1920" height="1080"></canvas>
+<script>
+// Tremor Mesh submission video, v2 "hype" cut. Every frame is a pure function of t (seconds), rendered by the
+// demo-video skill's frames.mjs at 60 fps. Scene by URL hash. Numbers are real (recorded dataset, EXP-0004).
+const W = 1920, H = 1080;
+const OUT = document.getElementById("c").getContext("2d");
+const mk = () => { const c = document.createElement("canvas"); c.width = W; c.height = H; return c; };
+const L = mk(), g = L.getContext("2d"), RC = mk(), rg = RC.getContext("2d"), CC = mk(), cg = CC.getContext("2d");
+const RED = "#ff3347", INK = "#f5f5f3", DIM = "#7a7a7a", MUTE = "#bdbdbd", BG = "#050505";
+const HY = '"Anton", Impact, sans-serif', MONO = '"JetBrains Mono", monospace', SANS = '"Atkinson Hyperlegible Next", sans-serif';
+const cl = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const ss = (a, b, t) => { const x = cl((t - a) / (b - a)); return x * x * (3 - 2 * x); };
+const eo = (x) => 1 - Math.pow(1 - cl(x), 3);
+const eob = (x) => { x = cl(x); const c1 = 1.9, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+const lerp = (a, b, k) => a + (b - a) * k;
+const hash = (n) => { const s = Math.sin(n * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
+const imp = (t, arr) => arr.reduce((a, [ti, s = 1]) => (t >= ti ? a + s * Math.exp(-(t - ti) * 9) : a), 0);
+
+// ---------- post: shake, zoom, rgb split, glitch slices, flashes, crt squash, scanlines, grain, vignette
+const SCAN = mk(); { const s = SCAN.getContext("2d"); s.fillStyle = "rgba(0,0,0,.18)"; for (let y = 0; y < H; y += 4) s.fillRect(0, y, W, 2); }
+const VIG = mk(); { const v = VIG.getContext("2d"); const gr = v.createRadialGradient(W / 2, H / 2, H * 0.35, W / 2, H / 2, H * 1.0); gr.addColorStop(0, "rgba(0,0,0,0)"); gr.addColorStop(1, "rgba(0,0,0,.8)"); v.fillStyle = gr; v.fillRect(0, 0, W, H); }
+const GRAIN = [0, 1, 2, 3].map((k) => { const c = document.createElement("canvas"); c.width = 480; c.height = 270; const x = c.getContext("2d"), im = x.createImageData(480, 270); for (let i = 0; i < 480 * 270; i++) { const v = hash(i * 0.731 + k * 91.3) * 255; im.data[i * 4] = im.data[i * 4 + 1] = im.data[i * 4 + 2] = v; im.data[i * 4 + 3] = 255; } x.putImageData(im, 0, 0); return c; });
+function tint(cx, col) { cx.globalCompositeOperation = "source-over"; cx.drawImage(L, 0, 0); cx.globalCompositeOperation = "multiply"; cx.fillStyle = col; cx.fillRect(0, 0, W, H); cx.globalCompositeOperation = "source-over"; }
+function post(t, fx = {}) {
+  const f = Math.floor(t * 60);
+  OUT.save(); OUT.fillStyle = "#000"; OUT.fillRect(0, 0, W, H);
+  const sh = fx.shake ?? 0, sx = (hash(f * 1.31) - 0.5) * 2 * sh, sy = (hash(f * 2.71 + 5) - 0.5) * 2 * sh;
+  const z = fx.zoom ?? 1;
+  OUT.translate(W / 2 + sx, H / 2 + sy); OUT.rotate(fx.rot ?? 0); OUT.scale(z, z * (fx.sy ?? 1)); OUT.translate(-W / 2, -H / 2);
+  const d = fx.rgb ?? 0;
+  if (d > 0.6) { tint(rg, "#ff0000"); tint(cg, "#00ffff"); OUT.globalCompositeOperation = "lighter"; OUT.drawImage(RC, d, 0); OUT.drawImage(CC, -d, 0); OUT.globalCompositeOperation = "source-over"; }
+  else OUT.drawImage(L, 0, 0);
+  OUT.restore();
+  const gl = fx.glitch ?? 0;
+  if (gl > 0.02) { const fr = Math.floor(t * 24); for (let i = 0; i < 14; i++) { if (hash(fr * 7.1 + i) > gl) continue; const y = Math.floor(hash(i * 3.1 + fr) * H), h = 6 + Math.floor(hash(i + fr * 1.7) * 70), off = (hash(i * 9.7 + fr) - 0.5) * 220 * gl; OUT.drawImage(OUT.canvas, 0, y, W, h, off, y, W, h); } }
+  if ((fx.flash ?? 0) > 0.01) { OUT.fillStyle = `rgba(255,255,255,${cl(fx.flash)})`; OUT.fillRect(0, 0, W, H); }
+  if ((fx.red ?? 0) > 0.01) { OUT.fillStyle = `rgba(255,51,71,${cl(fx.red)})`; OUT.fillRect(0, 0, W, H); }
+  if ((fx.black ?? 0) > 0.01) { OUT.fillStyle = `rgba(0,0,0,${cl(fx.black)})`; OUT.fillRect(0, 0, W, H); }
+  OUT.drawImage(SCAN, 0, 0);
+  OUT.imageSmoothingEnabled = false; OUT.globalAlpha = 0.06; OUT.drawImage(GRAIN[Math.floor(t * 24) % 4], 0, 0, W, H); OUT.globalAlpha = 1; OUT.imageSmoothingEnabled = true;
+  OUT.drawImage(VIG, 0, 0);
+}
+function fxOf(t, hits, extra = {}) { const i = imp(t, hits); return { shake: i * 26, rgb: 2 + i * 16, glitch: cl(i * 0.5), flash: 0, ...extra }; }
+
+// ---------- drawing helpers (on layer g)
+function clear() { g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.fillStyle = BG; g.fillRect(0, 0, W, H); }
+function T(s, x, y, o = {}) {
+  g.save(); g.globalAlpha = o.a ?? 1; g.fillStyle = o.col ?? INK; g.font = `${o.w ?? 400} ${o.size ?? 40}px ${o.f ?? HY}`;
+  g.textAlign = o.align ?? "center"; g.textBaseline = o.base ?? "middle"; if (o.ls) g.letterSpacing = o.ls + "px";
+  if (o.glow) { g.shadowColor = o.col ?? INK; g.shadowBlur = o.glow; }
+  g.fillText(s, x, y); g.restore();
+}
+// slam: word crashes in from big, ghost trails, settles; exits by blowing past the camera
+function slam(s, x, y, t, t0, t1, o = {}) {
+  if (t < t0 || t > t1) return; const a = t - t0, k = cl(a / 0.2), out = ss(t1 - 0.22, t1, t);
+  const sc = (a < 0.2 ? lerp(o.from ?? 3.2, 1, eo(k)) : 1 + (a - 0.2) * 0.025) * (1 + out * 1.8);
+  const al = k * (1 - out);
+  for (let gh = 2; gh >= 0; gh--) {
+    const gs = gh === 0 ? 1 : 1 + gh * 0.06 * (1 - k * 0.7);
+    g.save(); g.translate(x, y); g.rotate(o.rot ?? 0); g.scale(sc * gs, sc * gs);
+    T(s, 0, 0, { ...o, a: al * (gh === 0 ? 1 : 0.18), glow: gh === 0 ? o.glow : 0 }); g.restore();
+  }
+}
+function line(x1, y1, x2, y2, col, lw = 2, a = 1, dash) { g.save(); g.globalAlpha = a; g.strokeStyle = col; g.lineWidth = lw; if (dash) g.setLineDash(dash); g.beginPath(); g.moveTo(x1, y1); g.lineTo(x2, y2); g.stroke(); g.restore(); }
+function circ(x, y, r, o = {}) { if (r <= 0) return; g.save(); g.globalAlpha = o.a ?? 1; g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); if (o.glow) { g.shadowColor = o.fill ?? o.stroke; g.shadowBlur = o.glow; } if (o.fill) { g.fillStyle = o.fill; g.fill(); } if (o.stroke) { g.lineWidth = o.lw ?? 2; g.strokeStyle = o.stroke; if (o.dash) g.setLineDash(o.dash); g.stroke(); } g.restore(); }
+function rect(x, y, w, h, o = {}) { g.save(); g.globalAlpha = o.a ?? 1; g.beginPath(); g.roundRect(x, y, w, h, o.r ?? 0); if (o.glow) { g.shadowColor = o.stroke ?? o.fill; g.shadowBlur = o.glow; } if (o.fill) { g.fillStyle = o.fill; g.fill(); } if (o.stroke) { g.lineWidth = o.lw ?? 2; g.strokeStyle = o.stroke; g.stroke(); } g.restore(); }
+// 3D camera: y up
+function cam(yaw, pitch, dist, fov, target = [0, 0, 0], cx = W / 2, cy = H / 2) { return { cyw: Math.cos(yaw), syw: Math.sin(yaw), cp: Math.cos(pitch), sp: Math.sin(pitch), dist, fov, target, cx, cy }; }
+function P(c, x, y, z) {
+  x -= c.target[0]; y -= c.target[1]; z -= c.target[2];
+  const X = x * c.cyw - z * c.syw; let Z = x * c.syw + z * c.cyw; const Y = y * c.cp - Z * c.sp; Z = y * c.sp + Z * c.cp + c.dist;
+  if (Z < 20) return null; const s = c.fov / Z; return { x: c.cx + X * s, y: c.cy - Y * s, s, z: Z };
+}
+function L3(c, a, b, col, lw = 2, al = 1) { const p = P(c, ...a), q = P(c, ...b); if (p && q) line(p.x, p.y, q.x, q.y, col, lw, al); }
+function poly3(c, pts, col, lw, al) { g.save(); g.globalAlpha = al; g.strokeStyle = col; g.lineWidth = lw; g.beginPath(); let st = false; for (const p0 of pts) { const p = P(c, ...p0); if (!p) { st = false; continue; } st ? g.lineTo(p.x, p.y) : g.moveTo(p.x, p.y); st = true; } g.stroke(); g.restore(); }
+// seismograph traces flying past at depth (background motif)
+function traces(t, n, col = "#2a2a2a", speed = 1) {
+  for (let i = 0; i < n; i++) {
+    const z = ((i * 173 + t * 300 * speed) % 2400) + 80, s = 700 / z, yb = H / 2 + (hash(i) - 0.5) * 2400 * s, a = cl(1 - z / 2400) * 0.9;
+    g.save(); g.globalAlpha = a; g.strokeStyle = col; g.lineWidth = Math.max(1, 3 * s); g.beginPath();
+    for (let x = 0; x <= W; x += 12) { const u = (x - W / 2) / s * 0.01 + t * 6 + i; const y = yb + Math.sin(u) * 30 * s * (1 + Math.sin(u * 0.37) * 0.8) + Math.sin(u * 3.3) * 8 * s; x ? g.lineTo(x, y) : g.moveTo(x, y); }
+    g.stroke(); g.restore();
+  }
+}
+function shards(t, t0, n, cx, cy, seed, col = INK, spd = 1) {
+  if (t < t0) return; const a = t - t0; if (a > 2.5) return;
+  for (let i = 0; i < n; i++) {
+    const ang = hash(seed + i) * Math.PI * 2, v = (300 + hash(seed + i * 2.1) * 1400) * spd, r = v * a - 300 * a * a * 0;
+    const x = cx + Math.cos(ang) * r, y = cy + Math.sin(ang) * r + 400 * a * a, s = 6 + hash(i + seed) * 26;
+    g.save(); g.translate(x, y); g.rotate(a * (hash(i * 5 + seed) - 0.5) * 18); g.globalAlpha = cl(1 - a / 2.2); g.fillStyle = col; g.fillRect(-s / 2, -s / 6, s, s / 3); g.restore();
+  }
+}
+
+// ============================================================ scenes
+const S = {};
+
+// 1. NEWS: three real stories fly at the camera, then the quote that started it
+S.news = { dur: 14, draw(t) {
+  clear(); traces(t, 26, "#262626", 1.4);
+  const cards = [
+    { src: "THE ASIAN AGE · OCT 2017", h: ["METRO VIBRATIONS", "“BELOW THE LIMIT”"], sub: "MMRC on residents’ phone readings: “can’t be that accurate.”" },
+    { src: "FREE PRESS JOURNAL · 23 MAY 2025", h: ["HERITAGE WALL CRACKS", "NEAR GATEWAY OF INDIA"], sub: "Colaba residents demand real-time vibration data shared with them." },
+    { src: "MUMBAI LIVE · SUPREME COURT", h: ["MAHIM BUILDINGS TILT.", "COURT ASKS FOR TREMORS."], sub: "MMRCL directed to file details of any tremors." },
+  ];
+  const hits = [[10.3, 1.6], [10.55, 1.2], [12.4, 1.4]];
+  cards.forEach((c, i) => {
+    const t0 = 0.2 + i * 3.35, u = t - t0; if (u < 0 || u > 3.35) return;
+    hits.push([t0 + 0.45, 0.9]);
+    const side = i % 2 ? -1 : 1;
+    let sc, rot, al = 1;
+    if (u < 0.5) { const k = eob(u / 0.5); sc = lerp(0.04, 1, k); rot = lerp(side * 0.9, side * 0.035, eo(u / 0.5)); al = cl(u / 0.15); }
+    else if (u < 2.95) { sc = 1 + (u - 0.5) * 0.05; rot = side * 0.035 - (u - 0.5) * side * 0.01; }
+    else { const k = (u - 2.95) / 0.4; sc = 1.12 + k * k * 7; rot = side * 0.01; al = 1 - k; }
+    g.save(); g.translate(W / 2, H / 2); g.rotate(rot); g.transform(1, 0, side * -0.06, 1, 0, 0); g.scale(sc, sc); g.globalAlpha = al;
+    rect(-560, -300, 1120, 600, { fill: "#0e0e0e", stroke: "#3a3a3a", lw: 2, a: al });
+    rect(-560, -300, 14, 600, { fill: i === 0 ? RED : INK, a: al });
+    T(c.src, -500, -230, { f: MONO, w: 700, size: 24, col: DIM, align: "left", a: al, ls: 2 });
+    c.h.forEach((ln, j) => T(ln, -500, -110 + j * 112, { size: 104, align: "left", a: al }));
+    T(c.sub, -500, 190, { f: SANS, w: 700, size: 32, col: i === 0 ? RED : MUTE, align: "left", a: al });
+    g.restore();
+  });
+  shards(t, 10.25, 90, W / 2, H / 2, 11);
+  slam("“CAN’T BE THAT", W / 2, H / 2 - 120, t, 10.3, 12.25, { size: 210, col: RED, glow: 30 });
+  slam("ACCURATE.”", W / 2, H / 2 + 110, t, 10.55, 12.25, { size: 210, col: RED, glow: 30 });
+  if (t > 11 && t < 12.25) T("— MMRC, on residents’ phone readings, 2017", W / 2, H / 2 + 300, { f: MONO, w: 700, size: 26, col: MUTE, a: ss(11, 11.3, t) * (1 - ss(12, 12.25, t)) });
+  slam("CHALLENGE", W / 2, H / 2 - 100, t, 12.4, 14.1, { size: 230 });
+  slam("ACCEPTED.", W / 2, H / 2 + 120, t, 12.62, 14.1, { size: 230, col: RED, glow: 40 });
+  return fxOf(t, hits, { flash: imp(t, [[12.4, 0.5]]), zoom: 1 + imp(t, [[10.3, 0.05], [12.4, 0.05]]) });
+}};
+
+// 2. IDEA: a building assembles in 3D, one phone per flat; the quake rolls in; every flat signs
+S.idea = { dur: 15, draw(t) {
+  clear();
+  const q = ss(8.4, 8.6, t) * (1 - ss(10.6, 12.2, t));
+  const c = cam(0.55 + t * 0.22, 0.32 + Math.sin(t * 0.4) * 0.05, 1950 - ss(2.4, 6, t) * 250, 1500, [0, 380, 0], W / 2, H * 0.6);
+  // ground grid with shockwave
+  const wave = (x, z) => { if (t < 8.45) return 0; const r = Math.hypot(x, z), a = t - 8.45, f = r - 1100 * a; return 90 * Math.exp(-f * f / (2 * 110 * 110)) * Math.exp(-a * 0.5) * Math.cos(f * 0.03); };
+  const gA = ss(1.6, 2.6, t);
+  for (let i = -12; i <= 12; i++) { const a = [], b = []; for (let j = -12; j <= 12; j++) { a.push([i * 100, wave(i * 100, j * 100), j * 100]); b.push([j * 100, wave(j * 100, i * 100), i * 100]); } poly3(c, a, q > 0.05 ? "#5a2027" : "#262626", 1.5, gA); poly3(c, b, q > 0.05 ? "#5a2027" : "#262626", 1.5, gA); }
+  const FL = 6, FH = 120, X = 220, Z = 110;
+  const sway = (y) => Math.sin(t * 16) * q * y * 0.09;
+  for (let f = 0; f <= FL; f++) {
+    const k = ss(2.6 + f * 0.33, 2.95 + f * 0.33, t); if (k <= 0) continue;
+    const y = f * FH * eo(k) + (1 - eo(k)) * -200, s = sway(y);
+    const rc = [[-X + s, y, -Z], [X + s, y, -Z], [X + s, y, Z], [-X + s, y, Z], [-X + s, y, -Z]];
+    poly3(c, rc, INK, f === 0 || f === FL ? 3 : 2, k * 0.9);
+    if (f < FL) { [[-X, -Z], [X, -Z], [X, Z], [-X, Z]].forEach(([x, z]) => L3(c, [x + s, y, z], [x + sway(y + FH), y + FH * eo(k), z], "#8a8a8a", 2, k * 0.8)); for (let i = 1; i < 4; i++) L3(c, [-X + i * 110 + s, y, -Z], [-X + i * 110 + s, y, Z], "#3a3a3a", 1.5, k); L3(c, [-X + s, y, 0], [X + s, y, 0], "#3a3a3a", 1.5, k); }
+  }
+  // phones: one per flat
+  for (let f = 0; f < FL; f++) for (let i = 0; i < 4; i++) for (let j = 0; j < 2; j++) {
+    const id = f * 8 + i * 2 + j, on = 5 + hash(id) * 2.2, sg = 9.0 + hash(id + 40) * 1.6;
+    if (t < on) continue; const y = f * FH + 18, p = P(c, -X + 55 + i * 110 + sway(y), y, -Z + 55 + j * 110); if (!p) continue;
+    const red = t > sg, pop = imp(t, [[on, 1]]);
+    circ(p.x, p.y, (6 + pop * 18) * p.s * 1.6, { fill: red ? RED : INK, glow: red ? 24 : 10 });
+    if (red && t < sg + 0.9) { const k = (t - sg) / 0.9, top = P(c, -X + 55 + i * 110, y + 1600 * eo(k), -Z + 55 + j * 110); if (top) line(p.x, p.y, top.x, top.y, RED, 3, 1 - k); }
+  }
+  slam("TREMOR", W / 2, H / 2 - 120, t, 0.2, 2.5, { size: 300, glow: 20 });
+  slam("MESH", W / 2, H / 2 + 150, t, 0.55, 2.5, { size: 300, col: RED, glow: 40 });
+  slam("1 FLAT = 1 PHONE", W / 2, 150, t, 5.1, 8.3, { size: 120 });
+  slam("EVERY FLAT", W / 2, 150, t, 11.0, 15.2, { size: 170 });
+  slam("SIGNS IT.", W / 2, H - 140, t, 11.9, 15.2, { size: 210, col: RED, glow: 40 });
+  return fxOf(t, [[0.2, 1.2], [0.55, 1.4], [5.1, 0.6], [8.45, 2.4], [11, 1], [11.9, 1.4]], { shake: imp(t, [[0.2, 1], [0.55, 1], [8.45, 2]]) * 26 + q * 14, red: imp(t, [[8.45, 0.35]]), zoom: 1 + q * 0.03 });
+}};
+
+// 3. WAVE: stomp → a shockwave rolls through a 3D floor grid → light pillars → 1, 2, 3 → CONFIRMED; then a lone shake
+S.wave = { dur: 18, draw(t) {
+  clear();
+  const ts = 2.4, v = 700, tl = 11.0;
+  const ph = [{ r: 245, a: 0.4 }, { r: 490, a: 2.5 }, { r: 770, a: 4.5 }, { r: 400, a: 1.3, held: true }].map((p) => ({ ...p, x: Math.cos(p.a) * p.r, z: Math.sin(p.a) * p.r, th: ts + p.r / v }));
+  const conf = ph[2].th;
+  const c = cam(-0.6 + t * 0.11, 0.92 - ss(9.4, 11, t) * 0.25, 1750 - ss(9.4, 11, t) * 400, 1400, [0, 0, 0], W * 0.44, H * 0.56);
+  const disp = (x, z) => {
+    let y = 0; if (t > ts) { const a = t - ts, r = Math.hypot(x, z), f = r - v * a; y += 75 * Math.exp(-f * f / (2 * 70 * 70)) * Math.exp(-a * 0.45) * Math.cos(f * 0.045); }
+    if (t > tl) { const a = t - tl, r = Math.hypot(x - ph[0].x, z - ph[0].z); y += 26 * Math.exp(-r / 120) * Math.sin(a * 40) * Math.exp(-a * 0.8); }
+    return y;
+  };
+  const N = 22, Sg = 1000;
+  for (let i = 0; i <= N; i++) { const a = [], b = []; const u = -Sg + (2 * Sg * i) / N; for (let j = 0; j <= 50; j++) { const w = -Sg + (2 * Sg * j) / 50; a.push([u, disp(u, w), w]); b.push([w, disp(w, u), u]); } const hot = t > ts && t < ts + 2.5; poly3(c, a, hot ? "#6b6b6b" : "#333", 1.5, 0.9); poly3(c, b, hot ? "#6b6b6b" : "#333", 1.5, 0.9); }
+  const fade2 = 1 - ss(9.4, 10.0, t);
+  const o = P(c, 0, 0, 0); if (o && t > ts - 0.3 && t < ts + 1.2) circ(o.x, o.y, 30 * o.s * (1 + imp(t, [[ts, 3]])), { fill: INK, glow: 30, a: 1 - ss(ts + 0.6, ts + 1.2, t) });
+  ph.forEach((p, i) => {
+    let h = 0, col = INK, tilt = 0;
+    if (t > p.th) h = 380 * eob((t - p.th) / 0.35) * fade2;
+    if (!p.held && t > conf) col = RED;
+    if (p.held) { col = DIM; tilt = 90 + Math.sin(t * 4) * 40; h *= 0.7; }
+    if (i === 0 && t > tl) { h = 220 * eob((t - tl) / 0.3) * (1 - ss(15.6, 16.4, t)); col = DIM; tilt = Math.sin(t * 50) * 30; }
+    const b = P(c, p.x, disp(p.x, p.z), p.z); if (!b) return; circ(b.x, b.y, 12 * b.s * 1.5, { fill: col, glow: 18, a: 0.9 });
+    if (h > 1) { const top = P(c, p.x + tilt, h, p.z); if (!top) return; line(b.x, b.y, top.x, top.y, col, 26 * b.s, 0.25); line(b.x, b.y, top.x, top.y, col, 7 * b.s, 1); circ(top.x, top.y, 14 * top.s * 1.4, { fill: col, glow: 30 }); if (p.held && fade2 > 0.5) T("✕ HANDLED", top.x, top.y - 40, { f: MONO, w: 700, size: 24, col: DIM }); }
+  });
+  slam("STOMP.", W * 0.44, 150, t, ts - 0.05, ts + 1.4, { size: 150 });
+  const nx = W - 300;
+  [0, 1, 2].forEach((i) => slam(String(i + 1), nx, H / 2 - 40, t, ph[i].th, i < 2 ? ph[i + 1].th : 9.6, { size: 460, col: i === 2 ? RED : INK, glow: i === 2 ? 50 : 10 }));
+  if (t > ph[0].th && t < 9.6) T("OF 3", nx, H / 2 + 220, { size: 70, col: t > conf ? RED : MUTE, a: 1 - ss(9.3, 9.6, t) });
+  slam("CONFIRMED.", W * 0.44, H - 130, t, conf + 0.35, 9.6, { size: 200, col: RED, glow: 50 });
+  slam("1", nx, H / 2 - 40, t, tl + 0.1, 16.4, { size: 460, col: DIM });
+  if (t > tl + 0.2 && t < 16.4) T("OF 3", nx, H / 2 + 220, { size: 70, col: DIM, a: 1 - ss(16.1, 16.4, t) });
+  slam("NOPE.", W * 0.44, 150, t, tl + 0.7, 13.8, { size: 190 });
+  slam("ONE PHONE ≠ PROOF", W * 0.44, H - 130, t, 12.4, 16.4, { size: 130 });
+  if (t > 16.4) { slam("k = 3", W / 2 - 330, H / 2, t, 16.45, 18.2, { size: 200, col: RED }); slam("≤ 2 s", W / 2 + 330, H / 2, t, 16.75, 18.2, { size: 200 }); T("PUBLIC RULES ON ENS", W / 2, H / 2 + 190, { f: MONO, w: 700, size: 34, col: MUTE, a: ss(17, 17.3, t), ls: 4 }); }
+  const hits = [[ts, 2.2], [ph[0].th, 0.8], [ph[1].th, 0.9], [ph[2].th, 1.5], [conf + 0.35, 1.6], [tl, 1.2], [tl + 0.7, 1], [12.4, 0.8], [16.45, 1], [16.75, 1]];
+  return fxOf(t, hits, { red: imp(t, [[conf, 0.5]]), flash: imp(t, [[ts, 0.25]]), zoom: 1 + imp(t, [[conf, 0.05]]) });
+}};
+
+// 4. JOIN: an invite QR assembles from particles → scan → the phone gets an ENS name → the rules orbit it
+S.join = { dur: 18, draw(t) {
+  clear(); traces(t, 14, "#1d1d1d", 0.6);
+  const N = 29, m = 22, qx = W / 2 - (N * m) / 2, qy = H / 2 - (N * m) / 2 + 30;
+  const finder = (i, j) => { for (const [a, b] of [[0, 0], [N - 7, 0], [0, N - 7]]) { const x = i - a, y = j - b; if (x >= 0 && x < 7 && y >= 0 && y < 7) return x === 0 || x === 6 || y === 0 || y === 6 || (x > 1 && x < 5 && y > 1 && y < 5) ? 1 : 0; } return -1; };
+  const col = 1 - ss(5.0, 5.6, t), qs = 1 - eo((t - 5.0) / 0.6), qr = (t - 5.0) * 3 * ss(5, 5.6, t);
+  if (qs > 0.01) {
+    g.save(); g.translate(W / 2, H / 2 + 30); g.rotate(qr); g.scale(qs, qs); g.translate(-W / 2, -H / 2 - 30);
+    const scan = t > 3.6 && t < 5 ? qy + ((t - 3.6) / 1.2) * N * m : -1;
+    for (let i = 0; i < N; i++) for (let j = 0; j < N; j++) {
+      const f = finder(i, j), on = f === -1 ? hash(i * 31 + j * 17) > 0.52 : f === 1; if (!on) continue;
+      const id = i * N + j, k = eo((t - 0.2 - hash(id) * 1.5) / 0.7), a0 = hash(id + 7) * Math.PI * 2, R0 = 1300 + hash(id + 3) * 500;
+      const x = lerp(W / 2 + Math.cos(a0) * R0, qx + i * m, k), y = lerp(H / 2 + Math.sin(a0) * R0 * 0.7, qy + j * m, k);
+      const near = scan > 0 && Math.abs(qy + j * m - scan) < 30;
+      g.globalAlpha = k * col; g.fillStyle = near ? RED : INK; g.fillRect(x, y, m - 2, m - 2);
+    }
+    g.globalAlpha = 1;
+    if (scan > 0) { line(qx - 60, scan, qx + N * m + 60, scan, RED, 6, 0.9); rect(qx - 60, scan - 40, N * m + 120, 80, { fill: "rgba(255,51,71,.12)" }); }
+    g.restore();
+  }
+  slam("ONE INVITE.", W / 2, 110, t, 0.5, 4.9, { size: 120 });
+  slam("SCANNED.", W / 2, H - 100, t, 3.6, 4.9, { size: 120, col: RED });
+  // the ENS name
+  slam("somnath", W / 2, 400, t, 5.6, 10.2, { size: 230, glow: 20 });
+  slam(".ethmumbai-demo", W / 2, 560, t, 6.0, 10.2, { size: 110, col: MUTE });
+  slam(".tremorwitness.eth", W / 2, 680, t, 6.35, 10.2, { size: 110, col: MUTE });
+  slam("✓ RESOLVES", W / 2 + 560, 215, t, 7.2, 10.2, { size: 90, col: RED, rot: -0.12, glow: 30 });
+  slam("ONE NAME.", W / 2, H - 110, t, 7.9, 10.2, { size: 120 });
+  // rules orbit
+  if (t > 10.2) {
+    const k = eo((t - 10.2) / 0.8), cx = W / 2, cy = H / 2 + 40;
+    circ(cx, cy, 120 * k, { fill: "#111", stroke: INK, lw: 4, glow: 40 }); T("ENS", cx, cy + 4, { size: 92, a: k });
+    const tags = [["tw.k = 3", 0, 0.25], ["tw.window_ms = 2000", 2.1, -0.35], ["tw.max_phones = 5", 4.2, 0.6]];
+    tags.forEach(([s, ph0, tiltA], i) => {
+      const rx = (520 + i * 90) * k, ry = (150 + i * 30) * k;
+      g.save(); g.translate(cx, cy); g.rotate(tiltA); g.globalAlpha = 0.5 * k; g.strokeStyle = "#555"; g.lineWidth = 2; g.beginPath(); g.ellipse(0, 0, rx, ry, 0, 0, Math.PI * 2); g.stroke(); g.restore();
+      const th = ph0 + (t - 10.2) * (1.1 - i * 0.2), ex = Math.cos(th) * rx, ey = Math.sin(th) * ry;
+      const x = cx + ex * Math.cos(tiltA) - ey * Math.sin(tiltA), y = cy + ex * Math.sin(tiltA) + ey * Math.cos(tiltA), d = 0.75 + 0.35 * Math.sin(th);
+      g.save(); g.translate(x, y); g.scale(d, d); rect(-210, -36, 420, 72, { fill: "#0b0b0b", stroke: i === 0 ? RED : INK, lw: 3, r: 6, a: k }); T(s, 0, 2, { f: MONO, w: 700, size: 30, col: i === 0 ? RED : INK, a: k }); g.restore();
+    });
+    slam("PUBLIC RULES.", W / 2, 120, t, 10.6, 18.2, { size: 130 });
+    slam("ON-CHAIN. NO SECRET EDITS.", W / 2, H - 100, t, 12.6, 18.2, { size: 90, col: RED });
+  }
+  return fxOf(t, [[0.5, 0.8], [3.6, 0.8], [5.0, 1.4], [5.6, 1.6], [7.2, 1.2], [7.9, 0.8], [10.2, 1.4], [10.6, 0.9], [12.6, 0.9]], { flash: imp(t, [[5.55, 0.7]]) });
+}};
+
+// 5. LIVE: real footage slot (overlaid later) + the real confirmed event
+S.live = { dur: 24, draw(t) {
+  clear(); traces(t, 12, "#1b1b1b", 0.5);
+  const fx0 = 150, fy0 = 150, fw = 439, fh = 780;
+  rect(fx0 - 6, fy0 - 6, fw + 12, fh + 12, { stroke: INK, lw: 3 });
+  [[fx0 - 22, fy0 - 22, 1, 1], [fx0 + fw + 22, fy0 - 22, -1, 1], [fx0 - 22, fy0 + fh + 22, 1, -1], [fx0 + fw + 22, fy0 + fh + 22, -1, -1]].forEach(([x, y, a, b]) => { line(x, y, x + 50 * a, y, RED, 5); line(x, y, x, y + 50 * b, RED, 5); });
+  if (Math.floor(t * 1.6) % 2 === 0) circ(fx0 + 10, fy0 - 50, 11, { fill: RED, glow: 20 });
+  T("LIVE TEST", fx0 + 34, fy0 - 50, { f: MONO, w: 700, size: 28, align: "left", ls: 3 });
+  T("ETHGLOBAL MUMBAI · 6 NOV 2026", fx0 + fw / 2, fy0 + fh + 52, { f: MONO, w: 700, size: 22, col: MUTE, ls: 2 });
+  const rx = 720, rw = 1060;
+  slam("REAL PHONES.", rx + rw / 2, 330, t, 0.3, 4.1, { size: 170 });
+  slam("REAL TABLE.", rx + rw / 2, 560, t, 0.9, 4.1, { size: 170, col: RED, glow: 30 });
+  slam("REAL STOMPS.", rx + rw / 2, 790, t, 1.6, 4.1, { size: 170 });
+  const names = ["adityas-nothing", "phone-dhruv", "somnath"], spikes = [7.0, 7.45, 8.1];
+  const cur = rx + ((t - 4.5) / 5) * rw;
+  if (t > 4.3) {
+    const k = ss(4.3, 4.8, t);
+    names.forEach((n, i) => {
+      const y = 330 + i * 150;
+      T(n, rx, y - 50, { f: MONO, w: 700, size: 26, col: t > 9.6 ? RED : MUTE, align: "left", a: k });
+      g.save(); g.globalAlpha = k; g.strokeStyle = t > 9.6 ? RED : INK; g.lineWidth = 3; g.beginPath();
+      const xEnd = Math.min(rx + rw, cur);
+      for (let x = rx; x <= xEnd; x += 4) { const tt = 4.5 + ((x - rx) / rw) * 5, d = tt - spikes[i]; const sp = d > 0 ? Math.exp(-d * 5) * Math.sin(d * 60) * 70 : 0; const y2 = y + Math.sin(x * 0.11 + i) * 4 + Math.sin(x * 0.37) * 2 + sp; x === rx ? g.moveTo(x, y2) : g.lineTo(x, y2); }
+      g.stroke(); g.restore();
+    });
+    if (t < 9.6) line(cur, 250, cur, 680, INK, 2, 0.5 * k);
+    const bx0 = rx + ((spikes[0] - 4.5) / 5) * rw - 20, bx1 = rx + ((spikes[0] + 2 - 4.5) / 5) * rw;
+    if (t > 9.7) { const k2 = ss(9.7, 10.1, t); rect(bx0, 250, (bx1 - bx0) * k2, 440, { fill: "rgba(255,51,71,.14)", stroke: RED, lw: 3, glow: 20 }); T("≤ 2000 ms", bx0 + 10, 230, { f: MONO, w: 700, size: 26, col: RED, align: "left", a: k2 }); }
+  }
+  slam("23:00:41", rx + rw / 2, 850, t, 10.6, 24.5, { size: 220, col: RED, glow: 50 });
+  if (t > 11.2) T("IST · 3 PHONES AGREED", rx + rw / 2, 990, { f: MONO, w: 700, size: 34, col: INK, a: ss(11.2, 11.6, t), ls: 4 });
+  slam("SEALED ✓ SWARM", rx + rw - 300, 160, t, 14.5, 24.5, { size: 90, col: RED, rot: -0.08, glow: 30 });
+  if (t > 16.5) { const s = "609a0261324b26e53571aea583edc07dbe9c137fd783718374d16b83fa2933f5"; T(s.slice(0, Math.floor((t - 16.5) * 30)), rx, 130, { f: MONO, w: 400, size: 19, col: DIM, align: "left" }); }
+  if (t > 19) T("PPV 118 – 241 mm/s", rx, 720, { f: MONO, w: 700, size: 30, col: MUTE, align: "left", a: ss(19, 19.4, t) });
+  return fxOf(t, [[0.3, 1], [0.9, 1.1], [1.6, 1], [spikes[0], 0.4], [spikes[1], 0.4], [spikes[2], 0.6], [9.7, 0.8], [10.6, 1.8], [14.5, 1.2]], { red: imp(t, [[10.6, 0.35]]) });
+}};
+
+// 6. REFUSED: 140 readings explode, swirl and sort into three bins; three survivors fuse into one red event
+S.refused = { dur: 14, draw(t) {
+  clear();
+  const bins = [{ n: 79, x: 420, l: "LONE PHONE" }, { n: 44, x: 960, l: "HANDLED" }, { n: 14, x: 1500, l: "NOT REGISTERED" }];
+  const cx = W / 2, cy = 380;
+  let id = 0;
+  const draw1 = (b, j, isEv) => {
+    const i = id++, a0 = hash(i * 1.3) * Math.PI * 2, r0 = 220 + hash(i * 2.9) * 480;
+    const e = eo((t - 0.25) / 1.1), sw = Math.pow(Math.max(0, t - 1.2), 1.6) * 1.4;
+    let x = cx + Math.cos(a0 + sw) * r0 * e, y = cy + Math.sin(a0 + sw) * r0 * 0.55 * e;
+    let col = INK, r = 7;
+    if (!isEv) {
+      const ts = 3.4 + b * 1.25 + j * 0.008, k = eo((t - ts) / 0.8);
+      const cols = 10, tx = bins[b].x - (cols - 1) * 9 + (j % cols) * 18, ty = 880 - Math.floor(j / cols) * 18;
+      x = lerp(x, tx, k); y = lerp(y, ty, k); col = k > 0.95 ? DIM : INK;
+    } else { const k = eo((t - 8.0) / 0.7); x = lerp(x, cx, k); y = lerp(y, cy, k); col = RED; r = 9; }
+    circ(x, y, r, { fill: col, glow: isEv ? 20 : 0 });
+  };
+  bins.forEach((bn, b) => { for (let j = 0; j < bn.n; j++) draw1(b, j, false); });
+  for (let j = 0; j < 3; j++) draw1(-1, j, true);
+  bins.forEach((bn, b) => { const ts = 3.4 + b * 1.25 + 0.8; slam(String(bn.n), bn.x, 620, t, ts, 14.2, { size: 150 }); if (t > ts + 0.2) T(bn.l, bn.x, 940, { f: MONO, w: 700, size: 28, col: MUTE, a: ss(ts + 0.2, ts + 0.5, t), ls: 3 }); });
+  slam("137 REFUSED", W / 2, 110, t, 7.3, 14.2, { size: 120 });
+  if (t > 8.6) { const k = eob((t - 8.6) / 0.4); circ(cx, cy, 80 * k, { fill: RED, glow: 80 }); circ(cx, cy, 80 * k + ((t - 8.6) * 300) % 400, { stroke: RED, lw: 3, a: 0.5 * (1 - (((t - 8.6) * 300) % 400) / 400) }); }
+  slam("1 EVENT.", W / 2 - 360, cy, t, 9.0, 14.2, { size: 130, col: RED, glow: 30 });
+  slam("SEALED.", W / 2 + 330, cy, t, 9.4, 14.2, { size: 130 });
+  return fxOf(t, [[0.25, 1.4], [4.2, 0.6], [5.45, 0.6], [6.7, 0.6], [7.3, 1], [8.6, 2], [9.0, 1], [9.4, 1]], { red: imp(t, [[8.6, 0.45]]) });
+}};
+
+// 7. PROOF: fly through the chain; revoke shatters a name but the past stands; servers off → CRT dies → rebuilt from Arkiv/ENS/Swarm
+S.proof = { dur: 24, draw(t) {
+  clear();
+  const gates = [["PHONE", "signs with its own key"], ["ARKIV", "every reading on record"], ["ENS", "registered back then?"], ["QUORUM", "recomputed by you"], ["SWARM", "evidence sealed"], ["✓", "hash matches"]];
+  const fov = 900, camZ = t < 12 ? t * 520 : 12 * 520;
+  if (t < 12.2) {
+    for (let i = 0; i < 70; i++) { const a = hash(i) * Math.PI * 2, R = 700 + hash(i + 9) * 600, z = ((hash(i + 3) * 4000 - camZ * 1.0) % 4000 + 4000) % 4000 + 60; const s1 = fov / z, s2 = fov / (z + 380); line(W / 2 + Math.cos(a) * R * s1, H / 2 + Math.sin(a) * R * s1, W / 2 + Math.cos(a) * R * s2, H / 2 + Math.sin(a) * R * s2, INK, 2, cl(1 - z / 4000) * 0.6); }
+    gates.map((gt, i) => [gt, i]).reverse().forEach(([[w, sub], i]) => {
+      const z = (i + 1) * 1040 - camZ + 300; if (z < 30 || z > 5000) return; const s = fov / z, a = cl(1 - z / 5000) * cl((z - 30) / 200);
+      const col = i === 3 ? RED : INK, hs = 520 * s;
+      rect(W / 2 - hs, H / 2 - hs * 0.62, hs * 2, hs * 1.24, { fill: "rgba(5,5,5,.94)", stroke: col, lw: Math.max(2, 12 * s), a, glow: i === 3 ? 30 : 10 });
+      g.save(); g.translate(W / 2, H / 2 - 20 * s); g.scale(s, s); T(w, 0, 0, { size: 300, col, a }); T(sub, 0, 230, { f: MONO, w: 700, size: 60, col: MUTE, a }); g.restore();
+    });
+  }
+  // revoke
+  if (t > 12.2 && t < 16.6) {
+    const k = eo((t - 12.2) / 0.4), br = t > 13.6;
+    if (t > 13.4) { const k2 = eob((t - 13.4) / 0.5); rect(W / 2 - 330 * k2, H / 2 - 120 * k2, 660 * k2, 240 * k2, { fill: "rgba(255,51,71,.15)", stroke: RED, lw: 5, glow: 50 }); T("EVENT 23:00:41", W / 2, H / 2 - 20, { size: 110 * k2, col: RED }); T("COUNTED AS OF THEN", W / 2, H / 2 + 70, { f: MONO, w: 700, size: 30 * k2, col: INK, ls: 3 }); }
+    if (!br) { rect(W / 2 - 520, H / 2 - 90, 1040, 180, { fill: "#0e0e0e", stroke: INK, lw: 4, a: k }); T("phone-x.ethmumbai-demo.tremorwitness.eth", W / 2, H / 2, { f: MONO, w: 700, size: 40, a: k }); }
+    shards(t, 13.6, 120, W / 2, H / 2, 51, INK, 0.9);
+    slam("REVOKED", W / 2, H / 2 - 230, t, 12.9, 13.7, { size: 160, col: RED, rot: -0.07 });
+    slam("THE PAST STANDS.", W / 2, H - 150, t, 14.0, 16.6, { size: 160 });
+  }
+  // servers off
+  if (t > 16.6) {
+    slam("OUR SERVERS:", W / 2, H / 2 - 110, t, 16.6, 17.75, { size: 180 });
+    slam("OFF.", W / 2, H / 2 + 120, t, 16.95, 17.75, { size: 220, col: RED });
+    if (t > 18.4) {
+      const src = [["ARKIV", 300, 300], ["ENS", W / 2, 140], ["SWARM", W - 300, 300]], cx = W / 2, cy = H / 2 + 60;
+      src.forEach(([n, x, y], i) => { const k = ss(18.4 + i * 0.2, 18.8 + i * 0.2, t); T(n, x, y, { size: 90, a: k }); for (let j = 0; j < 22; j++) { const u = ((t - 18.8) * 0.9 + j / 22) % 1; if (t < 18.8) continue; circ(lerp(x, cx, u), lerp(y + 60, cy, u) - Math.sin(u * Math.PI) * 60, 5, { fill: INK, a: k * (1 - ss(21.3, 21.8, t)) * 0.9 }); } });
+      if (t > 20.6) { const k = cl((t - 20.6) / 0.6); g.save(); g.strokeStyle = RED; g.lineWidth = 46; g.lineCap = "round"; g.lineJoin = "round"; g.shadowColor = RED; g.shadowBlur = 60; g.beginPath(); const p0 = [cx - 170, cy], p1 = [cx - 40, cy + 140], p2 = [cx + 220, cy - 170]; g.moveTo(...p0); if (k < 0.35) g.lineTo(lerp(p0[0], p1[0], k / 0.35), lerp(p0[1], p1[1], k / 0.35)); else { g.lineTo(...p1); const k2 = (k - 0.35) / 0.65; g.lineTo(lerp(p1[0], p2[0], k2), lerp(p1[1], p2[1], k2)); } g.stroke(); g.restore(); }
+      slam("STILL VERIFIABLE.", W / 2, H - 140, t, 21.3, 24.3, { size: 150 });
+      if (t > 22.2) T("swarm 609a0261…2933f5  =  keccak on Arkiv", W / 2, H - 50, { f: MONO, w: 700, size: 24, col: MUTE, a: ss(22.2, 22.6, t) });
+    }
+  }
+  const crt = ss(17.75, 18.15, t) * (1 - ss(18.35, 18.4, t));
+  const passes = gates.map((_, i) => [((i + 1) * 1040 + 300 - 60) / 520, 0.8]);
+  const fx = fxOf(t, [...passes, [12.9, 1.2], [13.6, 2], [14.0, 1], [16.6, 1.2], [16.95, 1.5], [20.6, 1.2], [21.3, 1]], { flash: imp(t, passes.map(([a]) => [a, 0.18])) + imp(t, [[13.6, 0.4]]), red: imp(t, [[20.9, 0.3]]) });
+  fx.sy = 1 - crt * 0.995; fx.zoom = (fx.zoom ?? 1) * (1 + crt * 0.2); fx.black = ss(18.1, 18.2, t) * (1 - ss(18.4, 18.6, t));
+  return fx;
+}};
+
+// 8. MESH: earthquake → no internet → phones mesh with lightning links → safe / help → who's missing (next) → synced
+S.mesh = { dur: 25, draw(t) {
+  clear();
+  const q = ss(1.0, 1.15, t) * (1 - ss(3.0, 4.2, t));
+  const c = cam(t * 0.18 + 0.3, 0.28 + Math.sin(t * 0.3) * 0.06, 1950 - ss(20, 23, t) * 300, 1400, [0, 330 + ss(20, 23, t) * 250, 0], W / 2, H * 0.56);
+  const jit = (k) => (hash(Math.floor(t * 30) * 3.1 + k) - 0.5) * 60 * q;
+  const N = 15, nodes = [];
+  for (let i = 0; i < N; i++) nodes.push({ i, x: (hash(i * 3.3) - 0.5) * 1300, y: Math.floor(hash(i * 7.1) * 4) * 200 + 30, z: (hash(i * 5.7) - 0.5) * 650 });
+  nodes.forEach((n) => { n.x += jit(n.i); n.z += jit(n.i + 50); });
+  for (let f = 0; f <= 4; f++) { const y = f * 200; poly3(c, [[-750 + jit(f), y, -380], [750 + jit(f), y, -380], [750, y, 380], [-750, y, 380], [-750 + jit(f), y, -380]], f === 0 ? "#666" : "#2c2c2c", 2, 0.9); }
+  const E = []; nodes.forEach((a) => nodes.forEach((b) => { if (a.i < b.i && Math.hypot(a.x - b.x, a.y - b.y, a.z - b.z) < 560) E.push([a, b]); }));
+  const hop = Array(N).fill(99); hop[0] = 0; const qu = [0];
+  while (qu.length) { const u = qu.shift(); E.forEach(([a, b]) => { const v = a.i === u ? b.i : b.i === u ? a.i : -1; if (v >= 0 && hop[v] > hop[u] + 1) { hop[v] = hop[u] + 1; qu.push(v); } }); }
+  const dead = 6, help = 6, ghost = [11];
+  E.forEach(([a, b], ei) => {
+    if (ghost.includes(a.i) || ghost.includes(b.i)) return;
+    const tr = 4.3 + Math.max(hop[a.i], hop[b.i]) * 0.55; if (t < tr) return;
+    const k = eo((t - tr) / 0.35), dim = (a.i === dead || b.i === dead) && t > 14.2;
+    const pa = P(c, a.x, a.y, a.z), pb = P(c, b.x, b.y, b.z); if (!pa || !pb) return;
+    const ex = lerp(pa.x, pb.x, k), ey = lerp(pa.y, pb.y, k), amp = 26 * Math.exp(-(t - tr) * 1.5) + 3;
+    g.save(); g.globalAlpha = dim ? 0.25 : 0.85; g.strokeStyle = dim ? DIM : INK; g.lineWidth = 2.2; g.shadowColor = INK; g.shadowBlur = dim ? 0 : 10; g.beginPath(); g.moveTo(pa.x, pa.y);
+    const nx = -(ey - pa.y), ny = ex - pa.x, nl = Math.hypot(nx, ny) || 1;
+    for (let s = 1; s < 7; s++) { const u = s / 7, o = (hash(ei * 13 + s + Math.floor(t * 14) * 0.37) - 0.5) * 2 * amp; g.lineTo(lerp(pa.x, ex, u) + (nx / nl) * o, lerp(pa.y, ey, u) + (ny / nl) * o); }
+    g.lineTo(ex, ey); g.stroke(); g.restore();
+    if (k >= 1 && !dim) { const u = (t * 0.8 + hash(ei)) % 1; circ(lerp(pa.x, pb.x, u), lerp(pa.y, pb.y, u), 4, { fill: INK, glow: 12 }); }
+  });
+  nodes.forEach((n) => {
+    const p = P(c, n.x, n.y, n.z); if (!p) return;
+    let col = t > 1.0 && t < 4.0 ? RED : INK; if (ghost.includes(n.i)) col = t > 4 ? "#333" : col; if (n.i === dead && t > 14.2) col = "#444";
+    circ(p.x, p.y, 13 * p.s * 1.6, { fill: col, glow: col === RED ? 30 : 14 });
+    if (t > 1.0 && t < 3.5) circ(p.x, p.y, ((t - 1.0) * 260 + hash(n.i) * 60) % 160, { stroke: RED, lw: 2, a: 0.5 });
+    const ct = 9.3 + hash(n.i + 21) * 2.8;
+    if (t > ct && !ghost.includes(n.i)) {
+      const k = eob((t - ct) / 0.35), isH = n.i === help, bx = p.x + 26, by = p.y - 30;
+      if (!(isH && t > 14.2)) { circ(bx, by, 17 * k, { fill: isH ? RED : "#0b0b0b", stroke: isH ? RED : INK, lw: 2.5, glow: isH ? 30 : 0 }); T(isH ? "!" : "✓", bx, by + 2, { f: SANS, w: 700, size: 22, col: isH ? "#000" : INK, a: k }); }
+      if (isH && t < 14.2) circ(bx, by, 17 + ((t * 40) % 40), { stroke: RED, lw: 2, a: 0.7 * (1 - ((t * 40) % 40) / 40) });
+    }
+  });
+  // who's missing: rings from the two last neighbours triangulate the silent phone
+  if (t > 14.4 && t < 20.3) {
+    const d = nodes[dead], pd = P(c, d.x, d.y, d.z);
+    const nb = nodes.filter((n) => n.i !== dead && !ghost.includes(n.i)).sort((a, b) => Math.hypot(a.x - d.x, a.y - d.y, a.z - d.z) - Math.hypot(b.x - d.x, b.y - d.y, b.z - d.z)).slice(0, 2);
+    const fa = 1 - ss(19.9, 20.3, t);
+    nb.forEach((n, i) => { const p = P(c, n.x, n.y, n.z); if (!p || !pd) return; const rr = Math.hypot(p.x - pd.x, p.y - pd.y); for (let w = 0; w < 3; w++) { const u = ((t - 14.4) * 0.7 + w / 3 + i * 0.15) % 1; circ(p.x, p.y, rr * u * 1.1, { stroke: RED, lw: 2.5, a: (1 - u) * 0.8 * fa }); } circ(p.x, p.y, rr, { stroke: RED, lw: 1.5, a: 0.4 * fa, dash: [8, 8] }); });
+    if (pd && t > 15.4) { const k = eob((t - 15.4) / 0.4) * fa, R2 = 60 * k; g.save(); g.translate(pd.x, pd.y); g.rotate(t * 1.5); g.strokeStyle = RED; g.lineWidth = 4; g.shadowColor = RED; g.shadowBlur = 30; g.globalAlpha = fa; g.beginPath(); g.arc(0, 0, R2, 0, Math.PI * 2); g.stroke(); for (let a = 0; a < 4; a++) { g.rotate(Math.PI / 2); g.beginPath(); g.moveTo(R2 - 18, 0); g.lineTo(R2 + 28, 0); g.stroke(); } g.restore(); T("LAST HEARD 02:14", pd.x, pd.y + 100, { f: MONO, w: 700, size: 26, col: RED, a: k }); }
+    if (t > 16) { rect(W - 520, H - 120, 440, 64, { stroke: INK, lw: 2, r: 4, a: ss(16, 16.3, t) * fa }); T("NEXT · SIGNAL STRENGTH", W - 300, H - 87, { f: MONO, w: 700, size: 24, a: ss(16, 16.3, t) * fa, ls: 2 }); }
+  }
+  // sync to Arkiv
+  if (t > 20.4) {
+    const k = ss(20.4, 21, t), top = 1150;
+    for (let i = -6; i <= 6; i++) { L3(c, [i * 120, top, -600], [i * 120, top, 600], RED, 1.5, k * 0.5); L3(c, [-720, top, i * 100], [720, top, i * 100], RED, 1.5, k * 0.5); }
+    const n0 = nodes[0], a = P(c, n0.x, n0.y, n0.z), b = P(c, n0.x, top, n0.z);
+    if (a && b) { line(a.x, a.y, b.x, b.y, RED, 10, 0.25 * k); line(a.x, a.y, b.x, b.y, RED, 3, k); for (let j = 0; j < 8; j++) { const u = ((t - 20.6) * 1.4 + j / 8) % 1; if (t > 20.6) circ(lerp(a.x, b.x, u), lerp(a.y, b.y, u), 6, { fill: INK, glow: 14 }); } }
+  }
+  slam("EARTHQUAKE.", W / 2, H / 2, t, 1.0, 3.6, { size: 280, col: RED, glow: 60 });
+  slam("NO INTERNET.", W / 2, 140, t, 3.7, 6.4, { size: 150 });
+  slam("THEY MESH.", W / 2, H - 130, t, 6.5, 9.2, { size: 200, glow: 20 });
+  slam("WHO’S SAFE.", W / 2, 140, t, 9.4, 11.4, { size: 150 });
+  slam("WHO NEEDS HELP.", W / 2, 140, t, 11.5, 14.2, { size: 150, col: RED, glow: 30 });
+  slam("WHO’S MISSING.", W / 2, 140, t, 14.5, 20.2, { size: 150, col: RED, glow: 30 });
+  slam("SYNCED TO ARKIV.", W / 2, H - 120, t, 21.3, 25.2, { size: 160 });
+  return fxOf(t, [[1.0, 2.6], [3.7, 1], [6.5, 1.2], [9.4, 0.8], [11.5, 1], [14.2, 1.2], [14.5, 1], [15.4, 0.8], [20.4, 1.2], [21.3, 1]], { shake: imp(t, [[1.0, 2]]) * 26 + q * 22, red: imp(t, [[1.0, 0.5]]), flash: ss(24.6, 25, t) * 0.6 });
+}};
+
+// 9. CLAIM + END
+S.claim = { dur: 12, draw(t) {
+  clear(); traces(t, 18, "#1e1e1e", 0.8);
+  slam("NOT A LEGAL VERDICT.", W / 2, H / 2, t, 0.3, 2.3, { size: 140, col: MUTE });
+  slam("AN EVENT.", W / 2, H / 2 - 240, t, 2.4, 5.8, { size: 170 });
+  slam("A TIME.", W / 2, H / 2 - 40, t, 2.9, 5.8, { size: 170 });
+  slam("MANY FLATS.", W / 2, H / 2 + 160, t, 3.4, 5.8, { size: 170 });
+  slam("NOBODY CAN", W / 2, H / 2 - 110, t, 5.9, 7.9, { size: 220 });
+  slam("REWRITE IT.", W / 2, H / 2 + 130, t, 6.2, 7.9, { size: 220, col: RED, glow: 50 });
+  if (t > 8.0) {
+    const k = eob((t - 8.0) / 0.5);
+    g.save(); g.strokeStyle = RED; g.lineWidth = 6; g.shadowColor = RED; g.shadowBlur = 30; g.globalAlpha = k; g.beginPath();
+    for (let x = 160; x <= W - 160; x += 6) { const u = (x - W / 2) / 300; const y = H / 2 - 40 + Math.sin(x * 0.05 + t * 8) * 70 * Math.exp(-u * u) * (1 + 0.3 * Math.sin(t * 13)); x === 160 ? g.moveTo(x, y) : g.lineTo(x, y); }
+    g.stroke(); g.restore();
+    T("TREMOR MESH", W / 2, H / 2 - 40, { size: 230 * (0.8 + 0.2 * k), a: k, glow: 20 });
+    T("tremor-witness.vercel.app", W / 2, H / 2 + 140, { f: MONO, w: 700, size: 40, a: ss(8.6, 9, t) });
+    T("github.com/Mulaydm10/eth_mumbai", W / 2, H / 2 + 200, { f: MONO, w: 400, size: 32, col: MUTE, a: ss(8.9, 9.3, t) });
+    T("ARKIV · ENSv2 · SWARM · ETHGLOBAL MUMBAI 2026", W / 2, H / 2 + 300, { f: MONO, w: 700, size: 24, col: DIM, a: ss(9.3, 9.7, t), ls: 4 });
+  }
+  return fxOf(t, [[0.3, 0.6], [2.4, 1], [2.9, 1], [3.4, 1], [5.9, 1.4], [6.2, 1.8], [8.0, 2]], { red: imp(t, [[6.2, 0.3]]), flash: imp(t, [[8.0, 0.6]]), glitch: cl(imp(t, [[8.0, 1], [6.2, 0.6]]) * 0.6) });
+}};
+
+const name = (location.hash || "#idea").slice(1), scene = S[name];
+window.SCENES = Object.fromEntries(Object.entries(S).map(([k, v]) => [k, v.dur]));
+window.sceneReady = false;
+Promise.all([document.fonts.load(`400 40px ${HY}`), document.fonts.load(`700 40px ${MONO}`), document.fonts.load(`400 40px ${MONO}`), document.fonts.load(`700 40px ${SANS}`)]).then(() => { window.sceneReady = true; });
+window.renderFrame = async (t) => { post(t, scene.draw(t)); };
+</script></body></html>
