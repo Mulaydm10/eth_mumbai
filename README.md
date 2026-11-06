@@ -4,7 +4,20 @@ Android companion app for **Tremor Witness** (ETHGlobal Mumbai 2026). In disaste
 directly over Bluetooth / Wi-Fi with no internet, agree offline that a disaster happened (the same quorum rule as the
 Tremor Witness dashboard), and residents check in, so rescuers see who has **not** been heard from. No GPS tracking.
 
-> **Status: early / experimental (milestone M1: join).** Not a safety tool yet.
+> **Status: early / experimental (demo build 0.6.0).** Not a safety tool yet.
+
+## Install (demo)
+
+Download `twmesh-0.6.0-arm64.apk` (most phones) or `twmesh-0.6.0-universal.apk` from the
+[latest release](https://github.com/Mulaydm10/tremor-witness-mesh/releases/latest), allow installing from your browser,
+and open **TW Mesh**. Android 8+ with Bluetooth LE; Android 12+ asks for no location at all.
+
+1. **Join a site:** scan the invite QR the site committee shows (one demo QR works for several phones). The phone makes
+   its own key, registers `mesh-xxxx.<site>.tremorwitness.eth` on ENS (Sepolia) and saves the site's phone list.
+   Needs internet once.
+2. **Disaster mode works offline:** phones talk over Bluetooth. "I'm safe" / "I need help", Emergency, and the
+   "Not heard from" list. Only messages signed by registered phones count.
+3. **When any phone is online again,** it writes its own messages to Arkiv.
 
 ## Provenance (what comes from where)
 
@@ -17,7 +30,7 @@ so this app is **GPL-3.0** too (see [`LICENSE.md`](LICENSE.md)). The git history
 | BLE multi-hop mesh (TTL 7 hops, dedupe, store-and-forward), Wi-Fi Aware / hotspot transports, Noise link encryption, packet format, `com.bitchat.android.*` code, Wear OS module, `docs/` specs | **bitchat-android** (all credit to the bitchat contributors) |
 | Encrypted groups, SOS/safety UI changes, README in `docs/SAFEMESH_README.md` | **SafeMesh** |
 | `MessageType.TWM` (0x40) packet type and its send/receive hooks; everything under `dev.dhruv.twmesh` (protocol bus, mesh test screen; later: signed triggers, offline quorum, check-ins, roster, Arkiv sync) | **New in this app** (Tremor Witness protocol, BRIEF §5–§6) |
-| `dev.dhruv.twmesh.chain` (secp256k1 Ethereum key, EIP-191 sign/recover, ABI, ENSv2 reads on Sepolia), join flow, home screen | **New** (checked against viem golden vectors in `app/src/test/resources/golden/`) |
+| `dev.dhruv.twmesh.chain` (secp256k1 Ethereum key, EIP-191 sign/recover, ABI, ENSv2 reads on Sepolia, Arkiv writes), `dev.dhruv.twmesh.core` (quorum + as-of rule, signed mesh protocol), join flow, disaster screen, uploader | **New** (checked against viem golden vectors in `app/src/test/resources/golden/`) |
 | Removed: the public GPS SOS (button, GPS lookup) | Replaced later by signed check-ins and opt-in encrypted location |
 | Changed: no location permission on Android 12+ (`BLUETOOTH_SCAN` neverForLocation), no background location, no location foreground service; Tor off by default; Nostr relays never connect (`TwmFlags.NOSTR`) | Privacy by default (BRIEF §0.6). The chat UI is kept one tap away for now; its code is still present. |
 

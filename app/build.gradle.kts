@@ -30,8 +30,8 @@ android {
         applicationId = "dev.dhruv.twmesh"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = 40
-        versionName = "2.1.0"
+        versionCode = 41
+        versionName = "0.6.0"
         buildConfigField(
             "String",
             "GITHUB_RELEASE_CERT_SHA256",
