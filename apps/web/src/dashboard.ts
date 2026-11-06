@@ -1,8 +1,8 @@
 // Dashboard: reads phones and triggers straight from Arkiv and recomputes the quorum in the browser.
 // Prototype 1 trust rule: the first MAX_PHONES distinct phones (by join time) at a site count; a trigger counts only
 // if its Arkiv $creator is the wallet that registered that phone name. Prototype 2 replaces this with ENS names.
-import { alignBySound, asOfCheck, coherence, type AsOfReason, type RegistrationInterval, computeQuorum, correctTime, type CoherenceResult, type SyncSession, type Trigger } from "@tw/core";
-import { ENS_DEPLOYER, encodeInvite as _encInv, fetchInviteRecords, ensPublic, siteRegistrationHistory, listSitePhones, resolvePhones, siteExists, siteName, siteParams, type EnsPhone, fetchEvents, fetchSensors, fetchSyncs, fetchTriggers, publicClientFor, swarmUploadJson, swarmUrl, walletClientFor, writeEvent, type SensorRow, type TriggerRow } from "@tw/chain";
+import { alignBySound, asOfCheck, coherence, gapCount, seqGaps, type AsOfReason, type RegistrationInterval, computeQuorum, correctTime, type CoherenceResult, type SyncSession, type Trigger } from "@tw/core";
+import { ENS_DEPLOYER, encodeInvite as _encInv, fetchInviteRecords, ensPublic, siteRegistrationHistory, listSitePhones, resolvePhones, siteExists, siteName, siteParams, type EnsPhone, extendEvent, fetchEvents, fetchSensors, fetchSyncs, fetchTriggers, publicClientFor, swarmUploadJson, swarmUrl, walletClientFor, writeEvent, type SensorRow, type TriggerRow } from "@tw/chain";
 import { keccak256, toHex, type Hex } from "viem";
 import QRCode from "qrcode";
 import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
@@ -188,6 +188,22 @@ const cohCell = (r: CoherenceResult | null) => {
   return `<span title="experimental indicator; thresholds not yet measured (EXP-0001)">${r.score.toFixed(2)} · lag ${Math.round(lag)} ms</span>`;
 };
 
+// ---- T2a keep-alive: anyone can extend a sealed event's life on Arkiv (created with permissionlessExtension). ----
+document.addEventListener("click", async (ev) => {
+  const btn = (ev.target as HTMLElement).closest<HTMLButtonElement>("button[data-extend]");
+  if (!btn) return;
+  btn.disabled = true;
+  btn.textContent = "Extending…";
+  try {
+    if (!(await ensureSealGas())) throw new Error("no gas on this copy");
+    await extendEvent(sealWallet, btn.dataset.extend!, 182);
+    btn.textContent = "Extended ✓ (182 days from now)";
+  } catch (e) {
+    const m = String((e as Error).message ?? e);
+    btn.textContent = m.includes("shorten") ? "Already at maximum" : `Failed: ${m.slice(0, 40)}`;
+  }
+});
+
 // ---- T14 invites: committee creates a one-time QR; every issue/use is public on Arkiv ----
 let activeInvite: { url: string; exp: number } | null = null;
 document.getElementById("inviteBtn")!.addEventListener("click", async () => {
@@ -296,7 +312,11 @@ async function refresh() {
           .map((p) => {
             const a = arkivInfo.get(p.label);
             const live = (ens.resolved.get(p.label) ?? "").toLowerCase() === p.owner.toLowerCase();
-            return `<tr><td><b>${esc(p.label)}</b><br><span class="muted small">${esc(p.name)}</span></td><td>${a ? `${a.rateHz.toFixed(1)} Hz` : "–"}</td><td>${live ? '<span class="ok">resolves ✓</span>' : '<span class="bad">not resolving</span>'}<br><span class="muted small">expires ${new Date(p.expiry * 1000).toLocaleDateString()}</span></td><td><a href="${EXPLORER}/address/${p.owner}" target="_blank" rel="noopener">${short(p.owner)}</a></td><td><button class="ghost" data-revoke="${esc(p.label)}">Revoke</button></td></tr>`;
+            const mine = rows.filter((r) => r.sensor === p.label);
+            const gaps = seqGaps(mine.map((r) => r.seq ?? NaN));
+            const ro = mine.length ? mine.every((r) => r.readonly) : null;
+            const integ = !mine.length ? "" : `<br><span class="small ${gaps.length ? "bad" : "ok"}">${ro ? "edit-proof ✓" : "not edit-proof"} · ${gaps.length ? `${gapCount(gaps)} missing (#${gaps.map((g) => (g.from === g.to ? g.from : `${g.from}–${g.to}`)).join(", #")}): deleted or never uploaded` : "no gaps"}</span>`;
+            return `<tr><td><b>${esc(p.label)}</b><br><span class="muted small">${esc(p.name)}</span>${integ}</td><td>${a ? `${a.rateHz.toFixed(1)} Hz` : "–"}</td><td>${live ? '<span class="ok">resolves ✓</span>' : '<span class="bad">not resolving</span>'}<br><span class="muted small">expires ${new Date(p.expiry * 1000).toLocaleDateString()}</span></td><td><a href="${EXPLORER}/address/${p.owner}" target="_blank" rel="noopener">${short(p.owner)}</a></td><td><button class="ghost" data-revoke="${esc(p.label)}">Revoke</button></td></tr>`;
           })
           .join("") || `<tr><td colspan="5" class="muted">No phones registered in ENS yet. Open the join link on a phone and press Start.</td></tr>`
       : sensors
@@ -310,7 +330,11 @@ async function refresh() {
       const latest = all.sort((a, b) => b.tMs - a.tMs).filter((e) => !seen.has(e.eventId) && seen.add(e.eventId)).slice(0, 10);
       ui.sealedAll.innerHTML =
         latest
-          .map((e) => `<tr><td>${new Date(e.tMs).toLocaleString("en-IN", { timeZone: "Asia/Kolkata", dateStyle: "medium", timeStyle: "medium" })}</td><td>${e.sensors.map(esc).join(", ")}</td><td>${e.ppvMinMmS.toFixed(2)}–${e.ppvMaxMmS.toFixed(2)} mm/s</td><td><a href="./report.html?site=${encodeURIComponent(site)}&event=${e.eventId}" target="_blank" rel="noopener">report</a> · <a href="${swarmUrl(e.swarmRef)}" target="_blank" rel="noopener">Swarm pack</a></td></tr>`)
+          .map((e) => {
+            const days = e.expiresAtMs ? Math.max(0, Math.round((e.expiresAtMs - Date.now()) / 86_400_000)) : null;
+            const keep = e.extendable ? ` · <button class="ghost" data-extend="${esc(e.key)}" title="Anyone can extend this record on Arkiv (permissionless extension)">Keep alive</button>` : "";
+            return `<tr><td>${new Date(e.tMs).toLocaleString("en-IN", { timeZone: "Asia/Kolkata", dateStyle: "medium", timeStyle: "medium" })}</td><td>${e.sensors.map(esc).join(", ")}</td><td>${e.ppvMinMmS.toFixed(2)}–${e.ppvMaxMmS.toFixed(2)} mm/s</td><td><a href="./report.html?site=${encodeURIComponent(site)}&event=${e.eventId}" target="_blank" rel="noopener">report</a> · <a href="${swarmUrl(e.swarmRef)}" target="_blank" rel="noopener">Swarm pack</a><br><span class="small muted">${days === null ? "" : `on Arkiv for ${days} more days`}</span>${keep}</td></tr>`;
+          })
           .join("") || `<tr><td colspan="4" class="muted">No sealed events at this site yet.</td></tr>`;
     }).catch(() => undefined);
     // Sealed events on Arkiv (first seal per eventId wins; duplicates from other viewers are harmless).

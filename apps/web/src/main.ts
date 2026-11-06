@@ -373,10 +373,15 @@ function closeEvent() {
   const site = ui.site.value.trim();
   const sensor = ui.name.value.trim();
   const rate = fs;
+  // T1: per-phone reading number (persisted), so a deleted reading leaves a visible gap.
+  const seqKey = `tw.seq.${site}.${sensor}`;
+  const seq = Number(lsGet(seqKey) ?? "0") + 1;
+  lsSet(seqKey, String(seq));
   post(
     {
       kind: "trigger",
       payload: {
+        seq,
         site,
         sensor,
         tMs: wallMs,

@@ -20,6 +20,7 @@ export const TriggerSchema = defineSchema(`${APP_TAG}.trigger`, {
   rateCHz: u64(), // delivered sample rate, centi-Hz
   label: str().indexed(), // "structural" | "handling"
   wave: bytes(), // JSON waveform excerpt {fs, x[], y[], z[]} for offline analysis
+  seq: u64().indexed().optional(), // T1: per-phone reading number 1,2,3…; a missing number = deleted or never uploaded
 });
 
 export const SensorSchema = defineSchema(`${APP_TAG}.sensor`, {
@@ -70,6 +71,7 @@ export interface TriggerInput {
   rateHz: number;
   label: "structural" | "handling";
   wave: { fs: number; x: number[]; y: number[]; z: number[]; [extra: string]: unknown };
+  seq?: number;
 }
 
 const enc = new TextEncoder();
@@ -90,8 +92,10 @@ export async function writeTrigger(w: ArkivWallet, t: TriggerInput, days = 30) {
       rateCHz: u64(Math.max(0, Math.round(t.rateHz * 100))),
       label: t.label,
       wave,
+      ...(t.seq ? { seq: u64(t.seq) } : {}),
     },
-    { expiration: ExpirationTime.fromDays(days) },
+    // T1: readonly = nobody (not even the phone) can edit a reading after it is written; deletion stays visible via seq gaps.
+    { expiration: ExpirationTime.fromDays(days), flags: { readonly: true } },
   );
 }
 
@@ -124,6 +128,8 @@ export interface TriggerRow {
   wave?: { fs: number; x: number[]; y: number[]; z: number[] };
   createdAtBlock?: number; // Arkiv block that recorded it (the phone cannot choose this)
   createdAtMs?: number; // that block's wall time, from arkiv_getBlockTiming (± one block, 2 s)
+  seq?: number;
+  readonly?: boolean; // created with the readonly flag (edit-proof)
 }
 
 const num = (v: { value: unknown } | undefined) => Number((v?.value as bigint | number | undefined) ?? 0);
@@ -131,7 +137,7 @@ const num = (v: { value: unknown } | undefined) => Number((v?.value as bigint | 
 /** Triggers for a site since `sinceMs`, newest first (up to 100 per page). */
 export async function fetchTriggers(p: ArkivPublic, site: string, sinceMs: number, withWave = false): Promise<TriggerRow[]> {
   const res = await p
-    .select({ $key: true, $creator: true, $createdAt: true, site: true, sensor: true, tMs: true, ppvUm: true, fDomCHz: true, lowFPct: true, rateCHz: true, label: true, ...(withWave ? { wave: true } : {}) })
+    .select({ $key: true, $creator: true, $createdAt: true, $creationFlags: true, seq: true, site: true, sensor: true, tMs: true, ppvUm: true, fDomCHz: true, lowFPct: true, rateCHz: true, label: true, ...(withWave ? { wave: true } : {}) })
     .from(TriggerSchema)
     .where(and(eq("site", site), gt("tMs", u64(Math.max(0, Math.floor(sinceMs))))))
     .orderBy(desc("tMs"))
@@ -165,6 +171,8 @@ export async function fetchTriggers(p: ArkivPublic, site: string, sinceMs: numbe
       wave,
       createdAtBlock: e.$createdAt !== undefined ? Number(e.$createdAt) : undefined,
       createdAtMs: e.$createdAt !== undefined ? blockToMs(Number(e.$createdAt)) : undefined,
+      seq: e.seq?.value !== undefined ? Number(e.seq.value) : undefined,
+      readonly: typeof e.$creationFlags === "object" ? Boolean(e.$creationFlags?.readonly) : e.$creationFlags !== undefined ? (Number(e.$creationFlags) & 1) === 1 : undefined,
     } satisfies TriggerRow;
   });
 }
@@ -226,27 +234,34 @@ export async function writeEvent(w: ArkivWallet, e: EventInput, days = 180) {
       swarmRef: e.swarmRef,
       packHash: e.packHash,
     },
-    { expiration: ExpirationTime.fromDays(days) },
+    // T1 + T2a: sealed events are edit-proof AND anyone (not only the sealer) may extend their life on Arkiv.
+    { expiration: ExpirationTime.fromDays(days), flags: { readonly: true, permissionlessExtension: true } },
   );
 }
 
 export interface EventRow extends EventInput {
   key: string;
   creator: string;
+  expiresAtMs?: number; // T2a: when this record leaves Arkiv unless someone extends it
+  extendable?: boolean; // created with permissionlessExtension (anyone may extend)
 }
 
 export async function fetchEvents(p: ArkivPublic, site: string, sinceMs: number): Promise<EventRow[]> {
   const res = await p
-    .select({ $key: true, $creator: true, site: true, eventId: true, tMs: true, k: true, sensors: true, ppvMinUm: true, ppvMaxUm: true, swarmRef: true, packHash: true })
+    .select({ $key: true, $creator: true, $expiresAt: true, $creationFlags: true, site: true, eventId: true, tMs: true, k: true, sensors: true, ppvMinUm: true, ppvMaxUm: true, swarmRef: true, packHash: true })
     .from(EventSchema)
     .where(and(eq("site", site), gt("tMs", u64(Math.max(0, Math.floor(sinceMs))))))
     .orderBy(desc("tMs"))
     .limit(100)
     .fetch();
+  const timing = await p.getBlockTiming().catch(() => null);
+  const blockToMs = (b: number) => (timing ? (timing.currentBlockTime - (Number(timing.currentBlock) - b) * timing.blockDuration) * 1000 : undefined);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return res.entities.map((e: any) => ({
     key: String(e.$key),
     creator: String(e.$creator),
+    expiresAtMs: e.$expiresAt !== undefined ? blockToMs(Number(e.$expiresAt)) : undefined,
+    extendable: typeof e.$creationFlags === "object" ? Boolean(e.$creationFlags?.permissionlessExtension) : e.$creationFlags !== undefined ? (Number(e.$creationFlags) & 2) === 2 : undefined,
     site: String(e.site.value),
     eventId: String(e.eventId.value),
     tMs: num(e.tMs),
@@ -281,4 +296,9 @@ export async function fetchSyncs(p: ArkivPublic, site: string, sinceMs: number) 
     .fetch();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return res.entities.map((e: any) => ({ key: String(e.$key), creator: String(e.$creator), sensor: String(e.sensor.value), tMs: num(e.tMs), method: String(e.method.value) }));
+}
+
+/** T2a: anyone can keep a sealed event alive on Arkiv (it was created with permissionlessExtension). */
+export async function extendEvent(w: ArkivWallet, entityKey: string, days = 180) {
+  return w.extendEntity({ entityKey: entityKey as `0x${string}`, expiration: ExpirationTime.fromDays(days) });
 }
