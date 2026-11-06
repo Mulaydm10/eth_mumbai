@@ -35,7 +35,7 @@ PermissionedResolver (shared) 0xFA87654E65542Ad82428f3326c322d6a12C55957
 ## No hard-coded values
 - Phones, owners, expiries, revocations and quorum parameters are all read **from chain at view time**.
 - The only constants are deployment addresses: our parent registry, the shared resolver and the factory deployer. That's the same as any app pinning a contract address.
-- **Try it:** register a phone (scan an invite), revoke it from the dashboard, and the dashboard's phone list and trust banner change accordingly. On `p3test` the committee changed `tw.k`, and the dashboard follows the text record.
+- **Try it:** register a phone (scan an invite), revoke it from the dashboard, and the dashboard's phone list and trust banner change accordingly. `test2` carries `tw.k=2` and `p3test` carries `tw.k=3`; the same dashboard code shows a different quorum per site because it reads the text record.
 
 ## Demo moments (live and in the video)
 1. A judge scans a one-time invite QR, and their phone becomes `phone-xxxx.test2.tremorwitness.eth` (about 25 s, two Sepolia transactions).
