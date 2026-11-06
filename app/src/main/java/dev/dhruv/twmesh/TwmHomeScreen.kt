@@ -64,6 +64,7 @@ fun TwmHomeScreen(peerCount: Int, onOpenChat: () -> Unit) {
     var refreshing by remember { mutableStateOf(false) }
     var refreshNote by remember { mutableStateOf<String?>(null) }
     val v by MeshState.view.collectAsState()
+    val up by Uploader.status.collectAsState()
 
     fun refreshRoster() {
         val site = PhoneIdentity.get(ctx).site ?: return
@@ -142,6 +143,8 @@ fun TwmHomeScreen(peerCount: Int, onOpenChat: () -> Unit) {
                 if (age == null) "Site phone list not saved yet." else "Site list: ${v.rosterLabels.size} registered phones, saved ${ago(age)} (Sepolia block ${v.rosterBlock}).",
                 fontSize = 15.sp, color = c.onBackground)
             refreshNote?.let { Text(it, fontSize = 15.sp, color = Red) }
+            Text("Saved on Arkiv: ${up.uploaded} of this phone's messages" + (if (up.pending > 0) ", ${up.pending} waiting for internet" else "") +
+                (up.lastError?.let { " (last try failed: $it)" } ?: ""), fontSize = 15.sp, color = c.onBackground)
             OutlinedButton(onClick = { refreshRoster() }, modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)) {
                 Text(if (refreshing) "Updating site list…" else "Update site list (needs internet)", fontSize = 18.sp) }
 

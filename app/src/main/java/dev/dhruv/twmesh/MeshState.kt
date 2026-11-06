@@ -60,7 +60,7 @@ object MeshState {
         app = ctx.applicationContext
         loadFromDisk()
         recompute()
-        scope.launch { while (isActive) { delay(60_000); regossip() } }
+        scope.launch { while (isActive) { delay(60_000); regossip(); Uploader.uploadPending(app) } }
     }
 
     fun now() = System.currentTimeMillis() + clockOffsetMs
@@ -100,10 +100,20 @@ object MeshState {
     /** Sign and broadcast one of our own messages. Returns null if this phone hasn't joined a site. */
     fun send(type: String, body: Map<String, Any> = emptyMap()): MeshMsg? {
         val me = id(); val site = me.site ?: return null; val label = me.label ?: return null
-        val m = MeshMsg.build(type, site, label, me.address, now(), body) { me.signMessage(it) }
+        val extra = HashMap<String, Any>(body)
+        if (type != "hello") extra["seq"] = me.nextSeq(site)
+        if (type == "checkin") _view.value.alert?.let { extra["armMs"] = it.atMs }
+        val m = MeshMsg.build(type, site, label, me.address, now(), extra) { me.signMessage(it) }
         synchronized(this) { verifier.check(m, site, { _, _, _, _ -> true }, now()); store(m, 0, now()) }
         TwmBus.send(app, m.wire.toByteArray())
+        scope.launch { Uploader.uploadPending(app) }
         return m
+    }
+
+    /** This phone's own accepted messages for the current site (the M6 outbox). */
+    @Synchronized fun ownMessages(): List<MeshMsg> {
+        val me = id(); val site = me.site ?: return emptyList(); val label = me.label ?: return emptyList()
+        return accepted.values.map { it.first }.filter { it.site.equals(site, true) && it.sender == label && it.addr.equals(me.address, true) }
     }
 
     private fun store(m: MeshMsg, relays: Int, heard: Long) {

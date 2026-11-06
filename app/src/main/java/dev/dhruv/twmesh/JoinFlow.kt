@@ -57,7 +57,9 @@ class JoinFlow(
             onStep(Step("register", msg, State.FAILED)); return Result(false, name, 0, false, msg)
         }
         val expiry = reg.json["expiry"]?.asLong ?: 0
-        onStep(Step("register", if (reg.json["existing"]?.asBoolean == true) "$name was already this phone's: rejoined" else "Registered $name", State.DONE))
+        val left = reg.json["usesLeft"]?.takeIf { !it.isJsonNull }?.asInt
+        onStep(Step("register", (if (reg.json["existing"]?.asBoolean == true) "$name was already this phone's: rejoined" else "Registered $name") +
+            (left?.let { " ($it more phone${if (it == 1) "" else "s"} can join with this invite)" } ?: ""), State.DONE))
 
         onStep(Step("resolve", "Checking the name on Sepolia…", State.RUNNING))
         var got: String? = null

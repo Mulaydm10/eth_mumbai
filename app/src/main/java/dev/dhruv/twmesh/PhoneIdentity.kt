@@ -36,6 +36,14 @@ class PhoneIdentity private constructor(private val prefs: SharedPreferences) {
 
     val address: String get() = prefs.getString("addr", null) ?: Eth.address(key()).also { prefs.edit().putString("addr", it).apply() }
     fun signMessage(message: String): String = Eth.signMessage(message, key())
+    /** Only for this phone's own Arkiv writes (ArkivWriter); never logged or exported. */
+    internal fun privateKeyForOwnWrites(): ByteArray = key()
+
+    /** Per-site message number for this phone (Arkiv `seq`: gaps = missing uploads). */
+    @Synchronized fun nextSeq(site: String): Long {
+        val k = "seq.$site"; val n = prefs.getLong(k, 0) + 1
+        prefs.edit().putLong(k, n).commit(); return n
+    }
 
     // ---- membership (set after a successful /api/ens-register + Sepolia check)
     val site: String? get() = prefs.getString("site", null)

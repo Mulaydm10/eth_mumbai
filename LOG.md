@@ -91,3 +91,27 @@ Test phones are named A/B/C here; raw device logs stay local (SafeMesh AGENTS.md
   A ignores B's next check-in ("1 not registered", log NOT_REGISTERED) (M3 rejection ✓). Relay (3 phones, A→C via B)
   still needs real phones: emulators are all in range of each other.
 - Tests: 705 pass (incl. live Sepolia), 3 upstream skipped. Release APK (R8) 20 MB, no debug hook inside, smoke OK.
+
+## 2026-11-06 17:00–17:20 IST — backend live (50b5400): R1, R2, R3, R5; M6 Arkiv upload
+- Backend update read (BRIEF §4/§6, BACKEND_REQUESTS, `packages/chain/src/mesh.ts`): v2 multi-use invites live (format =
+  our proposal, already supported by the app), `mesh-` labels have their own cap of 15/site (R1), Arkiv schemas
+  `tremor-witness.v1.dtrigger` / `.checkin` (R2/R3), `tw.dk`/`tw.dwindow_ms` defined but unset (fallback kept). R4 deferred.
+- **Arkiv writes in Kotlin** (`chain/Arkiv.kt`): attribute encoding (name = UTF-8 right-padded bytes32, typeId |
+  0x80 when indexed, sorted by name), `execute((uint8,bytes)[])` create op (salt, expiresAt 0, minLifetime = days ×
+  43 200 blocks, readonly flag), RLP + EIP-1559 signing, receipt → `EntityCreated` (entity key, owner).
+  Golden vectors from the real `writeDTrigger`/`writeCheckin` with a mocked RPC (`tools/golden/arkiv-vectors.mjs`):
+  **calldata and signed raw tx byte-identical for all 4 cases** (manual + auto dtrigger, help + safe checkin, UTF-8 note).
+- **Live, production (no stubs):** `/api/time` best RTT 219 ms, offset 10 ms. Throwaway key → `/api/drip` funded
+  0.05 tGLM → 1 dtrigger + 1 checkin written to Arkiv (site `twm-livetest`, so no real site touched); owner = the key.
+  Measured cost: 0.00064 tGLM for 2 writes (≈ 0.00032 per write; BRIEF says 0.00019: our maxFee = 2 × base + tip, the
+  charged amount depends on the block's base fee). Read back with the TW repo's own `fetchDTriggers`/`fetchCheckins`
+  (`tools/golden/arkiv-readback.mjs`): every field matches, `creator` = the key.
+- **M6 in the app** (`Uploader.kt`): own messages only, mapped dmanual → dtrigger kind "manual", dtrigger → "auto",
+  checkin → status/note/armMs (time of the alert it answers)/seq; per-site `seq` added to every signed message;
+  test shaking signals are never uploaded; drip when balance < 0.002 tGLM; retries every 60 s; status on the home screen.
+  **2 emulators, live Arkiv:** A presses Emergency, B "I need help" (note "flat 302"), A "I'm safe" → each phone
+  uploaded only its own messages within ~10 s; TW repo reader returns them with creator = that phone, armMs = the
+  emergency's time, seq 1/2 and 1.
+- Join: shows "N more phones can join with this invite" (`usesLeft`). Live `/api/ens-register` still untested: needs a
+  committee invite (the app never holds the passcode).
+- Tests: 708 pass, 4 skipped (3 upstream + live-write, which ran separately with TWM_LIVE_WRITE=1).
