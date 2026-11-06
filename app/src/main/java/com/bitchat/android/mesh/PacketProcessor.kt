@@ -145,6 +145,7 @@ class PacketProcessor(private val myPeerID: String) {
             MessageType.MESSAGE -> handleMessage(routed)
             MessageType.FILE_TRANSFER -> handleMessage(routed) // treat same routing path; parsing happens in handler
             MessageType.VOICE_FRAME -> validPacket = delegate?.handleVoiceFrame(routed) ?: false
+            MessageType.TWM -> validPacket = dev.dhruv.twmesh.TwmBus.onReceive(routed)
             MessageType.LEAVE -> handleLeave(routed)
             MessageType.FRAGMENT -> handleFragment(routed)
             MessageType.REQUEST_SYNC -> handleRequestSync(routed)

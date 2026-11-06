@@ -22,6 +22,8 @@ interface MeshService {
     fun sendFileBroadcast(file: BitchatFilePacket)
     fun sendFilePrivate(recipientPeerID: String, file: BitchatFilePacket)
     fun sendVoiceFrame(recipientPeerID: String?, payload: ByteArray)
+    /** Broadcast a Tremor Witness Mesh payload (MessageType.TWM), signed, relayed up to MAX_TTL hops. */
+    fun sendTwm(payload: ByteArray) {}
     fun prepareFilePrivate(
         recipientPeerID: String,
         file: BitchatFilePacket,

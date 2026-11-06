@@ -110,6 +110,13 @@
             android:exported="false"
             android:theme="@style/Theme.BitchatAndroid"
             android:windowSoftInputMode="adjustResize" />
+        <!-- Tremor Witness Mesh: M0 mesh test screen (new code, dev.dhruv.twmesh) -->
+        <activity
+            android:name="dev.dhruv.twmesh.TwmTestActivity"
+            android:exported="false"
+            android:label="Mesh test"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Material.Light.NoActionBar" />
         <activity
             android:name=".ui.NotificationTrampolineActivity"
             android:exported="false"

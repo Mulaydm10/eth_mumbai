@@ -653,7 +653,7 @@ fun ChatHeaderContent(
     onShowAppInfo: () -> Unit,
     onLocationChannelsClick: () -> Unit,
     onLocationNotesClick: () -> Unit,
-    onSosClick: () -> Unit = {},
+    onMeshTestClick: () -> Unit = {},
     onGroupsClick: () -> Unit = {},
     onShareClick: () -> Unit = {}
 ) {
@@ -679,7 +679,7 @@ fun ChatHeaderContent(
                 onSidebarClick = onSidebarClick,
                 onLocationChannelsClick = onLocationChannelsClick,
                 onLocationNotesClick = onLocationNotesClick,
-                onSosClick = onSosClick,
+                onMeshTestClick = onMeshTestClick,
                 onGroupsClick = onGroupsClick,
                 onShareClick = onShareClick,
                 viewModel = viewModel
@@ -722,7 +722,7 @@ private fun MainHeader(
     onSidebarClick: () -> Unit,
     onLocationChannelsClick: () -> Unit,
     onLocationNotesClick: () -> Unit,
-    onSosClick: () -> Unit,
+    onMeshTestClick: () -> Unit,
     onGroupsClick: () -> Unit,
     onShareClick: () -> Unit,
     viewModel: ChatViewModel
@@ -823,16 +823,14 @@ private fun MainHeader(
                         Text("Groups", fontSize = HeaderTextSize, color = colorScheme.primary)
                     }
 
+                    // Tremor Witness Mesh: the public GPS SOS button is removed (brief §0.4/§0.6);
+                    // signed check-ins replace it. M0: entry to the mesh test screen.
                     androidx.compose.material3.Button(
-                        onClick = onSosClick,
-                        colors = androidx.compose.material3.ButtonDefaults.buttonColors(
-                            containerColor = SosRed,
-                            contentColor = androidx.compose.ui.graphics.Color.White
-                        ),
+                        onClick = onMeshTestClick,
                         contentPadding = androidx.compose.foundation.layout.PaddingValues(horizontal = 12.dp),
                         modifier = Modifier.height(34.dp)
                     ) {
-                        Text("SOS", fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
+                        Text("Mesh test", fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
                     }
                 }
 

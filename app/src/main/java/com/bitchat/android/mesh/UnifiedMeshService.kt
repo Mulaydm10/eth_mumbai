@@ -101,6 +101,11 @@ class UnifiedMeshService(
         }
     }
 
+    override fun sendTwm(payload: ByteArray) {
+        // TODO(M3): also over Wi-Fi Aware; BLE is the broadcast origin like sendMessage.
+        if (isBleEnabled()) bluetooth.sendTwm(payload)
+    }
+
     override fun sendPrivateMessage(
         content: String,
         recipientPeerID: String,

@@ -72,8 +72,6 @@ class ChatViewModel(
     companion object {
         private const val TAG = "ChatViewModel"
         const val GROUP_MIN_PASSWORD = 4
-        private const val SOS_LOCATION_MAX_AGE_MS = 120_000L
-        private const val SOS_LOCATION_TIMEOUT_MS = 8_000L
         private const val CONVERSATION_DISCONNECT_GRACE_MS = 3_000L
     }
 
@@ -700,57 +698,6 @@ class ChatViewModel(
                 channelManager.joinChannel(tag, null, mesh.myPeerID)
             }
         }
-    }
-
-    fun sendSos(status: SosStatus) {
-        val app = getApplication<Application>()
-        if (state.getSelectedPrivateChatPeerValue() != null) endPrivateChat()
-        channelManager.switchToChannel(null)
-        com.bitchat.android.geohash.LocationChannelManager.getInstance(app)
-            .select(com.bitchat.android.geohash.ChannelID.Mesh)
-        viewModelScope.launch {
-            val location = findSosLocation(app)
-            sendMessage(SosFormat.build(status, location?.latitude, location?.longitude, location?.accuracy))
-        }
-    }
-
-    @android.annotation.SuppressLint("MissingPermission")
-    private suspend fun findSosLocation(app: Application): android.location.Location? {
-        val granted = androidx.core.content.ContextCompat.checkSelfPermission(
-            app, android.Manifest.permission.ACCESS_FINE_LOCATION
-        ) == android.content.pm.PackageManager.PERMISSION_GRANTED
-        if (!granted) return null
-        val lm = app.getSystemService(android.content.Context.LOCATION_SERVICE) as android.location.LocationManager
-        val providers = try { lm.getProviders(true) } catch (e: Exception) { emptyList() }
-        val lastKnown = providers.mapNotNull {
-            try { lm.getLastKnownLocation(it) } catch (e: Exception) { null }
-        }.maxByOrNull { it.time }
-        if (lastKnown != null && System.currentTimeMillis() - lastKnown.time < SOS_LOCATION_MAX_AGE_MS) {
-            return lastKnown
-        }
-        val provider = listOf(
-            android.location.LocationManager.GPS_PROVIDER,
-            android.location.LocationManager.NETWORK_PROVIDER
-        ).firstOrNull { it in providers } ?: return lastKnown
-        val fresh = kotlinx.coroutines.withTimeoutOrNull(SOS_LOCATION_TIMEOUT_MS) {
-            kotlinx.coroutines.suspendCancellableCoroutine<android.location.Location?> { cont ->
-                try {
-                    androidx.core.location.LocationManagerCompat.getCurrentLocation(
-                        lm,
-                        provider,
-                        null as android.os.CancellationSignal?,
-                        androidx.core.content.ContextCompat.getMainExecutor(app),
-                        androidx.core.util.Consumer<android.location.Location?> { loc ->
-                            if (cont.isActive) cont.resumeWith(Result.success(loc))
-                        }
-                    )
-                } catch (e: Exception) {
-                    Log.w(TAG, "SOS location request failed: ${e.message}")
-                    if (cont.isActive) cont.resumeWith(Result.success(null))
-                }
-            }
-        }
-        return fresh ?: lastKnown
     }
 
     fun switchToChannel(channel: String?) {

@@ -878,6 +878,23 @@ class BluetoothMeshService(private val context: Context) : TransportBridgeServic
         }
     }
 
+    /** Tremor Witness Mesh: broadcast a signed TWM packet. Not added to gossip sync (pings are ephemeral). */
+    fun sendTwm(payload: ByteArray) {
+        serviceScope.launch {
+            val packet = BitchatPacket(
+                version = 1u,
+                type = MessageType.TWM.value,
+                senderID = hexStringToByteArray(myPeerID),
+                recipientID = SpecialRecipients.BROADCAST,
+                timestamp = System.currentTimeMillis().toULong(),
+                payload = payload,
+                signature = null,
+                ttl = MAX_TTL
+            )
+            broadcastRoutedPacket(RoutedPacket(signPacketBeforeBroadcast(packet)))
+        }
+    }
+
     /**
      * Send a file over mesh as a broadcast MESSAGE (public mesh timeline/channels).
      */

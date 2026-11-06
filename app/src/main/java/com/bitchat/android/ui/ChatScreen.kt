@@ -90,7 +90,6 @@ fun ChatScreen(viewModel: ChatViewModel) {
     var showPasswordDialog by remember { mutableStateOf(false) }
     var passwordInput by remember { mutableStateOf("") }
     var showLocationChannelsSheet by remember { mutableStateOf(false) }
-    var showSosDialog by remember { mutableStateOf(false) }
     var showGroupDialog by remember { mutableStateOf(false) }
     var showShareDialog by remember { mutableStateOf(false) }
     val shareScope = rememberCoroutineScope()
@@ -468,7 +467,7 @@ fun ChatScreen(viewModel: ChatViewModel) {
                 nearbyNotesController.reveal()
                 showLocationNotesSheet = true
             },
-            onSosClick = { showSosDialog = true },
+            onMeshTestClick = { context.startActivity(android.content.Intent(context, dev.dhruv.twmesh.TwmTestActivity::class.java)) },
             onGroupsClick = { showGroupDialog = true },
             onShareClick = { showShareDialog = true }
         )
@@ -521,15 +520,6 @@ fun ChatScreen(viewModel: ChatViewModel) {
         )
     }
 
-    if (showSosDialog) {
-        SosDialog(
-            onSend = { status ->
-                showSosDialog = false
-                viewModel.sendSos(status)
-            },
-            onDismiss = { showSosDialog = false }
-        )
-    }
     if (showShareDialog) {
         ShareAppDialog(
             onShare = { method ->
@@ -806,7 +796,7 @@ private fun ChatFloatingHeader(
     onPanicClear: () -> Unit,
     onLocationChannelsClick: () -> Unit,
     onLocationNotesClick: () -> Unit,
-    onSosClick: () -> Unit = {},
+    onMeshTestClick: () -> Unit = {},
     onGroupsClick: () -> Unit = {},
     onShareClick: () -> Unit = {}
 ) {
@@ -854,7 +844,7 @@ private fun ChatFloatingHeader(
                 locationManager.refreshChannels()
                 onLocationNotesClick()
             },
-            onSosClick = onSosClick,
+            onMeshTestClick = onMeshTestClick,
             onGroupsClick = onGroupsClick,
             onShareClick = onShareClick
         )
