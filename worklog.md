@@ -78,3 +78,6 @@ Format: `## YYYY-MM-DD HH:MM IST · who · title`
 
 ## 2026-11-06 15:20 IST · Claude Code (for Dhruv Mulay) · Extension analysis: Disaster Mesh
 - Recorded Dhruv's idea plus the earlier review, with an in-depth analysis in `design/extensions/disaster-mesh.md`. Not implemented, by request. Decision: pitch as an extension (roadmap slide plus ~10 s of the video); no SafeMesh (GPL-3.0, pre-hackathon) code in this repo; partner picks unchanged.
+
+## 2026-11-06 15:34 IST · Claude Code (for Dhruv Mulay) · Disaster Mesh build brief
+- Wrote `extensions/disaster-mesh/BRIEF.md` (handoff to a separate Claude that builds the native Android companion app) and `BACKEND_REQUESTS.md` (requests R1–R4; only the main session implements backend changes). The brief locks the web app, packages and backend against edits by the app session. No web app code changed.
