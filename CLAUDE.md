@@ -38,7 +38,7 @@ npx tsx scripts/verify-event.ts <site>     # verify sealed events (Swarm pack ha
 npx tsx --env-file=.env scripts/ens-setup.ts phones|site|params|phone|revoke ...   # ENSv2 committee CLI (dry run unless --send)
 cd apps/web && vercel build --prod --yes && vercel deploy --prebuilt --prod --yes  # deploy https://tremor-witness.vercel.app
 ```
-Secrets live only in the gitignored `.env` (FUNDER_PRIVATE_KEY, COMMITTEE_PASS) and as Vercel secrets. Never print or commit them.
+Secrets live only in the gitignored `.env` (FUNDER_PRIVATE_KEY, COMMITTEE_PASS, ARKIV_BROWSER_KEY) and as Vercel env vars. Never print or commit them. The Arkiv key is **origin-locked** to tremor-witness.vercel.app: only the browser bundle (`VITE_ARKIV_ACCESS_KEY`) uses it; server functions and scripts use the public endpoint (no Origin header → 403).
 
 ## Hard rules
 1. Never invent a thesis, deadline, rule or rubric weight. Unknown stays `TODO(<owner>)`.
