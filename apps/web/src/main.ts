@@ -658,3 +658,6 @@ shakerBtn.addEventListener("click", () => {
 });
 
 initLang();
+
+import { showBuild } from "./build";
+showBuild();

@@ -430,3 +430,6 @@ async function refresh() {
 for (const el of [ui.site, ui.k, ui.win, ui.mins]) el.addEventListener("change", () => (slowAt.clear(), void refresh()));
 void refresh();
 setInterval(() => void refresh(), 8000);
+
+import { showBuild } from "./build";
+showBuild();
