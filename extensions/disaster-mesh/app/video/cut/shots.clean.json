@@ -1,0 +1,187 @@
+[
+ {
+  "id": "01",
+  "card": {
+   "eyebrow": "ETHGlobal Mumbai 2026 · Tremor Witness extension",
+   "title": "Disaster Mesh: <em>works when the internet doesn't</em>.",
+   "fine": "Real Android app (TW Mesh, GPL-3.0 fork of SafeMesh / bitchat). Three emulators, real ENS names on Sepolia, real Arkiv writes. Shaking = labelled test signal."
+  },
+  "cardDur": 5.5,
+  "pieces": [
+   {
+    "vo": "Disaster Mesh. When the internet is gone, the phones of a Tremor Witness site keep working together.",
+    "cap": "Disaster Mesh: when the internet is gone, a site's phones keep working together.",
+    "at": 0.4
+   }
+  ],
+  "sfx": [
+   {
+    "type": "pop",
+    "at": 0.3
+   }
+  ]
+ },
+ {
+  "id": "02",
+  "src": "three.mp4",
+  "start": 1.0,
+  "end": 12.0,
+  "speed": 1.0,
+  "v916": {
+   "mode": "fit"
+  },
+  "pieces": [
+   {
+    "vo": "Three phones, each registered on E N S at one site. Wi-Fi and mobile data are off. They find each other over Bluetooth.",
+    "cap": "3 phones, each registered on ENS at one site. Wi-Fi and data off: they connect over Bluetooth.",
+    "at": 0.4
+   }
+  ]
+ },
+ {
+  "id": "03",
+  "src": "three.mp4",
+  "start": 16.0,
+  "end": 30.0,
+  "speed": 1.4,
+  "v916": {
+   "mode": "fit"
+  },
+  "pieces": [
+   {
+    "vo": "For this demo, each phone sends a test shaking signal. Real detection needs strong shaking, about ninety-six millimetres per second.",
+    "cap": "Demo: a labelled TEST shaking signal on each phone. Real detection: ≥ 96 mm/s (intensity VI).",
+    "at": 0.3
+   }
+  ],
+  "sfx": [
+   {
+    "type": "tick",
+    "at": 8.4
+   }
+  ]
+ },
+ {
+  "id": "04",
+  "src": "z-confirm.mp4",
+  "start": 0.3,
+  "end": 9.5,
+  "speed": 1.0,
+  "v916": {
+   "mode": "fit"
+  },
+  "pieces": [
+   {
+    "vo": "Every phone runs the same quorum rule as the dashboard: three registered phones within two seconds. Disaster confirmed, on every phone, with no server.",
+    "cap": "Same quorum rule as the dashboard: 3 registered phones within 2 s → DISASTER CONFIRMED. No server.",
+    "at": 0.3
+   }
+  ],
+  "sfx": [
+   {
+    "type": "hit",
+    "word": "confirmed"
+   }
+  ]
+ },
+ {
+  "id": "05",
+  "src": "three.mp4",
+  "start": 43.0,
+  "end": 56.0,
+  "speed": 1.0,
+  "v916": {
+   "mode": "fit"
+  },
+  "pieces": [
+   {
+    "vo": "Phone B needs help, and adds a note. Phone A is safe. Every message is signed by the phone's own key, and only registered phones count.",
+    "cap": "B: “I need help · flat 302”. A: “I'm safe”. Signed by each phone; only registered phones count.",
+    "at": 0.3
+   }
+  ],
+  "sfx": [
+   {
+    "type": "pop",
+    "word": "help"
+   },
+   {
+    "type": "pop",
+    "word": "safe"
+   }
+  ]
+ },
+ {
+  "id": "06",
+  "src": "z-lists.mp4",
+  "start": 0.3,
+  "end": 7.8,
+  "speed": 1.0,
+  "v916": {
+   "mode": "fit"
+  },
+  "pieces": [
+   {
+    "vo": "Each phone lists who has not been heard from, straight from the registry. No G P S.",
+    "cap": "“Not heard from” = the ENS roster minus check-ins. No GPS.",
+    "at": 0.3
+   }
+  ]
+ },
+ {
+  "id": "07",
+  "src": "z-arkiv.mp4",
+  "start": 0.0,
+  "end": 15.0,
+  "speed": 1.5,
+  "v916": {
+   "mode": "fit"
+  },
+  "pieces": [
+   {
+    "vo": "Phone A gets internet back. It writes its own check-in to Arkiv. The test signals never leave the phone.",
+    "cap": "A is back online → writes its OWN check-in to Arkiv. Test signals are never uploaded.",
+    "at": 0.3
+   }
+  ],
+  "sfx": [
+   {
+    "type": "chime",
+    "at": 8.1
+   }
+  ]
+ },
+ {
+  "id": "08",
+  "src": "readback.mp4",
+  "start": 2.5,
+  "end": 12.6,
+  "speed": 1.0,
+  "v916": {
+   "mode": "fit"
+  },
+  "pieces": [
+   {
+    "vo": "Read back with the Tremor Witness code: the creator is phone A, and it points to the confirmed alert.",
+    "cap": "Read back with Tremor Witness's own fetchCheckins: creator = phone A, armMs = the confirmed alert.",
+    "at": 0.3
+   }
+  ]
+ },
+ {
+  "id": "99",
+  "card": {
+   "eyebrow": "Open source · GPL-3.0",
+   "title": "<em>github.com/Mulaydm10/tremor-witness-mesh</em>",
+   "fine": "<b>Real:</b> the app, the Bluetooth mesh, ENS names on Sepolia, Arkiv writes. <b>Simulated:</b> the shaking (test signal) and the phones (emulators)."
+  },
+  "cardDur": 6,
+  "pieces": [
+   {
+    "vo": "Same phones, same keys, same quorum rule. It keeps working when the servers and the internet are gone.",
+    "cap": "Same phones, same keys, same quorum rule. Works when the servers and the internet are gone.",
+    "at": 0.4
+   }
+  ]
+ }
+]

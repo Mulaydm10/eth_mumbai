@@ -1,0 +1,222 @@
+{
+ "source": "packages/chain/src/ens.ts siteLimits/siteParams/siteDisasterParams",
+ "defaults": {
+  "maxPhones": 5,
+  "maxMesh": 15,
+  "hardPhones": 20,
+  "hardMesh": 50,
+  "maxInviteUses": 50
+ },
+ "cases": [
+  {
+   "text": null,
+   "maxPhones": 5,
+   "maxMesh": 15,
+   "fromEns": false,
+   "k": null,
+   "windowMs": null,
+   "dk": null,
+   "isNaN": false
+  },
+  {
+   "text": "",
+   "maxPhones": 5,
+   "maxMesh": 15,
+   "fromEns": false,
+   "k": null,
+   "windowMs": null,
+   "dk": null,
+   "isNaN": false
+  },
+  {
+   "text": " ",
+   "maxPhones": 0,
+   "maxMesh": 0,
+   "fromEns": true,
+   "k": 0,
+   "windowMs": 0,
+   "dk": 0,
+   "isNaN": false
+  },
+  {
+   "text": "0",
+   "maxPhones": 0,
+   "maxMesh": 0,
+   "fromEns": true,
+   "k": 0,
+   "windowMs": 0,
+   "dk": 0,
+   "isNaN": false
+  },
+  {
+   "text": "1",
+   "maxPhones": 1,
+   "maxMesh": 1,
+   "fromEns": true,
+   "k": 1,
+   "windowMs": 1,
+   "dk": 1,
+   "isNaN": false
+  },
+  {
+   "text": "7",
+   "maxPhones": 7,
+   "maxMesh": 7,
+   "fromEns": true,
+   "k": 7,
+   "windowMs": 7,
+   "dk": 7,
+   "isNaN": false
+  },
+  {
+   "text": "15",
+   "maxPhones": 15,
+   "maxMesh": 15,
+   "fromEns": true,
+   "k": 15,
+   "windowMs": 15,
+   "dk": 15,
+   "isNaN": false
+  },
+  {
+   "text": "20",
+   "maxPhones": 20,
+   "maxMesh": 20,
+   "fromEns": true,
+   "k": 20,
+   "windowMs": 20,
+   "dk": 20,
+   "isNaN": false
+  },
+  {
+   "text": "21",
+   "maxPhones": 20,
+   "maxMesh": 21,
+   "fromEns": true,
+   "k": 21,
+   "windowMs": 21,
+   "dk": 21,
+   "isNaN": false
+  },
+  {
+   "text": "50",
+   "maxPhones": 20,
+   "maxMesh": 50,
+   "fromEns": true,
+   "k": 50,
+   "windowMs": 50,
+   "dk": 50,
+   "isNaN": false
+  },
+  {
+   "text": "51",
+   "maxPhones": 20,
+   "maxMesh": 50,
+   "fromEns": true,
+   "k": 51,
+   "windowMs": 51,
+   "dk": 51,
+   "isNaN": false
+  },
+  {
+   "text": "-3",
+   "maxPhones": 0,
+   "maxMesh": 0,
+   "fromEns": true,
+   "k": -3,
+   "windowMs": -3,
+   "dk": -3,
+   "isNaN": false
+  },
+  {
+   "text": "2.5",
+   "maxPhones": 5,
+   "maxMesh": 15,
+   "fromEns": true,
+   "k": 2.5,
+   "windowMs": 2.5,
+   "dk": 2.5,
+   "isNaN": false
+  },
+  {
+   "text": "abc",
+   "maxPhones": 5,
+   "maxMesh": 15,
+   "fromEns": true,
+   "k": null,
+   "windowMs": null,
+   "dk": null,
+   "isNaN": true
+  },
+  {
+   "text": " 8 ",
+   "maxPhones": 8,
+   "maxMesh": 8,
+   "fromEns": true,
+   "k": 8,
+   "windowMs": 8,
+   "dk": 8,
+   "isNaN": false
+  },
+  {
+   "text": "1e1",
+   "maxPhones": 10,
+   "maxMesh": 10,
+   "fromEns": true,
+   "k": 10,
+   "windowMs": 10,
+   "dk": 10,
+   "isNaN": false
+  },
+  {
+   "text": "0x10",
+   "maxPhones": 16,
+   "maxMesh": 16,
+   "fromEns": true,
+   "k": 16,
+   "windowMs": 16,
+   "dk": 16,
+   "isNaN": false
+  },
+  {
+   "text": "Infinity",
+   "maxPhones": 5,
+   "maxMesh": 15,
+   "fromEns": true,
+   "k": null,
+   "windowMs": null,
+   "dk": null,
+   "isNaN": false
+  },
+  {
+   "text": "007",
+   "maxPhones": 7,
+   "maxMesh": 7,
+   "fromEns": true,
+   "k": 7,
+   "windowMs": 7,
+   "dk": 7,
+   "isNaN": false
+  },
+  {
+   "text": "+4",
+   "maxPhones": 4,
+   "maxMesh": 4,
+   "fromEns": true,
+   "k": 4,
+   "windowMs": 4,
+   "dk": 4,
+   "isNaN": false
+  },
+  {
+   "text": "5f",
+   "maxPhones": 5,
+   "maxMesh": 15,
+   "fromEns": true,
+   "k": null,
+   "windowMs": null,
+   "dk": null,
+   "isNaN": true
+  }
+ ]
+}
