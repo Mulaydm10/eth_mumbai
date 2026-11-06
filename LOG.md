@@ -115,3 +115,17 @@ Test phones are named A/B/C here; raw device logs stay local (SafeMesh AGENTS.md
 - Join: shows "N more phones can join with this invite" (`usesLeft`). Live `/api/ens-register` still untested: needs a
   committee invite (the app never holds the passcode).
 - Tests: 708 pass, 4 skipped (3 upstream + live-write, which ran separately with TWM_LIVE_WRITE=1).
+
+## 2026-11-06 18:00–18:15 IST — live ENS join (v2 invite, site meshtest) + full live flow on 2 emulators
+- Dhruv issued a v2 invite (meshtest, uses 4, 6 h). Both emulators joined through the real join screen (pasted link,
+  default name): `mesh-8621.meshtest.tremorwitness.eth` and `mesh-3c2a.meshtest.tremorwitness.eth`. Steps on screen:
+  committee signature ✓ → Arkiv gas "already enough" → Sepolia gas topped up → registered → **resolves to this phone's
+  key on Sepolia** ✓ → site list saved (5 phones). Invite uses left: 2.
+- Live mesh on the REAL roster: both phones show the same Need help / Safe lists; "Not heard from" = the site's 3 other
+  registered phones; each phone's check-in uploaded to Arkiv (site meshtest) by itself.
+- Found: A saved its site list before B joined, so A rejected B ("not registered") until A refreshed. Fix: on a
+  NOT_REGISTERED / NO_ROSTER message, refresh the site list (at most once a minute, needs internet); the sender re-sends
+  every 60 s, so the newcomer is accepted on the next round. (Not yet re-run on device.)
+- Join now requires `mesh-` names (backend R1: other names take a sensing slot); texts updated for multi-use invites.
+- The emulators ran a debug build from before the `usesLeft` display; the server does return `usesLeft`.
+- Tests: 708 pass (8 skipped: 3 upstream + 5 live-only).

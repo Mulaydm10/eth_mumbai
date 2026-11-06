@@ -91,10 +91,19 @@ object MeshState {
         val v = verifier.check(m, site, r?.let { it::isRegistered }, heard)
         if (v != Verdict.ACCEPT) {
             if (v != Verdict.DUPLICATE) { rejected[v] = (rejected[v] ?: 0) + 1; Log.i(TAG, "rejected ${m.type} from ${m.sender}: $v"); recompute() }
+            // A phone that joined after our last site-list download: refresh it (if online). Its sender re-sends every 60 s.
+            if (v == Verdict.NOT_REGISTERED || v == Verdict.NO_ROSTER) maybeRefreshRoster(site)
             return false
         }
         store(m, relays, heard)
         return true
+    }
+
+    @Volatile private var lastRosterRefresh = 0L
+    private fun maybeRefreshRoster(site: String) {
+        if (System.currentTimeMillis() - lastRosterRefresh < 60_000) return
+        lastRosterRefresh = System.currentTimeMillis()
+        scope.launch { if (RosterStore.get(app).refresh(site).isSuccess) { Log.i(TAG, "site list refreshed after unknown sender"); recompute() } }
     }
 
     /** Sign and broadcast one of our own messages. Returns null if this phone hasn't joined a site. */

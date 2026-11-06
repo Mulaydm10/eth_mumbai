@@ -71,7 +71,7 @@ class JoinFlowTest {
     @Test fun `happy path registers with the invite unchanged and verifies resolution`() {
         val steps = mutableListOf<JoinFlow.Step>()
         val inv = invite()
-        val r = flow().run(inv, "dhruv-m", phone) { steps += it }
+        val r = flow().run(inv, "mesh-dhruv", phone) { steps += it }
         assertTrue(r.ok); assertTrue(r.resolved); assertEquals(2_000_000_000L, r.expiry)
         assertTrue(calls.any { it.contains("\"invite\":\"${inv.raw}\"") && it.contains("\"address\":\"$phone\"") })
         assertEquals(2, calls.count { it == "/api/drip" })
@@ -89,24 +89,25 @@ class JoinFlowTest {
 
     @Test fun `resolution lag is retried`() {
         resolveAnswers.addAll(listOf("0x0000000000000000000000000000000000000000", "0x0000000000000000000000000000000000000000"))
-        val r = flow().run(invite(), "dhruv-m", phone) {}
+        val r = flow().run(invite(), "mesh-dhruv", phone) {}
         assertTrue(r.resolved); assertEquals(3, calls.count { it == "/rpc" })
     }
 
     @Test fun `invite not from the committee is refused before any network call`() {
-        val r = flow().run(invite(signer = Eth.newPrivateKey()), "dhruv-m", phone) {}
+        val r = flow().run(invite(signer = Eth.newPrivateKey()), "mesh-dhruv", phone) {}
         assertFalse(r.ok); assertTrue(r.error!!.contains("not signed by the site committee")); assertTrue(calls.isEmpty())
     }
 
     @Test fun `expired invite and bad label are refused locally`() {
-        assertTrue(flow(now = 120_000L).run(invite(exp = 60_000L), "dhruv-m", phone) {}.error!!.contains("expired"))
+        assertTrue(flow(now = 120_000L).run(invite(exp = 60_000L), "mesh-dhruv", phone) {}.error!!.contains("expired"))
         assertTrue(flow().run(invite(), "-Bad_", phone) {}.error!!.contains("Phone name"))
+        assertTrue(flow().run(invite(), "dhruv-m", phone) {}.error!!.contains("must start with mesh-"))
         assertTrue(calls.isEmpty())
     }
 
     @Test fun `server refusal is shown in its own words`() {
         registerReply = ok("""{"ok":false,"error":"site is full (5 phones)"}""", 409)
-        val r = flow().run(invite(), "dhruv-m", phone) {}
+        val r = flow().run(invite(), "mesh-dhruv", phone) {}
         assertFalse(r.ok); assertEquals("site is full (5 phones)", r.error)
     }
 }

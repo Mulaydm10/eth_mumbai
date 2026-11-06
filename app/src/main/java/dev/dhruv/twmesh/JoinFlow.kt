@@ -28,6 +28,7 @@ class JoinFlow(
         !invite.signedByCommittee(committee) -> "This invite was not signed by the site committee. Don't use it."
         invite.exp < nowMs() -> "This invite has expired (they last 30 minutes). Ask the committee for a new one."
         !Tw.LABEL_RE.matches(label) -> "Phone name: 3 to 32 characters, only a–z, 0–9 and -, not starting or ending with -."
+        !label.startsWith("mesh-") -> "Phone name must start with mesh-, like mesh-dhruv. Other names would take one of the site's 5 sensing places."
         else -> null
     }
 

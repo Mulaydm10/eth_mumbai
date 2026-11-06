@@ -65,7 +65,7 @@ class JoinActivity : ComponentActivity() {
         me.ensName?.let { col.addView(text("Already joined as $it. Joining again replaces this.", 16f)) }
 
         col.addView(text("1. Get the invite", 22f, bold = true, top = 20))
-        col.addView(text("Ask the site committee to show the invite QR on their dashboard. It works once, for 30 minutes.", 17f))
+        col.addView(text("Ask the site committee to show the invite QR on their dashboard. A demo invite works for several phones; a normal one works once, for 30 minutes.", 17f))
         col.addView(button("Scan invite QR") { scan.launch(Intent(this, ScanActivity::class.java)) })
         linkBox = EditText(this).apply {
             hint = "Or paste the invite link here"; textSize = 17f; inputType = InputType.TYPE_TEXT_VARIATION_URI
@@ -76,9 +76,9 @@ class JoinActivity : ComponentActivity() {
         inviteInfo = text("No invite yet.", 18f).also { col.addView(it) }
 
         col.addView(text("2. Name this phone", 22f, bold = true, top = 20))
-        col.addView(text("Your name plus -m, like dhruv-m. Lowercase letters, numbers and -. It takes one of the site's ${dev.dhruv.twmesh.chain.Tw.MAX_PHONES_PER_SITE} phone places.", 17f))
+        col.addView(text("Filled in for you. It must start with mesh-, like mesh-dhruv: lowercase letters, numbers and -. Mesh phones don't take the site's sensing places.", 17f))
         nameBox = EditText(this).apply {
-            hint = "dhruv-m"; textSize = 22f; inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS
+            hint = "mesh-dhruv"; textSize = 22f; inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS
             contentDescription = "Phone name"; setText(me.label ?: "")
         }
         col.addView(nameBox, LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT))
@@ -93,7 +93,7 @@ class JoinActivity : ComponentActivity() {
     private fun useInvite(text: String): Boolean {
         val inv = Invite.parse(text)
         invite = inv
-        val problem = flow.precheck(inv, "aaa")   // label checked at join time
+        val problem = flow.precheck(inv, "mesh-aaa")   // label checked at join time
         if (problem != null) {
             inviteInfo.text = "✗ $problem"; inviteInfo.setTextColor(Color.rgb(170, 0, 0)); joinButton.isEnabled = false
             return false
