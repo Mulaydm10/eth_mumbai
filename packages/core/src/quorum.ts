@@ -9,13 +9,14 @@ export interface Trigger {
   ppvMmS: number;
   fDomHz: number;
   label: "structural" | "handling";
+  createdAtMs?: number; // when Arkiv recorded it ($createdAt block → wall time); used by the as-of rule (registry.ts)
 }
 
 export interface QuorumParams {
   k: number; // distinct sensors required
   windowMs: number; // all members within this span
   /** Optional registry check: returns true if this creator may speak for this sensor at time t. */
-  isLive?: (sensor: string, creator: string, tMs: number) => boolean;
+  isLive?: (sensor: string, creator: string, tMs: number, t: Trigger) => boolean;
 }
 
 export type RejectReason = "handling" | "not-registered" | "no-quorum";
@@ -37,7 +38,7 @@ export function computeQuorum(triggers: Trigger[], p: QuorumParams): QuorumResul
   const rejected: QuorumResult["rejected"] = [];
   const valid: Trigger[] = [];
   for (const t of triggers) {
-    if (p.isLive && !p.isLive(t.sensor, t.creator, t.tMs)) rejected.push({ trigger: t, reason: "not-registered" });
+    if (p.isLive && !p.isLive(t.sensor, t.creator, t.tMs, t)) rejected.push({ trigger: t, reason: "not-registered" });
     else if (t.label !== "structural") rejected.push({ trigger: t, reason: "handling" });
     else valid.push(t);
   }
