@@ -60,6 +60,7 @@ const ui = {
   trust: $("trust"),
   inviteNote: $("inviteNote"),
   invites: $("invites"),
+  sealedAll: $("sealedAll"),
 };
 ui.site.value = q.get("site") ?? "demo";
 if (q.get("k")) ui.k.value = q.get("k")!;
@@ -302,6 +303,16 @@ async function refresh() {
           .map((s) => `<tr><td><b>${esc(s.sensor)}</b></td><td>${s.rateHz.toFixed(1)} Hz</td><td class="muted">no ENS</td><td><a href="${EXPLORER}/address/${s.creator}" target="_blank" rel="noopener">${short(s.creator)}</a></td><td></td></tr>`)
           .join("") || `<tr><td colspan="5" class="muted">No phones yet.</td></tr>`;
 
+    // Tier 0.6: always show the latest sealed evidence regardless of the time window, so a judge opening the link
+    // alone sees real records (the live window above is for what is happening now).
+    void fetchEvents(client, site, 0).then((all) => {
+      const seen = new Set<string>();
+      const latest = all.sort((a, b) => b.tMs - a.tMs).filter((e) => !seen.has(e.eventId) && seen.add(e.eventId)).slice(0, 10);
+      ui.sealedAll.innerHTML =
+        latest
+          .map((e) => `<tr><td>${new Date(e.tMs).toLocaleString("en-IN", { timeZone: "Asia/Kolkata", dateStyle: "medium", timeStyle: "medium" })}</td><td>${e.sensors.map(esc).join(", ")}</td><td>${e.ppvMinMmS.toFixed(2)}–${e.ppvMaxMmS.toFixed(2)} mm/s</td><td><a href="./report.html?site=${encodeURIComponent(site)}&event=${e.eventId}" target="_blank" rel="noopener">report</a> · <a href="${swarmUrl(e.swarmRef)}" target="_blank" rel="noopener">Swarm pack</a></td></tr>`)
+          .join("") || `<tr><td colspan="4" class="muted">No sealed events at this site yet.</td></tr>`;
+    }).catch(() => undefined);
     // Sealed events on Arkiv (first seal per eventId wins; duplicates from other viewers are harmless).
     const sealed = new Map<string, { swarmRef: string; key: string }>();
     for (const ev of (await fetchEvents(client, site, since)).sort((a, b) => a.tMs - b.tMs)) {
