@@ -143,7 +143,10 @@ export async function ensRegisterPhone(w: WalletClient, pub: Pub, site: string, 
     args: [label, getAddress(addr), zeroAddress, ENS_RESOLVER, 0n, expiry],
   });
   const rec = await send(w, pub, { address: ENS_RESOLVER, abi: permissionedResolverAbi, functionName: "setAddress", args: [dns(phoneName(site, label)), 60n, addr] });
-  return { name: phoneName(site, label), expiry: Number(expiry), txs: [reg, rec] };
+  // T3: let the phone itself write ONE text key (its reading "head"), scoped by Enhanced Access Control to that key only.
+  const setter = encodeFunctionData({ abi: permissionedResolverAbi, functionName: "setText", args: [dns(phoneName(site, label)), phoneHeadKey(site, label), ""] });
+  const grant = await send(w, pub, { address: ENS_RESOLVER, abi: permissionedResolverAbi, functionName: "grantSetterRoles", args: [setter, getAddress(addr)] });
+  return { name: phoneName(site, label), expiry: Number(expiry), txs: [reg, rec, grant] };
 }
 
 export async function ensRevokePhone(w: WalletClient, pub: Pub, site: string, label: string) {
@@ -234,4 +237,37 @@ export async function siteRegistrationHistory(pub: Pub, site: string): Promise<R
     }
   }
   return out;
+}
+
+// ---------------------------------------------------------------- T3: phone-owned record (its reading "head")
+/** The single text key a phone may write (EAC scopes the grant to this key). Unique per site+phone. */
+export const phoneHeadKey = (site: string, label: string) => `tw.head.${site.toLowerCase()}.${label.toLowerCase()}`;
+
+export interface PhoneHead {
+  seq: number; // highest reading number the phone has produced
+  tMs: number; // when it declared it
+}
+
+/** Read the head a phone declared on its own ENS record (null if never written). */
+export async function readPhoneHead(pub: Pub, site: string, label: string): Promise<PhoneHead | null> {
+  try {
+    const v = await pub.getEnsText({ name: phoneName(site, label), key: phoneHeadKey(site, label) });
+    if (!v) return null;
+    const j = JSON.parse(v) as PhoneHead;
+    return Number.isFinite(j.seq) ? j : null;
+  } catch {
+    return null;
+  }
+}
+
+/** Phone-side: write its own head with its own wallet (needs a little Sepolia ETH; only this key is permitted). */
+export async function writePhoneHead(w: WalletClient, pub: Pub, site: string, label: string, head: PhoneHead) {
+  // Public RPCs are load-balanced: a just-mined gas drip may not be visible on the node we hit. Wait for it (≤45 s).
+  for (let i = 0; i < 15 && (await pub.getBalance({ address: w.account!.address })) === 0n; i++) await new Promise((r) => setTimeout(r, 3000));
+  return send(w, pub, {
+    address: ENS_RESOLVER,
+    abi: permissionedResolverAbi,
+    functionName: "setText",
+    args: [dns(phoneName(site, label)), phoneHeadKey(site, label), JSON.stringify(head)],
+  });
 }
