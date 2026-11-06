@@ -244,6 +244,17 @@ async function refreshInvites(site: string) {
 }
 void _encInv;
 
+// The public Arkiv RPC rate-limits (HTTP 429). Slow-changing lists refresh every 30 s; the live view every 8 s.
+const SLOW_MS = 30_000;
+const slowAt = new Map<string, number>();
+const due = (k: string) => {
+  const now = Date.now();
+  if (now - (slowAt.get(k) ?? 0) < SLOW_MS) return false;
+  slowAt.set(k, now);
+  return true;
+};
+let syncCache: { sensor: string; tMs: number; creator: string }[] = [];
+
 let busy = false;
 async function refresh() {
   if (busy) return;
@@ -254,7 +265,7 @@ async function refresh() {
     activeInvite = null;
     ui.inviteNote.textContent = "Invite expired. New phones need a committee invite.";
   }
-  void refreshInvites(site);
+  if (due(`inv:${site}`)) void refreshInvites(site);
   if (!activeInvite && ui.joinLink.textContent !== join) {
     ui.joinLink.textContent = join;
     void QRCode.toCanvas($<HTMLCanvasElement>("joinQr"), join, { width: 220, margin: 1 });
@@ -267,7 +278,8 @@ async function refresh() {
     const rows = allRows.filter((r) => r.tMs < Date.now() + 60_000);
     // Offline clock alignment: if phones heard a sound-sync signal, correct each phone's timestamps to the shared instant.
     // Only anchors written by a phone's own wallet count (same $creator rule as triggers).
-    const syncs = await fetchSyncs(client, site, since - 6 * 3600_000).catch(() => []);
+    if (due(`sync:${site}`)) syncCache = await fetchSyncs(client, site, since - 6 * 3600_000).catch(() => syncCache);
+    const syncs = syncCache;
     const creatorOf = new Map(rows.map((r) => [r.sensor, r.creator.toLowerCase()]));
     const session: SyncSession | null = alignBySound(syncs.filter((a) => !creatorOf.has(a.sensor) || creatorOf.get(a.sensor) === a.creator.toLowerCase()));
     lastSync = session;
@@ -325,7 +337,7 @@ async function refresh() {
 
     // Tier 0.6: always show the latest sealed evidence regardless of the time window, so a judge opening the link
     // alone sees real records (the live window above is for what is happening now).
-    void fetchEvents(client, site, 0).then((all) => {
+    if (due(`all:${site}`)) void fetchEvents(client, site, 0).then((all) => {
       const seen = new Set<string>();
       const latest = all.sort((a, b) => b.tMs - a.tMs).filter((e) => !seen.has(e.eventId) && seen.add(e.eventId)).slice(0, 10);
       ui.sealedAll.innerHTML =
@@ -386,6 +398,6 @@ async function refresh() {
   }
 }
 
-for (const el of [ui.site, ui.k, ui.win, ui.mins]) el.addEventListener("change", () => void refresh());
+for (const el of [ui.site, ui.k, ui.win, ui.mins]) el.addEventListener("change", () => (slowAt.clear(), void refresh()));
 void refresh();
-setInterval(() => void refresh(), 4000);
+setInterval(() => void refresh(), 8000);
