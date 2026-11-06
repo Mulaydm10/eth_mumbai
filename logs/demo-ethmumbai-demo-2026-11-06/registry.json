@@ -1,0 +1,241 @@
+{
+ "phones": [
+  {
+   "label": "adityas-nothing",
+   "name": "adityas-nothing.ethmumbai-demo.tremorwitness.eth",
+   "owner": "0x940CE3D16cfd624DcA1FD1D4815BbAcb23b7fA09",
+   "expiry": 1796577941
+  },
+  {
+   "label": "phone-dhruv",
+   "name": "phone-dhruv.ethmumbai-demo.tremorwitness.eth",
+   "owner": "0xB0A8F94ee56F653603695367Db6739b60096EDE1",
+   "expiry": 1796578053
+  },
+  {
+   "label": "somnath",
+   "name": "somnath.ethmumbai-demo.tremorwitness.eth",
+   "owner": "0xCAd25E795068C5C5592ca64b60d105AD5CAF45F7",
+   "expiry": 1796578056
+  },
+  {
+   "label": "dhruv2",
+   "name": "dhruv2.ethmumbai-demo.tremorwitness.eth",
+   "owner": "0x9702C22e0118379B771fdE5B1AA4a52d886752a1",
+   "expiry": 1796578061
+  }
+ ],
+ "history": [
+  {
+   "label": "adityas-nothing",
+   "owner": "0x940CE3D16cfd624DcA1FD1D4815BbAcb23b7fA09",
+   "fromMs": 1793985948000,
+   "toMs": 1796577941000
+  },
+  {
+   "label": "phone-dhruv",
+   "owner": "0xB0A8F94ee56F653603695367Db6739b60096EDE1",
+   "fromMs": 1793986056000,
+   "toMs": 1796578053000
+  },
+  {
+   "label": "somnath",
+   "owner": "0xCAd25E795068C5C5592ca64b60d105AD5CAF45F7",
+   "fromMs": 1793986068000,
+   "toMs": 1796578056000
+  },
+  {
+   "label": "dhruv2",
+   "owner": "0x9702C22e0118379B771fdE5B1AA4a52d886752a1",
+   "fromMs": 1793986068000,
+   "toMs": 1796578061000
+  }
+ ],
+ "sensors": [
+  {
+   "key": "0x15f657d8bd0c498d421e4040a8822555c23dd96216727e7fb46b22ce1d3bef35",
+   "creator": "0x2ad96e2b804b05ACCad12a8db046AbAD2d717aC2",
+   "sensor": "phone-iphn1",
+   "startedMs": 1793986557484,
+   "rateHz": 62.5,
+   "api": "DeviceMotion+g",
+   "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6.1 Mobile/15"
+  },
+  {
+   "key": "0xe9eca129c27acc68233dfe196ace2eeb4f49299af82911002530da45c5a6cb59",
+   "creator": "0x2ad96e2b804b05ACCad12a8db046AbAD2d717aC2",
+   "sensor": "phone-iphn1",
+   "startedMs": 1793986469553,
+   "rateHz": 62.5,
+   "api": "DeviceMotion+g",
+   "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6.1 Mobile/15"
+  },
+  {
+   "key": "0xf33f62354d0f63e4fa29df79987ce9049d1eda5a16280053627f28632f7cb49e",
+   "creator": "0x2ad96e2b804b05ACCad12a8db046AbAD2d717aC2",
+   "sensor": "phone-iphn",
+   "startedMs": 1793986449962,
+   "rateHz": 58.82,
+   "api": "DeviceMotion+g",
+   "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6.1 Mobile/15"
+  },
+  {
+   "key": "0x294a92719cc3b37fda28a7d0c749ff7ab109ddb628e6657c5860905f5100870f",
+   "creator": "0xCAd25E795068C5C5592ca64b60d105AD5CAF45F7",
+   "sensor": "somnath",
+   "startedMs": 1793986332200,
+   "rateHz": 68.03,
+   "api": "Accelerometer",
+   "ua": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36"
+  },
+  {
+   "key": "0x9329b02b98a6a569771b6e5320d0034a8cbde58efee26258ca7dc22acf30c39c",
+   "creator": "0xB0A8F94ee56F653603695367Db6739b60096EDE1",
+   "sensor": "phone-dhruv",
+   "startedMs": 1793986330143,
+   "rateHz": 59.88,
+   "api": "Accelerometer",
+   "ua": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36"
+  },
+  {
+   "key": "0x96302823865ac5ce8fc36e2606f3450b6836e128d6376df8a136bf073b7e2ddb",
+   "creator": "0x2ad96e2b804b05ACCad12a8db046AbAD2d717aC2",
+   "sensor": "phone-iphn",
+   "startedMs": 1793986326766,
+   "rateHz": 62.5,
+   "api": "DeviceMotion+g",
+   "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6.1 Mobile/15"
+  },
+  {
+   "key": "0x38fd67269c74ea25b5abcf890bde49707c7d88905a100e4c5b0c12094eecd15e",
+   "creator": "0x940CE3D16cfd624DcA1FD1D4815BbAcb23b7fA09",
+   "sensor": "adityas-nothing",
+   "startedMs": 1793986322360,
+   "rateHz": 51.55,
+   "api": "Accelerometer",
+   "ua": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36"
+  },
+  {
+   "key": "0x3d68fe9e747b9f4119819ec3f30729b790c9e08f744120a1363f2fa31db5713c",
+   "creator": "0x2ad96e2b804b05ACCad12a8db046AbAD2d717aC2",
+   "sensor": "phone-iphn",
+   "startedMs": 1793986191042,
+   "rateHz": 58.82,
+   "api": "DeviceMotion+g",
+   "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6.1 Mobile/15"
+  },
+  {
+   "key": "0xb254cda830e378a310b1d5ce0112e0fecd1ec0a5e687624ad66506afbc02fa4e",
+   "creator": "0x940CE3D16cfd624DcA1FD1D4815BbAcb23b7fA09",
+   "sensor": "adityas-nothing",
+   "startedMs": 1793986178682,
+   "rateHz": 51.55,
+   "api": "Accelerometer",
+   "ua": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36"
+  },
+  {
+   "key": "0xa0018b701cdb12696c0a048f4813449e88f059afb8f49d68a3ea7f34eaca9a5d",
+   "creator": "0xCAd25E795068C5C5592ca64b60d105AD5CAF45F7",
+   "sensor": "somnath",
+   "startedMs": 1793986056258,
+   "rateHz": 68.03,
+   "api": "Accelerometer",
+   "ua": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36"
+  },
+  {
+   "key": "0x567aa00300d2c2476adbf608c8c9bda62b5e959eaaa7ee5b35e4b932b41257ad",
+   "creator": "0xB0A8F94ee56F653603695367Db6739b60096EDE1",
+   "sensor": "phone-dhruv",
+   "startedMs": 1793986050765,
+   "rateHz": 59.88,
+   "api": "Accelerometer",
+   "ua": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36"
+  }
+ ],
+ "invites": [
+  {
+   "key": "0x77f38a48ee3e7ae83200d16f060d9f3562100fd9796ee1010dd610e69a3d2cc4",
+   "creator": "0x32DE3a68b15D2b2A1527cA6cd717Fb21A639500F",
+   "site": "ethmumbai-demo",
+   "inviteId": "00789f14b77288a0571c58eef32f86cd",
+   "kind": "issued",
+   "exp": 1794007326623,
+   "phone": "",
+   "label": "",
+   "sig": "0x3b35d899b3337472e5f3315b2881fe99011e77a4ae8b5e58c93ab72f8eff42365b8dd9dc47d3393ebcf287e836d8e4c4a1c3ec2cedcf7f2357b19c3369139ce31b",
+   "uses": 4
+  },
+  {
+   "key": "0x3d0ce268113adc3f48864d9fed1902aa61ff0fb9cc5fc25f8b121bb864f8399b",
+   "creator": "0x32DE3a68b15D2b2A1527cA6cd717Fb21A639500F",
+   "site": "ethmumbai-demo",
+   "inviteId": "00789f14b77288a0571c58eef32f86cd",
+   "kind": "used",
+   "exp": 1794007326623,
+   "phone": "0x940CE3D16cfd624DcA1FD1D4815BbAcb23b7fA09",
+   "label": "adityas-nothing",
+   "sig": "0x"
+  },
+  {
+   "key": "0x39195a914e2d4375c9e0331c6bc15dc2e1e5695eabbe8329cd1eadaf3151c0ed",
+   "creator": "0x32DE3a68b15D2b2A1527cA6cd717Fb21A639500F",
+   "site": "ethmumbai-demo",
+   "inviteId": "00789f14b77288a0571c58eef32f86cd",
+   "kind": "used",
+   "exp": 1794007326623,
+   "phone": "0xB0A8F94ee56F653603695367Db6739b60096EDE1",
+   "label": "phone-dhruv",
+   "sig": "0x"
+  },
+  {
+   "key": "0xcf9cb827448318ecdb76790b1f6e75c5ac5222b02fc6ef539527ad4b84c792ed",
+   "creator": "0x32DE3a68b15D2b2A1527cA6cd717Fb21A639500F",
+   "site": "ethmumbai-demo",
+   "inviteId": "00789f14b77288a0571c58eef32f86cd",
+   "kind": "used",
+   "exp": 1794007326623,
+   "phone": "0xCAd25E795068C5C5592ca64b60d105AD5CAF45F7",
+   "label": "somnath",
+   "sig": "0x"
+  },
+  {
+   "key": "0x4ff9f499587c8432d168b9b091294b2abb04c0b2fa546851ef26b39ab8eb2859",
+   "creator": "0x32DE3a68b15D2b2A1527cA6cd717Fb21A639500F",
+   "site": "ethmumbai-demo",
+   "inviteId": "00789f14b77288a0571c58eef32f86cd",
+   "kind": "used",
+   "exp": 1794007326623,
+   "phone": "0x9702C22e0118379B771fdE5B1AA4a52d886752a1",
+   "label": "dhruv2",
+   "sig": "0x"
+  },
+  {
+   "key": "0x860c6f2efed6a905ec14903bfc89702d11d23c0894da6f4a1f172ac5ccc21206",
+   "creator": "0x32DE3a68b15D2b2A1527cA6cd717Fb21A639500F",
+   "site": "ethmumbai-demo",
+   "inviteId": "6914a95afd09a284a46453a869f0e65b",
+   "kind": "issued",
+   "exp": 1794007229760,
+   "phone": "",
+   "label": "",
+   "sig": "0x15c8deaebf7f992657449fb35cb2fb79714a0565e42b4da21c49580e9c975e396720a53b90e4f2774203f9ece8579d6476015156bdd50a74e0881f35963dbfc81b",
+   "uses": 10
+  }
+ ],
+ "params": {
+  "k": 3,
+  "windowMs": 2000
+ },
+ "dparams": {
+  "dk": 3,
+  "dwindowMs": 2000
+ },
+ "limits": {
+  "maxPhones": 5,
+  "maxMesh": 5,
+  "fromEns": {
+   "maxPhones": true,
+   "maxMesh": true
+  }
+ }
+}

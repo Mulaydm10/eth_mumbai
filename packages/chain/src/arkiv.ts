@@ -3,7 +3,7 @@
 // check $creator (Prototype 2 checks it against ENS sensor names).
 import { ExpirationTime, createPublicClient, createWalletClient } from "@arkiv-network/sdk";
 import { rabdi } from "@arkiv-network/sdk/chains";
-import { and, desc, eq, gt } from "@arkiv-network/sdk/query";
+import { and, desc, eq, gt, lt } from "@arkiv-network/sdk/query";
 import { bytes, defineSchema, str, u64 } from "@arkiv-network/sdk/schema";
 import { http, type Hex } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
@@ -135,11 +135,12 @@ export interface TriggerRow {
 const num = (v: { value: unknown } | undefined) => Number((v?.value as bigint | number | undefined) ?? 0);
 
 /** Triggers for a site since `sinceMs`, newest first (up to 100 per page). */
-export async function fetchTriggers(p: ArkivPublic, site: string, sinceMs: number, withWave = false): Promise<TriggerRow[]> {
+/** Newest-first, at most 100. `untilMs` (optional upper bound) lets callers page backwards through busy sessions. */
+export async function fetchTriggers(p: ArkivPublic, site: string, sinceMs: number, withWave = false, untilMs?: number): Promise<TriggerRow[]> {
   const res = await p
     .select({ $key: true, $creator: true, $createdAt: true, $creationFlags: true, seq: true, site: true, sensor: true, tMs: true, ppvUm: true, fDomCHz: true, lowFPct: true, rateCHz: true, label: true, ...(withWave ? { wave: true } : {}) })
     .from(TriggerSchema)
-    .where(and(eq("site", site), gt("tMs", u64(Math.max(0, Math.floor(sinceMs))))))
+    .where(and(eq("site", site), gt("tMs", u64(Math.max(0, Math.floor(sinceMs)))), ...(untilMs === undefined ? [] : [lt("tMs", u64(Math.floor(untilMs)))])))
     .orderBy(desc("tMs"))
     .limit(100)
     .fetch();

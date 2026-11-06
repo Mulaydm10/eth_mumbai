@@ -1,0 +1,143 @@
+{
+ "site": "ethmumbai-demo",
+ "window": {
+  "from": "2026-11-06T17:15:00.000Z",
+  "to": "2026-11-06T17:49:50.498Z",
+  "fromIST": "6/11/2026, 22:45:00",
+  "toIST": "6/11/2026, 23:19:50"
+ },
+ "rules": {
+  "k": 3,
+  "windowMs": 2000,
+  "maxPhones": 5,
+  "maxMesh": 5,
+  "dk": 3,
+  "dwindowMs": 2000
+ },
+ "phones": [
+  {
+   "label": "adityas-nothing",
+   "name": "adityas-nothing.ethmumbai-demo.tremorwitness.eth",
+   "owner": "0x940CE3D16cfd624DcA1FD1D4815BbAcb23b7fA09",
+   "expiry": "2026-12-06T17:25:41.000Z"
+  },
+  {
+   "label": "phone-dhruv",
+   "name": "phone-dhruv.ethmumbai-demo.tremorwitness.eth",
+   "owner": "0xB0A8F94ee56F653603695367Db6739b60096EDE1",
+   "expiry": "2026-12-06T17:27:33.000Z"
+  },
+  {
+   "label": "somnath",
+   "name": "somnath.ethmumbai-demo.tremorwitness.eth",
+   "owner": "0xCAd25E795068C5C5592ca64b60d105AD5CAF45F7",
+   "expiry": "2026-12-06T17:27:36.000Z"
+  },
+  {
+   "label": "dhruv2",
+   "name": "dhruv2.ethmumbai-demo.tremorwitness.eth",
+   "owner": "0x9702C22e0118379B771fdE5B1AA4a52d886752a1",
+   "expiry": "2026-12-06T17:27:41.000Z"
+  }
+ ],
+ "invites": {
+  "issued": 2,
+  "used": 4
+ },
+ "readings": 141,
+ "perPhone": {
+  "somnath": {
+   "readings": 40,
+   "structural": 29,
+   "handling": 11,
+   "inEvents": 1
+  },
+  "phone-dhruv": {
+   "readings": 58,
+   "structural": 38,
+   "handling": 20,
+   "inEvents": 1
+  },
+  "adityas-nothing": {
+   "readings": 29,
+   "structural": 16,
+   "handling": 13,
+   "inEvents": 1
+  },
+  "phone-iphn": {
+   "readings": 10,
+   "structural": 9,
+   "handling": 1,
+   "inEvents": 0
+  },
+  "phone-iphn1": {
+   "readings": 4,
+   "structural": 2,
+   "handling": 2,
+   "inEvents": 0
+  }
+ },
+ "unregisteredWriters": [
+  "phone-iphn (0x2ad96e2b804b05ACCad12a8db046AbAD2d717aC2)",
+  "phone-iphn1 (0x2ad96e2b804b05ACCad12a8db046AbAD2d717aC2)"
+ ],
+ "confirmedEvents": [
+  {
+   "tMs": 1793986241431,
+   "ist": "6/11/2026, 23:00:41",
+   "phones": [
+    "adityas-nothing",
+    "phone-dhruv",
+    "somnath"
+   ],
+   "ppvMmS": [
+    118.137,
+    241.336
+   ]
+  }
+ ],
+ "rejected": {
+  "handling": 44,
+  "not-registered": 14,
+  "no-quorum": 79
+ },
+ "soundSync": {
+  "chirp": 4,
+  "refIST": "6/11/2026, 22:58:39",
+  "correctionsMs": {
+   "phone-dhruv": -13755,
+   "dhruv2": 0,
+   "somnath": 191
+  }
+ },
+ "sealed": [
+  {
+   "eventId": "0x74442665754745ddde7554eafa31b123",
+   "ist": "6/11/2026, 23:00:41",
+   "phones": [
+    "adityas-nothing",
+    "phone-dhruv",
+    "somnath"
+   ],
+   "swarmRef": "609a0261324b26e53571aea583edc07dbe9c137fd783718374d16b83fa2933f5",
+   "packHash": "0x96bafdb136febafe6acfd83fbae4b13a9068f1d66dae2d84e8ccaab47755d81f",
+   "arkivKey": "0xb2677ccf4cb63e077fbf190940c56f9faccb4534c5f013537e28098f0d46156d",
+   "expiresAt": "2027-05-05T17:31:12.000Z"
+  },
+  {
+   "eventId": "0x74442665754745ddde7554eafa31b123",
+   "ist": "6/11/2026, 23:00:41",
+   "phones": [
+    "adityas-nothing",
+    "phone-dhruv",
+    "somnath"
+   ],
+   "swarmRef": "06ccf5533160f90f42cc942093fe92ac8e19e7a59ccafadd3b2280182ac9f195",
+   "packHash": "0xcde3a605e9b4c251cb4bffcfd67b01bb859032ccfa88c7156580d10c667026b1",
+   "arkivKey": "0x27ed5396fb9878b9478f73b625a7fef1aceb7451794e36c253180298e6450e48",
+   "expiresAt": "2027-05-05T17:31:16.000Z"
+  }
+ ],
+ "sealedUnique": 1,
+ "snapshotAt": "2026-11-06T17:49:54.733Z"
+}
