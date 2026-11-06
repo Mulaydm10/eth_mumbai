@@ -1,4 +1,5 @@
 # Proof shot: phone A's check-in, read back from Arkiv with the Tremor Witness repo's own fetchCheckins.
+# Run from video/ with TW_REPO set to a Tremor Witness checkout: TW_REPO=… vhs terminal.tape
 Output out/readback.mp4
 Set Shell "bash"
 Set FontSize 34
@@ -9,7 +10,7 @@ Set Padding 40
 Set Theme "Builtin Dark"
 Set TypingSpeed 18ms
 Hide
-Type `cd .. && export TW_REPO="$HOME/Dhruv/ETH mumbai" PS1='$ ' && clear` Enter
+Type `cd .. && export PS1='$ ' && clear` Enter
 Sleep 1s
 Show
 Type "# Read back from Arkiv with the Tremor Witness web app's own code (fetchCheckins)" Enter
