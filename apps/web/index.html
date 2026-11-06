@@ -11,33 +11,34 @@
     <main>
       <header>
         <h1>Tremor Witness</h1>
-        <p class="sub">Prototype 1 · each phone writes its own events to Arkiv · <a id="dashLink" href="/dashboard.html">dashboard →</a></p>
+        <p class="sub"><span data-i18n="sub">Each phone signs its own readings to Arkiv</span> · <a id="dashLink" href="/dashboard.html" data-i18n="dash">dashboard →</a></p>
+        <div class="controls" style="margin-bottom:10px"><button class="ghost" data-lang="en">EN</button><button class="ghost" data-lang="mr">मराठी</button><button class="ghost" data-lang="hi">हिंदी</button></div>
       </header>
 
       <section class="card">
         <div class="row">
-          <label class="label" for="site">Site</label>
+          <label class="label" for="site" data-i18n="site">Site</label>
           <input id="site" class="input" maxlength="40" />
         </div>
         <div class="row">
-          <label class="label" for="name">This phone (max 5 per site)</label>
+          <label class="label" for="name" data-i18n="name">This phone (max 5 per site)</label>
           <input id="name" class="input" maxlength="40" />
         </div>
-        <button id="start" class="primary">Start sensor</button>
-        <p id="status" class="status">Lay the phone flat on the floor, screen up, then press Start.</p>
+        <button id="start" class="primary" data-i18n="start">Start sensor</button>
+        <p id="status" class="status" data-i18n="lay">Lay the phone flat on the floor, screen up, then press Start.</p>
         <p id="chain" class="status small">Wallet: –</p>
         <p id="clock" class="status small">Clock: not synced yet</p>
         <p id="outbox" class="status small">–</p>
       </section>
 
       <section class="card">
-        <div class="row"><span class="label">Demo vibration source</span><button id="shakerBtn" class="ghost">Be the vibration source</button></div>
+        <div class="row"><span class="label" data-i18n="srcT">Demo vibration source</span><button id="shakerBtn" class="ghost" data-i18n="src">Be the vibration source</button></div>
         <p class="status small">Use a <b>spare</b> phone that is NOT sensing: lay it on the same table as the sensor phones and tap this button. It vibrates 5 times, 4 s apart, and each pulse should confirm on the dashboard. (Android only; iPhones don't allow web vibration.)</p>
         <p id="shakerStatus" class="status small"></p>
       </section>
 
       <section class="card">
-        <div class="row"><span class="label">Sound sync (works offline)</span><button id="syncBtn" class="ghost">Play sync sound</button></div>
+        <div class="row"><span class="label" data-i18n="syncT">Sound sync (works offline)</span><button id="syncBtn" class="ghost" data-i18n="sync">Play sync sound</button></div>
         <p class="status small">With all phones running and close together, tap <b>Play sync sound</b> on any one phone. Every phone hears it at the same instant, which aligns their clocks without internet.</p>
         <p id="syncStatus" class="status small">Starts listening when you press Start.</p>
       </section>

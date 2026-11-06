@@ -8,6 +8,7 @@
   - Arkiv → `arkiv/` (schema, why, how, reach, friction, swarm);
   - ENSv2 → `ens/README.md`;
   - EF CROPS → the section below.
+- **Privacy (measured hosts per page):** `docs/PRIVACY.md`. **Languages:** phone page in English, मराठी and हिंदी.
 - **AI use:** `docs/AI_USE.md`. **Demo script:** `DEMO.md`. **Licence:** MIT (`LICENSE`).
 
 ## Who decides who counts, and as of when

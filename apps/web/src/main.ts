@@ -6,6 +6,7 @@ import { ensPublic, walletClientFor, writePhoneHead, writeSensor, writeSync, wri
 import { createWalletClient, http as viemHttp } from "viem";
 import { sepolia } from "viem/chains";
 import { listenForSync, playSyncSignal } from "./sound";
+import { initLang, t } from "./i18n";
 import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
 import type { Hex } from "viem";
 
@@ -547,7 +548,7 @@ ui.start.addEventListener("click", async () => {
     }
     running = false;
     await wakeLock?.release().catch(() => {});
-    ui.start.textContent = "Start sensor";
+    ui.start.textContent = t("start");
     ui.site.disabled = false;
     ui.name.disabled = false;
     ui.start.classList.remove("running");
@@ -571,7 +572,7 @@ ui.start.addEventListener("click", async () => {
     return;
   }
   running = true;
-  ui.start.textContent = "Stop";
+  ui.start.textContent = t("stop");
   ui.start.classList.add("running");
   await acquireWakeLock();
   ui.site.disabled = true;
@@ -650,3 +651,5 @@ shakerBtn.addEventListener("click", () => {
     } else shakerStatus.textContent = `Pulse ${n + 1} of 5…`;
   }, 4000);
 });
+
+initLang();

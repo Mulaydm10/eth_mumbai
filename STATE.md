@@ -23,7 +23,7 @@
 
 ## Trust model + Tier 0 (feature-playbook verdict)
 - Done: **T13** as-of membership, **T14** signed invites (issue/use on Arkiv), Tier 0 docs (README accurate, `ens/README.md`, `arkiv/swarm.md` 8/8, `docs/AI_USE.md`, `DEMO.md` draft), latest sealed evidence on the dashboard, fresh-clone build fix. Verdict: `research/playbook/2026-11-06-features/VERDICT.md`.
-- Next (Tier 1): T1 readonly + per-phone hash chain, T2a keep-alive, T3 per-phone ENS record, T4-lite attack checklist. Needs: Safe owner addresses (C), real-phone rehearsal of DEMO-0001, EXP-0002.
+- Tier 1 DONE: T1 readonly+seq gaps, T2a keep-alive, T3 phone-owned ENS head, T4-lite attack checklist. Tier 2 done: T7 certificate/joint-inspection, T10 मराठी/हिंदी, T8 privacy doc. Remaining: Swarm feed, ws push, verify-build, Safe (needs addresses). **Next: real-phone testing** (DEMO-0001, sound sync, EXP-0002). Need Arkiv access key for the demo.
 
 ## Depth items (Dhruv's A–F list)
 - Done: **A** coherence (experimental; EXP-0001 weak separation), **E** `/report.html` evidence report, **B** demo vibration source, **F** friction log.
@@ -44,4 +44,4 @@
 | --- | --- | --- | --- |
 | _none_ | | | |
 
-Last updated: 2026-11-06 06:53 IST · Claude Code (T13/T14 + Tier 0)
+Last updated: 2026-11-06 11:38 IST · Claude Code (Tier 1 + Tier 2 no-phone items)
