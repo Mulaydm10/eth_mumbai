@@ -1,0 +1,11 @@
+# 02 DIVERGE D6: BEHAVIORAL / INFORMATIONAL frame, aimed at the judges
+Worker D6. Angle: what finalist judges and partner judges reward, past finalist demos, form/video rules, Q&A attacks, demo-moment features. Append-only log. Started 2026-11-06.
+Primary-source excerpts: sources/D6-*.md
+
+## Log
+- [read] diverge-context.md, 01-commitments.md §A, COMPETITION.md, DEMO.md (DEMO-0001 is still TODO: no rehearsed script, no reset/rollback/fallback yet), sponsors/ethglobal-general.md (captured 2026-11-05 from ethglobal.com/events/mumbai/info/details; contains the video rules and 7-min format). Confidence high.
+- [read] prior finalist-page evidence in research/playbook/2026-11-05-ideation/07-converge-finalist-redteam.md (n=5 finalist pages: TARE, NoNet, Kura, Enconomy, LeekDIYHardwareWallet; write-ups only, no videos). Key: Enconomy (Tokyo 2026 finalist) phone-sound proximity, named relay attack, <60 cm, ~9 s proof; NoNet (New Delhi 2025 finalist) offline BLE mesh, no live link; Leek hardware wallet states "PoC, testnets, no audit". Reused as prior evidence, not re-fetched.
+- [Handover grep, read-only] docs/research/...Handover.md: finalists counts: ETHOnline 2026 had 8 (OpenBook, TARE, Novi Corpus, ETH Arcade, Cordon, Petri, OnchainRouter, LeekDIYHardwareWallet); New Delhi 2025 had 10 (calendefi, KagamiAI, NoNet, Autonome, UniPerp, Nox, MemeWarp, ad-402, Dike, Igris AI). Handover itself says "Reasons projects won: Low trust, inference only; no winner's demo video was reviewed."
+- [WebFetch] rosetta.to judge interview (dappadandev): thin. Judge says consistent timing, understand the hacker, "actionable insights"; "for like sponsors it's important to capture the hackers". Nothing on demos. Low value.
+- [WebFetch FAIL] mexc.com/news/1038 ECONNREFUSED; jamesbachini.com/?p=4368 HTTP 522. Will retry via other routes.
+- [WebSearch] summary (secondary, unverified): at async ETHGlobal events only top ~20% go to live judging; sponsor judging separate (from ethglobal.com/events/*/info/details); a Taipei 2025 judge reportedly advised judges lose interest in simple UI walkthrough video and want something interactive to try (via mexc.com summary, not fetched). Confidence low-medium until primary fetched.

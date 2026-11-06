@@ -1,0 +1,27 @@
+import { ensPublic, listSitePhones, siteRegistryAddress, ENS_PARENT_REGISTRY, ENS_RESOLVER, ENS_DEPLOYER } from "/Users/mulaydm10/Dhruv/ETH mumbai/packages/chain/src/ens.ts";
+import { registryAbi, permissionedResolverAbi, ENSV2_SEPOLIA as C } from "/Users/mulaydm10/Dhruv/ETH mumbai/packages/chain/src/ensv2-abi.ts";
+import { keccak256, stringToHex, toHex, encodeFunctionData, parseAbi, decodeFunctionResult } from "viem";
+import { normalize, packetToBytes } from "viem/ens";
+const pub = ensPublic();
+const lid = (l: string) => BigInt(keccak256(stringToHex(l)));
+const tryit = async (l: string, f: () => Promise<unknown>) => { try { console.log(l, await f()); } catch (e) { console.log(l, "ERR", String((e as Error).message).slice(0,160)); } };
+await tryit("parent expiry tremorwitness", () => pub.readContract({ address: C.ethRegistry as any, abi: registryAbi, functionName: "getExpiry", args: [lid("tremorwitness")] }));
+await tryit("site test2 expiry", () => pub.readContract({ address: ENS_PARENT_REGISTRY, abi: registryAbi, functionName: "getExpiry", args: [lid("test2")] }));
+await tryit("roles deployer on resolver root", () => pub.readContract({ address: ENS_RESOLVER, abi: permissionedResolverAbi, functionName: "roles", args: [0n, ENS_DEPLOYER] }));
+let phones: any[] = [];
+for (const s of ["test2","demo","p3test"]) { await tryit("phones "+s, async () => { const p = await listSitePhones(pub, s); phones.push(...p.map(x=>({s,...x}))); return p; }); }
+const p = phones[0];
+if (p) {
+  await tryit("reverse name of phone addr", () => pub.getEnsName({ address: p.owner }));
+  await tryit("phone addr", () => pub.getEnsAddress({ name: p.name }));
+  await tryit("phone text avatar", () => pub.getEnsText({ name: p.name, key: "avatar" }));
+  await tryit("phone contenthash", () => pub.getEnsContentHash({ name: p.name }));
+  const dnsn = toHex(packetToBytes(normalize(p.name)));
+  const dataAbi = parseAbi(["function data(bytes32,string) view returns (bytes)"]);
+  const call = encodeFunctionData({ abi: dataAbi, functionName: "data", args: ["0x"+"00".repeat(32), "k"] });
+  await tryit("resolver.resolve(data) ", () => pub.readContract({ address: ENS_RESOLVER, abi: permissionedResolverAbi, functionName: "resolve", args: [dnsn, call] }));
+  // does the site registry assign a resolver per phone?
+  const r2 = await siteRegistryAddress(pub, p.s);
+  await tryit("phone resolver", () => pub.readContract({ address: r2, abi: registryAbi, functionName: "getResolver", args: [p.label] }));
+  await tryit("phone owner roles", () => pub.readContract({ address: r2, abi: registryAbi, functionName: "roles", args: [lid(p.label), p.owner] }));
+}

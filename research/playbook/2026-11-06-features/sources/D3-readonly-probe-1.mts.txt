@@ -1,0 +1,16 @@
+import { createPublicClient, http, parseAbi, toHex, keccak256, stringToHex, getAddress, zeroAddress, encodeFunctionData } from "viem";
+import { sepolia } from "viem/chains";
+import { normalize, packetToBytes } from "viem/ens";
+const pub = createPublicClient({ chain: sepolia, transport: http("https://ethereum-sepolia-rpc.publicnode.com") });
+const RES = "0xFA87654E65542Ad82428f3326c322d6a12C55957" as const;
+const abi = parseAbi(["function supportsInterface(bytes4) view returns (bool)","function resolve(bytes name, bytes data) view returns (bytes)","function roles(uint256,address) view returns (uint256)","function owner() view returns (address)"]);
+const run = async (label: string, f: () => Promise<unknown>) => { try { console.log(label, await f()); } catch (e) { console.log(label, "ERR", String((e as Error).message).slice(0, 200)); } };
+for (const [n, id] of [["ENSIP-24 data","0xecbfada3"],["contenthash","0xbc1c58d1"],["text","0x59d1d43c"],["addr","0x3b3b57de"],["extendedResolver ENSIP10","0x9061b923"]] as const)
+  await run("supportsInterface "+n, () => pub.readContract({ address: RES, abi, functionName: "supportsInterface", args: [id] }));
+const dns = (n: string) => toHex(packetToBytes(normalize(n)));
+await run("code size resolver", async () => ((await pub.getCode({ address: RES })) ?? "").length);
+for (const nm of ["test2.tremorwitness.eth","demo.tremorwitness.eth","event-abc123.test2.tremorwitness.eth","nope.tremorwitness.eth"]) {
+  await run("addr "+nm, () => pub.getEnsAddress({ name: nm }));
+  await run("text tw.k "+nm, () => pub.getEnsText({ name: nm, key: "tw.k" }));
+}
+await run("contenthash test2", () => pub.getEnsText({name:"test2.tremorwitness.eth", key:"avatar"}));
