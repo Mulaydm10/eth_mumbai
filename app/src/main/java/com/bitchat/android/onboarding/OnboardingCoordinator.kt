@@ -215,11 +215,11 @@ class OnboardingCoordinator(
         
         if (deniedCritical.isNotEmpty()) {
             val message = buildString {
-                append("Critical permissions were denied. SafeMesh requires these permissions to function:\n")
+                append("Critical permissions were denied. TW Mesh requires these permissions to function:\n")
                 deniedCritical.keys.forEach { permission ->
                     append("- ${getPermissionDisplayName(permission)}\n")
                 }
-                append("\nPlease grant these permissions in Settings to use SafeMesh.")
+                append("\nPlease grant these permissions in Settings to use TW Mesh.")
             }
             
             Log.e(TAG, "Critical permissions denied: $deniedCritical")

@@ -101,8 +101,9 @@ class PermissionManager(private val context: Context) {
             ))
         }
 
-        // Location permissions (required for Bluetooth LE scanning)
-        permissions.addAll(listOf(
+        // Location permissions: only Android <= 11 needs them for Bluetooth LE scanning.
+        // TW Mesh: Android 12+ scans with BLUETOOTH_SCAN "neverForLocation" and asks for no location at all.
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) permissions.addAll(listOf(
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION
         ))
@@ -122,7 +123,7 @@ class PermissionManager(private val context: Context) {
      * Must be requested after foreground location permissions are granted.
      */
     fun needsBackgroundLocationPermission(): Boolean {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
+        return false // TW Mesh: never ask for background location (BRIEF §0.6)
     }
 
     fun getBackgroundLocationPermission(): String? {
@@ -255,10 +256,10 @@ class PermissionManager(private val context: Context) {
         categories.add(
             PermissionCategory(
                 type = PermissionType.NEARBY_DEVICES,
-                description = "Required to discover SafeMesh users via Bluetooth",
+                description = "Required to discover TW Mesh users via Bluetooth",
                 permissions = bluetoothPermissions,
                 isGranted = bluetoothPermissions.all { isPermissionGranted(it) },
-                systemDescription = "Allow SafeMesh to connect to nearby devices"
+                systemDescription = "Allow TW Mesh to connect to nearby devices"
             )
         )
 
@@ -268,13 +269,13 @@ class PermissionManager(private val context: Context) {
             Manifest.permission.ACCESS_FINE_LOCATION
         )
 
-        categories.add(
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) categories.add(
             PermissionCategory(
                 type = PermissionType.PRECISE_LOCATION,
-                description = "Required by Android to discover nearby SafeMesh users via Bluetooth",
+                description = "Required by Android to discover nearby TW Mesh users via Bluetooth",
                 permissions = locationPermissions,
                 isGranted = locationPermissions.all { isPermissionGranted(it) },
-                systemDescription = "SafeMesh needs this to scan for nearby devices"
+                systemDescription = "TW Mesh needs this to scan for nearby devices"
             )
         )
 
@@ -284,10 +285,10 @@ class PermissionManager(private val context: Context) {
             categories.add(
                 PermissionCategory(
                     type = PermissionType.WIFI_AWARE,
-                    description = "Enable Wi‑Fi Aware to discover and connect to nearby SafeMesh users over Wi‑Fi.",
+                    description = "Enable Wi‑Fi Aware to discover and connect to nearby TW Mesh users over Wi‑Fi.",
                     permissions = wifiAwarePermissions,
                     isGranted = wifiAwarePermissions.all { isPermissionGranted(it) },
-                    systemDescription = "Allow SafeMesh to discover nearby Wi‑Fi devices"
+                    systemDescription = "Allow TW Mesh to discover nearby Wi‑Fi devices"
                 )
             )
         }
@@ -313,7 +314,7 @@ class PermissionManager(private val context: Context) {
                     description = "Receive notifications when you receive private messages",
                     permissions = listOf(Manifest.permission.POST_NOTIFICATIONS),
                     isGranted = isPermissionGranted(Manifest.permission.POST_NOTIFICATIONS),
-                    systemDescription = "Allow SafeMesh to send you notifications"
+                    systemDescription = "Allow TW Mesh to send you notifications"
                 )
             )
         }
@@ -325,10 +326,10 @@ class PermissionManager(private val context: Context) {
             categories.add(
                 PermissionCategory(
                     type = PermissionType.BATTERY_OPTIMIZATION,
-                    description = "Disable battery optimization to ensure SafeMesh runs reliably in the background and maintains mesh network connections",
+                    description = "Disable battery optimization to ensure TW Mesh runs reliably in the background and maintains mesh network connections",
                     permissions = listOf("BATTERY_OPTIMIZATION"), // Custom identifier
                     isGranted = isBatteryOptimizationDisabled(),
-                    systemDescription = "Allow SafeMesh to run without battery restrictions"
+                    systemDescription = "Allow TW Mesh to run without battery restrictions"
                 )
             )
         }

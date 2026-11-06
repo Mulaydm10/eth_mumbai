@@ -29,7 +29,8 @@ class BluetoothPermissionManager(private val context: Context) {
             ))
         }
         
-        permissions.addAll(listOf(
+        // TW Mesh: location is only required for BLE on Android <= 11 (neverForLocation scans on 12+).
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.S) permissions.addAll(listOf(
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION
         ))

@@ -12,12 +12,12 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
-    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" android:usesPermissionFlags="neverForLocation" tools:targetApi="s" />
     
     <!-- Location permission required for BLE scanning -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <!-- TW Mesh: location only on Android <= 11, where BLE scanning requires it; never background location. -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" android:maxSdkVersion="30" />
     
     <!-- Notification permissions -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
@@ -42,8 +42,6 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE" />
     <!-- Data sync foreground service type (required when declaring dataSync) -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
-    <!-- Location foreground service type required for BLE scanning in background -->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     
     <!-- Microphone for voice notes -->
@@ -112,6 +110,17 @@
             android:windowSoftInputMode="adjustResize" />
         <!-- Tremor Witness Mesh: M0 mesh test screen (new code, dev.dhruv.twmesh) -->
         <activity
+            android:name="dev.dhruv.twmesh.JoinActivity"
+            android:exported="false"
+            android:label="Join a site"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@android:style/Theme.Material.Light.NoActionBar" />
+        <activity
+            android:name="dev.dhruv.twmesh.ScanActivity"
+            android:exported="false"
+            android:label="Scan invite"
+            android:theme="@style/Theme.BitchatAndroid" />
+        <activity
             android:name="dev.dhruv.twmesh.TwmTestActivity"
             android:exported="false"
             android:label="Mesh test"
@@ -146,7 +155,7 @@
         <service
             android:name=".service.MeshForegroundService"
             android:exported="false"
-            android:foregroundServiceType="connectedDevice|dataSync|location"
+            android:foregroundServiceType="connectedDevice|dataSync"
             tools:ignore="DataExtractionRules">
         </service>
 

@@ -392,6 +392,7 @@ class NostrRelayManager private constructor() {
      * Connect to all configured relays
      */
     fun connect() {
+        if (!dev.dhruv.twmesh.TwmFlags.NOSTR) { Log.i(TAG, "Nostr disabled in TW Mesh"); return }
         desiredConnected.set(true)
         Log.i(TAG, "Connecting to ${relaysList.size} Nostr relays")
         scope.launch {

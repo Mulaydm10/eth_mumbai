@@ -62,6 +62,7 @@ class MainActivity : OrientationAwareActivity() {
     private lateinit var unifiedMeshService: MeshService
     private val mainViewModel: MainViewModel by viewModels()
     private var pendingMeshForegroundServiceStart = false
+    private val twmShowChat = androidx.compose.runtime.mutableStateOf(false)
     private val chatViewModel: ChatViewModel by viewModels { 
         object : ViewModelProvider.Factory {
             override fun <T : androidx.lifecycle.ViewModel> create(modelClass: Class<T>): T {
@@ -319,8 +320,10 @@ class MainActivity : OrientationAwareActivity() {
                 val backCallback = object : OnBackPressedCallback(true) {
                     override fun handleOnBackPressed() {
                         // Let ChatViewModel handle navigation state
-                        val handled = chatViewModel.handleBackPressed()
-                        if (!handled) {
+                        val handled = twmShowChat.value && chatViewModel.handleBackPressed()
+                        if (!handled && twmShowChat.value) {
+                            twmShowChat.value = false // TW Mesh: back from SafeMesh chat goes to the TW Mesh home
+                        } else if (!handled) {
                             // If ChatViewModel doesn't handle it, disable this callback
                             // and let the system handle it (which will exit the app)
                             this.isEnabled = false
@@ -332,7 +335,12 @@ class MainActivity : OrientationAwareActivity() {
 
                 // Add the callback - this will be automatically removed when the activity is destroyed
                 onBackPressedDispatcher.addCallback(this, backCallback)
-                ChatScreen(viewModel = chatViewModel)
+                // TW Mesh: our home is the main screen; SafeMesh chat stays one tap away.
+                if (twmShowChat.value) ChatScreen(viewModel = chatViewModel)
+                else {
+                    val peers by chatViewModel.connectedPeers.collectAsState()
+                    dev.dhruv.twmesh.TwmHomeScreen(peerCount = peers.count { it != chatViewModel.myPeerID }, onOpenChat = { twmShowChat.value = true })
+                }
             }
             
             OnboardingState.ERROR -> {
@@ -461,6 +469,10 @@ class MainActivity : OrientationAwareActivity() {
      * Check Location services status and proceed with onboarding flow
      */
     private fun checkLocationAndProceed() {
+        // TW Mesh: Android 12+ needs no location services for BLE (neverForLocation scans).
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S && !permissionManager.isFirstTimeLaunch()) {
+            checkBatteryOptimizationAndProceed(); return
+        }
         // For first-time users, skip location check and go straight to permissions
         // We'll check location after permissions are granted
         if (permissionManager.isFirstTimeLaunch()) {
