@@ -36,4 +36,13 @@ class LiveSepoliaTest {
         }
         println("  nonexistent resolves to: ${ens.resolveAddress("zz-not-a-phone.test2.tremorwitness.eth")}")
     }
+
+    @Test fun `registration history covers every live phone now`() {
+        assumeTrue(live)
+        val h = Ens().registrationHistory("test2")
+        val now = System.currentTimeMillis()
+        println("LIVE history test2: ${h.intervals.size} intervals, ${h.phones.size} live, block ${h.block}")
+        for (p in h.phones) org.junit.Assert.assertTrue(p.label,
+            dev.dhruv.twmesh.core.Registry.registeredAt(h.intervals, p.label, p.owner, now))
+    }
 }

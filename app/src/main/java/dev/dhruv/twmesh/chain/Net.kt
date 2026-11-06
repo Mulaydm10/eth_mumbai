@@ -65,6 +65,26 @@ class Ens(private val rpc: Rpc = Rpc()) {
             return Abi.call("resolve(bytes,bytes)", Abi.Dyn(EnsName.dnsEncode(name)), Abi.Dyn(inner))
         }
 
+        /** Replay registry logs (sorted) into intervals; [blockMs] maps a log's blockNumber to wall time. */
+        fun intervalsFromLogs(logs: List<JsonObject>, blockMs: (String) -> Long): List<dev.dhruv.twmesh.core.RegistrationInterval> {
+            class Open(val label: String, val owner: String, val fromMs: Long, var toMs: Long)
+            val open = HashMap<String, Open>(); val out = ArrayList<Open>()
+            for (l in logs) {
+                val topics = l["topics"].asJsonArray.map { it.asString.lowercase() }
+                if (topics.size < 2) continue
+                val at = blockMs(l["blockNumber"].asString)
+                val data = Hex.decode(l["data"].asString)
+                when (topics[0]) {
+                    TOPIC_REGISTERED -> Open(String(Abi.dynAt(data, 0), Charsets.UTF_8), Abi.addressAt(data, 1), at, Abi.uintAt(data, 2).toLong() * 1000)
+                        .also { open[topics[1]] = it; out += it }
+                    TOPIC_UNREGISTERED -> open.remove(topics[1])?.let { it.toMs = minOf(it.toMs, at) }
+                    TOPIC_REGENERATED -> open.remove(topics[1])?.let { open[topics[2]] = it }
+                    TOPIC_EXPIRY -> open[topics[1]]?.let { it.toMs = BigInteger(topics[2].removePrefix("0x"), 16).toLong() * 1000 }
+                }
+            }
+            return out.map { dev.dhruv.twmesh.core.RegistrationInterval(it.label, it.owner, it.fromMs, it.toMs) }
+        }
+
         /** Replay registry logs into the live phone set (same rules as listSitePhones). */
         fun phonesFromLogs(site: String, logs: List<JsonObject>, nowSec: Long): List<EnsPhone> {
             data class Reg(val label: String, val owner: String, var expiry: Long)
@@ -92,17 +112,37 @@ class Ens(private val rpc: Rpc = Rpc()) {
     fun listSitePhones(site: String): Pair<List<EnsPhone>, Long> {
         val r2 = siteRegistry(site)
         val latest = rpc.blockNumber()
+        val logs = fetchLogs(r2, latest)
+        return phonesFromLogs(site, logs, System.currentTimeMillis() / 1000) to latest
+    }
+
+    /**
+     * Registration HISTORY as intervals (registered → unregistered/expired) with Sepolia block times, as the web app's
+     * siteRegistrationHistory() builds them. Also returns the live phones and the block the snapshot was taken at.
+     */
+    data class History(val phones: List<EnsPhone>, val intervals: List<dev.dhruv.twmesh.core.RegistrationInterval>, val block: Long)
+
+    fun registrationHistory(site: String): History {
+        val r2 = siteRegistry(site)
+        val latest = rpc.blockNumber()
+        val logs = fetchLogs(r2, latest)
+        val blockMs = HashMap<String, Long>()
+        for (b in logs.map { it["blockNumber"].asString }.toSet())
+            blockMs[b] = BigInteger(rpc.request("eth_getBlockByNumber", b, false).asJsonObject["timestamp"].asString.removePrefix("0x"), 16).toLong() * 1000
+        return History(phonesFromLogs(site, logs, System.currentTimeMillis() / 1000), intervalsFromLogs(logs) { blockMs[it]!! }, latest)
+    }
+
+    private fun fetchLogs(r2: String, latest: Long): List<JsonObject> {
         val logs = ArrayList<JsonObject>()
         var from = Tw.ENS_DEPLOY_BLOCK
         while (from <= latest) {
-            // Last chunk uses "latest": load-balanced public RPCs can lag behind the head we just read.
             val to = if (from + CHUNK - 1 >= latest) "latest" else "0x" + (from + CHUNK - 1).toString(16)
             val got = try { rpc.getLogs(r2, from, to) } catch (e: RpcException) { Thread.sleep(1500); rpc.getLogs(r2, from, to) }
             got.forEach { logs += it.asJsonObject }
             from += CHUNK
         }
         logs.sortWith(compareBy({ BigInteger(it["blockNumber"].asString.removePrefix("0x"), 16) }, { BigInteger(it["logIndex"].asString.removePrefix("0x"), 16) }))
-        return phonesFromLogs(site, logs, System.currentTimeMillis() / 1000) to latest
+        return logs
     }
 
     /** What the name resolves to right now via the Universal Resolver (null = not found / revoked). */

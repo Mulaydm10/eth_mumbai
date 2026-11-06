@@ -33,6 +33,16 @@ out.events = {
   ExpiryUpdated: keccak256(stringToHex("ExpiryUpdated(uint256,uint64,address)")),
   TokenRegenerated: keccak256(stringToHex("TokenRegenerated(uint256,uint256)")),
 };
+// Mesh message canonical JSON (keys sorted, no whitespace) + personal_sign, as the app must produce it.
+{
+  const f = { v: 1, type: "checkin", site: "test2", sender: "dhruv-m", addr: acct.address, tMs: 1762425600123, nonce: "00112233aabbccdd",
+    status: "help", note: "Floor 3 \"B\" wing\nstairs blocked – é ☃ \u0001" };
+  const canon = JSON.stringify(Object.fromEntries(Object.keys(f).sort().map((k) => [k, f[k]])));
+  const sig = await acct.signMessage({ message: canon });
+  const withSig = { ...f, sig };
+  const wire = JSON.stringify(Object.fromEntries(Object.keys(withSig).sort().map((k) => [k, withSig[k]])));
+  out.mesh = { fields: f, canonical: canon, signature: sig, wire, id: keccak256(stringToHex(wire)).slice(2) };
+}
 // live reads (Sepolia, read-only)
 const pub = v.createPublicClient({ chain: sepolia, transport: v.http("https://ethereum-sepolia-rpc.publicnode.com") });
 out.live = {};

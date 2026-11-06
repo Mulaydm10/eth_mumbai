@@ -29,6 +29,9 @@ object TwmBus {
     fun onReceive(routed: RoutedPacket): Boolean {
         val p = routed.packet
         val sender = routed.peerID ?: return false
+        val relays = (AppConstants.MESSAGE_TTL_HOPS.toInt() - p.ttl.toInt()).coerceAtLeast(0)
+        // Protocol messages (JSON): verified against the site roster; only accepted ones are relayed further.
+        if (p.payload.isNotEmpty() && p.payload[0] == '{'.code.toByte()) return MeshState.onIncoming(p.payload, relays)
         _incoming.tryEmit(
             TwmIn(
                 senderPeerID = sender,

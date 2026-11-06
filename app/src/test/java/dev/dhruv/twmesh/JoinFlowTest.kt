@@ -78,6 +78,15 @@ class JoinFlowTest {
         assertTrue(steps.none { it.state == JoinFlow.State.FAILED })
     }
 
+    @Test fun `v2 multi-use invite (R5 proposal) verifies with its own message`() {
+        val id = "0123456789abcdef0123456789abcdef"
+        val sig = Eth.signMessage("tremor-witness invite v2|site=test2|id=$id|exp=60000|uses=12", committeeKey)
+        val raw = Base64.getUrlEncoder().withoutPadding().encodeToString("""{"site":"test2","inviteId":"$id","exp":60000,"uses":12,"sig":"$sig"}""".toByteArray())
+        val inv = Invite.parse(raw)!!
+        assertEquals(12, inv.uses); assertTrue(inv.signedByCommittee(committee))
+        assertTrue(flow().run(inv, "mesh-3c2c", phone) {}.ok)
+    }
+
     @Test fun `resolution lag is retried`() {
         resolveAnswers.addAll(listOf("0x0000000000000000000000000000000000000000", "0x0000000000000000000000000000000000000000"))
         val r = flow().run(invite(), "dhruv-m", phone) {}

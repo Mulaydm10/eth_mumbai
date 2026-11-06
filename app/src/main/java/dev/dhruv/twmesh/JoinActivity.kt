@@ -35,7 +35,8 @@ class JoinActivity : ComponentActivity() {
     private var busy = false
 
     private val scan = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { r ->
-        r.data?.getStringExtra(Intent.EXTRA_TEXT)?.let { useInvite(it) }
+        // Scanning a valid invite joins straight away (no extra tap), with the name in the box.
+        r.data?.getStringExtra(Intent.EXTRA_TEXT)?.let { if (useInvite(it)) join() }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,12 +46,16 @@ class JoinActivity : ComponentActivity() {
         lifecycleScope.launch {
             val addr = withContext(Dispatchers.Default) { me.address }   // first run creates the key
             keyLine.text = "This phone's key: ${addr.take(8)}…${addr.takeLast(6)}"
+            if (nameBox.text.isBlank()) nameBox.setText(suggestedLabel(addr))
             keyLine.contentDescription = "This phone's key ends in ${addr.takeLast(6).toList().joinToString(" ")}"
         }
         intent?.dataString?.let { useInvite(it) }
     }
 
     private lateinit var keyLine: TextView
+
+    /** Demo phones join with no typing: a name derived from the key, e.g. mesh-3c2c (editable). */
+    private fun suggestedLabel(addr: String) = "mesh-" + addr.takeLast(4).lowercase()
 
     private fun buildUi(): ScrollView {
         val pad = dp(16)
@@ -85,30 +90,38 @@ class JoinActivity : ComponentActivity() {
         return ScrollView(this).apply { fitsSystemWindows = true; addView(col) }
     }
 
-    private fun useInvite(text: String) {
+    private fun useInvite(text: String): Boolean {
         val inv = Invite.parse(text)
         invite = inv
         val problem = flow.precheck(inv, "aaa")   // label checked at join time
         if (problem != null) {
             inviteInfo.text = "✗ $problem"; inviteInfo.setTextColor(Color.rgb(170, 0, 0)); joinButton.isEnabled = false
+            return false
         } else {
             val mins = ((inv!!.exp - System.currentTimeMillis()) / 60000).coerceAtLeast(0)
             inviteInfo.text = "✓ Invite for site \"${inv.site}\", signed by the committee, valid for $mins more minutes."
             inviteInfo.setTextColor(Color.rgb(0, 100, 30)); joinButton.isEnabled = !busy
+            return true
         }
     }
 
     private fun join() {
         if (busy) return
         busy = true; joinButton.isEnabled = false
-        val label = nameBox.text.toString().trim().lowercase()
+        val label = nameBox.text.toString().trim().lowercase().ifEmpty { suggestedLabel(me.address) }
         val lines = LinkedHashMap<String, JoinFlow.Step>()
         lifecycleScope.launch {
             val r = withContext(Dispatchers.IO) {
                 flow.run(invite, label, me.address) { s -> runOnUiThread { lines[s.id] = s; render(lines.values) } }
             }
             if (r.ok) {
-                me.saveMembership(invite!!.site.lowercase(), label, r.expiry, r.resolved)
+                val site = invite!!.site.lowercase()
+                me.saveMembership(site, label, r.expiry, r.resolved)
+                MeshState.reset()
+                steps.append("\n… Saving the site's phone list for offline use…")
+                val roster = withContext(Dispatchers.IO) { MeshState.syncClock(); RosterStore.get(this@JoinActivity).refresh(site) }
+                MeshState.recompute()
+                steps.append(roster.fold({ "\n✓ Site list saved: ${it.phones.size} phones" }, { "\n! Site list not saved yet (${it.message}). It retries when online." }))
                 steps.append("\n\nDone. This phone is ${r.name}.")
             } else {
                 busy = false; joinButton.isEnabled = true

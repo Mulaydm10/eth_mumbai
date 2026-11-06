@@ -46,3 +46,6 @@
     public static int d(...);
     public static int i(...);
 }
+
+# TW Mesh: Gson-serialised snapshots (RosterSnapshot, EnsPhone, RegistrationInterval) need their field names.
+-keep class dev.dhruv.twmesh.** { *; }

@@ -30,8 +30,10 @@ object Tw {
 
 /** A committee-signed, single-use, 30-minute invite (packages/chain/src/invite.ts). */
 /** [raw] is the encoded form, sent to /api/ens-register unchanged. */
-data class Invite(val site: String, val inviteId: String, val exp: Long, val sig: String, val raw: String = "") {
-    val message get() = "tremor-witness invite v1|site=$site|id=$inviteId|exp=$exp"
+data class Invite(val site: String, val inviteId: String, val exp: Long, val sig: String, val raw: String = "", val uses: Int? = null) {
+    /** v1: single use (live today). v2: multi-use demo invite, proposed in BACKEND_REQUESTS R5. */
+    val message get() = if (uses == null) "tremor-witness invite v1|site=$site|id=$inviteId|exp=$exp"
+        else "tremor-witness invite v2|site=$site|id=$inviteId|exp=$exp|uses=$uses"
     fun signer(): String? = Eth.recoverMessageAddress(message, sig)
     fun signedByCommittee(committee: String = Tw.COMMITTEE) = signer()?.equals(committee, ignoreCase = true) == true
 
@@ -53,7 +55,7 @@ data class Invite(val site: String, val inviteId: String, val exp: Long, val sig
         fun decode(s: String): Invite? = try {
             val b64 = s.replace('-', '+').replace('_', '/').let { it + "=".repeat((4 - it.length % 4) % 4) }
             val o = gson.fromJson(String(Base64.getDecoder().decode(b64), Charsets.UTF_8), JsonObject::class.java)
-            val i = Invite(o["site"].asString, o["inviteId"].asString, o["exp"].asLong, o["sig"].asString, s)
+            val i = Invite(o["site"].asString, o["inviteId"].asString, o["exp"].asLong, o["sig"].asString, s, o["uses"]?.asInt)
             if (Regex("^[0-9a-f]{32}$").matches(i.inviteId) && Regex("^0x[0-9a-fA-F]+$").matches(i.sig)) i else null
         } catch (_: Exception) { null }
 

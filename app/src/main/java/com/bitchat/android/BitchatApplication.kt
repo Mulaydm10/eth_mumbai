@@ -22,6 +22,9 @@ class BitchatApplication : Application() {
             torProvider.init(this)
         } catch (_: Exception){}
 
+        // TW Mesh protocol state (verifies + relays TWM messages, keeps the check-in log)
+        dev.dhruv.twmesh.MeshState.init(this)
+
         // Initialize relay directory (loads assets/nostr_relays.csv)
         RelayDirectory.initialize(this)
 

@@ -40,6 +40,23 @@
   "ExpiryUpdated": "0x3260962d42d8f7ae0af25cbfdb2983c214a859cfa2ac6df8ea29b534c267d429",
   "TokenRegenerated": "0x4adeae13ec8831392865da923fda1c23d6894f7acb41defa2472480cd4b47d58"
  },
+ "mesh": {
+  "fields": {
+   "v": 1,
+   "type": "checkin",
+   "site": "test2",
+   "sender": "dhruv-m",
+   "addr": "0x2c7536E3605D9C16a7a3D7b1898e529396a65c23",
+   "tMs": 1762425600123,
+   "nonce": "00112233aabbccdd",
+   "status": "help",
+   "note": "Floor 3 \"B\" wing\nstairs blocked – é ☃ \u0001"
+  },
+  "canonical": "{\"addr\":\"0x2c7536E3605D9C16a7a3D7b1898e529396a65c23\",\"nonce\":\"00112233aabbccdd\",\"note\":\"Floor 3 \\\"B\\\" wing\\nstairs blocked – é ☃ \\u0001\",\"sender\":\"dhruv-m\",\"site\":\"test2\",\"status\":\"help\",\"tMs\":1762425600123,\"type\":\"checkin\",\"v\":1}",
+  "signature": "0x0740cc6175deea183cb38366ee75fb28a9750302a720a0b281e79f9250a60102547b49a29dde0b68ee4d323b64d24c87b280363fd37e1bcff7bffe47634bbf471b",
+  "wire": "{\"addr\":\"0x2c7536E3605D9C16a7a3D7b1898e529396a65c23\",\"nonce\":\"00112233aabbccdd\",\"note\":\"Floor 3 \\\"B\\\" wing\\nstairs blocked – é ☃ \\u0001\",\"sender\":\"dhruv-m\",\"sig\":\"0x0740cc6175deea183cb38366ee75fb28a9750302a720a0b281e79f9250a60102547b49a29dde0b68ee4d323b64d24c87b280363fd37e1bcff7bffe47634bbf471b\",\"site\":\"test2\",\"status\":\"help\",\"tMs\":1762425600123,\"type\":\"checkin\",\"v\":1}",
+  "id": "a9b231d90f4f8f09e7a36063b8d62118f013188a1dae545bd827dcf6db3c8015"
+ },
  "live": {
   "test2": {
    "registry": "0x094f7B7d657481140aa54c2Faa351057FC775bF0"
