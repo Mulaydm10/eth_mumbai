@@ -30,6 +30,8 @@ object TwmBus {
         val p = routed.packet
         val sender = routed.peerID ?: return false
         val relays = (AppConstants.MESSAGE_TTL_HOPS.toInt() - p.ttl.toInt()).coerceAtLeast(0)
+        // Time exchange (one hop only, never relayed): see TimeSync.
+        if (dev.dhruv.twmesh.core.TimeWire.isTime(p.payload)) return TimeSync.onReceive(p.payload, relays)
         // Protocol messages (JSON): verified against the site roster; only accepted ones are relayed further.
         if (p.payload.isNotEmpty() && p.payload[0] == '{'.code.toByte()) return MeshState.onIncoming(p.payload, relays)
         _incoming.tryEmit(

@@ -53,11 +53,11 @@ object MeshState {
     private val rejected = HashMap<Verdict, Int>()
     private val _view = MutableStateFlow(MeshView())
     val view: StateFlow<MeshView> = _view
-    @Volatile var clockOffsetMs = 0L   // server time − local time, from /api/time when online (Cristian's algorithm)
 
     fun init(ctx: Context) {
         if (::app.isInitialized) return
         app = ctx.applicationContext
+        TimeSync.init(app)
         loadFromDisk()
         recompute()
         if (id().site != null) ShakeSensor.start(app)
@@ -69,6 +69,7 @@ object MeshState {
                 override fun onAvailable(network: android.net.Network) {
                     scope.launch {
                         delay(1500)   // let DNS settle
+                        TimeSync.maybeSyncServer()
                         Uploader.uploadPending(app)
                         val site = id().site ?: return@launch
                         val age = roster()?.ageMs() ?: Long.MAX_VALUE
@@ -79,18 +80,14 @@ object MeshState {
         } catch (e: Exception) { Log.w(TAG, "no network callback: ${e.message}") }
     }
 
-    fun now() = System.currentTimeMillis() + clockOffsetMs
+    /** Server time as this phone best knows it (TimeSync: /api/time when online, neighbours over the mesh when not). */
+    fun now() = TimeSync.now()
 
     /** After joining (or switching site): reload that site's log and recompute. */
     @Synchronized fun reset() { accepted.clear(); heardAt.clear(); rejected.clear(); loadFromDisk(); recompute(); if (id().site != null) ShakeSensor.start(app) }
 
     /** Cristian's algorithm like the web app: best of 8 /api/time samples by lowest RTT. Blocking; needs internet. */
-    fun syncClock(api: dev.dhruv.twmesh.chain.TwApi = dev.dhruv.twmesh.chain.TwApi()): Long? = runCatching {
-        (0 until 8).map {
-            val t0 = System.currentTimeMillis(); val t = api.serverTimeMs(); val t1 = System.currentTimeMillis()
-            (t1 - t0) to (t + (t1 - t0) / 2 - t1)
-        }.minBy { it.first }.second.also { clockOffsetMs = it }
-    }.getOrNull()
+    fun syncClock() = TimeSync.syncServer()
     private fun id() = PhoneIdentity.get(app)
     private fun site() = id().site
     private fun roster() = site()?.let { RosterStore.get(app).load(it) }

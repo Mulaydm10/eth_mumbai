@@ -176,3 +176,22 @@ Test phones are named A/B/C here; raw device logs stay local (SafeMesh AGENTS.md
   take 2's composite drifted (adb screenrecord timing); take 3 missed one phone's tap (scroll differed).
 - App fix found while filming: upload + stale roster refresh now run as soon as the network returns
   (ConnectivityManager callback); before, the outbox waited for the 60 s loop. Offline status reads "no internet".
+
+## 2026-11-06 19:40–20:20 IST — §5.2 clock alignment (offline)
+- `core/ClockSync.kt` (pure, JVM-tested): one server-time estimate per phone = monotonic clock (elapsedRealtime) +
+  offset, with an error bound that grows by an assumed 100 ppm drift (pessimistic; real drift TODO(measure)).
+  Server: Cristian, best of 8 by round trip (err = rtt/2). Neighbour: NTP four timestamps over ONE Bluetooth hop,
+  err = neighbour's err + δ/2 (holds for any path asymmetry). A phone adopts a neighbour's time only if the error is
+  strictly smaller than its own, so no loops; with ≥ 3 answers, ones that disagree with the majority are dropped.
+- `core/TimeWire.kt`: "TWT1" packets, never relayed, never logged/uploaded. Answers are signed EIP-191 by the phone key
+  and accepted only from phones registered on the site (saved ENS list). Asking phones ask every 2 min while their
+  error is > 100 ms. The fix is saved (same boot exact; after a reboot re-anchored on the wall clock).
+- Home screen shows the clock source and ± error; red when the error is > ¼ of the quorum window.
+- Tests: 723, 0 failed (new ClockSyncTest: 500 random asymmetric-link cases, true error always within the bound;
+  2 hops; no loop back; outlier outvoted; signed wire round trip, tampering detected).
+- 3 emulators, live: online, all synced from /api/time (±113–114 ms; round trip ~230 ms). Then Wi-Fi + data off,
+  B forgot its time and was set 7 s fast: one exchange → 8 signed answers from mesh-8621 + mesh-36bb, adopted
+  mesh-8621 (1 hop, ±134 ms); B's clock vs its own wall clock = −244 ms, vs −237 ms from its own earlier internet
+  sync (7 ms apart). C restarted offline: clock restored from disk (±118 ms).
+- Limit: with only 2 answering neighbours there is no majority, so the smaller error wins (a registered phone lying
+  about its time could skew one neighbour). Emulator Bluetooth is simulated: real BLE δ TODO(measure).

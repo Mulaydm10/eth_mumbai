@@ -66,6 +66,7 @@ fun TwmHomeScreen(peerCount: Int, onOpenChat: () -> Unit) {
     val v by MeshState.view.collectAsState()
     val up by Uploader.status.collectAsState()
     val shake by ShakeSensor.status.collectAsState()
+    val clock by TimeSync.status.collectAsState()
 
     fun refreshRoster() {
         val site = PhoneIdentity.get(ctx).site ?: return
@@ -165,6 +166,8 @@ fun TwmHomeScreen(peerCount: Int, onOpenChat: () -> Unit) {
             OutlinedButton(onClick = { confirmTest = true }, modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)) {
                 Text("Test: send a shaking signal", fontSize = 18.sp) }
             Text("Confirmed needs ${v.quorumK} phones within ${v.quorumWindowMs / 1000.0} s (${v.paramsSource}).", fontSize = 15.sp, color = c.onBackground)
+            Text(clockLine(clock, v.quorumWindowMs), fontSize = 15.sp,
+                color = if (clock.errMs == null || clock.errMs!! > v.quorumWindowMs / 4) Red else c.onBackground)
             if (v.rejected.isNotEmpty()) Text("Ignored messages: " + v.rejected.entries.joinToString { "${it.value} ${it.key.name.lowercase().replace('_', ' ')}" },
                 fontSize = 15.sp, color = c.onBackground, modifier = Modifier.semantics { contentDescription = "Ignored messages" })
 
@@ -213,4 +216,15 @@ private fun Group(title: String, items: List<String>, color: Color) {
         if (items.isEmpty()) Text("—", fontSize = 17.sp, color = MaterialTheme.colorScheme.onBackground)
         items.forEach { Text("• $it", fontSize = 17.sp, color = MaterialTheme.colorScheme.onBackground) }
     }
+}
+
+/** One line about the clock the alert timing depends on. */
+internal fun clockLine(s: ClockStatus, windowMs: Long): String {
+    val err = s.errMs
+    val base = when {
+        err == null -> "Clock: this phone's own time (not checked yet)."
+        s.source == "server" -> "Clock: internet time, accurate to ±$err ms."
+        else -> "Clock: from ${s.source} over Bluetooth (${s.hops} hop${if (s.hops == 1) "" else "s"}), accurate to ±$err ms."
+    }
+    return if (err == null || err > windowMs / 4) "$base Alerts from several phones may not line up until it is checked with the internet or a nearby phone." else base
 }

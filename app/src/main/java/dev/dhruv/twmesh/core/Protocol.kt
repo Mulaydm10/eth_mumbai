@@ -41,7 +41,14 @@ data class MeshMsg(val fields: Map<String, Any>) {
         }
 
         /** Parse wire JSON: flat object of strings and integers only (anything else is rejected). */
-        fun parse(bytes: ByteArray): MeshMsg? = try {
+        fun parse(bytes: ByteArray): MeshMsg? {
+            val m = parseFlat(bytes) ?: return null
+            return if (m["v"] != V || m["type"] !in TYPES || listOf("site", "sender", "addr", "nonce", "sig").any { m[it] !is String } || m["tMs"] !is Long) null
+            else MeshMsg(m)
+        }
+
+        /** A flat JSON object of strings and integers only, or null. */
+        fun parseFlat(bytes: ByteArray): Map<String, Any>? = try {
             val o = gson.fromJson(String(bytes, Charsets.UTF_8), JsonObject::class.java)
             val m = LinkedHashMap<String, Any>()
             for ((k, v) in o.entrySet()) {
@@ -52,8 +59,7 @@ data class MeshMsg(val fields: Map<String, Any>) {
                     else -> return null
                 }
             }
-            if (m["v"] != V || m["type"] !in TYPES || listOf("site", "sender", "addr", "nonce", "sig").any { m[it] !is String } || m["tMs"] !is Long) null
-            else MeshMsg(m)
+            m
         } catch (_: Exception) { null }
     }
 }
