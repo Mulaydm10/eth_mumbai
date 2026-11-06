@@ -1,6 +1,6 @@
 // End-to-end self-test without phones: N fresh wallets get gas from the live /api/drip, register as sensors,
 // write one simultaneous "stomp" (+ one lone trigger), then we read Arkiv back and compute the quorum.
-// Usage: npx tsx scripts/simulate.ts [site=selftest] [phones=3]
+// Usage: npx tsx --env-file=.env scripts/simulate.ts [site=selftest] [phones=3]   (needs COMMITTEE_PASS for invites)
 import { computeQuorum } from "@tw/core";
 import { fetchSensors, fetchTriggers, publicClientFor, walletClientFor, writeSensor, writeTrigger } from "@tw/chain";
 import { formatEther } from "viem";
@@ -22,8 +22,11 @@ for (const p of phones) {
   console.log("  ", p.name, p.addr.slice(0, 10), JSON.stringify(await r.json()).slice(0, 120));
 }
 console.log("1b) register ENS names via", `${BASE}/api/ens-register`);
+// T14: new phones need a committee invite. Run with --env-file=.env so COMMITTEE_PASS is available.
 for (const p of phones) {
-  const r = await fetch(`${BASE}/api/ens-register`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ site, label: p.name, address: p.addr }) });
+  const inv = (await (await fetch(`${BASE}/api/ens-invite`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ site, pass: process.env.COMMITTEE_PASS ?? "" }) })).json()) as { invite?: string; error?: string };
+  if (!inv.invite) console.log("   invite failed:", inv.error, "(run: npx tsx --env-file=.env scripts/simulate.ts …)");
+  const r = await fetch(`${BASE}/api/ens-register`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ site, label: p.name, address: p.addr, invite: inv.invite }) });
   console.log("  ", p.name, JSON.stringify(await r.json()).slice(0, 140));
 }
 const bal0 = await pub.getBalance({ address: phones[0]!.addr });

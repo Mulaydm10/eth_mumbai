@@ -1,28 +1,68 @@
 # Tremor Witness (ETHGlobal Mumbai 2026)
 
-**Residents' phones become a shared vibration record that no single party controls.** Android phones in neighbouring flats detect construction vibration. An event counts only when several registered phones feel it at the same time. Readings are signed by each phone and stored on **Arkiv**. Sealed evidence packs go to **Swarm**. The dashboard recomputes everything in your browser, and keeps working when our servers are off.
+**Residents' phones become a shared vibration record.** Android phones in neighbouring flats detect construction vibration. An event counts only when several **ENS-registered** phones feel it at the same time. Each phone signs its own readings to **Arkiv**. Sealed evidence packs go to **Swarm**. The dashboard recomputes everything in your browser from public data.
 
-- Live: https://tremor-witness.vercel.app (sensor) · https://tremor-witness.vercel.app/dashboard.html?site=p2test (dashboard) · `/tremor-witness-viewer.html` (offline single-file viewer)
-- Claim discipline: we show *a corroborated event in a vibration band at a time*, **not** that a legal limit was exceeded.
-- Sponsor write-ups: Arkiv → `arkiv/` (schema, why, how, reach, friction, swarm). ENSv2 → `ens/` (Prototype 3). EF CROPS → the section below.
+- **Live:** https://tremor-witness.vercel.app/dashboard.html?site=test2 (dashboard: real 2-phone data, latest sealed evidence, join QR) · `/?site=<site>` (phone sensor) · `/report.html` (printable evidence report) · `/tremor-witness-viewer.html` (offline single-file viewer)
+- **What we claim:** *a corroborated event in a vibration band at a time, co-signed by registered phones*. **Not** that a legal limit was exceeded, and not geophone-grade measurement.
+- **Sponsor write-ups:**
+  - Arkiv → `arkiv/` (schema, why, how, reach, friction, swarm);
+  - ENSv2 → `ens/README.md`;
+  - EF CROPS → the section below.
+- **AI use:** `docs/AI_USE.md`. **Demo script:** `DEMO.md`. **Licence:** MIT (`LICENSE`).
+
+## Who decides who counts, and as of when
+A phone's reading counts if the phone's ENSv2 name (`<phone>.<site>.tremorwitness.eth`) was registered to the wallet that wrote it, **both at the reading's claimed time and at the moment Arkiv recorded it** (`packages/core/src/registry.ts`). The building's committee issues names through signed, single-use invites that are logged publicly on Arkiv, and can revoke them. **Revoking stops a phone's future readings only; history is not rewritten**, and a revoked phone cannot backdate.
 
 ## CROPS
-- **C, censorship resistance (the lead property):** nobody (contractor, authority, society secretary, or us) can edit, delete or withhold a confirmed event.
-  - Each phone signs its own readings to Arkiv.
-  - Every viewer recomputes the quorum from public data.
-  - Evidence packs live on Swarm, with a hash on Arkiv.
-  - The offline viewer is one HTML file that reads Arkiv directly. Switch our backend off and the record is still readable and verifiable.
-- **O, open source:** MIT licence, the whole stack is in this repo, and every rule (`packages/core/src/quorum.ts`) is readable and re-runnable (`scripts/verify-event.ts`).
-- **P, privacy:** phones publish only detected events (above threshold), never a continuous stream. Phone names are pseudonymous, and location is only "site". There are no analytics or trackers, and keys never leave the device. Trade-off, stated: event times are public by design, because that is the evidence.
-- **S, security:** each phone has its own key, and a trigger counts only if its immutable Arkiv `$creator` matches the registered phone. Quorum rejects a lone or spoofed phone, and tilt and acceleration checks reject a handled phone. Sealed packs are hash-verified. Trade-off, stated: the onboarding gas faucet (`/api/drip`) is the one server we run, and it is not in the data path.
+- **C, censorship resistance (the lead property):** once a reading is on Arkiv, **no single party can quietly change what it shows**.
+  - Each phone signs its own readings, and every viewer recomputes the quorum from public Arkiv and ENS data.
+  - Sealed evidence lives on Swarm, and its keccak hash is on Arkiv. The printable report re-checks it.
+  - The **offline viewer** is one HTML file that reads Arkiv, ENS and Swarm directly. Switch our servers off and existing evidence stays readable and verifiable.
+  - *Limits, stated:*
+    - **Membership** (who may join) is controlled by the building committee through ENS. Today that committee is one key run by our onboarding service; a 2-of-3 Safe is designed.
+    - A phone's owner can still **delete** its own Arkiv entity (Arkiv's `readonly` blocks edits, not owner deletes). Sealed packs on Swarm keep a copy.
+    - Arkiv entities expire (maximum about 182 days), so long-lived evidence relies on the Swarm pack plus its hash.
+- **O, open source:** MIT licence. The whole stack is in this repo, every rule is readable and tested (`npm test`, 29 tests), and `scripts/verify-event.ts` re-verifies any site.
+- **P, privacy:**
+  - Phones publish only detected events above threshold, never a continuous stream.
+  - Phone names are pseudonymous, and location is only "site".
+  - There are no analytics or trackers, and phone keys never leave the device.
+  - *Stated trade-offs:* event times and waveform excerpts are public by design, because they are the evidence. The phone talks to the hosts listed under S.
+- **S, security:**
+  - Each phone has its own key, and its readings count only under the as-of ENS rule above.
+  - The quorum rejects a lone phone, and tilt and acceleration checks reject a handled phone.
+  - Joining needs a committee-signed, single-use invite; issue and use are logged on Arkiv.
+  - Sealed packs are hash-verified.
+  - **The servers we run (all Vercel functions), and what each can and cannot do:**
+
+    | Function | What it does | What it cannot do |
+    | --- | --- | --- |
+    | `/api/drip` | Gives a new phone a little testnet gas | Write or alter readings |
+    | `/api/time` | Reference clock for aligning phones | Required for phones to work: they fall back to their own clock and sound sync |
+    | `/api/ens-invite` | Committee signs a one-time invite (passcode) | — |
+    | `/api/ens-register` | Registers an invited phone's ENS name | Register without a valid, unused, Arkiv-logged invite |
+    | `/api/ens-revoke` | Committee revokes a phone (passcode) | — |
+
+    None of them is needed to **read or verify** evidence.
+
+## Arkiv: writer addresses and a query you can run
+- **Writers:**
+  - every phone writes with its own in-browser wallet. On `test2` that's `0xB0A8F94ee56F653603695367Db6739b60096EDE1` (phone-b0a8) and `0xCAd25E795068C5C5592ca64b60d105AD5CAF45F7` (phone-cad2);
+  - sealed events are written by whichever dashboard viewer sealed them, e.g. `0xb529c8E35A00581b685EB58bdACf43377ea553BA`;
+  - invites and onboarding gas come from the committee/funder `0x32DE3a68b15D2b2A1527cA6cd717Fb21A639500F`.
+- **Network:** Rabdi testnet, chain `7794095`, schemas `tremor-witness.v1.{trigger,sensor,event,sync,invite}` (`arkiv/schema.md`).
+- **Run a query:**
+```bash
+npm install
+npx tsx scripts/pull.ts test2 100000        # all phones + readings at site test2 (real 2-phone data), saved to logs/
+npx tsx scripts/verify-event.ts p3test 100000   # every sealed event: Swarm pack hash ↔ Arkiv, members exist
+```
 
 ## Run it
 ```bash
-npm install && npm test          # core DSP + quorum tests
-npm run dev                      # local web app (phones need HTTPS: use the Vercel link)
-npx tsx scripts/simulate.ts demo 3     # 3 simulated phones → Arkiv → quorum
-npx tsx scripts/pull.ts demo 60        # pull a site's data from Arkiv into logs/
-npx tsx scripts/verify-event.ts demo   # verify sealed events (Swarm pack ↔ Arkiv hash)
+npm install && npm test                    # core: DSP, quorum, sound sync, coherence, as-of membership (29 tests)
+npm run dev                                # local web app (phone sensors need HTTPS: use the Vercel link on phones)
+npx tsx --env-file=.env scripts/simulate.ts <site> 3   # E2E: 3 simulated phones → invite → ENS → Arkiv → quorum (needs committee .env)
 ```
 
 ## Team repo notes
