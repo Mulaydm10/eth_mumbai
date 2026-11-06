@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#0f1115" />
     <title>Tremor Mesh · Sensor</title>
+    <script>
+      // Visitors without a site / invite (and phones that never ran the sensor here) get the Tremor Mesh website.
+      // Invite QR links (/?site=…&inv=…) and returning sensor phones stay on this page.
+      (function () { try { if (!/[?&](site|inv|name)=/.test(location.search) && !localStorage.getItem("tw.site")) location.replace("/home.html" + location.hash); } catch (e) {} })();
+    </script>
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>

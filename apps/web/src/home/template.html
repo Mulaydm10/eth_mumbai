@@ -1,0 +1,465 @@
+<div style="min-height:100vh;background:#050505">
+<canvas ref="{{ fxRef }}" style="position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:150"></canvas>
+
+<nav style="position:fixed;top:0;left:0;right:0;z-index:50;height:64px;display:flex;align-items:center;gap:20px;padding:0 24px;background:rgba(5,5,5,0.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid #2c2c2c">
+  <div onClick="{{ goLanding }}" style="display:flex;align-items:center;gap:10px;cursor:pointer;flex-shrink:0">
+    <span style="display:grid;place-items:center;width:34px;height:34px;border-radius:3px;background:rgba(242,240,235,0.14);color:#f5f5f3"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M2 12h4l2-6 4 12 3-9 2 3h5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+    <span style="font-family:'Courier Prime',monospace;font-weight:700;font-size:18px;letter-spacing:-0.02em">Tremor Mesh</span>
+  </div>
+  <div style="display:flex;gap:4px;padding:4px;border-radius:3px;background:#0b0b0b;border:1px solid #2c2c2c;margin:0 auto;overflow-x:auto;max-width:100%;min-width:0;scrollbar-width:none" class="tw-nav">
+    <sc-for list="{{ tabs }}" as="tb" hint-placeholder-count="4">
+      <button onClick="{{ tb.onClick }}" style="display:flex;align-items:center;gap:8px;border:none;border-radius:3px;padding:8px 16px;cursor:pointer;white-space:nowrap;font-size:14px;font-weight:500;background:{{ tb.bg }};color:{{ tb.color }};transition:background .25s,color .25s">
+        <span class="tw-num" style="font-family:'Courier Prime',monospace;font-size:13px;opacity:0.7">{{ tb.num }}</span>{{ tb.label }}
+      </button>
+    </sc-for>
+  </div>
+  <span class="tw-live" style="display:flex;align-items:center;gap:8px;flex-shrink:0;font-family:'Courier Prime',monospace;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:#e63946;border:1px solid rgba(230,57,70,0.35);border-radius:3px;padding:5px 12px">
+    <span style="width:7px;height:7px;border-radius:50%;background:#e63946;box-shadow:0 0 10px #e63946"></span><a href="/dashboard.html?site=ethmumbai-demo" style="color:inherit">live dashboard ↗</a>
+  </span>
+</nav>
+
+<div ref="{{ weaveRef }}" style="padding-top:64px">
+
+<sc-if value="{{ isLanding }}" hint-placeholder-val="{{ true }}">
+  <section style="position:relative;height:calc(100vh - 64px);min-height:620px;overflow:hidden;background:radial-gradient(ellipse 70% 60% at 68% 45%,#1f1f1f 0%,#050505 60%)">
+    <div style="position:absolute;left:0;right:0;top:0;height:6vh;background:linear-gradient(#000,rgba(0,0,0,0.85));z-index:1;pointer-events:none"></div>
+    <canvas ref="{{ heroRef }}" onClick="{{ quake }}" style="position:absolute;inset:0;width:100%;height:100%;display:block;cursor:crosshair"></canvas>
+    <div ref="{{ heroTextRef }}" style="z-index:2;text-shadow:0 2px 18px #050505,0 0 2px #050505;position:absolute;left:clamp(20px,6vw,96px);bottom:clamp(90px,13vh,150px);max-width:680px;pointer-events:none">
+      <div style="font-family:'Courier Prime',monospace;font-size:14px;letter-spacing:0.14em;text-transform:uppercase;color:#f5f5f3;margin-bottom:22px">ETHGlobal Mumbai 2026 · Arkiv · ENSv2 · Swarm · EF CROPS</div>
+      <h1 style="margin:0;font-size:clamp(38px,5.4vw,82px);line-height:0.9;font-family:'Courier Prime',monospace;font-weight:700;letter-spacing:-0.02em;text-shadow:-2px 0 rgba(230,57,70,0.6),2px 0 rgba(245,245,243,0.14)">The ground shakes.<br><span style="color:#e63946">Every flat signs it.</span></h1>
+      <p style="margin:26px 0 0;max-width:520px;font-size:clamp(16px,1.4vw,19px);line-height:1.5;color:#d6d6d6;text-wrap:pretty">Residents' phones become one shared vibration record. An event counts only when several ENS-registered phones feel it at the same instant — and nobody, including us, can rewrite it.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:32px;pointer-events:auto">
+        <button onClick="{{ quake }}" style="border:none;border-radius:3px;padding:15px 26px;background:#f5f5f3;color:#0b0b0b;font-weight:700;font-size:16px;cursor:pointer;box-shadow:0 10px 30px rgba(242,240,235,0.25)">Crack the air</button>
+        <button onClick="{{ goProblem }}" style="border:1px solid #6e6e6e;border-radius:3px;padding:15px 26px;background:rgba(11,11,11,0.75);color:#f5f5f3;font-weight:500;font-size:16px;cursor:pointer" style-hover="border-color:#f5f5f3">See why it matters →</button>
+      </div>
+    </div>
+    <div style="position:absolute;z-index:2;top:calc(6vh + 18px);right:clamp(20px,4vw,56px);display:flex;flex-direction:column;align-items:flex-end;gap:8px;font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd;pointer-events:none;text-align:right">
+      <span>LAST CONFIRMED · 23:00:41 IST</span>
+      <span style="color:#f5f5f3">PPV 118.1 – 241.3 mm/s</span>
+      <span>k = 3 of 4 phones · window 2000 ms</span>
+      <span style="color:#e63946">sealed ✓ swarm 609a0261…2933f5</span>
+    </div>
+    <canvas ref="{{ seisRef }}" style="position:absolute;left:0;right:0;bottom:0;width:100%;height:64px;pointer-events:none"></canvas>
+    <div style="position:absolute;bottom:76px;right:clamp(20px,4vw,56px);font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd;letter-spacing:0.1em;pointer-events:none">CLICK ANYWHERE TO TREMOR</div>
+  </section>
+
+  <div style="overflow:hidden;border-top:1px solid #2c2c2c;border-bottom:1px solid #2c2c2c;background:#0a0a0a;padding:14px 0">
+    <div ref="{{ tickerRef }}" style="display:flex;gap:44px;white-space:nowrap;font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd;will-change:transform">
+      <sc-for list="{{ ticker }}" as="tk" hint-placeholder-count="12">
+        <span style="display:flex;gap:10px;align-items:center"><span style="width:6px;height:6px;border-radius:50%;background:{{ tk.c }}"></span><span style="color:#f5f5f3">{{ tk.a }}</span>{{ tk.b }}</span>
+      </sc-for>
+    </div>
+  </div>
+
+  <section style="max-width:1200px;margin:0 auto;padding:96px 24px 40px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:1px;background:#0a0a0a;outline:1px solid #2c2c2c;border:1px solid #2c2c2c;border-radius:3px;overflow:hidden">
+      <div style="background:#0a0a0a;padding:28px"><div style="font-size:56px;font-family:'Courier Prime',monospace;font-weight:700;letter-spacing:-0.02em;color:#f5f5f3"><span data-count="3">3</span></div><div style="color:#bdbdbd;font-size:14px;margin-top:6px">phones must agree before anything counts</div></div>
+      <div style="background:#0a0a0a;padding:28px"><div style="font-size:56px;font-family:'Courier Prime',monospace;font-weight:700;letter-spacing:-0.02em"><span data-count="2000">2000</span><span style="font-size:22px;color:#bdbdbd"> ms</span></div><div style="color:#bdbdbd;font-size:14px;margin-top:6px">the window they must agree inside</div></div>
+      <div style="background:#0a0a0a;padding:28px"><div style="font-size:56px;font-family:'Courier Prime',monospace;font-weight:700;letter-spacing:-0.02em;color:#e63946">0</div><div style="color:#bdbdbd;font-size:14px;margin-top:6px">servers of ours needed to read or verify</div></div>
+      <div style="background:#0a0a0a;padding:28px"><div style="font-size:56px;font-family:'Courier Prime',monospace;font-weight:700;letter-spacing:-0.02em"><span data-count="137">137</span></div><div style="color:#bdbdbd;font-size:14px;margin-top:6px">fake or lone readings refused in the live demo</div></div>
+    </div>
+  </section>
+
+  <section data-reveal="1" style="max-width:1200px;margin:0 auto;padding:40px 24px 80px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:40px;align-items:center">
+      <div style="max-width:420px">
+        <div style="font-family:'Courier Prime',monospace;font-size:14px;letter-spacing:0.14em;color:#f5f5f3;text-transform:uppercase">How a building testifies</div>
+        <div style="font-size:clamp(32px,3.8vw,52px);font-family:'Courier Prime',monospace;font-weight:700;letter-spacing:-0.02em;line-height:1;margin:16px 0;text-shadow:-2px 0 rgba(230,57,70,0.6),2px 0 rgba(245,245,243,0.14)">One stomp.<br>Every flat hears it.</div>
+        <p style="margin:0;color:#d6d6d6;font-size:16px;line-height:1.6;text-wrap:pretty">The wave spreads through the floor plan and wakes each phone on the way. As soon as three registered phones feel it, they co-sign. A phone someone is holding never counts.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:22px;font-size:13px;color:#bdbdbd">
+          <span style="display:flex;align-items:center;gap:6px"><span style="width:8px;height:12px;border-radius:2px;background:#e63946"></span>felt it</span>
+          <span style="display:flex;align-items:center;gap:6px"><span style="width:8px;height:12px;border-radius:2px;background:#8a8a8a"></span>handled · refused</span>
+          <span style="display:flex;align-items:center;gap:6px"><span style="width:8px;height:12px;border-radius:2px;background:#6e6e6e"></span>waiting</span>
+        </div>
+      </div>
+      <div style="border:1px solid #2c2c2c;border-radius:3px;overflow:hidden;background:#050505">
+        <canvas ref="{{ meshRef }}" onClick="{{ meshClick }}" style="display:block;width:100%;height:440px;cursor:crosshair"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1200px;margin:0 auto;padding:40px 24px 120px">
+    <div style="font-family:'Courier Prime',monospace;font-size:14px;letter-spacing:0.14em;color:#bdbdbd;text-transform:uppercase;margin-bottom:20px">Three more acts</div>
+    <div data-reveal="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+      <div onClick="{{ goProblem }}" style="cursor:pointer;border:1px solid #2c2c2c;border-radius:3px;padding:28px;background:linear-gradient(180deg,#0b0b0b,#0a0a0a);transition:border-color .25s,transform .25s" style-hover="border-color:#8a8a8a;transform:translateY(-4px)">
+        <div style="font-family:'Courier Prime',monospace;color:#8a8a8a;font-size:13px">02 / Problem</div>
+        <div style="font-size:28px;font-weight:700;letter-spacing:-0.02em;margin:40px 0 10px;line-height:1.1">Every record today has one owner.</div>
+        <div style="color:#bdbdbd;font-size:15px;line-height:1.5">Contractor logs, authority monitors, spreadsheets, WhatsApp videos — each can be edited or withheld by a single party.</div>
+      </div>
+      <div onClick="{{ goSolution }}" style="cursor:pointer;border:1px solid #2c2c2c;border-radius:3px;padding:28px;background:linear-gradient(180deg,#0b0b0b,#0a0a0a);transition:border-color .25s,transform .25s" style-hover="border-color:#f5f5f3;transform:translateY(-4px)">
+        <div style="font-family:'Courier Prime',monospace;color:#f5f5f3;font-size:13px">03 / Solution</div>
+        <div style="font-size:28px;font-weight:700;letter-spacing:-0.02em;margin:40px 0 10px;line-height:1.1">Seven stages from floor to proof.</div>
+        <div style="color:#bdbdbd;font-size:15px;line-height:1.5">DSP on the phone, handling rejection, Arkiv signatures, ENS as-of gate, quorum, Swarm seal — then we pull the plug.</div>
+      </div>
+      <div onClick="{{ goDash }}" style="cursor:pointer;border:1px solid #2c2c2c;border-radius:3px;padding:28px;background:linear-gradient(180deg,#0b0b0b,#0a0a0a);transition:border-color .25s,transform .25s" style-hover="border-color:#e63946;transform:translateY(-4px)">
+        <div style="font-family:'Courier Prime',monospace;color:#e63946;font-size:13px">04 / Dashboard</div>
+        <div style="font-size:28px;font-weight:700;letter-spacing:-0.02em;margin:40px 0 10px;line-height:1.1">Recomputed in your browser.</div>
+        <div style="color:#bdbdbd;font-size:15px;line-height:1.5">Live timeline, phones, attack checklist, sealed evidence, sensor, committee setup, report and health.</div>
+      </div>
+    </div>
+    <p style="margin:56px 0 0;color:#a3a3a3;font-size:13px;font-family:'Courier Prime',monospace;line-height:1.7">Claim: a corroborated event in a vibration band at a time, co-signed by registered phones. Not a legal-limit finding, not geophone-grade. MIT licensed · no analytics · keys never leave the phone.</p>
+  </section>
+</sc-if>
+
+<sc-if value="{{ isProblem }}" hint-placeholder-val="{{ false }}">
+  <section style="max-width:1200px;margin:0 auto;padding:72px 24px 120px">
+    <div style="font-family:'Courier Prime',monospace;font-size:14px;letter-spacing:0.14em;color:#8a8a8a;text-transform:uppercase">02 / The problem</div>
+    <h2 style="margin:18px 0 0;font-size:clamp(38px,5.6vw,80px);line-height:0.95;font-family:'Courier Prime',monospace;font-weight:700;letter-spacing:-0.02em;max-width:960px;text-shadow:-2px 0 rgba(230,57,70,0.6),2px 0 rgba(245,245,243,0.14)">Next door, a pile driver.<br><span style="color:#bdbdbd">Upstairs, a sixty-year-old building.</span></h2>
+    <p style="margin:24px 0 0;max-width:640px;font-size:18px;line-height:1.55;color:#d6d6d6;text-wrap:pretty">Metro lines and redevelopment shake Mumbai's old buildings every day. Residents feel every blow and watch cracks grow — but when they complain, the only records that exist belong to someone else.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:28px"><div style="display:flex;align-items:center;gap:12px;padding:6px 18px 6px 6px;border-radius:3px;border:1px solid #2c2c2c;background:#0b0b0b"><span style="width:32px;height:32px;border-radius:50%;background:#050505;border:2px solid #6e6e6e"></span><span style="display:flex;flex-direction:column;line-height:1.25"><span style="font-weight:700;font-size:15px">Black · the noise</span><span style="font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd">every blow nobody records</span></span></div><div style="display:flex;align-items:center;gap:12px;padding:6px 18px 6px 6px;border-radius:3px;border:1px solid #2c2c2c;background:#0b0b0b"><span style="width:32px;height:32px;border-radius:50%;background:#f5f5f3;border:2px solid #6e6e6e"></span><span style="display:flex;flex-direction:column;line-height:1.25"><span style="font-weight:700;font-size:15px">Silver · the record</span><span style="font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd">typed, signed, permanent</span></span></div><div style="display:flex;align-items:center;gap:12px;padding:6px 18px 6px 6px;border-radius:3px;border:1px solid #2c2c2c;background:#0b0b0b"><span style="width:32px;height:32px;border-radius:50%;background:#e63946;border:2px solid #6e6e6e"></span><span style="display:flex;flex-direction:column;line-height:1.25"><span style="font-weight:700;font-size:15px">Red · the witnessed</span><span style="font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd">only what many phones confirm</span></span></div></div>
+    <p style="margin:18px 0 0;max-width:620px;font-family:'Courier Prime',monospace;font-size:15px;line-height:1.6;color:#bdbdbd">The whole app is in black and white. Colour appears only once something has been witnessed: a lone tremor stays grey, and an event confirmed by many phones turns red.</p>
+
+    <div style="margin-top:48px;border:1px solid #2c2c2c;border-radius:3px;overflow:hidden;background:#0a0a0a;position:relative">
+      <canvas ref="{{ probRef }}" style="display:block;width:100%;height:440px"></canvas>
+      <div style="position:absolute;left:20px;top:18px;font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd;letter-spacing:0.1em">LIVE SIMULATION · BLOW → GROUND WAVE → BUILDING SWAY → CRACKS</div>
+      <div style="position:absolute;right:20px;top:14px;text-align:right;font-family:'Courier Prime',monospace"><div style="font-size:13px;color:#bdbdbd;letter-spacing:0.1em">BLOWS SINCE YOU OPENED THIS</div><div ref="{{ blowRef }}" style="font-size:30px;font-weight:700;color:#f5f5f3">0</div></div>
+    </div>
+
+    <h3 style="margin:80px 0 8px;font-size:32px;font-weight:700;letter-spacing:-0.02em">Who writes it down?</h3>
+    <p style="margin:0 0 28px;color:#bdbdbd;font-size:16px;max-width:620px">Every existing record has exactly one party who can quietly change it.</p>
+    <div data-reveal="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px">
+      <sc-for list="{{ records }}" as="rc" hint-placeholder-count="4">
+        <div style="position:relative;border:1px solid {{ rc.border }};border-radius:3px;padding:24px;background:{{ rc.bg }};transition:all .5s;min-height:190px">
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd;letter-spacing:0.1em;text-transform:uppercase">{{ rc.owner }}</span><span style="font-family:'Courier Prime',monospace;font-size:13px;font-weight:700;letter-spacing:0.12em;padding:3px 8px;border-radius:3px;background:rgba(138,138,138,0.16);color:#8a8a8a;opacity:{{ rc.op }};transition:opacity .4s">{{ rc.verb }}</span></div>
+          <div style="font-size:22px;font-weight:700;margin:22px 0 8px;letter-spacing:-0.01em;text-decoration:{{ rc.deco }};text-decoration-color:#8a8a8a;text-decoration-thickness:2px">{{ rc.title }}</div>
+          <div style="color:#bdbdbd;font-size:14px;line-height:1.5">{{ rc.body }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div data-reveal="1" style="margin-top:80px">
+      <h3 style="margin:0 0 8px;font-size:32px;font-weight:700;letter-spacing:-0.02em">Same edit, two records.</h3>
+      <p style="margin:0 0 24px;color:#bdbdbd;font-size:16px;max-width:620px">Change the 23:00:41 reading in each. One edit leaves no trace. The other one gets rejected.</p>
+      <div style="border:1px solid #2c2c2c;border-radius:3px;overflow:hidden;background:#050505"><canvas ref="{{ ledgerRef }}" style="display:block;width:100%;height:340px"></canvas></div>
+    </div>
+
+    <div data-reveal="1" style="margin-top:80px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px;align-items:start;border-top:1px solid #2c2c2c;padding-top:48px">
+      <div>
+        <div style="font-family:'Courier Prime',monospace;font-size:14px;letter-spacing:0.14em;color:#bdbdbd;text-transform:uppercase">The objection</div>
+        <div ref="{{ quoteRef }}" style="font-size:clamp(30px,3.6vw,48px);font-weight:700;letter-spacing:-0.02em;line-height:1.05;margin-top:14px;min-height:2.1em">"Phones can't be that accurate."</div>
+      </div>
+      <div style="font-size:17px;line-height:1.6;color:#d6d6d6">
+        <p style="margin:0 0 14px">True — so we don't claim they are. Tremor Mesh never says a legal limit was exceeded.</p>
+        <p style="margin:0">It claims something narrower and harder to dispute: <span style="color:#f5f5f3;font-weight:500">a corroborated event in a vibration band, at a time, co-signed by several registered flats</span> — a record no contractor, authority, secretary or developer can edit.</p>
+        <button onClick="{{ goSolution }}" style="margin-top:28px;border:none;border-radius:3px;padding:14px 24px;background:#f5f5f3;color:#0b0b0b;font-weight:700;font-size:15px;cursor:pointer">How it works →</button>
+      </div>
+    </div>
+  </section>
+</sc-if>
+
+<sc-if value="{{ isSolution }}" hint-placeholder-val="{{ false }}">
+  <section style="max-width:1320px;margin:0 auto;padding:56px 24px 100px">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px">
+      <div>
+        <div style="font-family:'Courier Prime',monospace;font-size:14px;letter-spacing:0.14em;color:#f5f5f3;text-transform:uppercase">03 / The solution · from packages/core + packages/chain</div>
+        <h2 style="margin:14px 0 0;font-size:clamp(34px,4.6vw,64px);line-height:0.95;font-family:'Courier Prime',monospace;font-weight:700;letter-spacing:-0.02em;text-shadow:-2px 0 rgba(230,57,70,0.6),2px 0 rgba(245,245,243,0.14)">From a floor tremor<br>to unkillable proof.</h2>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button onClick="{{ prevStep }}" style="width:46px;height:46px;border-radius:50%;border:1px solid #4a4a4a;background:#0b0b0b;color:#f5f5f3;cursor:pointer;font-size:18px">←</button>
+        <button onClick="{{ toggleAuto }}" style="height:46px;border-radius:3px;border:1px solid #4a4a4a;background:#0b0b0b;color:#f5f5f3;cursor:pointer;padding:0 18px;font-family:'Courier Prime',monospace;font-size:14px">{{ autoLabel }}</button>
+        <button onClick="{{ nextStep }}" style="width:46px;height:46px;border-radius:50%;border:none;background:#f5f5f3;color:#0b0b0b;cursor:pointer;font-size:18px;font-weight:700">→</button>
+      </div>
+    </div>
+
+    <div style="margin-top:36px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:6px;max-width:100%">
+        <sc-for list="{{ steps }}" as="st" hint-placeholder-count="7">
+          <button onClick="{{ st.onClick }}" style="display:flex;gap:14px;align-items:center;text-align:left;border:1px solid {{ st.border }};background:{{ st.bg }};border-radius:3px;padding:12px 14px;cursor:pointer;color:#f5f5f3;transition:all .25s">
+            <span style="font-family:'Courier Prime',monospace;font-size:14px;width:28px;height:28px;border-radius:3px;display:grid;place-items:center;flex-shrink:0;background:{{ st.numBg }};color:{{ st.numColor }}">{{ st.num }}</span>
+            <span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-weight:600;font-size:15px">{{ st.title }}</span><span style="font-size:14px;color:#bdbdbd;font-family:'Courier Prime',monospace">{{ st.sub }}</span></span>
+          </button>
+        </sc-for>
+      </div>
+      <div style="grid-column:span 2;min-width:0;display:flex;flex-direction:column;gap:16px">
+        <div style="border:1px solid #2c2c2c;border-radius:3px;overflow:hidden;background:#0a0a0a;position:relative">
+          <canvas ref="{{ solRef }}" style="display:block;width:100%;height:420px"></canvas>
+          <div style="position:absolute;left:18px;top:14px;font-family:'Courier Prime',monospace;font-size:13px;color:#f5f5f3;letter-spacing:0.12em">{{ stepKicker }}</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
+          <div style="padding:6px 4px">
+            <div style="font-size:28px;font-weight:700;letter-spacing:-0.02em;line-height:1.1">{{ stepTitle }}</div>
+            <p style="margin:12px 0 0;color:#d6d6d6;font-size:15px;line-height:1.6;text-wrap:pretty">{{ stepBody }}</p>
+          </div>
+          <div style="border:1px solid #2c2c2c;border-radius:3px;background:#0a0a0a;overflow:hidden">
+            <div style="padding:10px 14px;border-bottom:1px solid #2c2c2c;font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd;display:flex;justify-content:space-between"><span>{{ stepFile }}</span><span style="color:#e63946">real code</span></div>
+            <pre style="margin:0;padding:14px;font-family:'Courier Prime',monospace;font-size:14px;line-height:1.65;color:#e6e6e6;white-space:pre-wrap;word-break:break-word">{{ stepCode }}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</sc-if>
+
+<sc-if value="{{ isDash }}" hint-placeholder-val="{{ false }}">
+  <section style="max-width:1240px;margin:0 auto;padding:40px 24px 100px">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:22px">
+      <div>
+        <div style="font-family:'Courier Prime',monospace;font-size:14px;letter-spacing:0.14em;color:#e63946;text-transform:uppercase">04 / Dashboard · site ethmumbai-demo</div>
+        <div style="margin-top:8px;color:#bdbdbd;font-size:14px;max-width:680px">An animated replay of the recorded 6 Nov live test (real numbers). <a href="/dashboard.html?site=ethmumbai-demo" style="color:#e63946;text-decoration:underline">Open the live dashboard ↗</a> · <a href="/dashboard.html?site=ethmumbai-demo&amp;recorded=1" style="text-decoration:underline">replay the recorded data ↗</a><br>The live dashboard reads Arkiv (Rabdi testnet) directly; the quorum is recomputed in your browser and no server of ours decides anything.</div>
+      </div>
+      <div style="display:flex;gap:4px;padding:4px;border-radius:3px;background:#0b0b0b;border:1px solid #2c2c2c;flex-wrap:wrap">
+        <sc-for list="{{ dashTabs }}" as="dt" hint-placeholder-count="5">
+          <button onClick="{{ dt.onClick }}" style="border:none;border-radius:3px;padding:8px 14px;cursor:pointer;font-size:13px;font-weight:500;background:{{ dt.bg }};color:{{ dt.color }}">{{ dt.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <sc-if value="{{ isMon }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px;align-items:center;padding:26px;border-radius:3px;border:1px solid {{ heroBorder }};background:{{ heroBg }};transition:all .6s;box-shadow:{{ heroShadow }}">
+          <div>
+            <div style="font-family:'Courier Prime',monospace;font-size:13px;letter-spacing:0.12em;color:#bdbdbd;text-transform:uppercase">Site status</div>
+            <div style="font-size:clamp(26px,3vw,38px);font-family:'Courier Prime',monospace;font-weight:700;letter-spacing:-0.02em;margin:8px 0 6px;color:#e63946;text-shadow:-2px 0 rgba(230,57,70,0.6),2px 0 rgba(245,245,243,0.14)">{{ heroTitle }}</div>
+            <div style="color:#d6d6d6;font-size:14px;line-height:1.5">{{ heroSub }}</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start">
+            <div style="font-family:'Courier Prime',monospace;font-size:13px;letter-spacing:0.12em;color:#bdbdbd;text-transform:uppercase">Agreeing in last event · k = 3</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <span style="padding:8px 12px;border-radius:3px;border:1px solid #e63946;background:rgba(230,57,70,0.14);color:#e63946;font-family:'Courier Prime',monospace;font-size:14px">adityas-nothing</span>
+              <span style="padding:8px 12px;border-radius:3px;border:1px solid #e63946;background:rgba(230,57,70,0.14);color:#e63946;font-family:'Courier Prime',monospace;font-size:14px">phone-dhruv</span>
+              <span style="padding:8px 12px;border-radius:3px;border:1px solid #e63946;background:rgba(230,57,70,0.14);color:#e63946;font-family:'Courier Prime',monospace;font-size:14px">somnath</span>
+              <span style="padding:8px 12px;border-radius:3px;border:1px dashed #4a4a4a;color:#bdbdbd;font-family:'Courier Prime',monospace;font-size:14px">dhruv2</span>
+            </div>
+            <button onClick="{{ stomp }}" style="border:none;border-radius:3px;padding:11px 20px;background:#f5f5f3;color:#0b0b0b;font-weight:700;font-size:14px;cursor:pointer">Simulate a stomp (animation)</button>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px">
+          <div style="border:1px solid #2c2c2c;border-radius:3px;padding:16px 18px;background:#0b0b0b;border-top:3px solid #f5f5f3"><div style="font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd;letter-spacing:0.1em">PHONES (ENS)</div><div style="font-size:38px;font-family:'Courier Prime',monospace;font-weight:700;letter-spacing:-0.02em;margin-top:4px">4</div></div>
+          <div style="border:1px solid #2c2c2c;border-radius:3px;padding:16px 18px;background:#0b0b0b;border-top:3px solid #e63946"><div style="font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd;letter-spacing:0.1em">CONFIRMED EVENTS</div><div style="font-size:38px;font-family:'Courier Prime',monospace;font-weight:700;letter-spacing:-0.02em;margin-top:4px;color:#e63946">{{ nEvents }}</div></div>
+          <div style="border:1px solid #2c2c2c;border-radius:3px;padding:16px 18px;background:#0b0b0b;border-top:3px solid #cfcfcf"><div style="font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd;letter-spacing:0.1em">TRIGGERS SEEN</div><div style="font-size:38px;font-family:'Courier Prime',monospace;font-weight:700;letter-spacing:-0.02em;margin-top:4px">{{ nTriggers }}</div></div>
+          <div style="border:1px solid #2c2c2c;border-radius:3px;padding:16px 18px;background:#0b0b0b;border-top:3px solid #8a8a8a"><div style="font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd;letter-spacing:0.1em">REJECTED</div><div style="font-size:38px;font-family:'Courier Prime',monospace;font-weight:700;letter-spacing:-0.02em;margin-top:4px;color:#8a8a8a">137</div></div>
+        </div>
+
+        <div style="border:1px solid #2c2c2c;border-radius:3px;background:#0b0b0b;padding:18px">
+          <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px">
+            <span style="font-family:'Courier Prime',monospace;font-size:13px;letter-spacing:0.12em;color:#bdbdbd">TIMELINE · EVERY READING, EVERY PHONE · ANIMATED REPLAY</span>
+            <div style="display:flex;flex-wrap:wrap;gap:14px;font-size:14px;color:#bdbdbd">
+              <span style="display:flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:50%;background:#e63946"></span>in confirmed event</span>
+              <span style="display:flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:50%;background:#8a8a8a"></span>rejected</span>
+              <span style="display:flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:50%;background:#bdbdbd"></span>waiting</span>
+              <span style="display:flex;align-items:center;gap:6px"><span style="width:16px;height:10px;border-radius:3px;background:rgba(230,57,70,0.25);border:1px solid rgba(230,57,70,0.6)"></span>quorum reached</span>
+            </div>
+          </div>
+          <canvas ref="{{ tlRef }}" style="display:block;width:100%;height:260px;border-radius:3px;background:#050505"></canvas>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:14px">
+          <div style="border:1px solid #2c2c2c;border-radius:3px;background:#0b0b0b;padding:18px">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px">
+              <span style="font-family:'Courier Prime',monospace;font-size:13px;letter-spacing:0.12em;color:#bdbdbd">EVENT REPLAY · 0x7444…b123</span>
+              <span style="font-family:'Atkinson Hyperlegible Next',sans-serif;font-style:italic;font-size:18px">three phones, one blow</span>
+            </div>
+            <canvas ref="{{ evRef }}" style="display:block;width:100%;height:280px;border-radius:3px;background:#050505"></canvas>
+          </div>
+          <div style="border:1px solid #2c2c2c;border-radius:3px;background:#0b0b0b;padding:18px;display:flex;flex-direction:column">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+              <span style="font-family:'Courier Prime',monospace;font-size:13px;letter-spacing:0.12em;color:#bdbdbd">ACTIVITY · 6 NOV SESSION (ARKIV + ENS)</span>
+              <span style="display:flex;align-items:center;gap:6px;font-family:'Courier Prime',monospace;font-size:13px;color:#e63946"><span style="width:6px;height:6px;border-radius:50%;background:#e63946"></span>recorded</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;overflow:hidden;height:280px">
+              <sc-for list="{{ feed }}" as="fd" hint-placeholder-count="7">
+                <div style="display:grid;grid-template-columns:64px 74px minmax(0,1fr);gap:10px;align-items:center;padding:9px 10px;border-radius:3px;background:{{ fd.bg }};border:1px solid #1a1a1a;font-size:13px;transition:background 1.2s">
+                  <span style="font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd">{{ fd.time }}</span>
+                  <span style="font-family:'Courier Prime',monospace;font-size:13px;font-weight:700;letter-spacing:0.08em;color:{{ fd.color }}">{{ fd.tag }}</span>
+                  <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap"><b style="font-weight:600">{{ fd.who }}</b> <span style="color:#bdbdbd">{{ fd.text }}</span></span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+        <div style="border:1px solid #2c2c2c;border-radius:3px;background:#0b0b0b;padding:18px">
+          <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px">
+            <span style="font-family:'Courier Prime',monospace;font-size:13px;letter-spacing:0.12em;color:#bdbdbd">SESSION MAP · READINGS PER MINUTE · 22:45 – 23:20 IST</span>
+            <span style="font-size:14px;color:#bdbdbd">brighter = more readings · red outline = confirmed event</span>
+          </div>
+          <canvas ref="{{ heatRef }}" style="display:block;width:100%;height:190px"></canvas>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:14px">
+          <div style="border:1px solid #2c2c2c;border-radius:3px;background:#0b0b0b;padding:20px">
+            <div style="font-family:'Courier Prime',monospace;font-size:13px;letter-spacing:0.12em;color:#bdbdbd;margin-bottom:16px">WHY READINGS WERE REFUSED</div>
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <div><div style="display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px"><span>no-quorum <span style="color:#bdbdbd">· a lone phone</span></span><span style="font-family:'Courier Prime',monospace">79</span></div><div style="height:8px;border-radius:3px;background:#2c2c2c"><div style="width:57.7%;height:100%;border-radius:3px;background:#8a8a8a"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px"><span>handling <span style="color:#bdbdbd">· tilt / low-f sway</span></span><span style="font-family:'Courier Prime',monospace">44</span></div><div style="height:8px;border-radius:3px;background:#2c2c2c"><div style="width:32.1%;height:100%;border-radius:3px;background:#f5f5f3"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px"><span>not-registered <span style="color:#bdbdbd">· ENS as-of</span></span><span style="font-family:'Courier Prime',monospace">14</span></div><div style="height:8px;border-radius:3px;background:#2c2c2c"><div style="width:10.2%;height:100%;border-radius:3px;background:#cfcfcf"></div></div></div>
+            </div>
+          </div>
+          <div style="border:1px solid #2c2c2c;border-radius:3px;background:#0b0b0b;padding:20px">
+            <div style="font-family:'Courier Prime',monospace;font-size:13px;letter-spacing:0.12em;color:#bdbdbd;margin-bottom:16px">SOUND SYNC · CHIRP #4 · 22:58:39 IST</div>
+            <div style="display:flex;flex-direction:column;gap:10px;font-family:'Courier Prime',monospace;font-size:13px">
+              <div style="display:flex;justify-content:space-between;padding:10px 12px;border-radius:3px;background:#050505"><span>phone-dhruv</span><span style="color:#f5f5f3">−13 755 ms</span></div>
+              <div style="display:flex;justify-content:space-between;padding:10px 12px;border-radius:3px;background:#050505"><span>somnath</span><span style="color:#f5f5f3">+191 ms</span></div>
+              <div style="display:flex;justify-content:space-between;padding:10px 12px;border-radius:3px;background:#050505"><span>dhruv2</span><span style="color:#e63946">0 ms · reference</span></div>
+            </div>
+            <div style="margin-top:12px;font-size:13px;color:#bdbdbd">One 3-tone chirp aligns every phone's clock — no internet needed.</div>
+          </div>
+        </div>
+
+        <div style="border:1px solid #2c2c2c;border-radius:3px;background:#0b0b0b;padding:20px;overflow-x:auto">
+          <div style="font-family:'Courier Prime',monospace;font-size:13px;letter-spacing:0.12em;color:#bdbdbd;margin-bottom:12px">THE LIST · REGISTERED WITNESSES</div>
+          <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:720px">
+            <thead><tr style="text-align:left;color:#bdbdbd;font-family:'Courier Prime',monospace;font-size:13px;letter-spacing:0.08em"><th style="padding:8px 6px;font-weight:500">PHONE (ENS)</th><th style="padding:8px 6px;font-weight:500">READINGS</th><th style="padding:8px 6px;font-weight:500">STRUCT / HANDLING</th><th style="padding:8px 6px;font-weight:500">STATUS</th><th style="padding:8px 6px;font-weight:500">WALLET</th></tr></thead>
+            <tbody>
+              <tr style="border-top:1px solid #2c2c2c"><td style="padding:12px 6px"><div style="font-weight:600">adityas-nothing</div><div style="font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd">.ethmumbai-demo.tremorwitness.eth</div></td><td style="padding:12px 6px;font-family:'Courier Prime',monospace">29</td><td style="padding:12px 6px;font-family:'Courier Prime',monospace">16 / 13</td><td style="padding:12px 6px;color:#e63946">resolves ✓</td><td style="padding:12px 6px;font-family:'Courier Prime',monospace;font-size:14px;color:#bdbdbd">0x940C…fA09</td></tr>
+              <tr style="border-top:1px solid #2c2c2c"><td style="padding:12px 6px"><div style="font-weight:600">phone-dhruv</div><div style="font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd">.ethmumbai-demo.tremorwitness.eth</div></td><td style="padding:12px 6px;font-family:'Courier Prime',monospace">58</td><td style="padding:12px 6px;font-family:'Courier Prime',monospace">38 / 20</td><td style="padding:12px 6px;color:#e63946">resolves ✓</td><td style="padding:12px 6px;font-family:'Courier Prime',monospace;font-size:14px;color:#bdbdbd">0xB0A8…EDE1</td></tr>
+              <tr style="border-top:1px solid #2c2c2c"><td style="padding:12px 6px"><div style="font-weight:600">somnath</div><div style="font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd">.ethmumbai-demo.tremorwitness.eth</div></td><td style="padding:12px 6px;font-family:'Courier Prime',monospace">40</td><td style="padding:12px 6px;font-family:'Courier Prime',monospace">29 / 11</td><td style="padding:12px 6px;color:#e63946">resolves ✓</td><td style="padding:12px 6px;font-family:'Courier Prime',monospace;font-size:14px;color:#bdbdbd">0xCAd2…45F7</td></tr>
+              <tr style="border-top:1px solid #2c2c2c"><td style="padding:12px 6px"><div style="font-weight:600">dhruv2</div><div style="font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd">.ethmumbai-demo.tremorwitness.eth</div></td><td style="padding:12px 6px;font-family:'Courier Prime',monospace">0</td><td style="padding:12px 6px;font-family:'Courier Prime',monospace">– / –</td><td style="padding:12px 6px;color:#e63946">resolves ✓</td><td style="padding:12px 6px;font-family:'Courier Prime',monospace;font-size:14px;color:#bdbdbd">0x9702…52a1</td></tr>
+              <tr style="border-top:1px solid #2c2c2c"><td style="padding:12px 6px"><div style="font-weight:600;color:#bdbdbd">phone-iphn</div><div style="font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd">no ENS name</div></td><td style="padding:12px 6px;font-family:'Courier Prime',monospace">14</td><td style="padding:12px 6px;font-family:'Courier Prime',monospace">11 / 3</td><td style="padding:12px 6px;color:#8a8a8a">not-registered ✕</td><td style="padding:12px 6px;font-family:'Courier Prime',monospace;font-size:14px;color:#bdbdbd">0x2ad9…7aC2</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:14px">
+          <div style="border:1px solid #2c2c2c;border-radius:3px;background:#0b0b0b;padding:20px">
+            <div style="font-family:'Courier Prime',monospace;font-size:13px;letter-spacing:0.12em;color:#bdbdbd;margin-bottom:12px">ATTACK CHECKLIST · WHAT WE REFUSE, LIVE</div>
+            <div style="display:flex;flex-direction:column">
+              <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;padding:10px 0;border-top:1px solid #2c2c2c;font-size:13px"><span>Shake one phone</span><span style="color:#bdbdbd">quorum k = 3</span><span style="color:#e63946">refused 79</span></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;padding:10px 0;border-top:1px solid #2c2c2c;font-size:13px"><span>Pick up &amp; wave</span><span style="color:#bdbdbd">tilt 15° + low-f ratio</span><span style="color:#e63946">refused 44</span></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;padding:10px 0;border-top:1px solid #2c2c2c;font-size:13px"><span>Unregistered writer</span><span style="color:#bdbdbd">ENS as-of gate</span><span style="color:#e63946">refused 14</span></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;padding:10px 0;border-top:1px solid #2c2c2c;font-size:13px"><span>Revoked phone backdates</span><span style="color:#bdbdbd">Arkiv $createdAt check</span><span style="color:#e63946">enforced</span></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;padding:10px 0;border-top:1px solid #2c2c2c;font-size:13px"><span>Edit a sealed pack</span><span style="color:#bdbdbd">keccak hash on Arkiv</span><span style="color:#e63946">hash ✓</span></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;padding:10px 0;border-top:1px solid #2c2c2c;font-size:13px"><span>Our servers go dark</span><span style="color:#bdbdbd">offline viewer</span><span style="color:#e63946">readable</span></div>
+            </div>
+          </div>
+          <div style="border:1px solid #2c2c2c;border-radius:3px;background:#0b0b0b;padding:20px">
+            <div style="font-family:'Courier Prime',monospace;font-size:13px;letter-spacing:0.12em;color:#bdbdbd;margin-bottom:12px">LATEST SEALED EVIDENCE</div>
+            <div style="border-radius:3px;background:#050505;padding:16px;border:1px solid rgba(230,57,70,0.3)">
+              <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:20px;font-weight:700">23:00:41 IST</span><span style="font-family:'Courier Prime',monospace;font-size:13px;color:#e63946;border:1px solid rgba(230,57,70,0.4);padding:3px 8px;border-radius:3px">SEALED ✓ SWARM</span></div>
+              <div style="color:#bdbdbd;font-size:13px;margin:6px 0 14px">3 phones · PPV band 118.1 – 241.3 mm/s · expires on Arkiv 5 May 2027</div>
+              <div style="display:grid;grid-template-columns:90px minmax(0,1fr);gap:6px 10px;font-family:'Courier Prime',monospace;font-size:13px;word-break:break-all">
+                <span style="color:#bdbdbd">swarm</span><span>609a0261324b26e53571aea583edc07dbe9c137fd783718374d16b83fa2933f5</span>
+                <span style="color:#bdbdbd">packHash</span><span>0x96bafdb136febafe6acfd83fbae4b13a9068f1d66dae2d84e8ccaab47755d81f</span>
+                <span style="color:#bdbdbd">arkiv key</span><span>0xb2677ccf4cb63e077fbf190940c56f9faccb4534c5f013537e28098f0d46156d</span>
+              </div>
+              <button onClick="{{ goReport }}" style="margin-top:14px;border:1px solid #4a4a4a;border-radius:3px;background:transparent;color:#f5f5f3;padding:8px 14px;cursor:pointer;font-size:13px">Open evidence report →</button>
+              <button onClick="{{ runVerify }}" style="margin-top:14px;margin-left:6px;border:none;border-radius:3px;background:#f5f5f3;color:#0b0b0b;padding:8px 14px;cursor:pointer;font-size:13px">{{ verifyLabel }}</button>
+              <div style="display:flex;flex-direction:column;gap:6px;margin-top:14px">
+                <sc-for list="{{ verifySteps }}" as="vs" hint-placeholder-count="4">
+                  <div style="display:flex;justify-content:space-between;gap:10px;font-family:'Courier Prime',monospace;font-size:14px;padding:8px 10px;border-radius:3px;background:{{ vs.bg }};transition:background .3s"><span>{{ vs.label }}</span><span style="color:{{ vs.color }}">{{ vs.status }}</span></div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isSensor }}" hint-placeholder-val="{{ false }}">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:40px;align-items:center">
+        <div style="justify-self:center;width:340px;max-width:100%;border-radius:3px;padding:12px;background:#101010;border:1px solid #4a4a4a;box-shadow:0 40px 80px rgba(0,0,0,0.6)">
+          <div style="border-radius:3px;background:#050505;padding:22px 16px 20px;display:flex;flex-direction:column;gap:12px;min-height:640px">
+            <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'Courier Prime',monospace;font-weight:700;font-size:18px">Tremor Mesh</span><div style="display:flex;gap:4px"><sc-for list="{{ langs }}" as="lg" hint-placeholder-count="3"><button onClick="{{ lg.onClick }}" style="border:1px solid {{ lg.border }};border-radius:3px;background:transparent;color:#f5f5f3;padding:4px 8px;font-size:13px;cursor:pointer">{{ lg.label }}</button></sc-for></div></div>
+            <div style="font-family:'Courier Prime',monospace;font-size:13px;color:#e63946">ENS: phone-dhruv.ethmumbai-demo.tremorwitness.eth</div>
+            <button onClick="{{ toggleSensor }}" style="border:none;border-radius:3px;padding:16px;font-weight:700;font-size:16px;cursor:pointer;background:{{ sensorBtnBg }};color:{{ sensorBtnColor }}">{{ sensorBtnLabel }}</button>
+            <div style="font-size:14px;color:#bdbdbd;line-height:1.45">{{ sensorHint }}</div>
+            <canvas ref="{{ senRef }}" style="display:block;width:100%;height:150px;border-radius:3px;background:#0b0b0b"></canvas>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+              <div style="background:#0b0b0b;border-radius:3px;padding:10px 12px"><div style="font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd">DELIVERED RATE</div><div style="font-size:18px;font-weight:700">{{ senRate }}</div></div>
+              <div style="background:#0b0b0b;border-radius:3px;padding:10px 12px"><div style="font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd">DOMINANT FREQ</div><div style="font-size:18px;font-weight:700">{{ senFreq }}</div></div>
+              <div style="background:#0b0b0b;border-radius:3px;padding:10px 12px"><div style="font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd">CLOCK</div><div style="font-size:18px;font-weight:700">{{ senClock }}</div></div>
+              <div style="background:#0b0b0b;border-radius:3px;padding:10px 12px"><div style="font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd">OUTBOX</div><div style="font-size:18px;font-weight:700">{{ senOutbox }}</div></div>
+            </div>
+            <div style="display:flex;gap:8px;margin-top:auto">
+              <button onClick="{{ goSensor }}" style="flex:1;border:1px solid #4a4a4a;border-radius:3px;background:transparent;color:#f5f5f3;padding:12px 8px;font-size:14px;cursor:pointer">Play sync sound</button>
+              <button onClick="{{ goSensor }}" style="flex:1;border:1px solid #4a4a4a;border-radius:3px;background:transparent;color:#f5f5f3;padding:12px 8px;font-size:14px;cursor:pointer">Be the vibration source</button>
+            </div>
+          </div>
+        </div>
+        <div style="max-width:480px">
+          <div style="font-family:'Courier Prime',monospace;font-size:14px;letter-spacing:0.14em;color:#f5f5f3">SENSOR PAGE · /?site=ethmumbai-demo</div>
+          <div style="font-size:40px;font-family:'Courier Prime',monospace;font-weight:700;letter-spacing:-0.02em;line-height:1;margin:14px 0">Lay it flat.<br>Screen up. Start.</div>
+          <p style="color:#d6d6d6;font-size:16px;line-height:1.6;margin:0 0 14px">Only detected events are written to Arkiv, signed by this phone's own key. No continuous stream leaves the phone.</p>
+          <p style="color:#bdbdbd;font-size:14px;line-height:1.6;margin:0">Android Chrome only — iPhones don't expose the Generic Sensor API or web vibration. Available in English, मराठी and हिंदी.</p>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isSetup }}" hint-placeholder-val="{{ false }}">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:14px;align-items:start">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="border:1px solid #2c2c2c;border-radius:3px;background:#0b0b0b;padding:22px">
+            <div style="font-family:'Courier Prime',monospace;font-size:13px;letter-spacing:0.12em;color:#bdbdbd;margin-bottom:12px">COMMITTEE PASSCODE</div>
+            <div style="display:flex;gap:8px"><input type="password" placeholder="type the committee passcode" style="flex:1;min-width:0;background:#050505;border:1px solid #4a4a4a;border-radius:3px;padding:12px;color:#f5f5f3;font:inherit;font-size:14px"><button style="border:1px solid #4a4a4a;border-radius:3px;background:transparent;color:#f5f5f3;padding:0 14px;cursor:pointer">Show</button></div>
+            <div style="font-size:14px;color:#bdbdbd;margin-top:8px">Kept only in this browser tab. Not saved anywhere.</div>
+          </div>
+          <div style="border:1px solid #2c2c2c;border-radius:3px;background:#0b0b0b;padding:22px">
+            <div style="font-family:'Courier Prime',monospace;font-size:13px;letter-spacing:0.12em;color:#bdbdbd;margin-bottom:6px">SITE RULES · PUBLIC ENS TEXT RECORDS</div>
+            <div style="font-size:13px;color:#bdbdbd;margin-bottom:16px;line-height:1.5">Every change is a public Sepolia transaction — the committee cannot change the rules secretly.</div>
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) 110px;gap:10px 14px;align-items:center;font-size:14px">
+              <span>Web app phones (max) <span style="font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd">tw.max_phones</span></span><input value="5" style="background:#050505;border:1px solid #4a4a4a;border-radius:3px;padding:10px;color:#f5f5f3;font:inherit;width:100%">
+              <span>Phones that must agree <span style="font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd">tw.k</span></span><input value="3" style="background:#050505;border:1px solid #f5f5f3;border-radius:3px;padding:10px;color:#f5f5f3;font:inherit;width:100%">
+              <span>Window ms <span style="font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd">tw.window_ms</span></span><input value="2000" style="background:#050505;border:1px solid #4a4a4a;border-radius:3px;padding:10px;color:#f5f5f3;font:inherit;width:100%">
+              <span>Mesh app phones (max) <span style="font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd">tw.max_mesh</span></span><input value="5" style="background:#050505;border:1px solid #4a4a4a;border-radius:3px;padding:10px;color:#f5f5f3;font:inherit;width:100%">
+              <span>Mesh quorum <span style="font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd">tw.dk</span></span><input value="3" style="background:#050505;border:1px solid #4a4a4a;border-radius:3px;padding:10px;color:#f5f5f3;font:inherit;width:100%">
+              <span>Mesh window ms <span style="font-family:'Courier Prime',monospace;font-size:13px;color:#bdbdbd">tw.dwindow_ms</span></span><input value="2000" style="background:#050505;border:1px solid #4a4a4a;border-radius:3px;padding:10px;color:#f5f5f3;font:inherit;width:100%">
+            </div>
+            <button onClick="{{ goSetup }}" style="margin-top:18px;border:none;border-radius:3px;padding:12px 22px;background:#f5f5f3;color:#0b0b0b;font-weight:700;cursor:pointer">Save rules to ENS ↗</button>
+          </div>
+        </div>
+        <div style="border:1px solid #2c2c2c;border-radius:3px;background:#0b0b0b;padding:22px">
+          <div style="font-family:'Courier Prime',monospace;font-size:13px;letter-spacing:0.12em;color:#bdbdbd;margin-bottom:16px">INVITE QR · WEB APP + DISASTER MESH</div>
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) 110px;gap:10px 14px;align-items:center;font-size:14px">
+            <span>Phones this QR admits</span><input value="4" style="background:#050505;border:1px solid #4a4a4a;border-radius:3px;padding:10px;color:#f5f5f3;font:inherit;width:100%">
+            <span>Valid for (min, max 360)</span><input value="360" style="background:#050505;border:1px solid #4a4a4a;border-radius:3px;padding:10px;color:#f5f5f3;font:inherit;width:100%">
+          </div>
+          <div style="margin-top:20px;aspect-ratio:1;max-width:260px;border-radius:3px;border:1.5px dashed #4a4a4a;display:grid;place-items:center;text-align:center;color:#a3a3a3;font-size:13px;padding:20px">QR appears here after the committee signs a single-use invite</div>
+          <button onClick="{{ goSetup }}" style="margin-top:18px;border:1px solid #4a4a4a;border-radius:3px;padding:12px 22px;background:transparent;color:#f5f5f3;font-weight:600;cursor:pointer">Create invite QR ↗</button>
+          <div style="margin-top:14px;font-size:13px;color:#bdbdbd;line-height:1.5">Each phone wallet joins once; every issue and use is logged on Arkiv. Invites issued: 2 · used: 4.</div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isReport }}" hint-placeholder-val="{{ false }}">
+      <div style="max-width:860px;margin:0 auto;border-radius:3px;background:#eeebe4;color:#111111;padding:clamp(24px,5vw,56px);box-shadow:0 40px 100px rgba(0,0,0,0.6)">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap">
+          <div><div style="font-family:'Courier Prime',monospace;font-size:13px;letter-spacing:0.14em;color:#8a5a12">TREMOR WITNESS · EVIDENCE REPORT</div><div style="font-size:36px;font-family:'Courier Prime',monospace;font-weight:700;letter-spacing:-0.02em;margin-top:8px">Vibration evidence report</div><div style="color:#5a5f6b;font-size:14px;margin-top:4px">Site ethmumbai-demo · loaded from Arkiv, Swarm and ENS</div></div>
+          <button onClick="{{ goRealReport }}" style="border:none;border-radius:3px;padding:12px 20px;background:#16181d;color:#e63946;font-weight:600;cursor:pointer">Open the live report ↗</button>
+        </div>
+        <div style="margin:28px 0;padding:16px 20px;border-radius:3px;background:#ece5d5;font-size:15px;line-height:1.55"><b>Claim:</b> a corroborated event in a vibration band at 6 Nov 2026, 23:00:41 IST, co-signed by 3 registered phones. Not a finding that any legal limit was exceeded.</div>
+        <div style="display:grid;grid-template-columns:180px minmax(0,1fr);gap:10px 18px;font-size:14px">
+          <span style="color:#5a5f6b">Event ID</span><span style="font-family:'Courier Prime',monospace;font-size:14px;word-break:break-all">0x74442665754745ddde7554eafa31b123</span>
+          <span style="color:#5a5f6b">Phones (k = 3)</span><span>adityas-nothing, phone-dhruv, somnath</span>
+          <span style="color:#5a5f6b">PPV band</span><span>118.1 – 241.3 mm/s</span>
+          <span style="color:#5a5f6b">Window</span><span>2000 ms (from ENS text record)</span>
+          <span style="color:#5a5f6b">Swarm reference</span><span style="font-family:'Courier Prime',monospace;font-size:14px;word-break:break-all">609a0261324b26e53571aea583edc07dbe9c137fd783718374d16b83fa2933f5</span>
+          <span style="color:#5a5f6b">Pack hash (keccak)</span><span style="font-family:'Courier Prime',monospace;font-size:14px;word-break:break-all">0x96bafdb136febafe6acfd83fbae4b13a9068f1d66dae2d84e8ccaab47755d81f</span>
+        </div>
+        <div style="margin-top:28px;display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;gap:10px;align-items:center;padding:12px 14px;border-radius:3px;background:#dcefe3;color:#0a5c34;font-weight:600;font-size:14px">✓ The Swarm file matches the hash recorded on Arkiv</div>
+          <div style="display:flex;gap:10px;align-items:center;padding:12px 14px;border-radius:3px;background:#dcefe3;color:#0a5c34;font-weight:600;font-size:14px">✓ All 3 ENS names resolved to their writers at sealing — and still do now</div>
+        </div>
+        <div style="margin-top:28px;font-weight:700;font-size:18px">Verify it yourself</div>
+        <ol style="margin:10px 0 0;padding-left:20px;font-size:14px;line-height:1.8;color:#2a2e36">
+          <li>Download the pack from any Swarm gateway using the reference above.</li>
+          <li>Compute keccak256 of the file; compare with the pack hash on the Arkiv event entity.</li>
+          <li>Resolve each phone's ENS name on Sepolia; check it matches the reading's $creator.</li>
+          <li>Or run <span style="font-family:'Courier Prime',monospace;font-size:14px">npx tsx scripts/verify-event.ts ethmumbai-demo</span>.</li>
+        </ol>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isHealth }}" hint-placeholder-val="{{ false }}">
+      <div style="border:1px solid #2c2c2c;border-radius:3px;background:#0b0b0b;padding:22px">
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px">
+          <div><div style="font-size:24px;font-weight:700;letter-spacing:-0.02em">Sponsor stack health</div><div style="color:#bdbdbd;font-size:13px;margin-top:4px">Live checks run in your browser against public endpoints. Read-only, no server of ours.</div></div>
+          <div style="display:flex;align-items:center;gap:12px"><span style="font-family:'Courier Prime',monospace;font-size:14px;color:#bdbdbd">{{ healthSummary }}</span><button onClick="{{ runHealth }}" style="border:none;border-radius:3px;padding:11px 20px;background:#f5f5f3;color:#0b0b0b;font-weight:700;cursor:pointer">Run checks</button></div>
+        </div>
+        <div style="display:flex;flex-direction:column">
+          <sc-for list="{{ healthRows }}" as="hr" hint-placeholder-count="8">
+            <div style="display:grid;grid-template-columns:80px minmax(0,1fr) 120px 70px;gap:12px;align-items:center;padding:13px 4px;border-top:1px solid #2c2c2c;font-size:14px">
+              <span style="font-family:'Courier Prime',monospace;font-size:13px;color:{{ hr.stackColor }}">{{ hr.stack }}</span>
+              <span>{{ hr.check }}</span>
+              <span style="font-family:'Courier Prime',monospace;font-size:14px;color:{{ hr.color }}">{{ hr.result }}</span>
+              <span style="font-family:'Courier Prime',monospace;font-size:14px;color:#bdbdbd;text-align:right">{{ hr.time }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+  </section>
+</sc-if>
+
+</div>
+</div>
