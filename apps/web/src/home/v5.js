@@ -38,6 +38,39 @@ const STEPS = [
     code: '$ npx tsx scripts/verify-event.ts ethmumbai-demo 100000\n# re-verifies every sealed event:\n#   Swarm pack hash  <->  Arkiv event entity\n#   member phones exist and resolve in ENS\n# no server of ours in the read path' },
 ];
 
+
+// TM: partner tabs (Arkiv, ENS, EF CROPS). Facts match packages/chain + packages/core; the offline ENS certificate is described as our disaster-mode design.
+const PARTNER = {
+  arkiv: {
+    stats: [{ num: '7', label: 'entity types we write' }, { num: '0', label: 'relayers: each phone signs its own' }, { num: '141', label: 'readings in the live test' }, { num: '100', label: 'entities per query page' }],
+    items: [
+      { title: 'Signed at the source', body: 'Each phone generates its own key in the browser. Every trigger is an Arkiv entity written by that key, so $creator is the phone itself. No relayer, no server signing on its behalf.', file: 'packages/chain/src/arkiv.ts · writeTrigger()', code: 'w.createEntity(TriggerSchema, {\n  site, sensor, tMs, ppvUm, fDomCHz,\n  lowFPct, label, seq, wave\n}, { expiration: ExpirationTime.fromDays(30),\n     flags: { readonly: true } })' },
+      { title: 'The quorum is a query', body: 'Viewers query triggers by site and time window and recompute the quorum themselves. The dashboard, the offline viewer and the Android app all reach the same answer from the same signed entities.', file: 'packages/chain/src/arkiv.ts · fetchTriggers()', code: '.from(TriggerSchema)\n.where(and(eq("site", site),\n           gt("tMs", since), lt("tMs", until)))\n.orderBy(desc("tMs")).limit(100)\n// → computeQuorum(triggers, { k, windowMs })' },
+      { title: 'Seven entity types', body: 'trigger (a reading), sensor (heartbeat), sync (sound-sync clock anchor), event (confirmed + sealed, with the Swarm pack hash), invite (issued / used), dtrigger and checkin (disaster mesh).', file: 'schemas tremor-witness.v1.*', code: 'trigger · sensor · sync · event\ninvite · dtrigger · checkin' },
+      { title: 'Expiry is a privacy feature', body: 'Raw readings fade after 30 days and heartbeats after 7. Confirmed events live 180 days and anyone can extend them (permissionless extension), so the proof outlives the noise.', file: 'packages/chain/src/arkiv.ts · writeEvent()', code: '{ expiration: ExpirationTime.fromDays(180),\n  flags: { readonly: true,\n           permissionlessExtension: true } }' },
+    ],
+  },
+  ens: {
+    stats: [{ num: '4', label: 'phones named on ethmumbai-demo' }, { num: '6', label: 'public rule records' }, { num: '2', label: 'as-of checks per reading' }, { num: '1', label: 'invite per phone' }],
+    items: [
+      { title: 'A building is a name', body: 'Each site is an ENSv2 name on Sepolia, and every invited phone gets its own subname, registered through a one-time committee invite QR. Disaster-mesh phones get mesh- subnames under a separate cap.', file: 'packages/chain/src/ens.ts', code: 'ethmumbai-demo.tremorwitness.eth\n ├ somnath.ethmumbai-demo.tremorwitness.eth\n ├ phone-dhruv.…   ├ adityas-nothing.…\n └ mesh-….ethmumbai-demo.tremorwitness.eth' },
+      { title: 'The rules are text records', body: 'How many phones must agree, the time window and the phone caps are public ENS text records. Every change is a public Sepolia transaction, so the committee cannot change the rules quietly.', file: 'packages/chain/src/ens.ts · siteParams()', code: 'tw.k = 3          tw.window_ms = 2000\ntw.max_phones = 5 tw.max_mesh = 5\ntw.dk = 3         tw.dwindow_ms = 2000' },
+      { title: 'Who counted, as of then', body: 'A reading counts only if the subname belonged to its writer at the claimed time AND when Arkiv recorded it. Revoking a phone stops its future readings; what it witnessed before still stands, and it cannot backdate.', file: 'packages/core/src/registry.ts · asOfCheck()', code: 'if (!registeredAt(iv, sensor, creator, tMs))\n  return "not-registered-at-reading-time";\nif (!registeredAt(iv, sensor, creator, createdAtMs))\n  return "not-registered-at-upload-time";' },
+      { title: 'Disaster-mode ENS design: offline resolution certificates', body: 'Phones verify each other’s membership after connectivity is lost. The Android EnsClient (EnsPermissionClient, EnsV2RegistryClient, UniversalResolverClient) keeps a roster + ENS cache: the cached block, the universal-resolver output for each phone and a committee-signed snapshot. A Roster Certificate Verifier checks the snapshot signature against a freshness policy before the offline mesh accepts a phone. Trust model: committee trust remains (medium).', file: 'Android · Roster Certificate Verifier', code: 'snapshot = { block, resolverOutput[], sig }\naccept(phone) =\n  verify(sig, committee) &&\n  fresh(snapshot.block) &&\n  phone ∈ snapshot.resolverOutput' },
+    ],
+  },
+  crops: {
+    stats: [{ num: '0', label: 'servers of ours needed to verify' }, { num: '1', label: 'HTML file: the offline viewer' }, { num: 'MIT', label: 'licence (mesh app GPL-3.0)' }, { num: '0', label: 'analytics · GPS · data streams' }],
+    items: [
+      { title: 'C · Censorship-resistant', body: 'Evidence is signed at the source and lives on Arkiv and Swarm. Switch our servers off and a single offline HTML file rebuilds and verifies every event from Arkiv, ENS and Swarm directly.', file: 'tremor-witness-viewer.html · scripts/verify-event.ts', code: 'Swarm pack ──keccak256──▶ packHash\n                           ║\nArkiv event entity ──────▶ packHash  ✓ match' },
+      { title: 'O · Open source', body: 'The whole monorepo is public: core DSP and quorum, chain clients, web app, website and the Android mesh app. Anyone can rerun the quorum on the same signed data.', file: 'github.com/Mulaydm10/eth_mumbai', code: 'packages/core   packages/chain\napps/web        extensions/disaster-mesh' },
+      { title: 'P · Private', body: 'Keys are generated on the phone and never leave it. Only detected events are written, never a continuous stream. No analytics, no GPS, and the mesh is location-free.', file: 'apps/web · in-browser key', code: 'key ⟲ phone   (never uploaded)\nsigned event ─▶ Arkiv\nraw stream   ✕' },
+      { title: 'S · Secure', body: 'A quorum of independent registered phones, handling rejection, the ENS as-of rule against backdating, and a keccak hash on Arkiv for every sealed evidence pack.', file: 'packages/core · quorum.ts · registry.ts', code: 'k distinct phones ∧ structural ∧\nregistered(then) ∧ hash(pack) = packHash' },
+      { title: 'Disaster-mode ENS design (ENS + CROPS)', body: 'Offline ENS resolution certificates: phones keep a cached block, the resolver output and a committee-signed roster snapshot, and verify membership offline with a snapshot signature + freshness policy, so the mesh keeps checking who belongs with no internet and no server. Trust model: committee trust remains (medium), stated openly.', file: 'Android · roster certificate', code: 'offline? → verify(snapshot.sig) ∧ fresh ✓' },
+    ],
+  },
+};
+
 export class Component extends DCLogic {
   state = { tab: 'landing', dash: 'monitor', step: 0, auto: true, sensorOn: false, health: -1, stomps: 0, flash: false, probIdx: 0, lang: 'EN', senTick: 0, verify: -1, feed: [
     { id: 1, time: '23:00:49', tag: 'SEALED', color: OK, who: 'swarm', text: '609a0261…2933f5 · hash on Arkiv' },
@@ -50,6 +83,7 @@ export class Component extends DCLogic {
   heroRef = React.createRef(); heroTextRef = React.createRef(); tickerRef = React.createRef();
   seisRef = React.createRef(); meshRef = React.createRef(); ledgerRef = React.createRef(); blowRef = React.createRef(); quoteRef = React.createRef();
   evRef = React.createRef(); heatRef = React.createRef(); fxRef = React.createRef(); weaveRef = React.createRef();
+  arkRef = React.createRef(); ensRef = React.createRef(); cropsRef = React.createRef(); // TM: partner tabs
   probRef = React.createRef(); solRef = React.createRef(); tlRef = React.createRef(); senRef = React.createRef();
 
   componentDidMount() {
@@ -102,7 +136,113 @@ export class Component extends DCLogic {
     if (this.evRef.current) this.drawReplay(this.evRef.current, t);
     if (this.heatRef.current) this.drawHeat(this.heatRef.current, t);
     if (this.fxRef.current) this.drawFx(this.fxRef.current, t);
+    if (this.arkRef.current) this.drawArkiv(this.arkRef.current, t);
+    if (this.ensRef.current) this.drawEns(this.ensRef.current, t);
+    if (this.cropsRef.current) this.drawCrops(this.cropsRef.current, t);
     this.scrollFx(n);
+  }
+
+  // ---------- TM: partner tab animations ----------
+  drawArkiv(c, t) {
+    const [x, w, h] = this.fit(c), cx = w / 2, cy = h / 2, f = Math.min(w, h);
+    x.save(); x.translate(cx, cy); x.rotate(Math.sin(t * 0.18) * 0.06); x.translate(-cx, -cy);
+    x.strokeStyle = 'rgba(245,245,243,0.05)'; x.lineWidth = 1;
+    for (let i = 0; i < 28; i++) { const a = i / 28 * Math.PI * 2 + t * 0.03; x.beginPath(); x.moveTo(cx, cy); x.lineTo(cx + Math.cos(a) * w, cy + Math.sin(a) * w); x.stroke(); }
+    for (let r = 0; r < 12; r++) { const z = ((r * 0.38 - t * 0.5) % 4.5 + 4.5) % 4.5 + 0.15, s = f * 0.42 / z; x.strokeStyle = `rgba(245,245,243,${0.16 * Math.min(1, (4.6 - z) / 2)})`; x.strokeRect(cx - s * 1.7, cy - s, s * 3.4, s * 2); }
+    const names = ['phone-dhruv', 'somnath', 'adityas-nothing', 'dhruv2'], qz = 1.35, hits = [];
+    const cards = [];
+    for (let i = 0; i < 40; i++) { const z = ((hash(i) * 4.5 - t * 0.5) % 4.5 + 4.5) % 4.5 + 0.15; cards.push({ i, z }); }
+    cards.sort((a, b) => b.z - a.z);
+    // query window plane
+    const qs = f * 0.42 / qz; x.fillStyle = 'rgba(230,57,70,0.06)'; x.fillRect(cx - qs * 1.7, cy - qs, qs * 3.4, qs * 2);
+    x.strokeStyle = 'rgba(230,57,70,0.85)'; x.lineWidth = 2; x.strokeRect(cx - qs * 1.7, cy - qs, qs * 3.4, qs * 2);
+    x.font = '600 12px ' + MONO; x.fillStyle = '#e63946'; x.fillText('QUERY · site = "ethmumbai-demo" · tMs in window', cx - qs * 1.7 + 8, cy - qs - 8);
+    for (const { i, z } of cards) {
+      const a = hash(i + 7) * Math.PI * 2 + t * 0.12, rad = 0.35 + hash(i + 3) * 0.55, s = f * 0.42 / z;
+      const px = cx + Math.cos(a) * rad * s * 1.6, py = cy + Math.sin(a) * rad * s * 0.95, sc = Math.min(2.2, 0.55 / z * 1.6);
+      const expiring = hash(i + 11) > 0.78, struct = hash(i + 5) > 0.35;
+      let al = Math.min(1, (4.6 - z) / 1.5) * Math.min(1, (z - 0.15) / 0.35);
+      if (expiring && z < 1.0) { const k = (1.0 - z) / 0.85; al *= 1 - k; for (let p = 0; p < 10; p++) { const pa = hash(i * 31 + p) * 6.28, pr = k * 60 * sc; x.fillStyle = `rgba(245,245,243,${0.5 * (1 - k)})`; x.fillRect(px + Math.cos(pa) * pr, py + Math.sin(pa) * pr, 2, 2); } }
+      if (al <= 0.02) continue;
+      const inQ = Math.abs(z - qz) < 0.16 && struct;
+      if (inQ) hits.push({ px, py });
+      const cw = 150 * sc, ch = 52 * sc;
+      x.globalAlpha = al; x.fillStyle = inQ ? 'rgba(230,57,70,0.22)' : 'rgba(11,11,11,0.92)'; x.fillRect(px - cw / 2, py - ch / 2, cw, ch);
+      x.strokeStyle = inQ ? '#e63946' : 'rgba(245,245,243,0.35)'; x.lineWidth = 1; x.strokeRect(px - cw / 2, py - ch / 2, cw, ch);
+      x.font = `600 ${Math.max(6, 10 * sc)}px ${MONO}`; x.fillStyle = inQ ? '#e63946' : '#f5f5f3';
+      x.fillText(`tremor-witness.v1.trigger`, px - cw / 2 + 6 * sc, py - ch / 2 + 14 * sc);
+      x.fillStyle = '#bdbdbd'; x.fillText(`${names[i % 4]} · ${(20 + hash(i + 9) * 220).toFixed(1)} mm/s`, px - cw / 2 + 6 * sc, py - ch / 2 + 28 * sc);
+      x.fillStyle = '#8a8a8a'; x.fillText(`$creator 0x${Math.floor(hash(i + 2) * 0xffffff).toString(16).padStart(6, '0')}…  ${expiring ? 'expires 30d' : struct ? 'structural' : 'handling'}`, px - cw / 2 + 6 * sc, py - ch / 2 + 42 * sc);
+      x.globalAlpha = 1;
+    }
+    const qx = w - 120, qy = 70;
+    if (hits.length >= 3) {
+      hits.slice(0, 5).forEach((p) => { x.strokeStyle = 'rgba(230,57,70,0.7)'; x.lineWidth = 1.5; x.beginPath(); x.moveTo(p.px, p.py); x.lineTo(qx, qy); x.stroke(); });
+      x.fillStyle = '#e63946'; x.shadowColor = '#e63946'; x.shadowBlur = 30; x.beginPath(); x.arc(qx, qy, 26, 0, 7); x.fill(); x.shadowBlur = 0;
+      x.fillStyle = '#050505'; x.font = '700 15px ' + MONO; x.textAlign = 'center'; x.fillText('k=3 ✓', qx, qy + 5); x.textAlign = 'left';
+    } else { x.strokeStyle = '#4a4a4a'; x.beginPath(); x.arc(qx, qy, 26, 0, 7); x.stroke(); x.fillStyle = '#8a8a8a'; x.font = '600 13px ' + MONO; x.textAlign = 'center'; x.fillText(`${hits.length}/3`, qx, qy + 5); x.textAlign = 'left'; }
+    x.fillStyle = '#bdbdbd'; x.font = '600 12px ' + MONO; x.textAlign = 'center'; x.fillText('computeQuorum() · in your browser', qx, qy + 48); x.textAlign = 'left';
+    x.restore();
+  }
+
+  drawEns(c, t) {
+    const [x, w, h] = this.fit(c), cx = w / 2, cy = h * 0.47, R0 = Math.min(w * 0.42, h * 0.62), L = t % 14;
+    const P3 = (ang, r, tilt, spin) => { const X = Math.cos(ang) * r, Y0 = Math.sin(ang) * r; const Y = Y0 * Math.cos(tilt), Z = Y0 * Math.sin(tilt); const cs = Math.cos(spin), sn = Math.sin(spin); const X2 = X * cs - Z * sn, Z2 = X * sn + Z * cs; const s = 1 / (1 + Z2 / (R0 * 3)); return { x: cx + X2 * s, y: cy + Y * s, s, z: Z2 }; };
+    const spin = t * 0.25, items = [];
+    const rings = [{ r: R0 * 0.5, tilt: 0.95, sp: 0.35 }, { r: R0 * 0.78, tilt: 1.12, sp: -0.22 }, { r: R0 * 1.0, tilt: 0.88, sp: 0.14 }];
+    rings.forEach((rg, k) => { x.strokeStyle = 'rgba(245,245,243,0.12)'; x.lineWidth = 1; x.beginPath(); for (let a = 0; a <= 64; a++) { const p = P3(a / 64 * 6.283, rg.r, rg.tilt, spin + k * 0.7); a ? x.lineTo(p.x, p.y) : x.moveTo(p.x, p.y); } x.stroke(); });
+    const phones = ['somnath', 'phone-dhruv', 'adityas-nothing', 'dhruv2'];
+    const revoked = L > 5.5 && L < 9.5, offline = L > 9.5;
+    phones.forEach((n, i) => items.push({ kind: 'phone', n, ...P3(i / 4 * 6.283 + t * rings[0].sp, rings[0].r, rings[0].tilt, spin), dead: revoked && n === 'dhruv2' }));
+    ['mesh-7f3a', 'mesh-c19e'].forEach((n, i) => items.push({ kind: 'mesh', n, ...P3(i * 3.14 + 1 + t * rings[1].sp, rings[1].r, rings[1].tilt, spin + 0.7) }));
+    ['tw.k = 3', 'tw.window_ms = 2000', 'tw.max_phones = 5', 'tw.max_mesh = 5', 'tw.dk = 3', 'tw.dwindow_ms = 2000'].forEach((n, i) => items.push({ kind: 'rec', n, ...P3(i / 6 * 6.283 + t * rings[2].sp, rings[2].r, rings[2].tilt, spin + 1.4) }));
+    items.sort((a, b) => b.z - a.z);
+    // links from center
+    items.forEach((it) => { if (it.kind === 'rec') return; x.strokeStyle = it.dead ? 'rgba(138,138,138,0.25)' : 'rgba(245,245,243,0.18)'; x.beginPath(); x.moveTo(cx, cy); x.lineTo(it.x, it.y); x.stroke(); });
+    // center site name
+    x.fillStyle = '#0b0b0b'; x.strokeStyle = offline ? '#e63946' : '#f5f5f3'; x.lineWidth = 2; x.shadowColor = offline ? '#e63946' : '#f5f5f3'; x.shadowBlur = 24; x.beginPath(); x.arc(cx, cy, 58, 0, 7); x.fill(); x.stroke(); x.shadowBlur = 0;
+    x.textAlign = 'center'; x.fillStyle = '#f5f5f3'; x.font = '700 15px ' + MONO; x.fillText('ethmumbai-demo', cx, cy - 2); x.fillStyle = '#8a8a8a'; x.font = '600 12px ' + MONO; x.fillText('.tremorwitness.eth', cx, cy + 16);
+    items.forEach((it) => {
+      const fs = Math.max(11, 15 * it.s), al = 0.45 + 0.55 * it.s;
+      x.globalAlpha = Math.min(1, al);
+      if (it.kind === 'rec') { const tw = x.measureText(it.n).width; x.font = `600 ${fs}px ${MONO}`; const ww = x.measureText(it.n).width + 14; x.fillStyle = 'rgba(11,11,11,0.92)'; x.fillRect(it.x - ww / 2, it.y - 12, ww, 22); x.strokeStyle = 'rgba(245,245,243,0.4)'; x.strokeRect(it.x - ww / 2, it.y - 12, ww, 22); x.fillStyle = '#bdbdbd'; x.fillText(it.n, it.x, it.y + 4); }
+      else if (it.dead) { for (let p = 0; p < 14; p++) { const a = hash(p) * 6.28, d = (L - 5.5) * 40 * (0.4 + hash(p + 3)); x.fillStyle = '#8a8a8a'; x.fillRect(it.x + Math.cos(a) * d, it.y + Math.sin(a) * d, 3, 3); } x.fillStyle = '#8a8a8a'; x.font = `600 ${fs}px ${MONO}`; x.fillText(it.n + ' · revoked', it.x, it.y - 22); x.fillStyle = '#e63946'; x.fillText('its past event 23:00:41 still stands ✓', it.x, it.y + 32); }
+      else { const col = it.kind === 'mesh' ? '#bdbdbd' : '#f5f5f3'; x.fillStyle = col; x.shadowColor = col; x.shadowBlur = 14; x.beginPath(); x.arc(it.x, it.y, 9 * it.s + 4, 0, 7); x.fill(); x.shadowBlur = 0; x.font = `600 ${fs}px ${MONO}`; x.fillText(it.n + (it.kind === 'mesh' ? '' : '.…'), it.x, it.y - 14); if (offline) { x.strokeStyle = '#e63946'; x.lineWidth = 1.5; x.beginPath(); x.arc(it.x, it.y, 12 * it.s + 6, 0, 7); x.stroke(); x.fillStyle = '#e63946'; x.fillText('✓ cert', it.x, it.y + 22); } }
+      x.globalAlpha = 1;
+    });
+    if (offline) {
+      const k = Math.min(1, (L - 9.5) / 0.6), rr = 78 + (1 - k) * 120;
+      x.save(); x.translate(cx, cy); x.rotate(t * 0.6); x.strokeStyle = `rgba(230,57,70,${k})`; x.lineWidth = 3; x.setLineDash([10, 7]); x.beginPath(); x.arc(0, 0, rr, 0, 7); x.stroke(); x.setLineDash([]);
+      x.fillStyle = `rgba(230,57,70,${k})`; x.font = '700 11px ' + MONO; const txt = ' COMMITTEE-SIGNED SNAPSHOT · CACHED BLOCK · RESOLVER OUTPUT ·';
+      for (let i = 0; i < txt.length; i++) { const a = i / txt.length * 6.283; x.save(); x.rotate(a); x.fillText(txt[i], 0, -rr - 6); x.restore(); }
+      x.restore();
+      x.fillStyle = '#e63946'; x.font = '700 13px ' + MONO; x.fillText('INTERNET ✕ · roster verified offline: signature + freshness ✓', cx, h - 22);
+    } else if (revoked) { x.fillStyle = '#bdbdbd'; x.font = '700 13px ' + MONO; x.fillText('REVOKE: new readings refused · counted as of then (registered at claimed time AND at Arkiv record)', cx, h - 22); }
+    else { x.fillStyle = '#bdbdbd'; x.font = '700 13px ' + MONO; x.fillText('ENSv2 on Sepolia · one subname per invited phone · rules in public text records', cx, h - 22); }
+    x.textAlign = 'left';
+  }
+
+  drawCrops(c, t) {
+    const [x, w, h] = this.fit(c), cx = w / 2, cy = h * 0.44, S = Math.min(w, h) * 0.13;
+    const V = []; for (let i = 0; i < 16; i++) V.push([i & 1 ? 1 : -1, i & 2 ? 1 : -1, i & 4 ? 1 : -1, i & 8 ? 1 : -1]);
+    const rot = (p, i, j, a) => { const q = p.slice(), c1 = Math.cos(a), s1 = Math.sin(a); q[i] = p[i] * c1 - p[j] * s1; q[j] = p[i] * s1 + p[j] * c1; return q; };
+    const P = V.map((p) => { let q = rot(p, 0, 3, t * 0.45); q = rot(q, 1, 2, t * 0.31); q = rot(q, 2, 3, t * 0.23); q = rot(q, 0, 1, t * 0.11); const ww = 2.6 / (2.6 - q[3]); const X = q[0] * ww, Y = q[1] * ww, Z = q[2] * ww; const zz = 4 / (4 - Z); return { x: cx + X * S * zz, y: cy + Y * S * zz, d: Z + q[3] }; });
+    const E = []; for (let i = 0; i < 16; i++) for (let b = 0; b < 4; b++) { const j = i ^ (1 << b); if (j > i) E.push([i, j, b]); }
+    E.sort((a, b2) => (P[a[0]].d + P[a[1]].d) - (P[b2[0]].d + P[b2[1]].d));
+    const phase = Math.floor(t / 3.2) % 4;
+    E.forEach(([i, j, b]) => { const hot = b === phase; x.strokeStyle = hot ? 'rgba(230,57,70,0.95)' : `rgba(245,245,243,${0.18 + 0.12 * ((P[i].d + P[j].d) / 4 + 0.5)})`; x.lineWidth = hot ? 2.6 : 1.2; if (hot) { x.shadowColor = '#e63946'; x.shadowBlur = 16; } x.beginPath(); x.moveTo(P[i].x, P[i].y); x.lineTo(P[j].x, P[j].y); x.stroke(); x.shadowBlur = 0; });
+    P.forEach((p) => { x.fillStyle = '#f5f5f3'; x.beginPath(); x.arc(p.x, p.y, 2.6, 0, 7); x.fill(); });
+    const L = [['C', 'CENSORSHIP-RESISTANT', 'switch our servers off → still verifiable'], ['O', 'OPEN SOURCE', 'anyone reruns the quorum on the same data'], ['P', 'PRIVATE', 'keys never leave the phone · no GPS · no stream'], ['S', 'SECURE', 'quorum · as-of rule · keccak hash on Arkiv']][phase];
+    const ph = (t % 3.2) / 3.2, a = Math.min(1, ph * 6) * Math.min(1, (1 - ph) * 6);
+    x.textAlign = 'center'; x.globalAlpha = a; x.fillStyle = '#e63946'; x.font = `700 ${Math.round(S * 0.9)}px 'Courier Prime', monospace`; x.fillText(L[0], cx, cy + S * 0.32);
+    x.fillStyle = '#f5f5f3'; x.font = '700 20px ' + MONO; x.fillText(L[1], cx, h - 62); x.fillStyle = '#bdbdbd'; x.font = '600 14px ' + MONO; x.fillText(L[2], cx, h - 36); x.globalAlpha = 1;
+    // server going dark, data still flowing (left) · key orbiting inside the phone (right)
+    const on = Math.sin(t * 0.9) > 0, sx = 70, sy = 70;
+    x.strokeStyle = on ? '#f5f5f3' : '#3a3a3a'; x.lineWidth = 2; x.strokeRect(sx - 34, sy - 22, 68, 44); x.fillStyle = on ? '#bdbdbd' : '#3a3a3a'; x.font = '600 11px ' + MONO; x.fillText(on ? 'our server' : 'server OFF', sx, sy + 4);
+    ['ARKIV', 'ENS', 'SWARM'].forEach((n, i) => { const yy = sy + 60 + i * 26; x.fillStyle = '#8a8a8a'; x.fillText(n, sx - 6, yy); const u = (t * 0.8 + i * 0.3) % 1; x.fillStyle = '#e63946'; x.beginPath(); x.arc(sx + 28 + u * 80, yy - 4, 3, 0, 7); x.fill(); });
+    x.fillStyle = '#e63946'; x.fillText('✓ verified', sx + 70, sy + 140);
+    const px = w - 80, py = 90; x.strokeStyle = '#f5f5f3'; x.strokeRect(px - 22, py - 40, 44, 80); const ka = t * 2; x.fillStyle = '#e63946'; x.beginPath(); x.arc(px + Math.cos(ka) * 12, py + Math.sin(ka) * 22, 4, 0, 7); x.fill(); x.fillStyle = '#bdbdbd'; x.fillText('key stays', px, py + 58); x.fillText('on phone', px, py + 72);
+    x.textAlign = 'left';
   }
 
   drawFx(c, t) {
@@ -683,7 +823,7 @@ export class Component extends DCLogic {
 
   renderVals() {
     const s = this.state;
-    const tabDefs = [['landing', '01', 'Landing'], ['problem', '02', 'Problem'], ['solution', '03', 'Solution'], ['dashboard', '04', 'Dashboard']];
+    const tabDefs = [['landing', '01', 'Landing'], ['problem', '02', 'Problem'], ['solution', '03', 'Solution'], ['dashboard', '04', 'Dashboard'], ['arkiv', '05', 'Arkiv'], ['ens', '06', 'ENS'], ['crops', '07', 'CROPS · EF']];
     const tabs = tabDefs.map(([id, num, label]) => ({ num, label, onClick: () => this.setTab(id), bg: s.tab === id ? '#f5f5f3' : 'transparent', color: s.tab === id ? '#0b0b0b' : '#d6d6d6' }));
     const dashDefs = [['monitor', 'Monitor'], ['sensor', 'Sensor'], ['setup', 'Setup (committee)'], ['report', 'Report'], ['health', 'Health']];
     const dashTabs = dashDefs.map(([id, label]) => ({ label, onClick: () => this.setState({ dash: id }), bg: s.dash === id ? '#2c2c2c' : 'transparent', color: s.dash === id ? '#f5f5f3' : '#bdbdbd' }));
@@ -700,6 +840,8 @@ export class Component extends DCLogic {
     return {
       tabs, dashTabs, steps, records, ticker, healthRows,
       isLanding: s.tab === 'landing', isProblem: s.tab === 'problem', isSolution: s.tab === 'solution', isDash: s.tab === 'dashboard',
+      isArkiv: s.tab === 'arkiv', isEns: s.tab === 'ens', isCrops: s.tab === 'crops', arkRef: this.arkRef, ensRef: this.ensRef, cropsRef: this.cropsRef,
+      arkItems: PARTNER.arkiv.items, arkStats: PARTNER.arkiv.stats, ensItems: PARTNER.ens.items, ensStats: PARTNER.ens.stats, cropsItems: PARTNER.crops.items, cropsStats: PARTNER.crops.stats,
       isMon: s.dash === 'monitor', isSensor: s.dash === 'sensor', isSetup: s.dash === 'setup', isReport: s.dash === 'report', isHealth: s.dash === 'health',
       goLanding: () => this.setTab('landing'), goProblem: () => this.setTab('problem'), goSolution: () => this.setTab('solution'), goDash: () => this.setTab('dashboard'),
       goReport: () => this.setState({ dash: 'report' }),
