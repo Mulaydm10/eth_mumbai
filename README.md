@@ -4,7 +4,12 @@
 
 **Residents' phones become a shared vibration record.** Android phones in neighbouring flats detect construction vibration. An event counts only when several **ENS-registered** phones feel it at the same time. Each phone signs its own readings to **Arkiv**. Sealed evidence packs go to **Swarm**. The dashboard recomputes everything in your browser from public data.
 
-- **Live:** https://tremor-witness.vercel.app/dashboard.html?site=test2 (dashboard: real 2-phone data, latest sealed evidence, join QR) · `/?site=<site>` (phone sensor) · `/report.html` (printable evidence report) · `/tremor-witness-viewer.html` (offline single-file viewer)
+- **Website:** https://tremor-witness.vercel.app (7 tabs: Landing · Problem · Solution · Dashboard · Arkiv · ENS · CROPS)
+- **Live dashboard:** https://tremor-witness.vercel.app/dashboard.html?site=ethmumbai-demo · **recorded live test (6 Nov, 23:00:41 event):** https://tremor-witness.vercel.app/dashboard.html?site=ethmumbai-demo&recorded=1
+- **Demo video (3:51):** https://drive.google.com/file/d/1ONPa1Y6jHCD_Spjfldtkde9vUBDarwSw/view
+- **Other pages:** `/?site=<site>` (phone sensor) · `/report.html` (printable evidence report) · `/health.html` (sponsor-stack checks) · `/tremor-witness-viewer.html` (offline single-file viewer)
+- **Live test at ETHGlobal Mumbai:** 4 phones, 141 readings, 137 refused, 1 event confirmed by 3 phones and sealed on Swarm (dataset: `logs/demo-ethmumbai-demo-2026-11-06/`)
+- **Disaster Mesh (Android):** `extensions/disaster-mesh/` (built on our earlier SafeMesh fork; its pre-event history is kept in the subtree)
 - **What we claim:** *a corroborated event in a vibration band at a time, co-signed by registered phones*. **Not** that a legal limit was exceeded, and not geophone-grade measurement.
 - **Sponsor write-ups:**
   - Arkiv → `arkiv/` (schema, why, how, reach, friction, swarm);
