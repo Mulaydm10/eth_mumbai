@@ -207,11 +207,11 @@
     <div style="margin-top:44px;font-family:'Courier Prime',monospace;font-size:14px;letter-spacing:0.14em;color:#bdbdbd">HOW WE IMPLEMENTED IT · packages/chain/src/arkiv.ts</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr));gap:18px;margin-top:16px">
       <sc-for list="{{ arkItems }}" as="it" hint-placeholder-count="4">
-        <div style="border:1px solid #2c2c2c;border-radius:3px;background:#0b0b0b;padding:22px">
-          <div style="font-size:20px;font-weight:700;color:#f5f5f3">{{ it.title }}</div>
-          <p style="margin:10px 0 14px;color:#bdbdbd;font-size:15px;line-height:1.6">{{ it.body }}</p>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#e63946;margin-bottom:8px">{{ it.file }}</div>
-          <pre style="margin:0;padding:14px;background:#050505;border:1px solid #1f1f1f;border-radius:3px;color:#d6d6d6;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.55;white-space:pre-wrap;overflow-x:auto">{{ it.code }}</pre>
+        <div class="tm-card">
+          <div style="display:flex;align-items:baseline;gap:14px"><span style="font-family:'Courier Prime',monospace;font-size:38px;font-weight:700;color:#e63946;line-height:1">{{ it.n }}</span><span style="font-size:21px;font-weight:700;color:#f5f5f3">{{ it.title }}</span></div>
+          <div class="tm-flow"><sc-for list="{{ it.flow }}" as="st" hint-placeholder-count="4"><div class="tm-step">{{ st }}</div></sc-for></div>
+          <p style="margin:6px 0 12px;color:#d6d6d6;font-size:16px;line-height:1.55">{{ it.short }}</p>
+          <details class="tm-code"><summary>show code · {{ it.file }}</summary><pre>{{ it.code }}</pre></details>
         </div>
       </sc-for>
     </div>
@@ -234,11 +234,11 @@
     <div style="margin-top:44px;font-family:'Courier Prime',monospace;font-size:14px;letter-spacing:0.14em;color:#bdbdbd">HOW WE IMPLEMENTED IT · packages/chain/src/ens.ts + packages/core/src/registry.ts</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr));gap:18px;margin-top:16px">
       <sc-for list="{{ ensItems }}" as="it" hint-placeholder-count="4">
-        <div style="border:1px solid #2c2c2c;border-radius:3px;background:#0b0b0b;padding:22px">
-          <div style="font-size:20px;font-weight:700;color:#f5f5f3">{{ it.title }}</div>
-          <p style="margin:10px 0 14px;color:#bdbdbd;font-size:15px;line-height:1.6">{{ it.body }}</p>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#e63946;margin-bottom:8px">{{ it.file }}</div>
-          <pre style="margin:0;padding:14px;background:#050505;border:1px solid #1f1f1f;border-radius:3px;color:#d6d6d6;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.55;white-space:pre-wrap;overflow-x:auto">{{ it.code }}</pre>
+        <div class="tm-card">
+          <div style="display:flex;align-items:baseline;gap:14px"><span style="font-family:'Courier Prime',monospace;font-size:38px;font-weight:700;color:#e63946;line-height:1">{{ it.n }}</span><span style="font-size:21px;font-weight:700;color:#f5f5f3">{{ it.title }}</span></div>
+          <div class="tm-flow"><sc-for list="{{ it.flow }}" as="st" hint-placeholder-count="4"><div class="tm-step">{{ st }}</div></sc-for></div>
+          <p style="margin:6px 0 12px;color:#d6d6d6;font-size:16px;line-height:1.55">{{ it.short }}</p>
+          <details class="tm-code"><summary>show code · {{ it.file }}</summary><pre>{{ it.code }}</pre></details>
         </div>
       </sc-for>
     </div>
@@ -261,11 +261,11 @@
     <div style="margin-top:44px;font-family:'Courier Prime',monospace;font-size:14px;letter-spacing:0.14em;color:#bdbdbd">HOW WE IMPLEMENTED IT · CROPS</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr));gap:18px;margin-top:16px">
       <sc-for list="{{ cropsItems }}" as="it" hint-placeholder-count="4">
-        <div style="border:1px solid #2c2c2c;border-radius:3px;background:#0b0b0b;padding:22px">
-          <div style="font-size:20px;font-weight:700;color:#f5f5f3">{{ it.title }}</div>
-          <p style="margin:10px 0 14px;color:#bdbdbd;font-size:15px;line-height:1.6">{{ it.body }}</p>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#e63946;margin-bottom:8px">{{ it.file }}</div>
-          <pre style="margin:0;padding:14px;background:#050505;border:1px solid #1f1f1f;border-radius:3px;color:#d6d6d6;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.55;white-space:pre-wrap;overflow-x:auto">{{ it.code }}</pre>
+        <div class="tm-card">
+          <div style="display:flex;align-items:baseline;gap:14px"><span style="font-family:'Courier Prime',monospace;font-size:38px;font-weight:700;color:#e63946;line-height:1">{{ it.n }}</span><span style="font-size:21px;font-weight:700;color:#f5f5f3">{{ it.title }}</span></div>
+          <div class="tm-flow"><sc-for list="{{ it.flow }}" as="st" hint-placeholder-count="4"><div class="tm-step">{{ st }}</div></sc-for></div>
+          <p style="margin:6px 0 12px;color:#d6d6d6;font-size:16px;line-height:1.55">{{ it.short }}</p>
+          <details class="tm-code"><summary>show code · {{ it.file }}</summary><pre>{{ it.code }}</pre></details>
         </div>
       </sc-for>
     </div>

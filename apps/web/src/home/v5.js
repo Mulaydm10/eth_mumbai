@@ -71,6 +71,35 @@ const PARTNER = {
   },
 };
 
+// TM: visual flows for the "how we implemented it" cards (step chips + one plain line; code folds away)
+const FLOWS = {
+  arkiv: [
+    ['phone key (made in browser)', 'sign the reading', 'Arkiv entity', '$creator = the phone'],
+    ['query: site + time window', 'signed readings', 'computeQuorum()', 'k = 3 ✓ event'],
+    ['trigger', 'sensor', 'sync', 'event', 'invite', 'dtrigger', 'checkin'],
+    ['reading · 30 days', 'heartbeat · 7 days', 'sealed event · 180 days', 'anyone can extend'],
+  ],
+  ens: [
+    ['tremorwitness.eth', 'ethmumbai-demo', 'somnath · phone-dhruv · …', 'mesh-… (Android)'],
+    ['committee changes a rule', 'public Sepolia tx', 'tw.k = 3 · tw.window_ms = 2000', 'every phone reads the same rules'],
+    ['reading at time T', 'name owned at T?', 'owned when Arkiv recorded it?', 'counts ✓ / refused ✕'],
+    ['online: cache block + resolver output', 'committee signs roster snapshot', 'internet ✕', 'verify signature + freshness', 'phone accepted ✓'],
+  ],
+  crops: [
+    ['our server OFF', 'offline viewer (1 HTML file)', 'reads Arkiv · ENS · Swarm', 'hash matches ✓'],
+    ['public repo', 'same signed data', 'anyone reruns the quorum', 'same answer'],
+    ['key made on the phone', 'never uploaded', 'only events written', 'no GPS · no analytics'],
+    ['k registered phones', 'not handled (tilt / < 3 Hz)', 'registered as of then', 'pack hash on Arkiv ✓'],
+    ['cached block', 'resolver output', 'committee-signed snapshot', 'verify offline ✓'],
+  ],
+};
+const SHORT = {
+  arkiv: ['Each phone signs its own readings. No relayer, no server in between.', 'Every viewer runs the same query and gets the same answer.', 'Readings, heartbeats, clock anchors, sealed events, invites and the disaster mesh all live on Arkiv.', 'The noise fades on its own; the proof stays, and anyone can keep it alive.'],
+  ens: ['One name per building, one subname per invited phone.', 'The rules are public. Changing them is a public transaction.', 'Revoking a phone stops its future readings and never rewrites the past.', 'Offline, phones still check who belongs, using a committee-signed roster snapshot. Committee trust remains (medium).'],
+  crops: ['Our servers are optional: the record verifies without us.', 'Anyone can check our work on the same public data.', 'Your key and your location never leave your phone.', 'Four independent checks before anything counts.', 'Membership checks keep working with no internet. Committee trust remains (medium).'],
+};
+for (const k of Object.keys(PARTNER)) PARTNER[k].items.forEach((it, i) => { it.n = String(i + 1).padStart(2, '0'); it.flow = FLOWS[k][i] || []; it.short = SHORT[k][i] || ''; });
+
 export class Component extends DCLogic {
   state = { tab: 'landing', dash: 'monitor', step: 0, auto: true, sensorOn: false, health: -1, stomps: 0, flash: false, probIdx: 0, lang: 'EN', senTick: 0, verify: -1, feed: [
     { id: 1, time: '23:00:49', tag: 'SEALED', color: OK, who: 'swarm', text: '609a0261…2933f5 · hash on Arkiv' },
