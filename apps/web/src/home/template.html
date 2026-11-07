@@ -271,6 +271,52 @@
     </div>
   </section>
 </sc-if>
+
+<sc-if value="{{ isMesh }}" hint-placeholder-val="{{ false }}">
+  <section style="max-width:1320px;margin:0 auto;padding:56px 24px 100px">
+    <div style="font-family:'Courier Prime',monospace;font-size:14px;letter-spacing:0.14em;color:#e63946;text-transform:uppercase">08 / Earthquake mode · TremorMesh Android app</div>
+    <h2 style="margin:14px 0 0;font-size:clamp(34px,4.6vw,64px);line-height:0.95;font-family:'Courier Prime',monospace;font-weight:700;letter-spacing:-0.02em;text-shadow:-2px 0 rgba(230,57,70,0.6),2px 0 rgba(245,245,243,0.14)">When it isn&#39;t construction,<br><span style="color:#e63946">the phones become a rescue net.</span></h2>
+    <p style="margin:22px 0 0;max-width:780px;color:#bdbdbd;font-size:17px;line-height:1.6">The same registered phones switch to disaster mode when a stronger quorum feels an earthquake. With no internet they form a Bluetooth mesh, pass signed check-ins, show who is safe, who needs help and who is silent, and sync everything to Arkiv the moment one phone gets signal. The animation loops through all five stages.</p>
+    <div style="margin-top:34px;border:1px solid #2c2c2c;border-radius:3px;background:radial-gradient(ellipse at 50% 45%,#121212,#050505 70%);overflow:hidden">
+      <canvas ref="{{ quakeRef }}" style="display:block;width:100%;height:clamp(400px,46vw,620px)"></canvas>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:#2c2c2c;border:1px solid #2c2c2c;margin-top:28px">
+      <sc-for list="{{ meshStats }}" as="sx" hint-placeholder-count="4">
+        <div style="background:#0b0b0b;padding:22px 20px"><div style="font-family:'Courier Prime',monospace;font-size:44px;font-weight:700;color:#f5f5f3">{{ sx.num }}</div><div style="margin-top:6px;color:#a3a3a3;font-size:14px">{{ sx.label }}</div></div>
+      </sc-for>
+    </div>
+    <div style="margin-top:44px;font-family:'Courier Prime',monospace;font-size:14px;letter-spacing:0.14em;color:#bdbdbd">HOW WE IMPLEMENTED IT · extensions/disaster-mesh/app (Kotlin, built on our SafeMesh base)</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr));gap:18px;margin-top:16px">
+      <sc-for list="{{ meshItems }}" as="it" hint-placeholder-count="4">
+        <div class="tm-card">
+          <div style="display:flex;align-items:baseline;gap:14px"><span style="font-family:'Courier Prime',monospace;font-size:38px;font-weight:700;color:#e63946;line-height:1">{{ it.n }}</span><span style="font-size:21px;font-weight:700;color:#f5f5f3">{{ it.title }}</span></div>
+          <div class="tm-flow"><sc-for list="{{ it.flow }}" as="st" hint-placeholder-count="4"><div class="tm-step">{{ st }}</div></sc-for></div>
+          <p style="margin:6px 0 12px;color:#d6d6d6;font-size:16px;line-height:1.55">{{ it.short }}</p>
+          <details class="tm-code"><summary>more · {{ it.file }}</summary><p style="color:#bdbdbd;font-size:14px;line-height:1.55;margin:10px 0 0">{{ it.body }}</p><pre>{{ it.code }}</pre></details>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+</sc-if>
+<sc-if value="{{ isAll }}" hint-placeholder-val="{{ false }}">
+  <section style="max-width:1320px;margin:0 auto;padding:56px 24px 100px">
+    <div style="font-family:'Courier Prime',monospace;font-size:14px;letter-spacing:0.14em;color:#e63946;text-transform:uppercase">09 / Everything we built · feature index</div>
+    <h2 style="margin:14px 0 0;font-size:clamp(34px,4.6vw,64px);line-height:0.95;font-family:'Courier Prime',monospace;font-weight:700;letter-spacing:-0.02em;text-shadow:-2px 0 rgba(230,57,70,0.6),2px 0 rgba(245,245,243,0.14)">Every feature,<br><span style="color:#e63946">and where it lives.</span></h2>
+    <p style="margin:22px 0 0;max-width:780px;color:#bdbdbd;font-size:17px;line-height:1.6">From the phone sensor to the sealed evidence and the disaster mesh. Each feature points to its code in the public repo and says honestly whether it is live, tested, experimental, or a design.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;font-family:'JetBrains Mono',monospace;font-size:12px"><span style="border:1px solid rgba(230,57,70,0.6);color:#e63946;padding:5px 10px;border-radius:3px">LIVE · deployed and used</span><span style="border:1px solid #3a3a3a;color:#f5f5f3;padding:5px 10px;border-radius:3px">TESTED · built, covered by tests</span><span style="border:1px solid #3a3a3a;color:#bdbdbd;padding:5px 10px;border-radius:3px">EXPERIMENTAL</span><span style="border:1px solid #3a3a3a;color:#8a8a8a;padding:5px 10px;border-radius:3px">DESIGN · architecture</span></div>
+    <sc-for list="{{ allGroups }}" as="grp" hint-placeholder-count="8">
+      <div style="margin-top:36px;font-family:'Courier Prime',monospace;font-size:22px;font-weight:700;color:#f5f5f3;border-bottom:1px solid #2c2c2c;padding-bottom:10px">{{ grp.title }}</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:12px;margin-top:14px">
+        <sc-for list="{{ grp.items }}" as="ft" hint-placeholder-count="6">
+          <div class="tm-feat" style="border:1px solid {{ ft.border }}">
+            <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start"><span style="color:#f5f5f3;font-size:15px;line-height:1.45">{{ ft.name }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;color:{{ ft.color }};border:1px solid {{ ft.border }};padding:3px 6px;border-radius:3px;white-space:nowrap">{{ ft.tag }}</span></div>
+            <div style="margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#8a8a8a">{{ ft.where }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </sc-for>
+  </section>
+</sc-if>
 <sc-if value="{{ isDash }}" hint-placeholder-val="{{ false }}">
   <section style="max-width:1240px;margin:0 auto;padding:40px 24px 100px">
     <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:22px">

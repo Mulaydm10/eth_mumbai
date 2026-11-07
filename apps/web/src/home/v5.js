@@ -102,6 +102,48 @@ const SHORT = {
 };
 for (const k of Object.keys(PARTNER)) PARTNER[k].items.forEach((it, i) => { it.n = String(i + 1).padStart(2, '0'); it.flow = FLOWS[k][i] || []; it.short = SHORT[k][i] || ''; });
 
+// TM: 08 Earthquake · Mesh (Android app, extensions/disaster-mesh) and 09 feature index
+PARTNER.mesh = {
+  stats: [{ num: '307', label: 'golden quorum vectors: Kotlin = TypeScript' }, { num: '3', label: 'signed message types: hello · dtrigger · checkin' }, { num: '0', label: 'internet needed in disaster mode' }, { num: 'v0.8.0', label: 'Android APK (GitHub release)' }],
+  items: [
+    { title: 'Join with the same invite QR', body: 'The app scans the committee invite, tops up gas, registers a mesh- ENS subname and checks it resolves to the phone’s own key.', file: 'twmesh/JoinFlow.kt · JoinActivity.kt · PhoneIdentity.kt', code: 'invite → /api/drip → /api/ens-register\n→ mesh-….ethmumbai-demo.tremorwitness.eth\n→ resolves to this phone’s key ✓' },
+    { title: 'The phone feels the quake itself', body: 'Strong shaking is detected on the phone with the same DSP and detector as the web app, ported to Kotlin and checked against golden test files.', file: 'twmesh/ShakeSensor.kt · core/Dsp.kt · core/Detector.kt', code: '// Kotlin port of packages/core/src/dsp.ts\n// checked against golden/dsp-v1.json' },
+    { title: 'Disaster quorum, with no internet', body: 'Phones gossip signed dtriggers; each phone checks the sender against its cached ENS roster and runs the same quorum, bit-identical to the TypeScript version (307 golden cases). Rules come from ENS: tw.dk and tw.dwindow_ms.', file: 'twmesh/core/Quorum.kt · Roster.kt · MeshState.kt', code: 'Quorum.compute(triggers, QuorumParams(k = tw.dk, w = tw.dwindow_ms))\n// golden/core-v1.json: 307 cases, must stay bit-identical' },
+    { title: 'Signed messages hop phone to phone', body: 'Every mesh message is signed by the phone’s Ethereum key (EIP-191) and verified against the roster before it is shown or relayed; the hop count travels with it. The Bluetooth multi-hop transport comes from our SafeMesh base.', file: 'twmesh/core/Protocol.kt · TwmBus.kt', code: '{ v:1, type, site, sender, addr, tMs, nonce, sig }\nverify(sig) ∧ sender ∈ roster → show + relay\nrelays = TTL_HOPS − ttl' },
+    { title: 'Safe · needs help · not heard from', body: 'Signed check-ins (safe / help) build the disaster screen; the roster minus everyone who answered is the “not heard from” list.', file: 'twmesh/MeshState.kt · TwmHomeScreen.kt', code: 'help: List<CheckIn>   safe: List<CheckIn>\nnotHeard = roster − answered\nAlert(confirmed, atMs, by)' },
+    { title: 'Clocks agree offline', body: 'The last internet time offset is kept, and phones exchange time over the mesh, so the quorum window still lines up without a network.', file: 'twmesh/core/ClockSync.kt · core/TimeWire.kt · TimeSync.kt', code: 'offset = last /api/time offset\n       + mesh time exchange ("TWT1")' },
+    { title: 'Back online: everything lands on Arkiv', body: 'When any phone regains signal it writes its own dtriggers and check-ins to Arkiv with its own key, byte-identical to the schemas in packages/chain/src/mesh.ts.', file: 'twmesh/Uploader.kt · chain/Arkiv.kt', code: 'tremor-witness.v1.dtrigger  (180 days)\ntremor-witness.v1.checkin   (30 days)\n$creator = the phone' },
+    { title: 'Design: hubs, connectors and relative distance', body: 'In the mesh some phones act as hubs (many links) and some as connectors (bridging groups). Signal strength between phones gives relative distances, so the last neighbours of a silent phone show rescuers where to look.', file: 'disaster-mode design', code: 'hub        = many neighbours\nconnector  = bridges two groups\nsignal → relative distance → last neighbours' },
+    { title: 'Design: offline ENS resolution certificates', body: 'A committee-signed roster snapshot (cached block + resolver output) is verified offline with a signature + freshness policy before the mesh accepts a phone. Committee trust remains (medium).', file: 'Android · Roster Certificate Verifier', code: 'accept(phone) = verify(sig) ∧ fresh(block) ∧ phone ∈ snapshot' },
+  ],
+};
+FLOWS.mesh = [
+  ['scan invite QR', 'gas top-up', 'register mesh- subname', 'resolves to my key ✓'],
+  ['accelerometer', 'same DSP (Kotlin port)', 'detector', 'signed dtrigger'],
+  ['dtriggers gossiped', 'sender ∈ cached ENS roster?', 'Quorum.kt (= TypeScript)', 'k = tw.dk → DISASTER MODE'],
+  ['sign (EIP-191)', 'hop over Bluetooth', 'verify vs roster', 'relay or drop'],
+  ['safe ✓', 'needs help !', 'roster − answered', 'not heard from'],
+  ['last /api/time offset', 'mesh time exchange', 'aligned window'],
+  ['signal back', 'own key', 'Arkiv dtrigger + checkin', 'visible on dashboard'],
+  ['hubs', 'connectors', 'signal strength', 'relative distance', 'where to dig'],
+  ['cached block', 'resolver output', 'committee-signed snapshot', 'verify offline ✓'],
+];
+SHORT.mesh = ['The same QR joins the website and the app.', 'No internet needed to feel the quake.', 'Phones agree on an earthquake among themselves, with rules read from ENS.', 'Only messages from registered phones travel through the mesh.', 'Rescuers see who is safe, who needs help and who is silent.', 'The agreement window still works offline.', 'Nothing is lost: it all syncs when one phone gets signal.', 'The mesh map turns into a search map.', 'Membership checks work with no internet. Committee trust remains (medium).'];
+PARTNER.mesh.items.forEach((it, i) => { it.n = String(i + 1).padStart(2, '0'); it.flow = FLOWS.mesh[i]; it.short = SHORT.mesh[i]; });
+
+const TAG = { LIVE: '#e63946', TESTED: '#f5f5f3', EXPERIMENTAL: '#bdbdbd', DESIGN: '#8a8a8a' };
+const F = (name, where, tag) => ({ name, where, tag, color: TAG[tag], border: tag === 'LIVE' ? 'rgba(230,57,70,0.6)' : '#3a3a3a' });
+const ALL_FEATURES = [
+  { title: '01 · Sense (phone web app)', items: [F('Accelerometer DSP: 2–25 Hz band-pass, velocity, PPV, dominant frequency', 'packages/core/src/dsp.ts', 'LIVE'), F('STA/LTA trigger on sudden change', 'packages/core/src/dsp.ts', 'LIVE'), F('Handling rejection: tilt > 15°, energy < 3 Hz', 'packages/core/src/quorum.ts', 'LIVE'), F('Screen kept awake while sensing (Wake Lock)', 'apps/web/src/main.ts', 'LIVE'), F('Offline outbox: store-and-forward, uploads in order when back online', 'apps/web/src/main.ts', 'LIVE'), F('English · मराठी · हिंदी', 'apps/web/src/i18n.ts', 'LIVE'), F('"Be the vibration source" demo button', 'apps/web (sensor page)', 'LIVE')] },
+  { title: '02 · Agree', items: [F('k-of-n quorum inside a time window (pure, deterministic)', 'packages/core/src/quorum.ts', 'TESTED'), F('Sound sync: 3-tone chirp, Goertzel detection, offline clock alignment', 'packages/core/src/sync.ts · apps/web/src/sound.ts', 'LIVE'), F('Internet reference clock (Cristian’s algorithm)', 'apps/web/api/time.ts', 'LIVE'), F('Waveform coherence: one source, not neighbours stomping together', 'packages/core/src/coherence.ts', 'EXPERIMENTAL'), F('Quorum recomputed in every viewer’s browser', 'apps/web/src/dashboard.ts', 'LIVE')] },
+  { title: '03 · Who counts (ENSv2)', items: [F('Site name + one subname per phone (expiring, non-transferable)', 'apps/web/api/ens-register.ts', 'LIVE'), F('Committee invites: single-use (30 min) and multi-use (2–50 uses, up to 360 min)', 'apps/web/api/ens-invite.ts', 'LIVE'), F('Invite issue / use logged on Arkiv', 'packages/chain/src/invite.ts', 'LIVE'), F('Rules as text records: tw.k, tw.window_ms, tw.max_phones, tw.max_mesh, tw.dk, tw.dwindow_ms', 'apps/web/api/site-setup.ts', 'LIVE'), F('Revoke a phone', 'apps/web/api/ens-revoke.ts', 'LIVE'), F('As-of rule: registered at claimed time AND at Arkiv record', 'packages/core/src/registry.ts', 'TESTED'), F('Committee Setup tab with passcode', 'dashboard.html#setup', 'LIVE')] },
+  { title: '04 · Record (Arkiv)', items: [F('Phone signs its own readings ($creator = phone, no relayer)', 'packages/chain/src/arkiv.ts', 'LIVE'), F('7 entity types: trigger, sensor, sync, event, invite, dtrigger, checkin', 'packages/chain/src', 'LIVE'), F('Readings are readonly; numbered 1, 2, 3… so deletions show as gaps', 'packages/core/src/integrity.ts', 'LIVE'), F('Expiry: 30 d readings, 7 d heartbeats, 180 d events', 'packages/chain/src/arkiv.ts', 'LIVE'), F('Anyone can extend a sealed event (permissionless extension)', 'extendEvent()', 'LIVE'), F('Gas drip so new phones can write', 'apps/web/api/drip.ts', 'LIVE')] },
+  { title: '05 · Prove (Swarm + verification)', items: [F('Evidence pack on Swarm, keccak hash on the Arkiv event', 'apps/web/src/dashboard.ts · swarm.ts', 'LIVE'), F('Auto-seal from the dashboard', 'apps/web/src/dashboard.ts', 'LIVE'), F('Printable evidence report with verify-it-yourself steps', 'apps/web/report.html', 'LIVE'), F('Offline viewer: one HTML file, no server of ours', 'tremor-witness-viewer.html', 'LIVE'), F('Health page: live checks per sponsor stack', 'apps/web/health.html', 'LIVE'), F('verify-event.ts re-checks every sealed event', 'scripts/verify-event.ts', 'TESTED')] },
+  { title: '06 · Disaster mesh (Android)', items: [F('Join via the same invite (mesh- subnames)', 'twmesh/JoinFlow.kt', 'TESTED'), F('On-phone quake detection (Kotlin DSP port)', 'twmesh/core/Dsp.kt', 'TESTED'), F('Offline disaster quorum (307 golden vectors)', 'twmesh/core/Quorum.kt', 'TESTED'), F('Signed, roster-verified mesh messages', 'twmesh/core/Protocol.kt', 'TESTED'), F('Safe / help check-ins + not-heard-from list', 'twmesh/MeshState.kt', 'TESTED'), F('Offline clock sync over the mesh', 'twmesh/core/ClockSync.kt', 'TESTED'), F('Upload to Arkiv when back online', 'twmesh/Uploader.kt', 'TESTED'), F('Hubs, connectors, relative distance', 'disaster-mode design', 'DESIGN'), F('Offline ENS resolution certificates', 'disaster-mode design', 'DESIGN')] },
+  { title: '07 · See it (dashboard + website)', items: [F('Live dashboard: status, timeline, event replay, refusals, sound sync, session map', 'dashboard.html', 'LIVE'), F('Replay of the recorded 6 Nov live test', 'dashboard.html?recorded=1', 'LIVE'), F('Attack checklist: what we refuse, live', 'dashboard.html', 'LIVE'), F('This website (team design, Preact runtime)', 'apps/web/src/home', 'LIVE')] },
+  { title: '08 · Trust, privacy and tooling', items: [F('Privacy: every host each page talks to, measured', 'docs/PRIVACY.md', 'LIVE'), F('E2E self-test: simulated phones → ENS → Arkiv → quorum', 'scripts/simulate.ts', 'TESTED'), F('37 unit tests (DSP, quorum, sound sync, registry)', 'npm test', 'TESTED'), F('Recorded live-test dataset kept in the repo', 'logs/demo-ethmumbai-demo-2026-11-06', 'LIVE'), F('AI use documented', 'docs/AI_USE.md', 'LIVE'), F('Claim: a corroborated event, not a legal-limit finding', 'README', 'LIVE')] },
+];
+
 export class Component extends DCLogic {
   state = { tab: 'landing', dash: 'monitor', step: 0, auto: true, sensorOn: false, health: -1, stomps: 0, flash: false, probIdx: 0, lang: 'EN', senTick: 0, verify: -1, feed: [
     { id: 1, time: '23:00:49', tag: 'SEALED', color: OK, who: 'swarm', text: '609a0261…2933f5 · hash on Arkiv' },
@@ -114,7 +156,7 @@ export class Component extends DCLogic {
   heroRef = React.createRef(); heroTextRef = React.createRef(); tickerRef = React.createRef();
   seisRef = React.createRef(); meshRef = React.createRef(); ledgerRef = React.createRef(); blowRef = React.createRef(); quoteRef = React.createRef();
   evRef = React.createRef(); heatRef = React.createRef(); fxRef = React.createRef(); weaveRef = React.createRef();
-  arkRef = React.createRef(); ensRef = React.createRef(); cropsRef = React.createRef(); // TM: partner tabs
+  arkRef = React.createRef(); ensRef = React.createRef(); cropsRef = React.createRef(); quakeRef = React.createRef(); // TM: partner + mesh tabs
   probRef = React.createRef(); solRef = React.createRef(); tlRef = React.createRef(); senRef = React.createRef();
 
   componentDidMount() {
@@ -170,10 +212,52 @@ export class Component extends DCLogic {
     if (this.arkRef.current) this.drawArkiv(this.arkRef.current, t);
     if (this.ensRef.current) this.drawEns(this.ensRef.current, t);
     if (this.cropsRef.current) this.drawCrops(this.cropsRef.current, t);
+    if (this.quakeRef.current) this.drawQuake(this.quakeRef.current, t);
     this.scrollFx(n);
   }
 
   // ---------- TM: partner tab animations ----------
+  drawQuake(c, t) {
+    const [x, w, h] = this.fit(c), cx = w / 2, cy = h * 0.5, L = t % 18;
+    const q = L < 3 ? Math.sin(L / 3 * Math.PI) : 0;
+    const N = [[-0.42, -0.25], [-0.3, 0.05], [-0.36, 0.3], [-0.18, -0.3], [-0.15, 0.22], [-0.05, -0.05], [0.06, 0.28], [0.12, -0.24], [0.2, 0.05], [0.33, -0.3], [0.38, 0.0], [0.3, 0.3], [0.43, 0.18], [-0.46, 0.05]];
+    const P = N.map(([a, b], i) => ({ i, x: cx + a * w * 0.95 + (Math.random() - 0.5) * 18 * q, y: cy + b * h * 1.1 + (Math.random() - 0.5) * 12 * q }));
+    const E = []; P.forEach((a) => P.forEach((b) => { const d = Math.hypot(a.x - b.x, a.y - b.y); if (a.i < b.i && d < w * 0.2) E.push([a, b, d]); }));
+    const deg = P.map((p) => E.filter(([a, b]) => a === p || b === p).length), maxd = Math.max(...deg);
+    const silent = 11, mesh = L > 3.5, check = L > 8, dist = L > 11.5 && L < 15.5, sync = L > 15.5;
+    // floors
+    x.strokeStyle = 'rgba(245,245,243,0.08)'; for (let f = 0; f < 4; f++) { const yy = h * (0.18 + f * 0.22); x.beginPath(); x.moveTo(w * 0.04, yy + Math.sin(t * 20) * 6 * q); x.lineTo(w * 0.96, yy - Math.sin(t * 20) * 6 * q); x.stroke(); }
+    if (L < 3.5) for (let r = 0; r < 4; r++) { const rr = (L * 260 + r * 90) % (w * 0.7); x.strokeStyle = `rgba(230,57,70,${0.5 * (1 - rr / (w * 0.7))})`; x.lineWidth = 2; x.beginPath(); x.arc(cx, cy, rr, 0, 7); x.stroke(); }
+    E.forEach(([a, b, d], k) => {
+      const reveal = 3.5 + (Math.min(a.i, b.i) % 7) * 0.45; if (!mesh || L < reveal) return;
+      const dead = sync ? false : (L > 12.5 && (a.i === silent || b.i === silent));
+      const lw = dist ? 1 + 7 * (1 - d / (w * 0.2)) : 1.6;
+      x.strokeStyle = dead ? 'rgba(138,138,138,0.25)' : 'rgba(245,245,243,0.55)'; x.lineWidth = lw; x.beginPath();
+      const segs = 6, amp = Math.max(0, 1 - (L - reveal)) * 14; x.moveTo(a.x, a.y);
+      for (let s = 1; s < segs; s++) { const u = s / segs; x.lineTo(a.x + (b.x - a.x) * u + (hash(k * 7 + s + Math.floor(t * 12)) - 0.5) * amp, a.y + (b.y - a.y) * u + (hash(k * 3 + s) - 0.5) * amp); }
+      x.lineTo(b.x, b.y); x.stroke();
+      if (!dead && L > reveal + 0.6) { const u = (t * 0.6 + hash(k)) % 1; x.fillStyle = '#f5f5f3'; x.beginPath(); x.arc(a.x + (b.x - a.x) * u, a.y + (b.y - a.y) * u, 2.6, 0, 7); x.fill(); }
+      if (dist && k % 5 === 0) { x.fillStyle = '#bdbdbd'; x.font = '600 11px ' + MONO; x.fillText('≈ ' + Math.round(d / 30) + ' m', (a.x + b.x) / 2 + 6, (a.y + b.y) / 2 - 6); }
+    });
+    P.forEach((p) => {
+      const isHub = deg[p.i] >= maxd - 1 && mesh, isConn = p.i === 5 && mesh, dead = !sync && L > 12.5 && p.i === silent;
+      const col = L < 3.2 ? '#e63946' : dead ? '#4a4a4a' : '#f5f5f3';
+      x.fillStyle = col; x.shadowColor = col; x.shadowBlur = 16; x.beginPath(); x.arc(p.x, p.y, isHub ? 11 : 7, 0, 7); x.fill(); x.shadowBlur = 0;
+      x.font = '700 11px ' + MONO; x.textAlign = 'center';
+      if (isHub && L < 11.5) { x.strokeStyle = '#f5f5f3'; x.lineWidth = 2; x.beginPath(); x.arc(p.x, p.y, 18 + Math.sin(t * 4) * 2, 0, 7); x.stroke(); x.fillStyle = '#f5f5f3'; x.fillText('HUB', p.x, p.y - 26); }
+      if (isConn && L < 11.5) { x.strokeStyle = '#e63946'; x.lineWidth = 2; x.beginPath(); x.arc(p.x, p.y, 16 + ((t * 30) % 20), 0, 7); x.stroke(); x.fillStyle = '#e63946'; x.fillText('CONNECTOR', p.x, p.y + 30); }
+      if (check && !dead && p.i !== silent && L < 15.5) { const help = p.i === 2; x.fillStyle = help ? '#e63946' : '#0b0b0b'; x.strokeStyle = help ? '#e63946' : '#f5f5f3'; x.lineWidth = 2; x.beginPath(); x.arc(p.x + 16, p.y - 14, 9, 0, 7); x.fill(); x.stroke(); x.fillStyle = help ? '#050505' : '#f5f5f3'; x.fillText(help ? '!' : '✓', p.x + 16, p.y - 10); }
+      x.textAlign = 'left';
+    });
+    if (dist && L > 12.5) { const s = P[silent]; const nb = P.filter((p) => p.i !== silent).sort((a, b) => Math.hypot(a.x - s.x, a.y - s.y) - Math.hypot(b.x - s.x, b.y - s.y)).slice(0, 2); nb.forEach((p) => { const rr = Math.hypot(p.x - s.x, p.y - s.y); x.strokeStyle = 'rgba(230,57,70,0.6)'; x.setLineDash([6, 6]); x.beginPath(); x.arc(p.x, p.y, rr, 0, 7); x.stroke(); x.setLineDash([]); }); x.save(); x.translate(s.x, s.y); x.rotate(t); x.strokeStyle = '#e63946'; x.lineWidth = 3; x.beginPath(); x.arc(0, 0, 26, 0, 7); x.stroke(); for (let k = 0; k < 4; k++) { x.rotate(Math.PI / 2); x.beginPath(); x.moveTo(20, 0); x.lineTo(36, 0); x.stroke(); } x.restore(); x.fillStyle = '#e63946'; x.font = '700 12px ' + MONO; x.textAlign = 'center'; x.fillText('silent phone · last neighbours (design)', s.x, s.y + 52); x.textAlign = 'left'; }
+    if (sync) { const s = P[0]; const k = Math.min(1, (L - 15.5) / 0.5); x.strokeStyle = `rgba(230,57,70,${k})`; x.lineWidth = 3; x.beginPath(); x.moveTo(s.x, s.y); x.lineTo(s.x, 20); x.stroke(); for (let j = 0; j < 6; j++) { const u = ((t * 1.2) + j / 6) % 1; x.fillStyle = '#f5f5f3'; x.beginPath(); x.arc(s.x, s.y + (20 - s.y) * u, 3, 0, 7); x.fill(); } x.fillStyle = '#e63946'; x.font = '700 13px ' + MONO; x.fillText('signal back → own key → Arkiv (dtrigger + checkin)', s.x + 14, 34); }
+    // roster panel
+    if (check) { const bx = w - 250, by = 24; x.fillStyle = 'rgba(8,8,8,0.92)'; x.fillRect(bx, by, 226, 118); x.strokeStyle = '#3a3a3a'; x.strokeRect(bx, by, 226, 118); x.font = '700 11px ' + MONO; x.fillStyle = '#8a8a8a'; x.fillText('ROSTER · SIGNED CHECK-INS', bx + 12, by + 20); [['registered (ENS)', 14, '#f5f5f3'], ['safe', 11, '#f5f5f3'], ['needs help', 1, '#e63946'], ['not heard from', 2, '#bdbdbd']].forEach(([l, n, c], i) => { x.fillStyle = '#bdbdbd'; x.font = '600 12px ' + MONO; x.fillText(l, bx + 12, by + 44 + i * 19); x.fillStyle = c; x.textAlign = 'right'; x.fillText(String(n), bx + 212, by + 44 + i * 19); x.textAlign = 'left'; }); }
+    const cap = L < 3.5 ? 'EARTHQUAKE · disaster quorum: k = tw.dk phones agree (from ENS)' : L < 8 ? 'NO INTERNET · Bluetooth mesh · hubs (many links) · connectors (bridge groups)' : L < 11.5 ? 'signed check-ins: safe ✓ · needs help ! · roster − answered = not heard from' : L < 15.5 ? 'design: signal strength → relative distance → last neighbours of a silent phone' : 'one phone gets signal → everything syncs to Arkiv';
+    x.fillStyle = L < 3.5 ? '#e63946' : '#f5f5f3'; x.font = '700 14px ' + MONO; x.textAlign = 'center'; x.fillText(cap, cx, h - 20); x.textAlign = 'left';
+    if (mesh && L < 15.5) { x.save(); x.translate(60, 46); x.strokeStyle = '#bdbdbd'; x.lineWidth = 3; for (let i = 1; i <= 3; i++) { x.beginPath(); x.arc(0, 14, i * 9, -Math.PI * 0.78, -Math.PI * 0.22); x.stroke(); } x.strokeStyle = '#e63946'; x.beginPath(); x.moveTo(-24, -14); x.lineTo(24, 22); x.stroke(); x.restore(); }
+  }
+
   drawArkiv(c, t) {
     const [x, w, h] = this.fit(c), cx = w / 2, cy = h / 2, f = Math.min(w, h);
     x.save(); x.translate(cx, cy); x.rotate(Math.sin(t * 0.18) * 0.06); x.translate(-cx, -cy);
@@ -854,7 +938,7 @@ export class Component extends DCLogic {
 
   renderVals() {
     const s = this.state;
-    const tabDefs = [['landing', '01', 'Landing'], ['problem', '02', 'Problem'], ['solution', '03', 'Solution'], ['dashboard', '04', 'Dashboard'], ['arkiv', '05', 'Arkiv'], ['ens', '06', 'ENS'], ['crops', '07', 'CROPS · EF']];
+    const tabDefs = [['landing', '01', 'Landing'], ['problem', '02', 'Problem'], ['solution', '03', 'Solution'], ['dashboard', '04', 'Dashboard'], ['arkiv', '05', 'Arkiv'], ['ens', '06', 'ENS'], ['crops', '07', 'CROPS · EF'], ['mesh', '08', 'Earthquake · Mesh'], ['all', '09', 'Everything we built']];
     const tabs = tabDefs.map(([id, num, label]) => ({ num, label, onClick: () => this.setTab(id), bg: s.tab === id ? '#f5f5f3' : 'transparent', color: s.tab === id ? '#0b0b0b' : '#d6d6d6' }));
     const dashDefs = [['monitor', 'Monitor'], ['sensor', 'Sensor'], ['setup', 'Setup (committee)'], ['report', 'Report'], ['health', 'Health']];
     const dashTabs = dashDefs.map(([id, label]) => ({ label, onClick: () => this.setState({ dash: id }), bg: s.dash === id ? '#2c2c2c' : 'transparent', color: s.dash === id ? '#f5f5f3' : '#bdbdbd' }));
@@ -871,6 +955,7 @@ export class Component extends DCLogic {
     return {
       tabs, dashTabs, steps, records, ticker, healthRows,
       isLanding: s.tab === 'landing', isProblem: s.tab === 'problem', isSolution: s.tab === 'solution', isDash: s.tab === 'dashboard',
+      isMesh: s.tab === 'mesh', isAll: s.tab === 'all', quakeRef: this.quakeRef, meshItems: PARTNER.mesh.items, meshStats: PARTNER.mesh.stats, allGroups: ALL_FEATURES,
       isArkiv: s.tab === 'arkiv', isEns: s.tab === 'ens', isCrops: s.tab === 'crops', arkRef: this.arkRef, ensRef: this.ensRef, cropsRef: this.cropsRef,
       arkItems: PARTNER.arkiv.items, arkStats: PARTNER.arkiv.stats, ensItems: PARTNER.ens.items, ensStats: PARTNER.ens.stats, cropsItems: PARTNER.crops.items, cropsStats: PARTNER.crops.stats,
       isMon: s.dash === 'monitor', isSensor: s.dash === 'sensor', isSetup: s.dash === 'setup', isReport: s.dash === 'report', isHealth: s.dash === 'health',
