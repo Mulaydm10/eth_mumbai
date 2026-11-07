@@ -42,12 +42,13 @@ const STEPS = [
 // TM: partner tabs (Arkiv, ENS, EF CROPS). Facts match packages/chain + packages/core; the offline ENS certificate is described as our disaster-mode design.
 const PARTNER = {
   arkiv: {
-    stats: [{ num: '7', label: 'entity types we write' }, { num: '0', label: 'relayers: each phone signs its own' }, { num: '141', label: 'readings in the live test' }, { num: '100', label: 'entities per query page' }],
+    stats: [{ num: '7', label: 'entity types we write (+ evidence packs on Swarm)' }, { num: '0', label: 'relayers: each phone signs its own' }, { num: '141', label: 'readings in the live test' }, { num: '100', label: 'entities per query page' }],
     items: [
       { title: 'Signed at the source', body: 'Each phone generates its own key in the browser. Every trigger is an Arkiv entity written by that key, so $creator is the phone itself. No relayer, no server signing on its behalf.', file: 'packages/chain/src/arkiv.ts · writeTrigger()', code: 'w.createEntity(TriggerSchema, {\n  site, sensor, tMs, ppvUm, fDomCHz,\n  lowFPct, label, seq, wave\n}, { expiration: ExpirationTime.fromDays(30),\n     flags: { readonly: true } })' },
       { title: 'The quorum is a query', body: 'Viewers query triggers by site and time window and recompute the quorum themselves. The dashboard, the offline viewer and the Android app all reach the same answer from the same signed entities.', file: 'packages/chain/src/arkiv.ts · fetchTriggers()', code: '.from(TriggerSchema)\n.where(and(eq("site", site),\n           gt("tMs", since), lt("tMs", until)))\n.orderBy(desc("tMs")).limit(100)\n// → computeQuorum(triggers, { k, windowMs })' },
       { title: 'Seven entity types', body: 'trigger (a reading), sensor (heartbeat), sync (sound-sync clock anchor), event (confirmed + sealed, with the Swarm pack hash), invite (issued / used), dtrigger and checkin (disaster mesh).', file: 'schemas tremor-witness.v1.*', code: 'trigger · sensor · sync · event\ninvite · dtrigger · checkin' },
       { title: 'Expiry is a privacy feature', body: 'Raw readings fade after 30 days and heartbeats after 7. Confirmed events live 180 days and anyone can extend them (permissionless extension), so the proof outlives the noise.', file: 'packages/chain/src/arkiv.ts · writeEvent()', code: '{ expiration: ExpirationTime.fromDays(180),\n  flags: { readonly: true,\n           permissionlessExtension: true } }' },
+      { title: 'Sealed on Swarm, anchored on Arkiv', body: 'When the quorum confirms an event, the dashboard packs the members, readings and an ENS snapshot, hashes it with keccak256, uploads the pack to Swarm and writes an Arkiv event entity holding both the Swarm reference and the hash. Anyone can download the pack and check it matches.', file: 'apps/web/src/dashboard.ts · packages/chain/src/swarm.ts', code: 'const packHash = keccak256(toHex(json));\nconst swarmRef = await swarmUploadJson(name, pack);\nawait writeEvent(w, { site, eventId, tMs, k,\n  sensors, swarmRef, packHash });\n// live: swarm 609a0261…2933f5 ↔ packHash on Arkiv ✓' },
     ],
   },
   ens: {
@@ -78,6 +79,7 @@ const FLOWS = {
     ['query: site + time window', 'signed readings', 'computeQuorum()', 'k = 3 ✓ event'],
     ['trigger', 'sensor', 'sync', 'event', 'invite', 'dtrigger', 'checkin'],
     ['reading · 30 days', 'heartbeat · 7 days', 'sealed event · 180 days', 'anyone can extend'],
+    ['quorum confirms event', 'pack: members + readings + ENS snapshot', 'keccak256 → packHash', 'upload pack → Swarm', 'Arkiv event: swarmRef + packHash', 'anyone re-checks ✓'],
   ],
   ens: [
     ['tremorwitness.eth', 'ethmumbai-demo', 'somnath · phone-dhruv · …', 'mesh-… (Android)'],
@@ -94,7 +96,7 @@ const FLOWS = {
   ],
 };
 const SHORT = {
-  arkiv: ['Each phone signs its own readings. No relayer, no server in between.', 'Every viewer runs the same query and gets the same answer.', 'Readings, heartbeats, clock anchors, sealed events, invites and the disaster mesh all live on Arkiv.', 'The noise fades on its own; the proof stays, and anyone can keep it alive.'],
+  arkiv: ['Each phone signs its own readings. No relayer, no server in between.', 'Every viewer runs the same query and gets the same answer.', 'Readings, heartbeats, clock anchors, sealed events, invites and the disaster mesh all live on Arkiv.', 'The noise fades on its own; the proof stays, and anyone can keep it alive.', 'The full evidence lives on Swarm; its fingerprint lives on Arkiv, so any edit to the pack shows.'],
   ens: ['One name per building, one subname per invited phone.', 'The rules are public. Changing them is a public transaction.', 'Revoking a phone stops its future readings and never rewrites the past.', 'Offline, phones still check who belongs, using a committee-signed roster snapshot. Committee trust remains (medium).'],
   crops: ['Our servers are optional: the record verifies without us.', 'Anyone can check our work on the same public data.', 'Your key and your location never leave your phone.', 'Four independent checks before anything counts.', 'Membership checks keep working with no internet. Committee trust remains (medium).'],
 };

@@ -193,9 +193,9 @@
 
 <sc-if value="{{ isArkiv }}" hint-placeholder-val="{{ false }}">
   <section style="max-width:1320px;margin:0 auto;padding:56px 24px 100px">
-    <div style="font-family:'Courier Prime',monospace;font-size:14px;letter-spacing:0.14em;color:#e63946;text-transform:uppercase">05 / Partner · Arkiv (Rabdi testnet)</div>
+    <div style="font-family:'Courier Prime',monospace;font-size:14px;letter-spacing:0.14em;color:#e63946;text-transform:uppercase">05 / Partner · Arkiv (Rabdi testnet) + Swarm</div>
     <h2 style="margin:14px 0 0;font-size:clamp(34px,4.6vw,64px);line-height:0.95;font-family:'Courier Prime',monospace;font-weight:700;letter-spacing:-0.02em;text-shadow:-2px 0 rgba(230,57,70,0.6),2px 0 rgba(245,245,243,0.14)">Every reading is an entity.<br><span style="color:#e63946">The quorum is a query.</span></h2>
-    <p style="margin:22px 0 0;max-width:760px;color:#bdbdbd;font-size:17px;line-height:1.6">Arkiv is TremorMesh's evidence layer. Phones write signed entities straight from the browser, and every viewer recomputes the result from them. The animation: signed trigger entities stream through a query window; the readings that agree light up and fire the quorum, and expiring ones dissolve.</p>
+    <p style="margin:22px 0 0;max-width:760px;color:#bdbdbd;font-size:17px;line-height:1.6">Arkiv is TremorMesh's evidence layer, and Swarm holds the sealed evidence packs. Phones write signed entities straight from the browser, every viewer recomputes the result from them, and each confirmed event's full pack is stored on Swarm with its hash anchored on Arkiv. The animation: signed trigger entities stream through a query window; the readings that agree light up and fire the quorum, and expiring ones dissolve.</p>
     <div style="margin-top:34px;border:1px solid #2c2c2c;border-radius:3px;background:radial-gradient(ellipse at 50% 45%,#121212,#050505 70%);overflow:hidden">
       <canvas ref="{{ arkRef }}" style="display:block;width:100%;height:clamp(380px,46vw,620px)"></canvas>
     </div>
