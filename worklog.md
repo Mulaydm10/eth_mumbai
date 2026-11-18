@@ -93,3 +93,6 @@ Format: `## YYYY-MM-DD HH:MM IST · who · title`
 ## 2026-11-06 22:00 IST: dashboard visual upgrade
 - Monitor tab: status hero (latest confirmed event, seal state, flashes on a new event), quorum meter (newest burst n of k), live timeline canvas (phones x time, every reading coloured by result, size = PPV, green bands = quorum reached, hover tooltip, 2 min / 10 min / whole window), phone activity chips, sticky tabs, accented stat tiles, scrollable tables. New file apps/web/src/dashviz.ts (presentation only; quorum logic untouched).
 - Verified locally on test2 (6 events) at 1280px and 390px (no horizontal scroll); typecheck clean, 42 tests pass; deployed to production.
+
+## 2026-11-18 22:02 IST · Claude Code (for Dhruv Mulay) · Story film "TremorMesh: The Story of Ramesh"
+- 77.5 s narrated pitch film made 2026-11-07 with Lemo-Opuscar (style Urban Sketch · Pen & Wash), all picture and sound in code, no music. Voice ElevenLabs "Eric". Script/treatment (AI planning artifacts) in `video/tremormesh-story/` (SCRIPT.md, TREATMENT.md, README.md); finals + style tests in git-ignored `video/out/tremormesh-story/`. Render library lives outside the repo at `~/Dhruv/infra/video-skills/lemo-opuscar`.

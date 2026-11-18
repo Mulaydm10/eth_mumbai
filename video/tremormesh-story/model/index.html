@@ -1,0 +1,15 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:#f5eede}</style></head><body><canvas id="c" width="1920" height="1080"></canvas>
+<script type="module">
+import { drawPrims } from '../engine.js';
+import { rameshHead } from '../face.js';
+const ctx = document.getElementById('c').getContext('2d');
+window.DUR = 1;
+window.render = () => {
+  ctx.fillStyle = '#f5eede'; ctx.fillRect(0, 0, 1920, 1080);
+  const cfg = [[-.0, { lid: .45, brow: -.2, mouth: 'tired' }], [.35, { lid: .5, mouth: 'flat' }], [-.4, { lid: 1, brow: 1, mouth: 'o', tired: .6 }], [.7, { lid: .9, brow: -.6, mouth: 'grim' }], [-.8, {lid:.7, brow:.3, mouth:'open', dust: 1}]];
+  cfg.forEach(([turn, ex], i) => { ctx.save(); ctx.translate(200 + i * 380, 300); drawPrims(ctx, rameshHead(110, turn, ex, { seed: 3 })); ctx.restore(); });
+  [[-0.3, 30], [.6, 22], [0, 14]].forEach(([turn, r], i) => { ctx.save(); ctx.translate(300 + i * 300, 850); drawPrims(ctx, rameshHead(r, turn, { lid: .5 }, { seed: 4 })); ctx.restore(); });
+  ctx.save(); ctx.translate(1500, 850); drawPrims(ctx, rameshHead(60, 0, {}, { back: true })); ctx.restore();
+};
+window.READY = true;
+</script></body></html>
