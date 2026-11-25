@@ -1,0 +1,3 @@
+/* TremorMesh: solid caption band below the picture (build with SAFE_BOTTOM=132), never over it */
+.bar{background:#050505;border-top:1px solid #262626;height:132px}
+.bar p{font:500 34px/1.3 'Source Serif 4',Georgia,serif;color:#f5f5f3;text-shadow:none}

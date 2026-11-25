@@ -1,0 +1,2376 @@
+[
+ {
+  "id": "N0",
+  "src": "N0.mp4",
+  "start": 0,
+  "end": 8.2,
+  "pieces": [
+   {
+    "vo": "Ramesh is a story. These are not.",
+    "cap": "Ramesh is a story. These are not.",
+    "at": 0.6,
+    "dur": 2.322,
+    "wav": "vo/N0-0.wav",
+    "words": [
+     {
+      "w": "Ramesh",
+      "t0": 0.0,
+      "t1": 0.372
+     },
+     {
+      "w": "is",
+      "t0": 0.406,
+      "t1": 0.476
+     },
+     {
+      "w": "a",
+      "t0": 0.534,
+      "t1": 0.569
+     },
+     {
+      "w": "story.",
+      "t0": 0.615,
+      "t1": 0.952
+     },
+     {
+      "w": "These",
+      "t0": 0.975,
+      "t1": 1.138
+     },
+     {
+      "w": "are",
+      "t0": 1.161,
+      "t1": 1.265
+     },
+     {
+      "w": "not.",
+      "t0": 1.312,
+      "t1": 2.322
+     }
+    ]
+   }
+  ],
+  "segDur": 8.2,
+  "chunks": [
+   {
+    "file": "png/cap-N0-0-0.png",
+    "text": "Ramesh is a story.",
+    "a": 0.6,
+    "b": 1.906
+   },
+   {
+    "file": "png/cap-N0-0-1.png",
+    "text": "These are not.",
+    "a": 1.906,
+    "b": 8.2
+   }
+  ],
+  "t": 0.0
+ },
+ {
+  "id": "A0",
+  "src": "P0-z.mp4",
+  "start": 0.8,
+  "end": 8.3,
+  "pieces": [
+   {
+    "vo": "Every blow next door travels through the ground into old buildings like Ramesh's. Cracks grow, but nobody keeps an honest record.",
+    "cap": "Every blow next door travels through the ground into old buildings like Ramesh's. Cracks grow, but nobody keeps an honest record.",
+    "at": 0.4,
+    "dur": 7.198,
+    "wav": "vo/A0-0.wav",
+    "words": [
+     {
+      "w": "Every",
+      "t0": 0.0,
+      "t1": 0.267
+     },
+     {
+      "w": "blow",
+      "t0": 0.313,
+      "t1": 0.511
+     },
+     {
+      "w": "next",
+      "t0": 0.58,
+      "t1": 0.755
+     },
+     {
+      "w": "door",
+      "t0": 0.789,
+      "t1": 0.975
+     },
+     {
+      "w": "travels",
+      "t0": 1.033,
+      "t1": 1.44
+     },
+     {
+      "w": "through",
+      "t0": 1.486,
+      "t1": 1.683
+     },
+     {
+      "w": "the",
+      "t0": 1.718,
+      "t1": 1.788
+     },
+     {
+      "w": "ground",
+      "t0": 1.823,
+      "t1": 2.136
+     },
+     {
+      "w": "into",
+      "t0": 2.194,
+      "t1": 2.368
+     },
+     {
+      "w": "old",
+      "t0": 2.485,
+      "t1": 2.659
+     },
+     {
+      "w": "buildings",
+      "t0": 2.705,
+      "t1": 3.088
+     },
+     {
+      "w": "like",
+      "t0": 3.135,
+      "t1": 3.274
+     },
+     {
+      "w": "Ramesh's.",
+      "t0": 3.309,
+      "t1": 4.052
+     },
+     {
+      "w": "Cracks",
+      "t0": 4.563,
+      "t1": 4.899
+     },
+     {
+      "w": "grow,",
+      "t0": 4.946,
+      "t1": 5.19
+     },
+     {
+      "w": "but",
+      "t0": 5.213,
+      "t1": 5.317
+     },
+     {
+      "w": "nobody",
+      "t0": 5.352,
+      "t1": 5.596
+     },
+     {
+      "w": "keeps",
+      "t0": 5.631,
+      "t1": 5.863
+     },
+     {
+      "w": "an",
+      "t0": 5.909,
+      "t1": 5.979
+     },
+     {
+      "w": "honest",
+      "t0": 6.049,
+      "t1": 6.339
+     },
+     {
+      "w": "record.",
+      "t0": 6.409,
+      "t1": 7.198
+     }
+    ]
+   }
+  ],
+  "segDur": 8.2,
+  "chunks": [
+   {
+    "file": "png/cap-A0-0-0.png",
+    "text": "Every blow next door travels through the ground into old buildings like Ramesh's.",
+    "a": 0.4,
+    "b": 4.955
+   },
+   {
+    "file": "png/cap-A0-0-1.png",
+    "text": "Cracks grow, but nobody keeps an honest record.",
+    "a": 4.955,
+    "b": 8.2
+   }
+  ],
+  "t": 8.2
+ },
+ {
+  "id": "A1",
+  "src": "A1.mp4",
+  "start": 0.6,
+  "end": 12.5,
+  "pieces": [
+   {
+    "vo": "This is TremorMesh. Every flat keeps one phone on the floor. Together, they record every tremor, and nobody can rewrite that record. Not even us.",
+    "cap": "This is TremorMesh. Every flat keeps one phone on the floor. Together, they record every tremor, and nobody can rewrite that record. Not even us.",
+    "at": 0.5,
+    "dur": 10.728,
+    "wav": "vo/A1-0.wav",
+    "words": [
+     {
+      "w": "This",
+      "t0": 0.0,
+      "t1": 0.267
+     },
+     {
+      "w": "is",
+      "t0": 0.337,
+      "t1": 0.43
+     },
+     {
+      "w": "TremorMesh.",
+      "t0": 0.488,
+      "t1": 1.265
+     },
+     {
+      "w": "Every",
+      "t0": 1.962,
+      "t1": 2.229
+     },
+     {
+      "w": "flat",
+      "t0": 2.276,
+      "t1": 2.496
+     },
+     {
+      "w": "keeps",
+      "t0": 2.554,
+      "t1": 2.775
+     },
+     {
+      "w": "one",
+      "t0": 2.844,
+      "t1": 3.03
+     },
+     {
+      "w": "phone",
+      "t0": 3.077,
+      "t1": 3.309
+     },
+     {
+      "w": "on",
+      "t0": 3.332,
+      "t1": 3.39
+     },
+     {
+      "w": "the",
+      "t0": 3.425,
+      "t1": 3.495
+     },
+     {
+      "w": "floor.",
+      "t0": 3.529,
+      "t1": 4.005
+     },
+     {
+      "w": "Together,",
+      "t0": 4.702,
+      "t1": 5.166
+     },
+     {
+      "w": "they",
+      "t0": 5.19,
+      "t1": 5.317
+     },
+     {
+      "w": "record",
+      "t0": 5.387,
+      "t1": 5.759
+     },
+     {
+      "w": "every",
+      "t0": 5.875,
+      "t1": 6.153
+     },
+     {
+      "w": "tremor,",
+      "t0": 6.211,
+      "t1": 6.629
+     },
+     {
+      "w": "and",
+      "t0": 6.687,
+      "t1": 6.838
+     },
+     {
+      "w": "nobody",
+      "t0": 6.908,
+      "t1": 7.187
+     },
+     {
+      "w": "can",
+      "t0": 7.233,
+      "t1": 7.349
+     },
+     {
+      "w": "rewrite",
+      "t0": 7.419,
+      "t1": 7.79
+     },
+     {
+      "w": "that",
+      "t0": 7.825,
+      "t1": 7.953
+     },
+     {
+      "w": "record.",
+      "t0": 8.022,
+      "t1": 8.44
+     },
+     {
+      "w": "Not",
+      "t0": 9.044,
+      "t1": 9.23
+     },
+     {
+      "w": "even",
+      "t0": 9.276,
+      "t1": 9.451
+     },
+     {
+      "w": "us.",
+      "t0": 9.52,
+      "t1": 10.728
+     }
+    ]
+   }
+  ],
+  "segDur": 11.9,
+  "chunks": [
+   {
+    "file": "png/cap-A1-0-0.png",
+    "text": "This is TremorMesh.",
+    "a": 0.5,
+    "b": 1.935
+   },
+   {
+    "file": "png/cap-A1-0-1.png",
+    "text": "Every flat keeps one phone on the floor.",
+    "a": 1.935,
+    "b": 4.957
+   },
+   {
+    "file": "png/cap-A1-0-2.png",
+    "text": "Together, they record every tremor, and nobody can rewrite that record.",
+    "a": 4.957,
+    "b": 10.321
+   },
+   {
+    "file": "png/cap-A1-0-3.png",
+    "text": "Not even us.",
+    "a": 10.321,
+    "b": 11.9
+   }
+  ],
+  "t": 16.4
+ },
+ {
+  "id": "A2a",
+  "src": "A2a-z.mp4",
+  "start": 0.2,
+  "end": 10.2,
+  "pieces": [
+   {
+    "vo": "The phone lies still and listens. It reacts only when the floor really shakes. Pick it up, and that reading doesn't count.",
+    "cap": "The phone lies still and listens. It reacts only when the floor really shakes. Pick it up, and that reading doesn't count.",
+    "at": 0.3,
+    "dur": 7.941,
+    "wav": "vo/A2a-0.wav",
+    "words": [
+     {
+      "w": "The",
+      "t0": 0.0,
+      "t1": 0.139
+     },
+     {
+      "w": "phone",
+      "t0": 0.186,
+      "t1": 0.406
+     },
+     {
+      "w": "lies",
+      "t0": 0.441,
+      "t1": 0.627
+     },
+     {
+      "w": "still",
+      "t0": 0.662,
+      "t1": 0.906
+     },
+     {
+      "w": "and",
+      "t0": 0.952,
+      "t1": 1.033
+     },
+     {
+      "w": "listens.",
+      "t0": 1.091,
+      "t1": 1.672
+     },
+     {
+      "w": "It",
+      "t0": 2.183,
+      "t1": 2.322
+     },
+     {
+      "w": "reacts",
+      "t0": 2.38,
+      "t1": 2.705
+     },
+     {
+      "w": "only",
+      "t0": 2.786,
+      "t1": 3.042
+     },
+     {
+      "w": "when",
+      "t0": 3.077,
+      "t1": 3.181
+     },
+     {
+      "w": "the",
+      "t0": 3.216,
+      "t1": 3.286
+     },
+     {
+      "w": "floor",
+      "t0": 3.32,
+      "t1": 3.587
+     },
+     {
+      "w": "really",
+      "t0": 3.704,
+      "t1": 3.982
+     },
+     {
+      "w": "shakes.",
+      "t0": 4.04,
+      "t1": 4.609
+     },
+     {
+      "w": "Pick",
+      "t0": 5.12,
+      "t1": 5.306
+     },
+     {
+      "w": "it",
+      "t0": 5.352,
+      "t1": 5.41
+     },
+     {
+      "w": "up,",
+      "t0": 5.457,
+      "t1": 5.747
+     },
+     {
+      "w": "and",
+      "t0": 6.026,
+      "t1": 6.177
+     },
+     {
+      "w": "that",
+      "t0": 6.223,
+      "t1": 6.351
+     },
+     {
+      "w": "reading",
+      "t0": 6.409,
+      "t1": 6.653
+     },
+     {
+      "w": "doesn't",
+      "t0": 6.699,
+      "t1": 6.954
+     },
+     {
+      "w": "count.",
+      "t0": 6.989,
+      "t1": 7.941
+     }
+    ]
+   }
+  ],
+  "segDur": 10.0,
+  "chunks": [
+   {
+    "file": "png/cap-A2a-0-0.png",
+    "text": "The phone lies still and listens.",
+    "a": 0.3,
+    "b": 2.484
+   },
+   {
+    "file": "png/cap-A2a-0-1.png",
+    "text": "It reacts only when the floor really shakes.",
+    "a": 2.484,
+    "b": 5.395
+   },
+   {
+    "file": "png/cap-A2a-0-2.png",
+    "text": "Pick it up, and that reading doesn't count.",
+    "a": 5.395,
+    "b": 10.0
+   }
+  ],
+  "t": 28.3
+ },
+ {
+  "id": "A2b",
+  "src": "e_wave.mp4",
+  "start": 0,
+  "end": 8.1,
+  "pieces": [
+   {
+    "vo": "One phone proves nothing, and one man is easy to dismiss. A tremor counts only when three flats feel it at the same moment.",
+    "cap": "One phone proves nothing, and one man is easy to dismiss. A tremor counts only when three flats feel it at the same moment.",
+    "at": 0.3,
+    "dur": 7.059,
+    "wav": "vo/A2b-0.wav",
+    "words": [
+     {
+      "w": "One",
+      "t0": 0.0,
+      "t1": 0.232
+     },
+     {
+      "w": "phone",
+      "t0": 0.267,
+      "t1": 0.511
+     },
+     {
+      "w": "proves",
+      "t0": 0.546,
+      "t1": 0.824
+     },
+     {
+      "w": "nothing,",
+      "t0": 0.906,
+      "t1": 1.277
+     },
+     {
+      "w": "and",
+      "t0": 1.3,
+      "t1": 1.37
+     },
+     {
+      "w": "one",
+      "t0": 1.451,
+      "t1": 1.614
+     },
+     {
+      "w": "man",
+      "t0": 1.66,
+      "t1": 1.834
+     },
+     {
+      "w": "is",
+      "t0": 1.892,
+      "t1": 1.974
+     },
+     {
+      "w": "easy",
+      "t0": 2.032,
+      "t1": 2.241
+     },
+     {
+      "w": "to",
+      "t0": 2.287,
+      "t1": 2.334
+     },
+     {
+      "w": "dismiss.",
+      "t0": 2.403,
+      "t1": 3.019
+     },
+     {
+      "w": "A",
+      "t0": 3.297,
+      "t1": 3.379
+     },
+     {
+      "w": "tremor",
+      "t0": 3.448,
+      "t1": 3.738
+     },
+     {
+      "w": "counts",
+      "t0": 3.796,
+      "t1": 4.075
+     },
+     {
+      "w": "only",
+      "t0": 4.145,
+      "t1": 4.377
+     },
+     {
+      "w": "when",
+      "t0": 4.412,
+      "t1": 4.54
+     },
+     {
+      "w": "three",
+      "t0": 4.586,
+      "t1": 4.807
+     },
+     {
+      "w": "flats",
+      "t0": 4.865,
+      "t1": 5.201
+     },
+     {
+      "w": "feel",
+      "t0": 5.259,
+      "t1": 5.492
+     },
+     {
+      "w": "it",
+      "t0": 5.538,
+      "t1": 5.596
+     },
+     {
+      "w": "at",
+      "t0": 5.642,
+      "t1": 5.712
+     },
+     {
+      "w": "the",
+      "t0": 5.747,
+      "t1": 5.817
+     },
+     {
+      "w": "same",
+      "t0": 5.863,
+      "t1": 6.084
+     },
+     {
+      "w": "moment.",
+      "t0": 6.118,
+      "t1": 7.059
+     }
+    ]
+   }
+  ],
+  "segDur": 8.1,
+  "chunks": [
+   {
+    "file": "png/cap-A2b-0-0.png",
+    "text": "One phone proves nothing, and one man is easy to dismiss.",
+    "a": 0.3,
+    "b": 3.598
+   },
+   {
+    "file": "png/cap-A2b-0-1.png",
+    "text": "A tremor counts only when three flats feel it at the same moment.",
+    "a": 3.598,
+    "b": 8.1
+   }
+  ],
+  "t": 38.3
+ },
+ {
+  "id": "A2c",
+  "src": "e_join.mp4",
+  "start": 2.0,
+  "end": 9.4,
+  "pieces": [
+   {
+    "vo": "The building committee invites each phone. Every phone gets a public name, and the rules are public too.",
+    "cap": "The building committee invites each phone. Every phone gets a public name, and the rules are public too.",
+    "at": 0.3,
+    "dur": 5.991,
+    "wav": "vo/A2c-0.wav",
+    "words": [
+     {
+      "w": "The",
+      "t0": 0.0,
+      "t1": 0.163
+     },
+     {
+      "w": "building",
+      "t0": 0.209,
+      "t1": 0.499
+     },
+     {
+      "w": "committee",
+      "t0": 0.534,
+      "t1": 0.836
+     },
+     {
+      "w": "invites",
+      "t0": 0.871,
+      "t1": 1.207
+     },
+     {
+      "w": "each",
+      "t0": 1.277,
+      "t1": 1.486
+     },
+     {
+      "w": "phone.",
+      "t0": 1.533,
+      "t1": 2.02
+     },
+     {
+      "w": "Every",
+      "t0": 2.461,
+      "t1": 2.728
+     },
+     {
+      "w": "phone",
+      "t0": 2.775,
+      "t1": 3.007
+     },
+     {
+      "w": "gets",
+      "t0": 3.042,
+      "t1": 3.216
+     },
+     {
+      "w": "a",
+      "t0": 3.251,
+      "t1": 3.286
+     },
+     {
+      "w": "public",
+      "t0": 3.332,
+      "t1": 3.634
+     },
+     {
+      "w": "name,",
+      "t0": 3.704,
+      "t1": 3.971
+     },
+     {
+      "w": "and",
+      "t0": 3.994,
+      "t1": 4.075
+     },
+     {
+      "w": "the",
+      "t0": 4.122,
+      "t1": 4.191
+     },
+     {
+      "w": "rules",
+      "t0": 4.249,
+      "t1": 4.516
+     },
+     {
+      "w": "are",
+      "t0": 4.551,
+      "t1": 4.644
+     },
+     {
+      "w": "public",
+      "t0": 4.679,
+      "t1": 4.981
+     },
+     {
+      "w": "too.",
+      "t0": 5.05,
+      "t1": 5.991
+     }
+    ]
+   }
+  ],
+  "segDur": 7.4,
+  "chunks": [
+   {
+    "file": "png/cap-A2c-0-0.png",
+    "text": "The building committee invites each phone.",
+    "a": 0.3,
+    "b": 2.743
+   },
+   {
+    "file": "png/cap-A2c-0-1.png",
+    "text": "Every phone gets a public name, and the rules are public too.",
+    "a": 2.743,
+    "b": 7.4
+   }
+  ],
+  "t": 46.4
+ },
+ {
+  "id": "A2d",
+  "src": "A2d-z.mp4",
+  "start": 0.2,
+  "end": 8.1,
+  "pieces": [
+   {
+    "vo": "Each phone signs what it felt, like a signature on a letter. Change one number, and everyone can see it.",
+    "cap": "Each phone signs what it felt, like a signature on a letter. Change one number, and everyone can see it.",
+    "at": 0.3,
+    "dur": 6.78,
+    "wav": "vo/A2d-0.wav",
+    "words": [
+     {
+      "w": "Each",
+      "t0": 0.0,
+      "t1": 0.232
+     },
+     {
+      "w": "phone",
+      "t0": 0.267,
+      "t1": 0.534
+     },
+     {
+      "w": "signs",
+      "t0": 0.58,
+      "t1": 0.917
+     },
+     {
+      "w": "what",
+      "t0": 0.952,
+      "t1": 1.068
+     },
+     {
+      "w": "it",
+      "t0": 1.103,
+      "t1": 1.161
+     },
+     {
+      "w": "felt,",
+      "t0": 1.219,
+      "t1": 1.66
+     },
+     {
+      "w": "like",
+      "t0": 1.904,
+      "t1": 2.078
+     },
+     {
+      "w": "a",
+      "t0": 2.101,
+      "t1": 2.125
+     },
+     {
+      "w": "signature",
+      "t0": 2.183,
+      "t1": 2.705
+     },
+     {
+      "w": "on",
+      "t0": 2.763,
+      "t1": 2.868
+     },
+     {
+      "w": "a",
+      "t0": 2.914,
+      "t1": 2.937
+     },
+     {
+      "w": "letter.",
+      "t0": 3.007,
+      "t1": 3.402
+     },
+     {
+      "w": "Change",
+      "t0": 3.843,
+      "t1": 4.168
+     },
+     {
+      "w": "one",
+      "t0": 4.214,
+      "t1": 4.354
+     },
+     {
+      "w": "number,",
+      "t0": 4.4,
+      "t1": 4.807
+     },
+     {
+      "w": "and",
+      "t0": 4.957,
+      "t1": 5.12
+     },
+     {
+      "w": "everyone",
+      "t0": 5.178,
+      "t1": 5.515
+     },
+     {
+      "w": "can",
+      "t0": 5.55,
+      "t1": 5.666
+     },
+     {
+      "w": "see",
+      "t0": 5.724,
+      "t1": 5.875
+     },
+     {
+      "w": "it.",
+      "t0": 5.909,
+      "t1": 6.78
+     }
+    ]
+   }
+  ],
+  "segDur": 7.9,
+  "chunks": [
+   {
+    "file": "png/cap-A2d-0-0.png",
+    "text": "Each phone signs what it felt, like a signature on a letter.",
+    "a": 0.3,
+    "b": 4.25
+   },
+   {
+    "file": "png/cap-A2d-0-1.png",
+    "text": "Change one number, and everyone can see it.",
+    "a": 4.25,
+    "b": 7.9
+   }
+  ],
+  "t": 53.8
+ },
+ {
+  "id": "A2e",
+  "src": "A2e-z.mp4",
+  "start": 0.3,
+  "end": 15.92,
+  "pieces": [
+   {
+    "vo": "Under the hood: every reading is signed and stored on Arkiv, a public blockchain database. Names and rules live on E N S. Sealed evidence sits on Swarm. And your own browser does the counting, not our servers.",
+    "cap": "Under the hood: every reading is signed and stored on Arkiv, a public blockchain database. Names and rules live on ENS. Sealed evidence sits on Swarm. And your own browser does the counting, not our servers.",
+    "at": 0.3,
+    "dur": 14.721,
+    "wav": "vo/A2e-0.wav",
+    "words": [
+     {
+      "w": "Under",
+      "t0": 0.0,
+      "t1": 0.244
+     },
+     {
+      "w": "the",
+      "t0": 0.267,
+      "t1": 0.337
+     },
+     {
+      "w": "hood:",
+      "t0": 0.372,
+      "t1": 0.743
+     },
+     {
+      "w": "every",
+      "t0": 0.859,
+      "t1": 1.149
+     },
+     {
+      "w": "reading",
+      "t0": 1.242,
+      "t1": 1.533
+     },
+     {
+      "w": "is",
+      "t0": 1.591,
+      "t1": 1.672
+     },
+     {
+      "w": "signed",
+      "t0": 1.741,
+      "t1": 2.148
+     },
+     {
+      "w": "and",
+      "t0": 2.183,
+      "t1": 2.264
+     },
+     {
+      "w": "stored",
+      "t0": 2.322,
+      "t1": 2.612
+     },
+     {
+      "w": "on",
+      "t0": 2.659,
+      "t1": 2.74
+     },
+     {
+      "w": "Arkiv,",
+      "t0": 2.833,
+      "t1": 3.518
+     },
+     {
+      "w": "a",
+      "t0": 3.762,
+      "t1": 3.82
+     },
+     {
+      "w": "public",
+      "t0": 3.889,
+      "t1": 4.168
+     },
+     {
+      "w": "blockchain",
+      "t0": 4.203,
+      "t1": 4.632
+     },
+     {
+      "w": "database.",
+      "t0": 4.702,
+      "t1": 5.48
+     },
+     {
+      "w": "Names",
+      "t0": 6.084,
+      "t1": 6.444
+     },
+     {
+      "w": "and",
+      "t0": 6.478,
+      "t1": 6.548
+     },
+     {
+      "w": "rules",
+      "t0": 6.606,
+      "t1": 6.954
+     },
+     {
+      "w": "live",
+      "t0": 7.024,
+      "t1": 7.187
+     },
+     {
+      "w": "on",
+      "t0": 7.221,
+      "t1": 7.303
+     },
+     {
+      "w": "E",
+      "t0": 7.419,
+      "t1": 7.535
+     },
+     {
+      "w": "N",
+      "t0": 7.663,
+      "t1": 7.79
+     },
+     {
+      "w": "S.",
+      "t0": 7.837,
+      "t1": 8.22
+     },
+     {
+      "w": "Sealed",
+      "t0": 8.336,
+      "t1": 8.649
+     },
+     {
+      "w": "evidence",
+      "t0": 8.696,
+      "t1": 9.056
+     },
+     {
+      "w": "sits",
+      "t0": 9.091,
+      "t1": 9.323
+     },
+     {
+      "w": "on",
+      "t0": 9.369,
+      "t1": 9.474
+     },
+     {
+      "w": "Swarm.",
+      "t0": 9.543,
+      "t1": 10.159
+     },
+     {
+      "w": "And",
+      "t0": 10.762,
+      "t1": 10.925
+     },
+     {
+      "w": "your",
+      "t0": 10.971,
+      "t1": 11.088
+     },
+     {
+      "w": "own",
+      "t0": 11.122,
+      "t1": 11.227
+     },
+     {
+      "w": "browser",
+      "t0": 11.262,
+      "t1": 11.633
+     },
+     {
+      "w": "does",
+      "t0": 11.691,
+      "t1": 11.854
+     },
+     {
+      "w": "the",
+      "t0": 11.889,
+      "t1": 11.958
+     },
+     {
+      "w": "counting,",
+      "t0": 12.005,
+      "t1": 12.632
+     },
+     {
+      "w": "not",
+      "t0": 12.748,
+      "t1": 12.934
+     },
+     {
+      "w": "our",
+      "t0": 12.98,
+      "t1": 13.073
+     },
+     {
+      "w": "servers.",
+      "t0": 13.142,
+      "t1": 14.721
+     }
+    ]
+   }
+  ],
+  "segDur": 15.616666666666667,
+  "chunks": [
+   {
+    "file": "png/cap-A2e-0-0.png",
+    "text": "Under the hood: every reading is signed and stored on Arkiv, a public blockchain database.",
+    "a": 0.3,
+    "b": 6.795
+   },
+   {
+    "file": "png/cap-A2e-0-1.png",
+    "text": "Names and rules live on ENS.",
+    "a": 6.795,
+    "b": 8.815
+   },
+   {
+    "file": "png/cap-A2e-0-2.png",
+    "text": "Sealed evidence sits on Swarm.",
+    "a": 8.815,
+    "b": 10.98
+   },
+   {
+    "file": "png/cap-A2e-0-3.png",
+    "text": "And your own browser does the counting, not our servers.",
+    "a": 10.98,
+    "b": 15.617
+   }
+  ],
+  "t": 61.7
+ },
+ {
+  "id": "A3",
+  "src": "A3-comp.mp4",
+  "start": 0,
+  "end": 15.0,
+  "pieces": [
+   {
+    "vo": "Here's the real thing, at ETHGlobal Mumbai. Four phones, one table. Of a hundred and forty-one readings, a hundred and thirty-seven were thrown out. One real event got through, at twenty-three hundred hours, and it was sealed for good.",
+    "cap": "Here's the real thing, at ETHGlobal Mumbai. Four phones, one table. Of 141 readings, 137 were thrown out. One real event got through, at 23:00:41, and it was sealed for good.",
+    "at": 0.5,
+    "dur": 13.932,
+    "wav": "vo/A3-0.wav",
+    "words": [
+     {
+      "w": "Here's",
+      "t0": 0.0,
+      "t1": 0.279
+     },
+     {
+      "w": "the",
+      "t0": 0.302,
+      "t1": 0.372
+     },
+     {
+      "w": "real",
+      "t0": 0.418,
+      "t1": 0.592
+     },
+     {
+      "w": "thing,",
+      "t0": 0.662,
+      "t1": 1.045
+     },
+     {
+      "w": "at",
+      "t0": 1.161,
+      "t1": 1.312
+     },
+     {
+      "w": "ETHGlobal",
+      "t0": 1.393,
+      "t1": 2.009
+     },
+     {
+      "w": "Mumbai.",
+      "t0": 2.067,
+      "t1": 2.717
+     },
+     {
+      "w": "Four",
+      "t0": 3.042,
+      "t1": 3.262
+     },
+     {
+      "w": "phones,",
+      "t0": 3.32,
+      "t1": 3.715
+     },
+     {
+      "w": "one",
+      "t0": 3.762,
+      "t1": 3.959
+     },
+     {
+      "w": "table.",
+      "t0": 4.005,
+      "t1": 4.493
+     },
+     {
+      "w": "Of",
+      "t0": 4.876,
+      "t1": 5.004
+     },
+     {
+      "w": "a",
+      "t0": 5.062,
+      "t1": 5.085
+     },
+     {
+      "w": "hundred",
+      "t0": 5.143,
+      "t1": 5.364
+     },
+     {
+      "w": "and",
+      "t0": 5.399,
+      "t1": 5.468
+     },
+     {
+      "w": "forty-one",
+      "t0": 5.526,
+      "t1": 5.968
+     },
+     {
+      "w": "readings,",
+      "t0": 6.026,
+      "t1": 6.432
+     },
+     {
+      "w": "a",
+      "t0": 6.455,
+      "t1": 6.502
+     },
+     {
+      "w": "hundred",
+      "t0": 6.583,
+      "t1": 6.803
+     },
+     {
+      "w": "and",
+      "t0": 6.827,
+      "t1": 6.896
+     },
+     {
+      "w": "thirty-seven",
+      "t0": 6.954,
+      "t1": 7.558
+     },
+     {
+      "w": "were",
+      "t0": 7.593,
+      "t1": 7.732
+     },
+     {
+      "w": "thrown",
+      "t0": 7.755,
+      "t1": 8.011
+     },
+     {
+      "w": "out.",
+      "t0": 8.069,
+      "t1": 8.371
+     },
+     {
+      "w": "One",
+      "t0": 8.882,
+      "t1": 9.114
+     },
+     {
+      "w": "real",
+      "t0": 9.16,
+      "t1": 9.334
+     },
+     {
+      "w": "event",
+      "t0": 9.392,
+      "t1": 9.636
+     },
+     {
+      "w": "got",
+      "t0": 9.683,
+      "t1": 9.845
+     },
+     {
+      "w": "through,",
+      "t0": 9.88,
+      "t1": 10.263
+     },
+     {
+      "w": "at",
+      "t0": 10.588,
+      "t1": 10.75
+     },
+     {
+      "w": "twenty-three",
+      "t0": 10.785,
+      "t1": 11.261
+     },
+     {
+      "w": "hundred",
+      "t0": 11.296,
+      "t1": 11.54
+     },
+     {
+      "w": "hours,",
+      "t0": 11.575,
+      "t1": 11.923
+     },
+     {
+      "w": "and",
+      "t0": 11.958,
+      "t1": 12.167
+     },
+     {
+      "w": "it",
+      "t0": 12.213,
+      "t1": 12.271
+     },
+     {
+      "w": "was",
+      "t0": 12.306,
+      "t1": 12.399
+     },
+     {
+      "w": "sealed",
+      "t0": 12.434,
+      "t1": 12.689
+     },
+     {
+      "w": "for",
+      "t0": 12.736,
+      "t1": 12.84
+     },
+     {
+      "w": "good.",
+      "t0": 12.887,
+      "t1": 13.932
+     }
+    ]
+   }
+  ],
+  "segDur": 15.033333333333333,
+  "chunks": [
+   {
+    "file": "png/cap-A3-0-0.png",
+    "text": "Here's the real thing, at ETHGlobal Mumbai.",
+    "a": 0.5,
+    "b": 4.003
+   },
+   {
+    "file": "png/cap-A3-0-1.png",
+    "text": "Four phones, one table.",
+    "a": 4.003,
+    "b": 5.877
+   },
+   {
+    "file": "png/cap-A3-0-2.png",
+    "text": "Of 141 readings, 137 were thrown out.",
+    "a": 5.877,
+    "b": 8.892
+   },
+   {
+    "file": "png/cap-A3-0-3.png",
+    "text": "One real event got through, at 23:00:41, and it was sealed for good.",
+    "a": 8.892,
+    "b": 15.033
+   }
+  ],
+  "t": 77.317
+ },
+ {
+  "id": "B1",
+  "src": "e_quake.mp4",
+  "start": 0,
+  "end": 9.5,
+  "pieces": [
+   {
+    "vo": "But the night the bed shook, it wasn't construction. When the internet goes down, the same phones become a rescue network.",
+    "cap": "But the night the bed shook, it wasn't construction. When the internet goes down, the same phones become a rescue network.",
+    "at": 0.6,
+    "dur": 8.266,
+    "wav": "vo/B1-0.wav",
+    "words": [
+     {
+      "w": "But",
+      "t0": 0.0,
+      "t1": 0.197
+     },
+     {
+      "w": "the",
+      "t0": 0.232,
+      "t1": 0.302
+     },
+     {
+      "w": "night",
+      "t0": 0.36,
+      "t1": 0.557
+     },
+     {
+      "w": "the",
+      "t0": 0.592,
+      "t1": 0.662
+     },
+     {
+      "w": "bed",
+      "t0": 0.72,
+      "t1": 0.894
+     },
+     {
+      "w": "shook,",
+      "t0": 0.975,
+      "t1": 1.416
+     },
+     {
+      "w": "it",
+      "t0": 1.474,
+      "t1": 1.591
+     },
+     {
+      "w": "wasn't",
+      "t0": 1.649,
+      "t1": 1.916
+     },
+     {
+      "w": "construction.",
+      "t0": 1.95,
+      "t1": 2.752
+     },
+     {
+      "w": "When",
+      "t0": 3.866,
+      "t1": 4.029
+     },
+     {
+      "w": "the",
+      "t0": 4.052,
+      "t1": 4.122
+     },
+     {
+      "w": "internet",
+      "t0": 4.168,
+      "t1": 4.481
+     },
+     {
+      "w": "goes",
+      "t0": 4.54,
+      "t1": 4.725
+     },
+     {
+      "w": "down,",
+      "t0": 4.783,
+      "t1": 5.271
+     },
+     {
+      "w": "the",
+      "t0": 5.445,
+      "t1": 5.561
+     },
+     {
+      "w": "same",
+      "t0": 5.619,
+      "t1": 5.84
+     },
+     {
+      "w": "phones",
+      "t0": 5.875,
+      "t1": 6.165
+     },
+     {
+      "w": "become",
+      "t0": 6.211,
+      "t1": 6.49
+     },
+     {
+      "w": "a",
+      "t0": 6.513,
+      "t1": 6.536
+     },
+     {
+      "w": "rescue",
+      "t0": 6.594,
+      "t1": 6.943
+     },
+     {
+      "w": "network.",
+      "t0": 6.978,
+      "t1": 8.266
+     }
+    ]
+   }
+  ],
+  "segDur": 9.5,
+  "chunks": [
+   {
+    "file": "png/cap-B1-0-0.png",
+    "text": "But the night the bed shook, it wasn't construction.",
+    "a": 0.6,
+    "b": 4.152
+   },
+   {
+    "file": "png/cap-B1-0-1.png",
+    "text": "When the internet goes down, the same phones become a rescue network.",
+    "a": 4.152,
+    "b": 9.5
+   }
+  ],
+  "t": 92.35
+ },
+ {
+  "id": "B2a",
+  "src": "e_mesh.mp4",
+  "start": 0,
+  "end": 6.28,
+  "pieces": [
+   {
+    "vo": "When enough phones feel a strong quake at once, they switch to disaster mode.",
+    "cap": "When enough phones feel a strong quake at once, they switch to disaster mode.",
+    "at": 0.3,
+    "dur": 5.387,
+    "wav": "vo/B2a-0.wav",
+    "words": [
+     {
+      "w": "When",
+      "t0": 0.0,
+      "t1": 0.221
+     },
+     {
+      "w": "enough",
+      "t0": 0.267,
+      "t1": 0.488
+     },
+     {
+      "w": "phones",
+      "t0": 0.522,
+      "t1": 0.859
+     },
+     {
+      "w": "feel",
+      "t0": 0.917,
+      "t1": 1.161
+     },
+     {
+      "w": "a",
+      "t0": 1.242,
+      "t1": 1.277
+     },
+     {
+      "w": "strong",
+      "t0": 1.393,
+      "t1": 1.765
+     },
+     {
+      "w": "quake",
+      "t0": 1.846,
+      "t1": 2.136
+     },
+     {
+      "w": "at",
+      "t0": 2.171,
+      "t1": 2.241
+     },
+     {
+      "w": "once,",
+      "t0": 2.322,
+      "t1": 2.868
+     },
+     {
+      "w": "they",
+      "t0": 3.146,
+      "t1": 3.309
+     },
+     {
+      "w": "switch",
+      "t0": 3.367,
+      "t1": 3.669
+     },
+     {
+      "w": "to",
+      "t0": 3.727,
+      "t1": 3.82
+     },
+     {
+      "w": "disaster",
+      "t0": 3.901,
+      "t1": 4.458
+     },
+     {
+      "w": "mode.",
+      "t0": 4.516,
+      "t1": 5.387
+     }
+    ]
+   }
+  ],
+  "segDur": 6.283333333333333,
+  "chunks": [
+   {
+    "file": "png/cap-B2a-0-0.png",
+    "text": "When enough phones feel a strong quake at once, they switch to disaster mode.",
+    "a": 0.3,
+    "b": 6.283
+   }
+  ],
+  "t": 101.85
+ },
+ {
+  "id": "B2b",
+  "src": "e_mesh.mp4",
+  "start": 6.28,
+  "end": 19.71,
+  "pieces": [
+   {
+    "vo": "With no internet, they connect directly over Bluetooth and Wi-Fi, forming a mesh. Some phones become hubs, linked to many others. Some become connectors, bridging groups, so every message finds a way through.",
+    "cap": "With no internet, they connect directly over Bluetooth and Wi-Fi, forming a mesh. Some phones become hubs, linked to many others. Some become connectors, bridging groups, so every message finds a way through.",
+    "at": 0.3,
+    "dur": 12.539,
+    "wav": "vo/B2b-0.wav",
+    "words": [
+     {
+      "w": "With",
+      "t0": 0.0,
+      "t1": 0.232
+     },
+     {
+      "w": "no",
+      "t0": 0.302,
+      "t1": 0.43
+     },
+     {
+      "w": "internet,",
+      "t0": 0.499,
+      "t1": 1.103
+     },
+     {
+      "w": "they",
+      "t0": 1.231,
+      "t1": 1.382
+     },
+     {
+      "w": "connect",
+      "t0": 1.416,
+      "t1": 1.649
+     },
+     {
+      "w": "directly",
+      "t0": 1.683,
+      "t1": 2.055
+     },
+     {
+      "w": "over",
+      "t0": 2.101,
+      "t1": 2.276
+     },
+     {
+      "w": "Bluetooth",
+      "t0": 2.334,
+      "t1": 2.821
+     },
+     {
+      "w": "and",
+      "t0": 2.868,
+      "t1": 2.937
+     },
+     {
+      "w": "Wi-Fi,",
+      "t0": 2.995,
+      "t1": 3.692
+     },
+     {
+      "w": "forming",
+      "t0": 3.866,
+      "t1": 4.168
+     },
+     {
+      "w": "a",
+      "t0": 4.214,
+      "t1": 4.238
+     },
+     {
+      "w": "mesh.",
+      "t0": 4.284,
+      "t1": 4.748
+     },
+     {
+      "w": "Some",
+      "t0": 5.19,
+      "t1": 5.433
+     },
+     {
+      "w": "phones",
+      "t0": 5.468,
+      "t1": 5.747
+     },
+     {
+      "w": "become",
+      "t0": 5.793,
+      "t1": 6.06
+     },
+     {
+      "w": "hubs,",
+      "t0": 6.107,
+      "t1": 6.641
+     },
+     {
+      "w": "linked",
+      "t0": 6.85,
+      "t1": 7.07
+     },
+     {
+      "w": "to",
+      "t0": 7.094,
+      "t1": 7.14
+     },
+     {
+      "w": "many",
+      "t0": 7.187,
+      "t1": 7.361
+     },
+     {
+      "w": "others.",
+      "t0": 7.419,
+      "t1": 7.895
+     },
+     {
+      "w": "Some",
+      "t0": 8.173,
+      "t1": 8.371
+     },
+     {
+      "w": "become",
+      "t0": 8.394,
+      "t1": 8.649
+     },
+     {
+      "w": "connectors,",
+      "t0": 8.696,
+      "t1": 9.334
+     },
+     {
+      "w": "bridging",
+      "t0": 9.404,
+      "t1": 9.752
+     },
+     {
+      "w": "groups,",
+      "t0": 9.799,
+      "t1": 10.286
+     },
+     {
+      "w": "so",
+      "t0": 10.344,
+      "t1": 10.472
+     },
+     {
+      "w": "every",
+      "t0": 10.553,
+      "t1": 10.728
+     },
+     {
+      "w": "message",
+      "t0": 10.786,
+      "t1": 11.146
+     },
+     {
+      "w": "finds",
+      "t0": 11.192,
+      "t1": 11.413
+     },
+     {
+      "w": "a",
+      "t0": 11.447,
+      "t1": 11.471
+     },
+     {
+      "w": "way",
+      "t0": 11.505,
+      "t1": 11.598
+     },
+     {
+      "w": "through.",
+      "t0": 11.633,
+      "t1": 12.539
+     }
+    ]
+   }
+  ],
+  "segDur": 13.433333333333334,
+  "chunks": [
+   {
+    "file": "png/cap-B2b-0-0.png",
+    "text": "With no internet, they connect directly over Bluetooth and Wi-Fi, forming a mesh.",
+    "a": 0.3,
+    "b": 5.23
+   },
+   {
+    "file": "png/cap-B2b-0-1.png",
+    "text": "Some phones become hubs, linked to many others.",
+    "a": 5.23,
+    "b": 8.091
+   },
+   {
+    "file": "png/cap-B2b-0-2.png",
+    "text": "Some become connectors, bridging groups, so every message finds a way through.",
+    "a": 8.091,
+    "b": 13.433
+   }
+  ],
+  "t": 108.133
+ },
+ {
+  "id": "B2c",
+  "src": "e_mesh.mp4",
+  "start": 19.71,
+  "end": 31.71,
+  "pieces": [
+   {
+    "vo": "Every link also shows how close two phones are, giving a map of who is near whom. If a phone goes quiet under the rubble, its last neighbours show rescuers where to look.",
+    "cap": "Every link also shows how close two phones are, giving a map of who is near whom. If a phone goes quiet under the rubble, its last neighbours show rescuers where to look.",
+    "at": 0.3,
+    "dur": 9.845,
+    "wav": "vo/B2c-0.wav",
+    "words": [
+     {
+      "w": "Every",
+      "t0": 0.0,
+      "t1": 0.29
+     },
+     {
+      "w": "link",
+      "t0": 0.348,
+      "t1": 0.522
+     },
+     {
+      "w": "also",
+      "t0": 0.58,
+      "t1": 0.789
+     },
+     {
+      "w": "shows",
+      "t0": 0.848,
+      "t1": 1.057
+     },
+     {
+      "w": "how",
+      "t0": 1.091,
+      "t1": 1.173
+     },
+     {
+      "w": "close",
+      "t0": 1.231,
+      "t1": 1.474
+     },
+     {
+      "w": "two",
+      "t0": 1.509,
+      "t1": 1.683
+     },
+     {
+      "w": "phones",
+      "t0": 1.741,
+      "t1": 2.043
+     },
+     {
+      "w": "are,",
+      "t0": 2.09,
+      "t1": 2.345
+     },
+     {
+      "w": "giving",
+      "t0": 2.461,
+      "t1": 2.682
+     },
+     {
+      "w": "a",
+      "t0": 2.717,
+      "t1": 2.74
+     },
+     {
+      "w": "map",
+      "t0": 2.798,
+      "t1": 3.042
+     },
+     {
+      "w": "of",
+      "t0": 3.1,
+      "t1": 3.17
+     },
+     {
+      "w": "who",
+      "t0": 3.239,
+      "t1": 3.367
+     },
+     {
+      "w": "is",
+      "t0": 3.425,
+      "t1": 3.506
+     },
+     {
+      "w": "near",
+      "t0": 3.587,
+      "t1": 3.773
+     },
+     {
+      "w": "whom.",
+      "t0": 3.843,
+      "t1": 4.331
+     },
+     {
+      "w": "If",
+      "t0": 4.934,
+      "t1": 5.074
+     },
+     {
+      "w": "a",
+      "t0": 5.132,
+      "t1": 5.155
+     },
+     {
+      "w": "phone",
+      "t0": 5.201,
+      "t1": 5.433
+     },
+     {
+      "w": "goes",
+      "t0": 5.468,
+      "t1": 5.642
+     },
+     {
+      "w": "quiet",
+      "t0": 5.7,
+      "t1": 5.979
+     },
+     {
+      "w": "under",
+      "t0": 6.026,
+      "t1": 6.153
+     },
+     {
+      "w": "the",
+      "t0": 6.177,
+      "t1": 6.246
+     },
+     {
+      "w": "rubble,",
+      "t0": 6.293,
+      "t1": 6.722
+     },
+     {
+      "w": "its",
+      "t0": 6.931,
+      "t1": 7.105
+     },
+     {
+      "w": "last",
+      "t0": 7.163,
+      "t1": 7.407
+     },
+     {
+      "w": "neighbours",
+      "t0": 7.465,
+      "t1": 7.767
+     },
+     {
+      "w": "show",
+      "t0": 7.802,
+      "t1": 7.964
+     },
+     {
+      "w": "rescuers",
+      "t0": 8.034,
+      "t1": 8.522
+     },
+     {
+      "w": "where",
+      "t0": 8.568,
+      "t1": 8.742
+     },
+     {
+      "w": "to",
+      "t0": 8.766,
+      "t1": 8.812
+     },
+     {
+      "w": "look.",
+      "t0": 8.858,
+      "t1": 9.845
+     }
+    ]
+   }
+  ],
+  "segDur": 12.0,
+  "chunks": [
+   {
+    "file": "png/cap-B2c-0-0.png",
+    "text": "Every link also shows how close two phones are, giving a map of who is near whom.",
+    "a": 0.3,
+    "b": 5.019
+   },
+   {
+    "file": "png/cap-B2c-0-1.png",
+    "text": "If a phone goes quiet under the rubble, its last neighbours show rescuers where to look.",
+    "a": 5.019,
+    "b": 12.0
+   }
+  ],
+  "t": 121.567
+ },
+ {
+  "id": "B3",
+  "src": "e_mesh.mp4",
+  "start": 31.71,
+  "end": 44.71,
+  "pieces": [
+   {
+    "vo": "Here's how our app works with no internet. One phone taps, I need help, and it hops through the mesh to everyone. The list shows who's safe, who needs help, and who hasn't answered.",
+    "cap": "Here's how our app works with no internet. One phone taps \"I need help\", and it hops through the mesh to everyone. The list shows who's safe, who needs help, and who hasn't answered.",
+    "at": 0.3,
+    "dur": 12.074,
+    "wav": "vo/B3-0.wav",
+    "words": [
+     {
+      "w": "Here's",
+      "t0": 0.0,
+      "t1": 0.302
+     },
+     {
+      "w": "how",
+      "t0": 0.337,
+      "t1": 0.43
+     },
+     {
+      "w": "our",
+      "t0": 0.488,
+      "t1": 0.604
+     },
+     {
+      "w": "app",
+      "t0": 0.65,
+      "t1": 0.813
+     },
+     {
+      "w": "works",
+      "t0": 0.882,
+      "t1": 1.161
+     },
+     {
+      "w": "with",
+      "t0": 1.196,
+      "t1": 1.347
+     },
+     {
+      "w": "no",
+      "t0": 1.416,
+      "t1": 1.521
+     },
+     {
+      "w": "internet.",
+      "t0": 1.591,
+      "t1": 2.148
+     },
+     {
+      "w": "One",
+      "t0": 2.961,
+      "t1": 3.158
+     },
+     {
+      "w": "phone",
+      "t0": 3.193,
+      "t1": 3.437
+     },
+     {
+      "w": "taps,",
+      "t0": 3.471,
+      "t1": 3.947
+     },
+     {
+      "w": "I",
+      "t0": 4.005,
+      "t1": 4.063
+     },
+     {
+      "w": "need",
+      "t0": 4.156,
+      "t1": 4.319
+     },
+     {
+      "w": "help,",
+      "t0": 4.365,
+      "t1": 4.76
+     },
+     {
+      "w": "and",
+      "t0": 4.969,
+      "t1": 5.108
+     },
+     {
+      "w": "it",
+      "t0": 5.166,
+      "t1": 5.224
+     },
+     {
+      "w": "hops",
+      "t0": 5.271,
+      "t1": 5.515
+     },
+     {
+      "w": "through",
+      "t0": 5.538,
+      "t1": 5.77
+     },
+     {
+      "w": "the",
+      "t0": 5.805,
+      "t1": 5.875
+     },
+     {
+      "w": "mesh",
+      "t0": 5.933,
+      "t1": 6.223
+     },
+     {
+      "w": "to",
+      "t0": 6.281,
+      "t1": 6.362
+     },
+     {
+      "w": "everyone.",
+      "t0": 6.444,
+      "t1": 7.036
+     },
+     {
+      "w": "The",
+      "t0": 7.639,
+      "t1": 7.755
+     },
+     {
+      "w": "list",
+      "t0": 7.825,
+      "t1": 8.069
+     },
+     {
+      "w": "shows",
+      "t0": 8.139,
+      "t1": 8.51
+     },
+     {
+      "w": "who's",
+      "t0": 8.557,
+      "t1": 8.777
+     },
+     {
+      "w": "safe,",
+      "t0": 8.824,
+      "t1": 9.288
+     },
+     {
+      "w": "who",
+      "t0": 9.369,
+      "t1": 9.52
+     },
+     {
+      "w": "needs",
+      "t0": 9.578,
+      "t1": 9.776
+     },
+     {
+      "w": "help,",
+      "t0": 9.834,
+      "t1": 10.182
+     },
+     {
+      "w": "and",
+      "t0": 10.356,
+      "t1": 10.507
+     },
+     {
+      "w": "who",
+      "t0": 10.553,
+      "t1": 10.646
+     },
+     {
+      "w": "hasn't",
+      "t0": 10.704,
+      "t1": 10.96
+     },
+     {
+      "w": "answered.",
+      "t0": 10.995,
+      "t1": 12.074
+     }
+    ]
+   }
+  ],
+  "segDur": 13.0,
+  "chunks": [
+   {
+    "file": "png/cap-B3-0-0.png",
+    "text": "Here's how our app works with no internet.",
+    "a": 0.3,
+    "b": 3.117
+   },
+   {
+    "file": "png/cap-B3-0-1.png",
+    "text": "One phone taps \"I need help\", and it hops through the mesh to everyone.",
+    "a": 3.117,
+    "b": 7.88
+   },
+   {
+    "file": "png/cap-B3-0-2.png",
+    "text": "The list shows who's safe, who needs help, and who hasn't answered.",
+    "a": 7.88,
+    "b": 13.0
+   }
+  ],
+  "t": 133.567
+ },
+ {
+  "id": "Z",
+  "src": "e_end.mp4",
+  "start": 0,
+  "end": 8,
+  "pieces": [
+   {
+    "vo": "Before disaster, proof no one can rewrite. After it, a way to find each other. TremorMesh.",
+    "cap": "Before disaster, proof no one can rewrite. After it, a way to find each other. TremorMesh.",
+    "at": 0.4,
+    "dur": 6.873,
+    "wav": "vo/Z-0.wav",
+    "words": [
+     {
+      "w": "Before",
+      "t0": 0.0,
+      "t1": 0.395
+     },
+     {
+      "w": "disaster,",
+      "t0": 0.441,
+      "t1": 1.01
+     },
+     {
+      "w": "proof",
+      "t0": 1.045,
+      "t1": 1.277
+     },
+     {
+      "w": "no",
+      "t0": 1.358,
+      "t1": 1.451
+     },
+     {
+      "w": "one",
+      "t0": 1.509,
+      "t1": 1.614
+     },
+     {
+      "w": "can",
+      "t0": 1.649,
+      "t1": 1.776
+     },
+     {
+      "w": "rewrite.",
+      "t0": 1.858,
+      "t1": 2.531
+     },
+     {
+      "w": "After",
+      "t0": 3.646,
+      "t1": 3.947
+     },
+     {
+      "w": "it,",
+      "t0": 4.005,
+      "t1": 4.168
+     },
+     {
+      "w": "a",
+      "t0": 4.191,
+      "t1": 4.261
+     },
+     {
+      "w": "way",
+      "t0": 4.331,
+      "t1": 4.447
+     },
+     {
+      "w": "to",
+      "t0": 4.493,
+      "t1": 4.54
+     },
+     {
+      "w": "find",
+      "t0": 4.598,
+      "t1": 4.795
+     },
+     {
+      "w": "each",
+      "t0": 4.841,
+      "t1": 4.981
+     },
+     {
+      "w": "other.",
+      "t0": 5.039,
+      "t1": 5.387
+     },
+     {
+      "w": "TremorMesh.",
+      "t0": 5.828,
+      "t1": 6.873
+     }
+    ]
+   }
+  ],
+  "segDur": 8.0,
+  "chunks": [
+   {
+    "file": "png/cap-Z-0-0.png",
+    "text": "Before disaster, proof no one can rewrite.",
+    "a": 0.4,
+    "b": 3.68
+   },
+   {
+    "file": "png/cap-Z-0-1.png",
+    "text": "After it, a way to find each other.",
+    "a": 3.68,
+    "b": 6.414
+   },
+   {
+    "file": "png/cap-Z-0-2.png",
+    "text": "TremorMesh.",
+    "a": 6.414,
+    "b": 8.0
+   }
+  ],
+  "t": 146.567
+ }
+]

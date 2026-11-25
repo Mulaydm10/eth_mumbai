@@ -1,0 +1,197 @@
+[
+ {
+  "id": "N0",
+  "src": "N0.mp4",
+  "start": 0,
+  "end": 8.2,
+  "pieces": [
+   {
+    "vo": "Ramesh is a story. These are not.",
+    "cap": "Ramesh is a story. These are not.",
+    "at": 0.6
+   }
+  ]
+ },
+ {
+  "id": "A0",
+  "src": "P0-z.mp4",
+  "start": 0.8,
+  "end": 8.3,
+  "pieces": [
+   {
+    "vo": "Every blow next door travels through the ground into old buildings like Ramesh's. Cracks grow, but nobody keeps an honest record.",
+    "cap": "Every blow next door travels through the ground into old buildings like Ramesh's. Cracks grow, but nobody keeps an honest record.",
+    "at": 0.4
+   }
+  ]
+ },
+ {
+  "id": "A1",
+  "src": "A1.mp4",
+  "start": 0.6,
+  "end": 12.5,
+  "pieces": [
+   {
+    "vo": "This is TremorMesh. Every flat keeps one phone on the floor. Together, they record every tremor, and nobody can rewrite that record. Not even us.",
+    "cap": "This is TremorMesh. Every flat keeps one phone on the floor. Together, they record every tremor, and nobody can rewrite that record. Not even us.",
+    "at": 0.5
+   }
+  ]
+ },
+ {
+  "id": "A2a",
+  "src": "A2a-z.mp4",
+  "start": 0.2,
+  "end": 10.2,
+  "pieces": [
+   {
+    "vo": "The phone lies still and listens. It reacts only when the floor really shakes. Pick it up, and that reading doesn't count.",
+    "cap": "The phone lies still and listens. It reacts only when the floor really shakes. Pick it up, and that reading doesn't count.",
+    "at": 0.3
+   }
+  ]
+ },
+ {
+  "id": "A2b",
+  "src": "e_wave.mp4",
+  "start": 0,
+  "end": 8.1,
+  "pieces": [
+   {
+    "vo": "One phone proves nothing, and one man is easy to dismiss. A tremor counts only when three flats feel it at the same moment.",
+    "cap": "One phone proves nothing, and one man is easy to dismiss. A tremor counts only when three flats feel it at the same moment.",
+    "at": 0.3
+   }
+  ]
+ },
+ {
+  "id": "A2c",
+  "src": "e_join.mp4",
+  "start": 2.0,
+  "end": 9.4,
+  "pieces": [
+   {
+    "vo": "The building committee invites each phone. Every phone gets a public name, and the rules are public too.",
+    "cap": "The building committee invites each phone. Every phone gets a public name, and the rules are public too.",
+    "at": 0.3
+   }
+  ]
+ },
+ {
+  "id": "A2d",
+  "src": "A2d-z.mp4",
+  "start": 0.2,
+  "end": 8.1,
+  "pieces": [
+   {
+    "vo": "Each phone signs what it felt, like a signature on a letter. Change one number, and everyone can see it.",
+    "cap": "Each phone signs what it felt, like a signature on a letter. Change one number, and everyone can see it.",
+    "at": 0.3
+   }
+  ]
+ },
+ {
+  "id": "A2e",
+  "src": "A2e-z.mp4",
+  "start": 0.3,
+  "end": 15.92,
+  "pieces": [
+   {
+    "vo": "Under the hood: every reading is signed and stored on Arkiv, a public blockchain database. Names and rules live on E N S. Sealed evidence sits on Swarm. And your own browser does the counting, not our servers.",
+    "cap": "Under the hood: every reading is signed and stored on Arkiv, a public blockchain database. Names and rules live on ENS. Sealed evidence sits on Swarm. And your own browser does the counting, not our servers.",
+    "at": 0.3
+   }
+  ]
+ },
+ {
+  "id": "A3",
+  "src": "A3-comp.mp4",
+  "start": 0,
+  "end": 15.0,
+  "pieces": [
+   {
+    "vo": "Here's the real thing, at ETHGlobal Mumbai. Four phones, one table. Of a hundred and forty-one readings, a hundred and thirty-seven were thrown out. One real event got through, at twenty-three hundred hours, and it was sealed for good.",
+    "cap": "Here's the real thing, at ETHGlobal Mumbai. Four phones, one table. Of 141 readings, 137 were thrown out. One real event got through, at 23:00:41, and it was sealed for good.",
+    "at": 0.5
+   }
+  ]
+ },
+ {
+  "id": "B1",
+  "src": "e_quake.mp4",
+  "start": 0,
+  "end": 9.5,
+  "pieces": [
+   {
+    "vo": "But the night the bed shook, it wasn't construction. When the internet goes down, the same phones become a rescue network.",
+    "cap": "But the night the bed shook, it wasn't construction. When the internet goes down, the same phones become a rescue network.",
+    "at": 0.6
+   }
+  ]
+ },
+ {
+  "id": "B2a",
+  "src": "e_mesh.mp4",
+  "start": 0,
+  "end": 6.28,
+  "pieces": [
+   {
+    "vo": "When enough phones feel a strong quake at once, they switch to disaster mode.",
+    "cap": "When enough phones feel a strong quake at once, they switch to disaster mode.",
+    "at": 0.3
+   }
+  ]
+ },
+ {
+  "id": "B2b",
+  "src": "e_mesh.mp4",
+  "start": 6.28,
+  "end": 19.71,
+  "pieces": [
+   {
+    "vo": "With no internet, they connect directly over Bluetooth and Wi-Fi, forming a mesh. Some phones become hubs, linked to many others. Some become connectors, bridging groups, so every message finds a way through.",
+    "cap": "With no internet, they connect directly over Bluetooth and Wi-Fi, forming a mesh. Some phones become hubs, linked to many others. Some become connectors, bridging groups, so every message finds a way through.",
+    "at": 0.3
+   }
+  ]
+ },
+ {
+  "id": "B2c",
+  "src": "e_mesh.mp4",
+  "start": 19.71,
+  "end": 31.71,
+  "pieces": [
+   {
+    "vo": "Every link also shows how close two phones are, giving a map of who is near whom. If a phone goes quiet under the rubble, its last neighbours show rescuers where to look.",
+    "cap": "Every link also shows how close two phones are, giving a map of who is near whom. If a phone goes quiet under the rubble, its last neighbours show rescuers where to look.",
+    "at": 0.3
+   }
+  ]
+ },
+ {
+  "id": "B3",
+  "src": "e_mesh.mp4",
+  "start": 31.71,
+  "end": 44.71,
+  "pieces": [
+   {
+    "vo": "Here's how our app works with no internet. One phone taps, I need help, and it hops through the mesh to everyone. The list shows who's safe, who needs help, and who hasn't answered.",
+    "cap": "Here's how our app works with no internet. One phone taps \"I need help\", and it hops through the mesh to everyone. The list shows who's safe, who needs help, and who hasn't answered.",
+    "at": 0.3
+   }
+  ]
+ },
+ {
+  "id": "Z",
+  "src": "e_end.mp4",
+  "start": 0,
+  "end": 8,
+  "pieces": [
+   {
+    "vo": "Before disaster, proof no one can rewrite. After it, a way to find each other. TremorMesh.",
+    "cap": "Before disaster, proof no one can rewrite. After it, a way to find each other. TremorMesh.",
+    "at": 0.4
+   }
+  ]
+ }
+]

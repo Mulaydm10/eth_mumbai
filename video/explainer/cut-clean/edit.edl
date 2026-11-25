@@ -1,0 +1,62 @@
+TITLE: explainer
+FCM: NON-DROP FRAME
+
+001  AX       V     C        00:00:00:00 00:00:08:12 01:00:00:00 01:00:08:12
+* FROM CLIP NAME: N0.mp4
+* SOURCE FILE: /Users/mulaydm10/Dhruv/ETH mumbai/video/explainer/cut-clean/seg/N0.mp4
+
+002  AX       V     C        00:00:00:00 00:00:08:12 01:00:08:12 01:00:16:24
+* FROM CLIP NAME: A0.mp4
+* SOURCE FILE: /Users/mulaydm10/Dhruv/ETH mumbai/video/explainer/cut-clean/seg/A0.mp4
+
+003  AX       V     C        00:00:00:00 00:00:11:54 01:00:16:24 01:00:28:18
+* FROM CLIP NAME: A1.mp4
+* SOURCE FILE: /Users/mulaydm10/Dhruv/ETH mumbai/video/explainer/cut-clean/seg/A1.mp4
+
+004  AX       V     C        00:00:00:00 00:00:10:00 01:00:28:18 01:00:38:18
+* FROM CLIP NAME: A2a.mp4
+* SOURCE FILE: /Users/mulaydm10/Dhruv/ETH mumbai/video/explainer/cut-clean/seg/A2a.mp4
+
+005  AX       V     C        00:00:00:00 00:00:08:06 01:00:38:18 01:00:46:24
+* FROM CLIP NAME: A2b.mp4
+* SOURCE FILE: /Users/mulaydm10/Dhruv/ETH mumbai/video/explainer/cut-clean/seg/A2b.mp4
+
+006  AX       V     C        00:00:00:00 00:00:07:24 01:00:46:24 01:00:53:48
+* FROM CLIP NAME: A2c.mp4
+* SOURCE FILE: /Users/mulaydm10/Dhruv/ETH mumbai/video/explainer/cut-clean/seg/A2c.mp4
+
+007  AX       V     C        00:00:00:00 00:00:07:54 01:00:53:48 01:01:01:42
+* FROM CLIP NAME: A2d.mp4
+* SOURCE FILE: /Users/mulaydm10/Dhruv/ETH mumbai/video/explainer/cut-clean/seg/A2d.mp4
+
+008  AX       V     C        00:00:00:00 00:00:15:37 01:01:01:42 01:01:17:19
+* FROM CLIP NAME: A2e.mp4
+* SOURCE FILE: /Users/mulaydm10/Dhruv/ETH mumbai/video/explainer/cut-clean/seg/A2e.mp4
+
+009  AX       V     C        00:00:00:00 00:00:15:02 01:01:17:19 01:01:32:21
+* FROM CLIP NAME: A3.mp4
+* SOURCE FILE: /Users/mulaydm10/Dhruv/ETH mumbai/video/explainer/cut-clean/seg/A3.mp4
+
+010  AX       V     C        00:00:00:00 00:00:09:30 01:01:32:21 01:01:41:51
+* FROM CLIP NAME: B1.mp4
+* SOURCE FILE: /Users/mulaydm10/Dhruv/ETH mumbai/video/explainer/cut-clean/seg/B1.mp4
+
+011  AX       V     C        00:00:00:00 00:00:06:17 01:01:41:51 01:01:48:08
+* FROM CLIP NAME: B2a.mp4
+* SOURCE FILE: /Users/mulaydm10/Dhruv/ETH mumbai/video/explainer/cut-clean/seg/B2a.mp4
+
+012  AX       V     C        00:00:00:00 00:00:13:26 01:01:48:08 01:02:01:34
+* FROM CLIP NAME: B2b.mp4
+* SOURCE FILE: /Users/mulaydm10/Dhruv/ETH mumbai/video/explainer/cut-clean/seg/B2b.mp4
+
+013  AX       V     C        00:00:00:00 00:00:12:00 01:02:01:34 01:02:13:34
+* FROM CLIP NAME: B2c.mp4
+* SOURCE FILE: /Users/mulaydm10/Dhruv/ETH mumbai/video/explainer/cut-clean/seg/B2c.mp4
+
+014  AX       V     C        00:00:00:00 00:00:13:00 01:02:13:34 01:02:26:34
+* FROM CLIP NAME: B3.mp4
+* SOURCE FILE: /Users/mulaydm10/Dhruv/ETH mumbai/video/explainer/cut-clean/seg/B3.mp4
+
+015  AX       V     C        00:00:00:00 00:00:08:00 01:02:26:34 01:02:34:34
+* FROM CLIP NAME: Z.mp4
+* SOURCE FILE: /Users/mulaydm10/Dhruv/ETH mumbai/video/explainer/cut-clean/seg/Z.mp4

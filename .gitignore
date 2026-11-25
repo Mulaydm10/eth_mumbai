@@ -27,3 +27,14 @@ media/videos/
 
 # rendered video (large)
 video/out/
+
+# explainer + media assets live on Drive (gdrive:Dhruv-archive/eth_mumbai), code stays in git
+video/explainer/**/*.mp4
+video/explainer/**/*.wav
+video/explainer/**/*.mp3
+video/explainer/**/*.png
+video/explainer/**/*.webm
+media/**/*.mp4
+media/**/*.wav
+media/**/*.mp3
+media/**/*.png
