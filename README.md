@@ -100,3 +100,27 @@ Overwrite `STATE.md` · append a dated+timestamped `worklog.md` entry · append 
 `GOVERNANCE.md` audit table · release any finished work claim.
 
 If a doc is still full of `TODO(<owner>)`, say so rather than invent.
+
+## Setup and archived files
+
+The repo holds code only. Installed packages, build output and media are not in git.
+
+**Rebuild:**
+```bash
+npm install                                        # root: installs every workspace (packages/*, apps/*)
+cd extensions/disaster-mesh/app && ./gradlew :app:assembleDebug   # Android APKs → app/build/outputs/apk/debug/
+```
+
+**Media is on Google Drive** (`Dhruv-archive/eth_mumbai/`, same folder layout as the repo):
+
+| Local path | What it is |
+|---|---|
+| `video/explainer/{cut,cut-clean,dub,news,submit}` | Explainer edit media: segments, voice takes, music, caption frames (edit lists stay in git) |
+| `video/out/` | Rendered scenes, previews and the TremorMesh story renders |
+| `media/` | Intro videos and animation assets |
+| `extensions/disaster-mesh/apk/` | Debug APKs (5 ABIs) |
+
+Final cuts: "TremorMesh - ETHGlobal Mumbai video" on Drive (`TremorMesh-final-dhruv-voice.mp4`, the demo video linked above, and `tremor-mesh-hype-cut.mp4`).
+
+Restore one folder: `rclone copy gdrive:Dhruv-archive/eth_mumbai/video/explainer video/explainer`
+
